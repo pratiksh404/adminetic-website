@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin\Package;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Package;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PackagePolicy

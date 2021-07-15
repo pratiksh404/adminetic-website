@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace Adminetic\Website\Policies;
 
-use App\Models\Admin\Client;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Client;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ClientPolicy

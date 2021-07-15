@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin\Service;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Service;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ServicePolicy

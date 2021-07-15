@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin\Project;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Project;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProjectPolicy

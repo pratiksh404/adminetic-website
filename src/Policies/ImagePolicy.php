@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin\Image;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Image;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ImagePolicy

@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin\Gallery;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Gallery;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class GalleryPolicy

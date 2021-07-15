@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace Adminetic\Website\Repository;
 
 use App\Models\User;
 use App\Models\Admin\Announcement;

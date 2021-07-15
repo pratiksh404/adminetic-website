@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace Adminetic\Website\Policies;
 
-use App\Models\Admin\Counter;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Counter;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CounterPolicy

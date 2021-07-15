@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category;
+namespace Adminetic\Website\Http\Livewire\Admin\Category;
 
 use Livewire\Component;
-use App\Models\Admin\Category;
+use Adminetic\Website\Models\Admin\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class QuickCategory extends Component

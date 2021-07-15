@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin\Facility;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Facility;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FacilityPolicy

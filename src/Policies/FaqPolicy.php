@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Admin\Faq;
 use App\Models\User;
+use Adminetic\Website\Models\Admin\Faq;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FaqPolicy
