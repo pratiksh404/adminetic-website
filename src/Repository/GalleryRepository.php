@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-use App\Models\Admin\Gallery;
-use App\Http\Requests\GalleryRequest;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
-use App\Http\Requests\GalleryImageRequest;
-use App\Contracts\GalleryRepositoryInterface;
+use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Http\Requests\GalleryRequest;
+use Adminetic\Website\Http\Requests\GalleryImageRequest;
+use Adminetic\Website\Contracts\GalleryRepositoryInterface;
+
 
 class GalleryRepository implements GalleryRepositoryInterface
 {
@@ -75,7 +76,7 @@ class GalleryRepository implements GalleryRepositoryInterface
     {
         if (request()->has('images')) {
 
-            $imageRequest = app(\App\Http\Requests\GalleryImageRequest::class, ['gallery' => $gallery]);
+            $imageRequest = app(\Adminetic\Website\Http\Requests\GalleryImageRequest::class, ['gallery' => $gallery]);
             $imageRequest->validated();
             foreach (request()->images as $image) {
                 $img = $gallery->images()->create([

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace Adminetic\Website\Repository;
 
-use App\Models\Admin\Client;
-use App\Http\Requests\ClientRequest;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
-use App\Contracts\ClientRepositoryInterface;
+use Adminetic\Website\Models\Admin\Client;
+use Adminetic\Website\Http\Requests\ClientRequest;
+use Adminetic\Website\Contracts\ClientRepositoryInterface;
 
 class ClientRepository implements ClientRepositoryInterface
 {

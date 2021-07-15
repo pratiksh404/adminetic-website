@@ -2,11 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Service;
-use App\Http\Requests\ServiceRequest;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
-use App\Contracts\ServiceRepositoryInterface;
+use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Http\Requests\ServiceRequest;
+use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 
 class ServiceRepository implements ServiceRepositoryInterface
 {

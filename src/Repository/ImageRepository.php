@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Image;
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\ImageRepositoryInterface;
-use App\Http\Requests\ImageRequest;
+use Adminetic\Website\Models\Admin\Image;
+use Adminetic\Website\Http\Requests\ImageRequest;
+use Adminetic\Website\Contracts\ImageRepositoryInterface;
 
 class ImageRepository implements ImageRepositoryInterface
 {

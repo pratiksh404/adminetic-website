@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace Adminetic\Website\Repository;
 
-use App\Models\Admin\Faq;
+
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\FaqRepositoryInterface;
-use App\Http\Requests\FaqRequest;
+use Adminetic\Website\Models\Admin\Faq;
+use Adminetic\Website\Http\Requests\FaqRequest;
+use Adminetic\Website\Contracts\FaqRepositoryInterface;
+
 
 class FaqRepository implements FaqRepositoryInterface
 {

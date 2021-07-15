@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Page;
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\PageRepositoryInterface;
-use App\Http\Requests\PageRequest;
+use Adminetic\Website\Models\Admin\Page;
+use Adminetic\Website\Http\Requests\PageRequest;
+use Adminetic\Website\Contracts\PageRepositoryInterface;
 
 class PageRepository implements PageRepositoryInterface
 {

@@ -2,11 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Video;
-use App\Models\Admin\Gallery;
-use App\Http\Requests\VideoRequest;
+
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\VideoRepositoryInterface;
+use Adminetic\Website\Models\Admin\Video;
+use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Http\Requests\VideoRequest;
+use Adminetic\Website\Contracts\VideoRepositoryInterface;
 
 class VideoRepository implements VideoRepositoryInterface
 {

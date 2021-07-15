@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Package;
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\PackageRepositoryInterface;
-use App\Http\Requests\PackageRequest;
+use Adminetic\Website\Models\Admin\Package;
+use Adminetic\Website\Http\Requests\PackageRequest;
+use Adminetic\Website\Contracts\PackageRepositoryInterface;
 
 class PackageRepository implements PackageRepositoryInterface
 {

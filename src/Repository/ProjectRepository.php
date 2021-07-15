@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Project;
+
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\ProjectRepositoryInterface;
-use App\Http\Requests\ProjectRequest;
+use Adminetic\Website\Models\Admin\Project;
+use Adminetic\Website\Http\Requests\ProjectRequest;
+use Adminetic\Website\Contracts\ProjectRepositoryInterface;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {

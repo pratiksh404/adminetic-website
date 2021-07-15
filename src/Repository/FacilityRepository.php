@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace Adminetic\Website\Repository;
 
-use App\Models\Admin\Facility;
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\FacilityRepositoryInterface;
-use App\Http\Requests\FacilityRequest;
+use Adminetic\Website\Models\Admin\Image;
+use Adminetic\Website\Models\Admin\Facility;
+use Adminetic\Website\Http\Requests\FacilityRequest;
+use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 
 class FacilityRepository implements FacilityRepositoryInterface
 {

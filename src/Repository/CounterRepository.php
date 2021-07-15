@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace Adminetic\Website\Repository;
 
-use App\Models\Admin\Counter;
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\CounterRepositoryInterface;
-use App\Http\Requests\CounterRequest;
+use Adminetic\Website\Models\Admin\Counter;
+use Adminetic\Website\Http\Requests\CounterRequest;
+use Adminetic\Website\Contracts\CounterRepositoryInterface;
 
 class CounterRepository implements CounterRepositoryInterface
 {

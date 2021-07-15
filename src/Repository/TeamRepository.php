@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Team;
+
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\TeamRepositoryInterface;
-use App\Http\Requests\TeamRequest;
+use Adminetic\Website\Models\Admin\Team;
+use Adminetic\Website\Http\Requests\TeamRequest;
+use Adminetic\Website\Contracts\TeamRepositoryInterface;
 
 class TeamRepository implements TeamRepositoryInterface
 {

@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\Admin\Category;
 use Illuminate\Support\Facades\Cache;
-use App\Contracts\CategoryRepositoryInterface;
-use App\Http\Requests\CategoryRequest;
+use Adminetic\Website\Models\Admin\Category;
+use Adminetic\Website\Http\Requests\CategoryRequest;
+use Adminetic\Website\Contracts\CategoryRepositoryInterface;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
