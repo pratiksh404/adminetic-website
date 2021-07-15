@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Adminetic\Website\Http\Requests;
 
-use App\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\Gallery;
 use Illuminate\Foundation\Http\FormRequest;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 

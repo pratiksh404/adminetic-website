@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Adminetic\Website\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Cviebrock\EloquentSluggable\Services\SlugService;

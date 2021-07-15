@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Adminetic\Website\Http\Requests;
 
-use App\Models\Admin\Category;
 use Illuminate\Foundation\Http\FormRequest;
+use Adminetic\Website\Models\Admin\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class CategoryRequest extends FormRequest
