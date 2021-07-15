@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Facility;
-use App\Http\Requests\FacilityRequest;
+use Adminetic\Website\Models\Admin\Facility;
+use Adminetic\Website\Http\Requests\FacilityRequest;
 
 interface FacilityRepositoryInterface
 {

@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Gallery;
-use App\Http\Requests\GalleryRequest;
+use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Http\Requests\GalleryRequest;
 
 interface GalleryRepositoryInterface
 {

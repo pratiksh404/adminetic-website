@@ -2,8 +2,9 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Client;
-use App\Http\Requests\ClientRequest;
+use Adminetic\Website\Models\Admin\Client;
+use Adminetic\Website\Http\Requests\ClientRequest;
+
 
 interface ClientRepositoryInterface
 {

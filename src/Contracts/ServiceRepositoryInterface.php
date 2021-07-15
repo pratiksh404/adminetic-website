@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Service;
-use App\Http\Requests\ServiceRequest;
+use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Http\Requests\ServiceRequest;
 
 interface ServiceRepositoryInterface
 {

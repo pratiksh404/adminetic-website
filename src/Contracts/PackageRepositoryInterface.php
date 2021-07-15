@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Package;
-use App\Http\Requests\PackageRequest;
+use Adminetic\Website\Models\Admin\Package;
+use Adminetic\Website\Http\Requests\PackageRequest;
 
 interface PackageRepositoryInterface
 {

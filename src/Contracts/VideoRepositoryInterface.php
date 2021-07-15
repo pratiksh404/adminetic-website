@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Video;
-use App\Http\Requests\VideoRequest;
+use Adminetic\Website\Models\Admin\Video;
+use Adminetic\Website\Http\Requests\VideoRequest;
 
 interface VideoRepositoryInterface
 {

@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Project;
-use App\Http\Requests\ProjectRequest;
+use Adminetic\Website\Models\Admin\Project;
+use Adminetic\Website\Http\Requests\ProjectRequest;
 
 interface ProjectRepositoryInterface
 {

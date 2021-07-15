@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Page;
-use App\Http\Requests\PageRequest;
+use Adminetic\Website\Models\Admin\Page;
+use Adminetic\Website\Http\Requests\PageRequest;
 
 interface PageRepositoryInterface
 {

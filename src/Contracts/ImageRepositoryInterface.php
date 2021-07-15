@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use App\Models\Admin\Image;
-use App\Http\Requests\ImageRequest;
+use Adminetic\Website\Models\Admin\Image;
+use Adminetic\Website\Http\Requests\ImageRequest;
 
 interface ImageRepositoryInterface
 {
