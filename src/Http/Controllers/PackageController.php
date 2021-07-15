@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Package;
-use Illuminate\Http\Request;
-use App\Http\Requests\PackageRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\PackageRepositoryInterface;
+use Adminetic\Website\Models\Admin\Package;
+use Adminetic\Website\Http\Requests\PackageRequest;
+use Adminetic\Website\Contracts\PackageRepositoryInterface;
 
 class PackageController extends Controller
 {
@@ -42,7 +41,7 @@ class PackageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PackageRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\PackageRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PackageRequest $request)
@@ -54,7 +53,7 @@ class PackageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return \Illuminate\Http\Response
      */
     public function show(Package $package)
@@ -65,7 +64,7 @@ class PackageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return \Illuminate\Http\Response
      */
     public function edit(Package $package)
@@ -76,8 +75,8 @@ class PackageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PackageRequest  $request
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Http\Requests\PackageRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return \Illuminate\Http\Response
      */
     public function update(PackageRequest $request, Package $package)
@@ -89,7 +88,7 @@ class PackageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return \Illuminate\Http\Response
      */
     public function destroy(Package $package)

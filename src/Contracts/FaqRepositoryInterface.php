@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts;
+namespace Adminetic\Website\Contracts;
 
 use Adminetic\Website\Models\Admin\Faq;
 use Adminetic\Website\Http\Requests\FaqRequest;

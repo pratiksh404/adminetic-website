@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Image;
-use Illuminate\Http\Request;
-use App\Http\Requests\ImageRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\ImageRepositoryInterface;
+use Adminetic\Website\Models\Admin\Image;
+use Adminetic\Website\Http\Requests\ImageRequest;
+use Adminetic\Website\Contracts\ImageRepositoryInterface;
 
 class ImageController extends Controller
 {
@@ -42,7 +41,7 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\ImageRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\ImageRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ImageRequest $request)
@@ -54,7 +53,7 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function show(Image $image)
@@ -65,7 +64,7 @@ class ImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function edit(Image $image)
@@ -76,8 +75,8 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\ImageRequest  $request
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Http\Requests\ImageRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function update(ImageRequest $request, Image $image)
@@ -89,7 +88,7 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function destroy(Image $image)

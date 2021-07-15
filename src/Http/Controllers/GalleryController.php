@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
-use App\Models\Admin\Gallery;
 use Illuminate\Http\Request;
-use App\Http\Requests\GalleryRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\GalleryRepositoryInterface;
+use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Http\Requests\GalleryRequest;
+use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 
 class GalleryController extends Controller
 {
@@ -42,7 +42,7 @@ class GalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\GalleryRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\GalleryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(GalleryRequest $request)
@@ -54,7 +54,7 @@ class GalleryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Gallery  $gallery
+     * @param  \Adminetic\Website\Models\Admin\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
     public function show(Gallery $gallery)
@@ -65,7 +65,7 @@ class GalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Gallery  $gallery
+     * @param  \Adminetic\Website\Models\Admin\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
     public function edit(Gallery $gallery)
@@ -76,8 +76,8 @@ class GalleryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\GalleryRequest  $request
-     * @param  \App\Models\Admin\Gallery  $gallery
+     * @param  \Adminetic\Website\Http\Requests\GalleryRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
     public function update(GalleryRequest $request, Gallery $gallery)
@@ -89,7 +89,7 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Gallery  $gallery
+     * @param  \Adminetic\Website\Models\Admin\Gallery  $gallery
      * @return \Illuminate\Http\Response
      */
     public function destroy(Gallery $gallery)

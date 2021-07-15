@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
-use App\Models\Admin\Team;
-use Illuminate\Http\Request;
-use App\Http\Requests\TeamRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Models\Admin\Team;
+use Adminetic\Website\Http\Requests\TeamRequest;
+use Adminetic\Website\Contracts\TeamRepositoryInterface;
+
 
 class TeamController extends Controller
 {
@@ -42,7 +42,7 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\TeamRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\TeamRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(TeamRequest $request)
@@ -54,7 +54,7 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Team  $team
+     * @param  \Adminetic\Website\Models\Admin\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
@@ -65,7 +65,7 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Team  $team
+     * @param  \Adminetic\Website\Models\Admin\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function edit(Team $team)
@@ -76,8 +76,8 @@ class TeamController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\TeamRequest  $request
-     * @param  \App\Models\Admin\Team  $team
+     * @param  \Adminetic\Website\Http\Requests\TeamRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function update(TeamRequest $request, Team $team)
@@ -89,7 +89,7 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Team  $team
+     * @param  \Adminetic\Website\Models\Admin\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function destroy(Team $team)

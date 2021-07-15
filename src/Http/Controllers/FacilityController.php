@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Facility;
 use Illuminate\Http\Request;
-use App\Http\Requests\FacilityRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\FacilityRepositoryInterface;
+use Adminetic\Website\Models\Admin\Facility;
+use Adminetic\Website\Http\Requests\FacilityRequest;
+use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 
 class FacilityController extends Controller
 {
@@ -42,7 +42,7 @@ class FacilityController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\FacilityRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Counter  $request
      * @return \Illuminate\Http\Response
      */
     public function store(FacilityRequest $request)
@@ -54,7 +54,7 @@ class FacilityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Facility  $facility
+     * @param  \Adminetic\Website\Models\Admin\Facility  $facility
      * @return \Illuminate\Http\Response
      */
     public function show(Facility $facility)
@@ -65,7 +65,7 @@ class FacilityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Facility  $facility
+     * @param  \Adminetic\Website\Models\Admin\Facility  $facility
      * @return \Illuminate\Http\Response
      */
     public function edit(Facility $facility)
@@ -76,8 +76,8 @@ class FacilityController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\FacilityRequest  $request
-     * @param  \App\Models\Admin\Facility  $facility
+     * @param  \Adminetic\Website\Models\Admin\Counter  $request
+     * @param  \Adminetic\Website\Models\Admin\Facility  $facility
      * @return \Illuminate\Http\Response
      */
     public function update(FacilityRequest $request, Facility $facility)
@@ -89,7 +89,7 @@ class FacilityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Facility  $facility
+     * @param  \Adminetic\Website\Models\Admin\Facility  $facility
      * @return \Illuminate\Http\Response
      */
     public function destroy(Facility $facility)

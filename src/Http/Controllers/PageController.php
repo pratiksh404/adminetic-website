@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
-use App\Models\Admin\Page;
 use Illuminate\Http\Request;
-use App\Http\Requests\PageRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\PageRepositoryInterface;
+use Adminetic\Website\Models\Admin\Page;
+use Adminetic\Website\Http\Requests\PageRequest;
+use Adminetic\Website\Contracts\PageRepositoryInterface;
 
 class PageController extends Controller
 {
@@ -42,7 +42,7 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PageRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\PageRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PageRequest $request)
@@ -54,7 +54,7 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Page  $page
+     * @param  \Adminetic\Website\Models\Admin\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function show(Page $page)
@@ -65,7 +65,7 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Page  $page
+     * @param  \Adminetic\Website\Models\Admin\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function edit(Page $page)
@@ -76,8 +76,8 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PageRequest  $request
-     * @param  \App\Models\Admin\Page  $page
+     * @param  \Adminetic\Website\Http\Requests\PageRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function update(PageRequest $request, Page $page)
@@ -89,7 +89,7 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Page  $page
+     * @param  \Adminetic\Website\Models\Admin\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function destroy(Page $page)

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Client;
-use Illuminate\Http\Request;
-use App\Http\Requests\ClientRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\ClientRepositoryInterface;
+use Adminetic\Website\Models\Admin\Client;
+use Adminetic\Website\Http\Requests\ClientRequest;
+use Adminetic\Website\Contracts\ClientRepositoryInterface;
 
 class ClientController extends Controller
 {
@@ -42,7 +41,7 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\ClientRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\ClientRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ClientRequest $request)
@@ -54,7 +53,7 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Client  $client
+     * @param  \Adminetic\Website\Models\Admin\Client  $client
      * @return \Illuminate\Http\Response
      */
     public function show(Client $client)
@@ -65,7 +64,7 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Client  $client
+     * @param  \Adminetic\Website\Models\Admin\Client  $client
      * @return \Illuminate\Http\Response
      */
     public function edit(Client $client)
@@ -76,8 +75,8 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\ClientRequest  $request
-     * @param  \App\Models\Admin\Client  $client
+     * @param  \Adminetic\Website\Http\Requests\ClientRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Client  $client
      * @return \Illuminate\Http\Response
      */
     public function update(ClientRequest $request, Client $client)
@@ -89,7 +88,7 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Client  $client
+     * @param  \Adminetic\Website\Models\Admin\Client  $client
      * @return \Illuminate\Http\Response
      */
     public function destroy(Client $client)

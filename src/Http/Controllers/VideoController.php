@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
-use App\Models\Admin\Video;
-use Illuminate\Http\Request;
-use App\Http\Requests\VideoRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\VideoRepositoryInterface;
+use Adminetic\Website\Models\Admin\Video;
+use Adminetic\Website\Http\Requests\VideoRequest;
+use Adminetic\Website\Contracts\VideoRepositoryInterface;
 
 class VideoController extends Controller
 {
@@ -42,7 +41,7 @@ class VideoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\VideoRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\VideoRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(VideoRequest $request)
@@ -54,7 +53,7 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
     public function show(Video $video)
@@ -65,7 +64,7 @@ class VideoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
     public function edit(Video $video)
@@ -76,8 +75,8 @@ class VideoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\VideoRequest  $request
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Http\Requests\VideoRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
     public function update(VideoRequest $request, Video $video)
@@ -89,7 +88,7 @@ class VideoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
     public function destroy(Video $video)

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Counter;
-use Illuminate\Http\Request;
-use App\Http\Requests\CounterRequest;
 use App\Http\Controllers\Controller;
+use Adminetic\Website\Models\Admin\Counter;
 use App\Contracts\CounterRepositoryInterface;
+use Adminetic\Website\Http\Requests\CounterRequest;
 
 class CounterController extends Controller
 {
@@ -42,7 +41,7 @@ class CounterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\CounterRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\CounterRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CounterRequest $request)
@@ -54,7 +53,7 @@ class CounterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return \Illuminate\Http\Response
      */
     public function show(Counter $counter)
@@ -65,7 +64,7 @@ class CounterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return \Illuminate\Http\Response
      */
     public function edit(Counter $counter)
@@ -76,8 +75,8 @@ class CounterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CounterRequest  $request
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Http\Requests\CounterRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return \Illuminate\Http\Response
      */
     public function update(CounterRequest $request, Counter $counter)
@@ -89,7 +88,7 @@ class CounterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return \Illuminate\Http\Response
      */
     public function destroy(Counter $counter)

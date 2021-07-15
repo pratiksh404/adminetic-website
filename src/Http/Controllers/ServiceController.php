@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
-use App\Models\Admin\Service;
 use Illuminate\Http\Request;
-use App\Http\Requests\ServiceRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\ServiceRepositoryInterface;
+use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Http\Requests\ServiceRequest;
+use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 
 class ServiceController extends Controller
 {
@@ -42,7 +42,7 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\ServiceRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\ServiceRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ServiceRequest $request)
@@ -54,7 +54,7 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Service  $service
+     * @param  \Adminetic\Website\Models\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
     public function show(Service $service)
@@ -65,7 +65,7 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Service  $service
+     * @param  \Adminetic\Website\Models\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
     public function edit(Service $service)
@@ -76,8 +76,8 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\ServiceRequest  $request
-     * @param  \App\Models\Admin\Service  $service
+     * @param  \Adminetic\Website\Http\Requests\ServiceRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
     public function update(ServiceRequest $request, Service $service)
@@ -89,7 +89,7 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Service  $service
+     * @param  \Adminetic\Website\Models\Admin\Service  $service
      * @return \Illuminate\Http\Response
      */
     public function destroy(Service $service)

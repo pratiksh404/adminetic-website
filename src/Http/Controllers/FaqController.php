@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
-use App\Models\Admin\Faq;
-use Illuminate\Http\Request;
-use App\Http\Requests\FaqRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\FaqRepositoryInterface;
+use Adminetic\Website\Models\Admin\Faq;
+use Adminetic\Website\Http\Requests\FaqRequest;
+use Adminetic\Website\Contracts\FaqRepositoryInterface;
 
 class FaqController extends Controller
 {
@@ -42,7 +41,7 @@ class FaqController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\FaqRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Faq  $request
      * @return \Illuminate\Http\Response
      */
     public function store(FaqRequest $request)
@@ -54,7 +53,7 @@ class FaqController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return \Illuminate\Http\Response
      */
     public function show(Faq $faq)
@@ -65,7 +64,7 @@ class FaqController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return \Illuminate\Http\Response
      */
     public function edit(Faq $faq)
@@ -76,8 +75,8 @@ class FaqController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\FaqRequest  $request
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $request
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return \Illuminate\Http\Response
      */
     public function update(FaqRequest $request, Faq $faq)
@@ -89,7 +88,7 @@ class FaqController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return \Illuminate\Http\Response
      */
     public function destroy(Faq $faq)

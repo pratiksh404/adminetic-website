@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
-use App\Models\Admin\Project;
-use Illuminate\Http\Request;
-use App\Http\Requests\ProjectRequest;
 use App\Http\Controllers\Controller;
-use App\Contracts\ProjectRepositoryInterface;
+use Adminetic\Website\Models\Admin\Project;
+use Adminetic\Website\Http\Requests\ProjectRequest;
+use Adminetic\Website\Contracts\ProjectRepositoryInterface;
 
 class ProjectController extends Controller
 {
@@ -42,7 +41,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\ProjectRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\ProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ProjectRequest $request)
@@ -54,7 +53,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Project  $project
+     * @param  \Adminetic\Website\Models\Admin\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
@@ -65,7 +64,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Project  $project
+     * @param  \Adminetic\Website\Models\Admin\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project)
@@ -76,8 +75,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\ProjectRequest  $request
-     * @param  \App\Models\Admin\Project  $project
+     * @param  \Adminetic\Website\Http\Requests\ProjectRequest  $request
+     * @param  \Adminetic\Website\Models\Admin\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function update(ProjectRequest $request, Project $project)
@@ -89,7 +88,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Project  $project
+     * @param  \Adminetic\Website\Models\Admin\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function destroy(Project $project)
