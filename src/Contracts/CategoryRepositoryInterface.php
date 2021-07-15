@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts;
+namespace Adminetic\Website\Contracts;
 
 use App\Models\Admin\Category;
 use App\Http\Requests\CategoryRequest;

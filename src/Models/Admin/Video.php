@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin;
+namespace Adminetic\Website\Models\Admin;
 
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Support\Facades\Cache;

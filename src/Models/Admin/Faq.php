@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin;
+namespace Adminetic\Website\Models\Admin;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;

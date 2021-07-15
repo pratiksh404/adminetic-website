@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Admin;
+namespace Adminetic\Website\Models\Admin;
 
-use App\Traits\HasSlug;
+use Adminetic\Website\Traits\HasSlug;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;

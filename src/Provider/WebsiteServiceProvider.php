@@ -2,6 +2,7 @@
 
 namespace Adminetic\Website\Provider;
 
+use App\Http\Livewire\Admin\Category\QuickCategory;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -29,7 +30,7 @@ class WebsiteServiceProvider extends ServiceProvider
         // Register Policies
         $this->registerPolicies();
         // Register View Components
-        $this->registerComponents();
+        $this->registerLivewireComponents();
     }
 
     /**
@@ -108,9 +109,9 @@ class WebsiteServiceProvider extends ServiceProvider
      *
      *@return void
      */
-    protected function registerComponents()
+    protected function registerLivewireComponents()
     {
-        //
+        Livewire::component('admin.category.quick-category', QuickCategory::class);
     }
 
     /**

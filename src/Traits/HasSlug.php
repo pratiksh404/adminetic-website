@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace Adminetic\Website\Traits;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;

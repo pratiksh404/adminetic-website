@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin;
+namespace Adminetic\Website\Models\Admin;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
