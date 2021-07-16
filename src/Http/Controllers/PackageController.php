@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Adminetic\Website\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Package;
