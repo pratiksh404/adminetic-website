@@ -25,7 +25,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        return view('admin.video.index', $this->videoRepositoryInterface->indexVideo());
+        return view('website::admin.video.index', $this->videoRepositoryInterface->indexVideo());
     }
 
     /**
@@ -35,7 +35,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('admin.video.create', $this->videoRepositoryInterface->createVideo());
+        return view('website::admin.video.create', $this->videoRepositoryInterface->createVideo());
     }
 
     /**
@@ -58,7 +58,7 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
-        return view('admin.video.show', $this->videoRepositoryInterface->showVideo($video));
+        return view('website::admin.video.show', $this->videoRepositoryInterface->showVideo($video));
     }
 
     /**
@@ -69,7 +69,7 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
-        return view('admin.video.edit', $this->videoRepositoryInterface->editVideo($video));
+        return view('website::admin.video.edit', $this->videoRepositoryInterface->editVideo($video));
     }
 
     /**

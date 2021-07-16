@@ -200,5 +200,5 @@
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.page.scripts')
+@include('website::admin.layouts.modules.page.scripts')
 @endsection

@@ -4,12 +4,12 @@
 <x-adminetic-edit-page name="service" route="service" :model="$service">
     <x-slot name="content">
         {{-- ================================Form================================ --}}
-        @include('admin.layouts.modules.service.edit_add')
+        @include('website::admin.layouts.modules.service.edit_add')
         {{-- =================================================================== --}}
     </x-slot>
 </x-adminetic-edit-page>
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.service.scripts')
+@include('website::admin.layouts.modules.service.scripts')
 @endsection

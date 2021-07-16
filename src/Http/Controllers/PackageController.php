@@ -25,7 +25,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return view('admin.package.index', $this->packageRepositoryInterface->indexPackage());
+        return view('website::admin.package.index', $this->packageRepositoryInterface->indexPackage());
     }
 
     /**
@@ -35,7 +35,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        return view('admin.package.create');
+        return view('website::admin.package.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class PackageController extends Controller
      */
     public function show(Package $package)
     {
-        return view('admin.package.show', $this->packageRepositoryInterface->showPackage($package));
+        return view('website::admin.package.show', $this->packageRepositoryInterface->showPackage($package));
     }
 
     /**
@@ -69,7 +69,7 @@ class PackageController extends Controller
      */
     public function edit(Package $package)
     {
-        return view('admin.package.edit', $this->packageRepositoryInterface->editPackage($package));
+        return view('website::admin.package.edit', $this->packageRepositoryInterface->editPackage($package));
     }
 
     /**

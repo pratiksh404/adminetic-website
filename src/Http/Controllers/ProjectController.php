@@ -25,7 +25,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('admin.project.index', $this->projectRepositoryInterface->indexProject());
+        return view('website::admin.project.index', $this->projectRepositoryInterface->indexProject());
     }
 
     /**
@@ -35,7 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.project.create');
+        return view('website::admin.project.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.project.show', $this->projectRepositoryInterface->showProject($project));
+        return view('website::admin.project.show', $this->projectRepositoryInterface->showProject($project));
     }
 
     /**
@@ -69,7 +69,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.project.edit', $this->projectRepositoryInterface->editProject($project));
+        return view('website::admin.project.edit', $this->projectRepositoryInterface->editProject($project));
     }
 
     /**

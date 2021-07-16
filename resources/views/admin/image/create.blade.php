@@ -4,12 +4,12 @@
 <x-adminetic-create-page name="image" route="image">
     <x-slot name="content">
         {{-- ================================Form================================ --}}
-        @include('admin.layouts.modules.image.edit_add')
+        @include('website::admin.layouts.modules.image.edit_add')
         {{-- =================================================================== --}}
     </x-slot>
 </x-adminetic-create-page>
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.image.scripts')
+@include('website::admin.layouts.modules.image.scripts')
 @endsection

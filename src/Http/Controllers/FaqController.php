@@ -25,7 +25,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        return view('admin.faq.index', $this->faqRepositoryInterface->indexFaq());
+        return view('website::admin.faq.index', $this->faqRepositoryInterface->indexFaq());
     }
 
     /**
@@ -35,7 +35,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        return view('admin.faq.create');
+        return view('website::admin.faq.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class FaqController extends Controller
      */
     public function show(Faq $faq)
     {
-        return view('admin.faq.show', $this->faqRepositoryInterface->showFaq($faq));
+        return view('website::admin.faq.show', $this->faqRepositoryInterface->showFaq($faq));
     }
 
     /**
@@ -69,7 +69,7 @@ class FaqController extends Controller
      */
     public function edit(Faq $faq)
     {
-        return view('admin.faq.edit', $this->faqRepositoryInterface->editFaq($faq));
+        return view('website::admin.faq.edit', $this->faqRepositoryInterface->editFaq($faq));
     }
 
     /**

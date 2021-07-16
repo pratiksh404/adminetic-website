@@ -26,7 +26,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.page.index', $this->pageRepositoryInterface->indexPage());
+        return view('website::admin.page.index', $this->pageRepositoryInterface->indexPage());
     }
 
     /**
@@ -36,7 +36,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('admin.page.create');
+        return view('website::admin.page.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class PageController extends Controller
      */
     public function show(Page $page)
     {
-        return view('admin.page.show', $this->pageRepositoryInterface->showPage($page));
+        return view('website::admin.page.show', $this->pageRepositoryInterface->showPage($page));
     }
 
     /**
@@ -70,7 +70,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        return view('admin.page.edit', $this->pageRepositoryInterface->editPage($page));
+        return view('website::admin.page.edit', $this->pageRepositoryInterface->editPage($page));
     }
 
     /**

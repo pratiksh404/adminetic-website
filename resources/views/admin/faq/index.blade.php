@@ -39,5 +39,5 @@
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.faq.scripts')
+@include('website::admin.layouts.modules.faq.scripts')
 @endsection

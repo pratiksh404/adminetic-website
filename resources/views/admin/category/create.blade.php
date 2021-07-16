@@ -4,12 +4,12 @@
 <x-adminetic-create-page name="category" route="category">
     <x-slot name="content">
         {{-- ================================Form================================ --}}
-        @include('admin.layouts.modules.category.edit_add')
+        @include('website::admin.layouts.modules.category.edit_add')
         {{-- =================================================================== --}}
     </x-slot>
 </x-adminetic-create-page>
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.category.scripts')
+@include('website::admin.layouts.modules.category.scripts')
 @endsection

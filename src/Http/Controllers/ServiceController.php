@@ -26,7 +26,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.service.index', $this->serviceRepositoryInterface->indexService());
+        return view('website::admin.service.index', $this->serviceRepositoryInterface->indexService());
     }
 
     /**
@@ -36,7 +36,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.service.create');
+        return view('website::admin.service.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        return view('admin.service.show', $this->serviceRepositoryInterface->showService($service));
+        return view('website::admin.service.show', $this->serviceRepositoryInterface->showService($service));
     }
 
     /**
@@ -70,7 +70,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('admin.service.edit', $this->serviceRepositoryInterface->editService($service));
+        return view('website::admin.service.edit', $this->serviceRepositoryInterface->editService($service));
     }
 
     /**

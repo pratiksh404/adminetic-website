@@ -26,7 +26,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return view('admin.gallery.index', $this->galleryRepositoryInterface->indexGallery());
+        return view('website::admin.gallery.index', $this->galleryRepositoryInterface->indexGallery());
     }
 
     /**
@@ -36,7 +36,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('admin.gallery.create');
+        return view('website::admin.gallery.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        return view('admin.gallery.show', $this->galleryRepositoryInterface->showGallery($gallery));
+        return view('website::admin.gallery.show', $this->galleryRepositoryInterface->showGallery($gallery));
     }
 
     /**
@@ -70,7 +70,7 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $gallery)
     {
-        return view('admin.gallery.edit', $this->galleryRepositoryInterface->editGallery($gallery));
+        return view('website::admin.gallery.edit', $this->galleryRepositoryInterface->editGallery($gallery));
     }
 
     /**

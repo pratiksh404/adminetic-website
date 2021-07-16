@@ -48,5 +48,5 @@
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.counter.scripts')
+@include('website::admin.layouts.modules.counter.scripts')
 @endsection

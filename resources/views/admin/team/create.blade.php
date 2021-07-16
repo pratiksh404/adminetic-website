@@ -4,12 +4,12 @@
 <x-adminetic-create-page name="team" route="team">
     <x-slot name="content">
         {{-- ================================Form================================ --}}
-        @include('admin.layouts.modules.team.edit_add')
+        @include('website::admin.layouts.modules.team.edit_add')
         {{-- =================================================================== --}}
     </x-slot>
 </x-adminetic-create-page>
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.team.scripts')
+@include('website::admin.layouts.modules.team.scripts')
 @endsection

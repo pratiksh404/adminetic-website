@@ -26,7 +26,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('admin.team.index', $this->teamRepositoryInterface->indexTeam());
+        return view('website::admin.team.index', $this->teamRepositoryInterface->indexTeam());
     }
 
     /**
@@ -36,7 +36,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('admin.team.create');
+        return view('website::admin.team.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('admin.team.show', $this->teamRepositoryInterface->showTeam($team));
+        return view('website::admin.team.show', $this->teamRepositoryInterface->showTeam($team));
     }
 
     /**
@@ -70,7 +70,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        return view('admin.team.edit', $this->teamRepositoryInterface->editTeam($team));
+        return view('website::admin.team.edit', $this->teamRepositoryInterface->editTeam($team));
     }
 
     /**

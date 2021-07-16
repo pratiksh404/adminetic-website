@@ -25,7 +25,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('admin.client.index', $this->clientRepositoryInterface->indexClient());
+        return view('website::admin.client.index', $this->clientRepositoryInterface->indexClient());
     }
 
     /**
@@ -35,7 +35,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('admin.client.create');
+        return view('website::admin.client.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return view('admin.client.show', $this->clientRepositoryInterface->showClient($client));
+        return view('website::admin.client.show', $this->clientRepositoryInterface->showClient($client));
     }
 
     /**
@@ -69,7 +69,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('admin.client.edit', $this->clientRepositoryInterface->editClient($client));
+        return view('website::admin.client.edit', $this->clientRepositoryInterface->editClient($client));
     }
 
     /**

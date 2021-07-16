@@ -25,7 +25,7 @@ class CounterController extends Controller
      */
     public function index()
     {
-        return view('admin.counter.index', $this->counterRepositoryInterface->indexCounter());
+        return view('website::admin.counter.index', $this->counterRepositoryInterface->indexCounter());
     }
 
     /**
@@ -35,7 +35,7 @@ class CounterController extends Controller
      */
     public function create()
     {
-        return view('admin.counter.create');
+        return view('website::admin.counter.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class CounterController extends Controller
      */
     public function show(Counter $counter)
     {
-        return view('admin.counter.show', $this->counterRepositoryInterface->showCounter($counter));
+        return view('website::admin.counter.show', $this->counterRepositoryInterface->showCounter($counter));
     }
 
     /**
@@ -69,7 +69,7 @@ class CounterController extends Controller
      */
     public function edit(Counter $counter)
     {
-        return view('admin.counter.edit', $this->counterRepositoryInterface->editCounter($counter));
+        return view('website::admin.counter.edit', $this->counterRepositoryInterface->editCounter($counter));
     }
 
     /**

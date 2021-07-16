@@ -4,12 +4,12 @@
 <x-adminetic-create-page name="facility" route="facility">
     <x-slot name="content">
         {{-- ================================Form================================ --}}
-        @include('admin.layouts.modules.facility.edit_add')
+        @include('website::admin.layouts.modules.facility.edit_add')
         {{-- =================================================================== --}}
     </x-slot>
 </x-adminetic-create-page>
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.facility.scripts')
+@include('website::admin.layouts.modules.facility.scripts')
 @endsection

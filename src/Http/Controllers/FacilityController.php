@@ -26,7 +26,7 @@ class FacilityController extends Controller
      */
     public function index()
     {
-        return view('admin.facility.index', $this->facilityRepositoryInterface->indexFacility());
+        return view('website::admin.facility.index', $this->facilityRepositoryInterface->indexFacility());
     }
 
     /**
@@ -36,7 +36,7 @@ class FacilityController extends Controller
      */
     public function create()
     {
-        return view('admin.facility.create');
+        return view('website::admin.facility.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class FacilityController extends Controller
      */
     public function show(Facility $facility)
     {
-        return view('admin.facility.show', $this->facilityRepositoryInterface->showFacility($facility));
+        return view('website::admin.facility.show', $this->facilityRepositoryInterface->showFacility($facility));
     }
 
     /**
@@ -70,7 +70,7 @@ class FacilityController extends Controller
      */
     public function edit(Facility $facility)
     {
-        return view('admin.facility.edit', $this->facilityRepositoryInterface->editFacility($facility));
+        return view('website::admin.facility.edit', $this->facilityRepositoryInterface->editFacility($facility));
     }
 
     /**

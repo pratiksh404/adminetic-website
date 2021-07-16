@@ -49,5 +49,5 @@
 @endsection
 
 @section('custom_js')
-@include('admin.layouts.modules.video.scripts')
+@include('website::admin.layouts.modules.video.scripts')
 @endsection

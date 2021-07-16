@@ -25,7 +25,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        return view('admin.image.index', $this->imageRepositoryInterface->indexImage());
+        return view('website::admin.image.index', $this->imageRepositoryInterface->indexImage());
     }
 
     /**
@@ -35,7 +35,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        return view('admin.image.create');
+        return view('website::admin.image.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ImageController extends Controller
      */
     public function show(Image $image)
     {
-        return view('admin.image.show', $this->imageRepositoryInterface->showImage($image));
+        return view('website::admin.image.show', $this->imageRepositoryInterface->showImage($image));
     }
 
     /**
@@ -69,7 +69,7 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        return view('admin.image.edit', $this->imageRepositoryInterface->editImage($image));
+        return view('website::admin.image.edit', $this->imageRepositoryInterface->editImage($image));
     }
 
     /**

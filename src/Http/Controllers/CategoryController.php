@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index', $this->categoryRepositoryInterface->indexCategory());
+        return view('website::admin.category.index', $this->categoryRepositoryInterface->indexCategory());
     }
 
     /**
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create', $this->categoryRepositoryInterface->createCategory());
+        return view('website::admin.category.create', $this->categoryRepositoryInterface->createCategory());
     }
 
     /**
@@ -58,7 +58,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.category.show', $this->categoryRepositoryInterface->showCategory($category));
+        return view('website::admin.category.show', $this->categoryRepositoryInterface->showCategory($category));
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit', $this->categoryRepositoryInterface->editCategory($category));
+        return view('website::admin.category.edit', $this->categoryRepositoryInterface->editCategory($category));
     }
 
     /**
