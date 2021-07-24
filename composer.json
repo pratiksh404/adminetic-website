@@ -46,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Adminetic\\Website\\WebsiteServiceProvider"
+                "Adminetic\\Website\\Provider\\WebsiteServiceProvider"
             ],
             "aliases": {
                 "Website": "Adminetic\\Website\\WebsiteFacade"

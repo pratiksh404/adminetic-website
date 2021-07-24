@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace Adminetic\Website\Policies;
 
 use App\Models\User;
 use Adminetic\Website\Models\Admin\Page;

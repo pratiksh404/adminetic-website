@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace Adminetic\Website\Repository;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;

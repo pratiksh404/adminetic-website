@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace Adminetic\Website\Repository;
 
 use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Category;

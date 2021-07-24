@@ -1,7 +1,27 @@
 @extends('adminetic::admin.layouts.app')
 
 @section('content')
-<x-adminetic-index-page name="client" route="client">
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-6">
+                <h3>All Clients</h3>
+            </div>
+            <div class="col-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}"> <i data-feather="home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active">Clients</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<x-adminetic-card title="client" route="client">
+    <x-slot name="buttons">
+        <a href="{{ adminCreateRoute('client') }}" class="btn btn-primary btn-air-primary mx-1">Create
+            Client</a>
+    </x-slot>
     <x-slot name="content">
         {{-- ================================Card================================ --}}
         <table class="table table-striped table-bordered datatable">
@@ -41,7 +61,7 @@
         </table>
         {{-- =================================================================== --}}
     </x-slot>
-</x-adminetic-index-page>
+</x-adminetic-card>
 @endsection
 
 @section('custom_js')

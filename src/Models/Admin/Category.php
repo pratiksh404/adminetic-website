@@ -2,7 +2,7 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use App\Traits\HasSlug;
+use Adminetic\Website\Traits\HasSlug;
 use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
