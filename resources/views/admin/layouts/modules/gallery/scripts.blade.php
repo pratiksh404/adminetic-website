@@ -13,16 +13,6 @@
         });
         
 
-        // Delete Image
-        $(document).on('click','#delete_gallery_image',function(){
-        $.get('{{ route('delete_gallery_image') }}',
-            { 'id': $(this).val() },
-               function( data ) {
-                   toastr.error(data.msg);
-                }
-            );
-            $(this).closest('.gallery_image').remove();
-        });
 
         $('.urls').select2({
         dropdownAutoWidth: true,

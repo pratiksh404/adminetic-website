@@ -12,6 +12,21 @@
            $('#code').val(random);
         });
 
+        // SEO Title
+        $('#name').on('keyup',function(){
+            var name = $(this).val();
+            $('#meta_name').val(name);
+        });
+        // SEO Description
+         $('#excerpt').on('keyup',function(){
+            var excerpt = $(this).val();
+            $('#meta_description').val(excerpt);
+        });
+        /* Tags */
+        $(".tags").select2({
+        tags: true,
+        tokenSeparators: [',']
+        })
         // Font Selector
         IconPicker.Init({
          jsonUrl: "{{asset('website/plugins/iconPicker/dist/iconpicker-1.5.0.json')}}",

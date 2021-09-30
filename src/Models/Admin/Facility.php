@@ -41,4 +41,9 @@ class Facility extends Model
 
     // Logs
     protected static $logName = 'facility';
+
+    // Casts
+    protected $casts = [
+        'meta_keywords' => 'array'
+    ];
 }

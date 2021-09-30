@@ -41,4 +41,9 @@ class Service extends Model
 
     // Logs
     protected static $logName = 'service';
+
+    // Casts
+    protected $casts = [
+        'meta_keywords' => 'array'
+    ];
 }

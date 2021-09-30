@@ -2,16 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Cviebrock\EloquentSluggable\Sluggable;
-use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-use drh2so4\Thumbnail\Traits\Thumbnail;
+use Cohensive\Embed\Embed;
+use Adminetic\Website\Traits\HasSlug;
 use Illuminate\Support\Facades\Cache;
+use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Page extends Model
 {
-    use LogsActivity, Sluggable, SluggableScopeHelpers, Thumbnail;
+    use LogsActivity, Thumbnail, HasSlug;
 
     protected $guarded = [];
 
@@ -47,19 +47,19 @@ class Page extends Model
         'meta_keywords' => 'array'
     ];
 
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable()
+    // Appends
+    protected $appends = ['video_embed'];
+
+    //Accessors
+    public function getVideoEmbedAttribute()
     {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+        return isset($this->video) ? preg_replace(
+            "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
+            "<iframe src=\"//www.youtube.com/embed/$2\" allowfullscreen></iframe>",
+            $this->video
+        ) : null;
     }
+
 
     // Accessors
     public function getTypeAttribute($attribute)

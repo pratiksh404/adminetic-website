@@ -26,7 +26,7 @@ class PageRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => SlugService::createSlug(Page::class, 'slug', $this->title)
+            'slug' => SlugService::createSlug(Page::class, 'slug', $this->name)
         ]);
     }
 
@@ -41,8 +41,8 @@ class PageRequest extends FormRequest
         return [
             'slug' => 'required|max:255|unique:pages,slug,' . $id,
             'code' => 'required|max:255|unique:pages,slug,' . $id,
-            'title' => 'required|max:255',
-            'seo_title' => 'nullable|max:255',
+            'name' => 'required|max:255',
+            'meta_name' => 'nullable|max:255',
             'body' => 'nullable|max:65535',
             'image' => 'sometimes|file|image|max:3000',
             'meta_description' => 'nullable|max:160',

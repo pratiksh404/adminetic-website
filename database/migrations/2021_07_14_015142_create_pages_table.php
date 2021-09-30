@@ -17,16 +17,16 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('code')->unique();
-            $table->string('title');
-            $table->string('seo_title')->nullable();
+            $table->string('name');
             $table->text('body')->nullable();
             $table->string('image')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->json('meta_keywords')->nullable();
             $table->integer('active')->default(1);
             $table->string('video')->nullable();
             $table->integer('type');
             $table->bigInteger('position')->default(0);
+            $table->string('meta_name')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->json('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

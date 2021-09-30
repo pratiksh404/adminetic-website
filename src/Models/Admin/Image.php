@@ -26,6 +26,10 @@ class Image extends Model
         static::deleting(function () {
             self::cacheKey();
         });
+
+        Image::creating(function ($model) {
+            $model->position = Image::max('position') + 1;
+        });
     }
 
     // Cache Keys

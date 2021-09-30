@@ -4,194 +4,77 @@
 <x-adminetic-show-page name="page" route="page" :model="$page">
     <x-slot name="content">
         <div class="row">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg">
-                            <div class="card-content ">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Page Title</b> <br>
-                                            <h4>{{$page->title}}</h4>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Page Slug</b> <br>
-                                            <h4>{{$page->slug}}</h4>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Page Excerpt</b>
-                                            <br>
-                                            <p class="text-muted">
-                                                {{$page->excerpt}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-12" style="overflow-x: auto">
-                                        @if($page->body)
-                                        {!! $page->body !!}
-                                        @else
-                                        <div class="d-flex justify-content-center">
-                                            <h2 class="text-muted">This page body is empty.</h2>
-                                        </div>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-lg-4">
+                <div class="card shadow-lg">
+                    <div class="card-body p-3">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <b>Code :</b> <span class="text-muted"> {{$page->code ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Name :</b> <span class="text-muted"> {{$page->name ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Slug :</b> <span class="text-muted"> {{$page->slug ?? 'N/A'}}</span>
+                            </li>
+                            @isset($page->image)
+                            <li class="list-group-item">
+                                <b>Page Image :</b>
+                                <hr>
+                                <img src="{{asset('storage/' . $page->image)}}" alt="{{$page->name}}" class="img-fluid">
+                            </li>
+                            @endisset
+                            <li class="list-group-item">
+                                <b>Type :</b> <span class="badge badge-primary">{{$page->type}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Active :</b> <span
+                                    class="badge badge-{{$page->active ? 'success' : 'danger'}}">{{$page->active ? 'Yes' : 'No'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Position :</b> <span class="text-muted"> {{$page->position ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b> Meta Name:</b> <span class="text-muted"> {{$page->meta_name ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Meta Description :</b> <span class="text-muted">
+                                    {{$page->meta_description ?? 'N/A'}}</span>
+                            </li>
+                            @isset($page->meta_keywords)
+                            <li class="list-group-item">
+                                <b>Meta Keywords :</b>
+                                <hr>
+                                @foreach ($page->meta_keywords as $keyword)
+                                <span class="badge badge-primary">{{$keyword}}</span>
+                                @endforeach
+                            </li>
+                            @endisset
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4" style="height:80vh;overflow-y:auto">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg">
-                            <div class="card-content ">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Code : </b>
-                                            <h6 class="text-muted">{{$page->code}}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="col-lg-8">
+                @if(!is_null($page->video_embed))
+                <div class="card shadow-lg">
+                    <div class="card-body p-3">
+                        <b>Video</b>
+                        <hr>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            {!! $page->video_embed !!}
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg">
-                            <div class="card-content ">
-                                <div class="d-flex justify-content-center">
-                                    @if ($page->image)
-                                    <img src="{{asset($page->thumbnail('image','small'))}}" alt="{{$page->title}}"
-                                        class="img-fluid">
-                                    @else
-                                    <img src="{{getImagePlaceholder()}}" alt="{{$page->title}}" class="img-fluid">
-                                    @endif
-                                </div>
-                                @if (isset($page->video))
-                                <hr>
-                                <div class="d-flex justify-content-center">
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="{{$page->video}}"
-                                            allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                @endif
-                            </div>
-                        </div>
+                @endif
+                @isset($page->body)
+                <div class="card shadow-lg">
+                    <div class="card-body p-3">
+                        <b>Body</b>
+                        <hr>
+                        {!! $page->body !!}
                     </div>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg">
-                            <div class="card-content ">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Status : </b> <span
-                                                class="p-1 badge badge-{{$page->status == "Pending" ? "warning" : ($page->status == "Draft" ? "info" : "success")}}">{{$page->status}}</span>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Featured : </b>
-                                            <h6 class="text-muted">{{$page->featured}}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg">
-                            <div class="card-header">
-                                <h4 class="card-title">Tags</h4>
-                            </div>
-                            <div class="card-content ">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            @isset($tags)
-                                            @foreach ($tags as $tag)
-                                            <span class="badge badge-success">{{$tag}}</span>
-                                            @endforeach
-                                            @endisset
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg">
-                            <div class="card-header">
-                                <h4 class="card-title">SEO</h4>
-                            </div>
-                            <div class="card-content ">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Ttile : </b>
-                                            <h6 class="test-muted">{{$page->seo_title}}</h6>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <b>Meta Description</b>
-                                            <hr>
-                                            <p>
-                                                {{$page->meta_description}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-
-                                            <b>Meta Keywords</b>
-                                            <hr>
-                                            @isset($page->meta_keywords)
-                                            @foreach ($page->meta_keywords as $keyword)
-                                            <span class="badge badge-info">{{$keyword}}</span>
-                                            @endforeach
-                                            @endisset
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endisset
             </div>
         </div>
     </x-slot>

@@ -57,6 +57,7 @@ use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
 use Adminetic\Website\Http\Livewire\Admin\Facility\ReorderFacility;
 use Adminetic\Website\Http\Livewire\Admin\Faq\ReorderFaq;
+use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryImages;
 use Adminetic\Website\Http\Livewire\Admin\Page\ReorderPage;
 use Adminetic\Website\Http\Livewire\Admin\Service\ReorderService;
 use Adminetic\Website\Http\Livewire\Admin\Team\ReorderTeam;
@@ -192,6 +193,7 @@ class WebsiteServiceProvider extends ServiceProvider
         Livewire::component('admin.page.reorder-page', ReorderPage::class);
         Livewire::component('admin.service.reorder-service', ReorderService::class);
         Livewire::component('admin.team.reorder-team', ReorderTeam::class);
+        Livewire::component('admin.gallery.gallery-images', GalleryImages::class);
     }
 
     /**

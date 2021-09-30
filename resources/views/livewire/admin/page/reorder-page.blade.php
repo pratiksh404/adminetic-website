@@ -3,7 +3,7 @@
     <ul wire:sortable="updatePageOrder">
         @foreach ($pages as $page)
         <li wire:sortable.item="{{ $page->id }}" wire:key="page-{{ $page->id }}">
-            <span class="text-muted" wire:sortable.handle>{{ $page->title }}</span>
+            <span class="text-muted" wire:sortable.handle>{{ $page->name }}</span>
         </li>
         @endforeach
     </ul>
@@ -27,7 +27,7 @@
                             var notify_notify_animate_out =
                                 "{{ config('adminetic.notify_animate_out', 'animated fadeOutUp') }}";
                             var notify = $.notify({
-                                title: "<i class='{{ config('adminetic.notify_icon', 'fa fa-bell-o') }}'></i> " +
+                                name: "<i class='{{ config('adminetic.notify_icon', 'fa fa-bell-o') }}'></i> " +
                                     "Success",
                                 message: "Page Reorderd !"
                             }, {

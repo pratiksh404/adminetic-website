@@ -11,9 +11,9 @@
         });
         
         // SEO Title
-        $('#title').on('keyup',function(){
-            var title = $(this).val();
-            $('#seo_title').val(title);
+        $('#name').on('keyup',function(){
+            var name = $(this).val();
+            $('#meta_name').val(name);
         });
         /* Tags */
         $(".tags").select2({

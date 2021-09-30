@@ -34,17 +34,13 @@
         <input type="file" name="images[]" id="images" accept="image/*" multiple>
     </div>
     <div class="col-lg-8 gallery_images d-flex justify-content-center" style="overflow-x:scroll">
-        @if (isset($gallery->images))
-        @foreach ($gallery->images as $image)
-        <div class="gallery_image m-1">
-            <img src="{{asset($image->thumbnail('image','small'))}}" alt="{{$gallery->name}}" class="img-fluid">
-            <br>
-            <button type="button" class="btn btn-danger btn-block" id="delete_gallery_image" value="{{$image->id}}"><i
-                    class="fa fa-trash"></i></button>
-        </div>
-        @endforeach
-        @endif
     </div>
+    @if (isset($gallery->images))
+    <div class="col-lg-12">
+        <hr>
+        @livewire('admin.gallery.gallery-images', ['gallery_id' => $gallery->id])
+    </div>
+    @endif
 </div>
 <br>
 <div class="row">

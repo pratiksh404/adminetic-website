@@ -25,6 +25,10 @@ class CreateServicesTable extends Migration
             $table->string('image')->nullable();
             $table->boolean('active')->default(1);
             $table->bigInteger('position')->default(0);
+
+            $table->string('meta_name')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->json('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

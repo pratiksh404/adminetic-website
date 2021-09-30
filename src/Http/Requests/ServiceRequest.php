@@ -48,7 +48,10 @@ class ServiceRequest extends FormRequest
             'icon_image' => 'sometimes|file|image|mimes:png|max:1000',
             'image' => 'sometimes|file|image|max:5000',
             'active' => 'sometimes|boolean',
-            'position' => 'nullable|numeric'
+            'position' => 'nullable|numeric',
+            'meta_name' => 'nullable|max:255',
+            'meta_description' => 'nullable|max:255',
+            'meta_keywords' => 'nullable',
         ];
     }
 }

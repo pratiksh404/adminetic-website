@@ -21,6 +21,7 @@ class CreateImagesTable extends Migration
             $table->string('url')->nullable();
             $table->string('title')->nullable();
             $table->text('excerpt')->nullable();
+            $table->bigInteger('position')->default(0);
             $table->timestamps();
         });
     }
