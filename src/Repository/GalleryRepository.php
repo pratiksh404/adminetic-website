@@ -3,20 +3,19 @@
 namespace Adminetic\Website\Repository;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
 use Adminetic\Website\Models\Admin\Gallery;
 use Adminetic\Website\Http\Requests\GalleryRequest;
+use Illuminate\Support\Facades\Cache;
+use Intervention\Image\Facades\Image;
 use Adminetic\Website\Http\Requests\GalleryImageRequest;
 use Adminetic\Website\Contracts\GalleryRepositoryInterface;
-
 
 class GalleryRepository implements GalleryRepositoryInterface
 {
     // Gallery Index
     public function indexGallery()
     {
-        $galleries = config('coderz.caching', true)
+        $galleries = config('adminetic.caching', true)
             ? (Cache::has('galleries') ? Cache::get('galleries') : Cache::rememberForever('galleries', function () {
                 return Gallery::latest()->get();
             }))

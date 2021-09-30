@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Facility;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\FacilityRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 
 class FacilityController extends Controller
@@ -42,7 +42,7 @@ class FacilityController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Adminetic\Website\Models\Admin\Counter  $request
+     * @param  \Adminetic\Website\Http\Requests\FacilityRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(FacilityRequest $request)
@@ -76,7 +76,7 @@ class FacilityController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Adminetic\Website\Models\Admin\Counter  $request
+     * @param  \Adminetic\Website\Http\Requests\FacilityRequest  $request
      * @param  \Adminetic\Website\Models\Admin\Facility  $facility
      * @return \Illuminate\Http\Response
      */
@@ -96,21 +96,5 @@ class FacilityController extends Controller
     {
         $this->facilityRepositoryInterface->destroyFacility($facility);
         return redirect(adminRedirectRoute('facility'))->withFail('Facility Deleted Successfully.');
-    }
-
-    /**
-     *
-     * Reorder Category Model Data
-     *
-     */
-    public function reorder_facilities(Request $request)
-    {
-        foreach ($request->input('rows', []) as $row) {
-            Facility::find($row['id'])->update([
-                'position' => $row['position']
-            ]);
-        }
-
-        return response()->noContent();
     }
 }

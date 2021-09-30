@@ -2,18 +2,17 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Models\Admin\Image;
 use Adminetic\Website\Models\Admin\Facility;
-use Adminetic\Website\Http\Requests\FacilityRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
+use Adminetic\Website\Http\Requests\FacilityRequest;
 
 class FacilityRepository implements FacilityRepositoryInterface
 {
     // Facility Index
     public function indexFacility()
     {
-        $facilities = config('coderz.caching', true)
+        $facilities = config('adminetic.caching', true)
             ? (Cache::has('facilities') ? Cache::get('facilities') : Cache::rememberForever('facilities', function () {
                 return Facility::orderBy('position')->get();
             }))

@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
 use Adminetic\Website\Models\Admin\Service;
 use Adminetic\Website\Http\Requests\ServiceRequest;
+use Illuminate\Support\Facades\Cache;
+use Intervention\Image\Facades\Image;
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 
 class ServiceRepository implements ServiceRepositoryInterface
@@ -13,7 +13,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     // Service Index
     public function indexService()
     {
-        $services = config('coderz.caching', true)
+        $services = config('adminetic.caching', true)
             ? (Cache::has('services') ? Cache::get('services') : Cache::rememberForever('services', function () {
                 return Service::orderBy('position')->get();
             }))

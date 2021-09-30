@@ -2,17 +2,17 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Counter;
-use Adminetic\Website\Http\Requests\CounterRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\CounterRepositoryInterface;
+use Adminetic\Website\Http\Requests\CounterRequest;
 
 class CounterRepository implements CounterRepositoryInterface
 {
     // Counter Index
     public function indexCounter()
     {
-        $counters = config('coderz.caching', true)
+        $counters = config('adminetic.caching', true)
             ? (Cache::has('counters') ? Cache::get('counters') : Cache::rememberForever('counters', function () {
                 return Counter::latest()->get();
             }))

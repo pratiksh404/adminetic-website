@@ -33,7 +33,7 @@ class VideoPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return mixed
      */
     public function view(User $user, Video $video)
@@ -56,7 +56,7 @@ class VideoPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return mixed
      */
     public function update(User $user, Video $video)
@@ -68,7 +68,7 @@ class VideoPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return mixed
      */
     public function delete(User $user, Video $video)
@@ -80,7 +80,7 @@ class VideoPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return mixed
      */
     public function restore(User $user, Video $video)
@@ -92,7 +92,7 @@ class VideoPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Video  $video
+     * @param  \Adminetic\Website\Models\Admin\Video  $video
      * @return mixed
      */
     public function forceDelete(User $user, Video $video)

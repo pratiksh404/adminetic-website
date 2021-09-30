@@ -2,17 +2,17 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Package;
-use Adminetic\Website\Http\Requests\PackageRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PackageRepositoryInterface;
+use Adminetic\Website\Http\Requests\PackageRequest;
 
 class PackageRepository implements PackageRepositoryInterface
 {
     // Package Index
     public function indexPackage()
     {
-        $packages = config('coderz.caching', true)
+        $packages = config('adminetic.caching', true)
             ? (Cache::has('packages') ? Cache::get('packages') : Cache::rememberForever('packages', function () {
                 return Package::latest()->get();
             }))

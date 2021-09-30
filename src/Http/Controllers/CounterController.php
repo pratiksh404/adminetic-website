@@ -2,10 +2,11 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Counter;
-use App\Contracts\CounterRepositoryInterface;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\CounterRequest;
+use App\Http\Controllers\Controller;
+use Adminetic\Website\Contracts\CounterRepositoryInterface;
 
 class CounterController extends Controller
 {

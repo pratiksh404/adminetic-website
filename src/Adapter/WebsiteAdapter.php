@@ -153,7 +153,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Projects',
-                'icon' => 'fa fa-project-diagram',
+                'icon' => 'fa fa-trophy',
                 'is_active' => request()->routeIs('project*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -269,30 +269,6 @@ class WebsiteAdapter implements PluginInterface
                 ],
                 'children' => $this->indexCreateChildren('page', Adminetic\Website\Models\Admin\Page::class)
             ],
-            [
-                'type' => 'menu',
-                'name' => 'Categories',
-                'icon' => 'fa fa-bars',
-                'is_active' => request()->routeIs('category*') ? 'active' : '',
-                'conditions' => [
-                    [
-                        'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Category::class),
-                    ],
-                    [
-                        'type' => 'or',
-                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Category::class),
-                    ],
-                ],
-                'children' => $this->indexCreateChildren('category', Adminetic\Website\Models\Admin\Category::class)
-            ],
-        ];
-    }
-
-    public function headerComponents(): array
-    {
-        return [
-            '<x-announcement-announcement-notification-bell />',
         ];
     }
 }

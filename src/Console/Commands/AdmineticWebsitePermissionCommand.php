@@ -38,8 +38,6 @@ class AdmineticWebsitePermissionCommand extends Command
      */
     public function handle()
     {
-        Artisan::call('make:permission Category --all');
-        $this->info('Category Module Permission Created ... ✅');
         Artisan::call('make:permission Client --all');
         $this->info('Client Module Permission Created ... ✅');
         Artisan::call('make:permission Counter --all');

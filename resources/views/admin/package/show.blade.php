@@ -14,7 +14,7 @@
                                     <li class="list-group-item"><b>Plan :
                                         </b>{{$package->package_time}}</li>
                                     <li class="list-group-item"><b>Price :
-                                        </b>{{config('coderz.currency_symbol','Rs.')}}{{$package->package_cost}}</li>
+                                        </b>{{config('adminetic.currency_symbol','Rs.')}}{{$package->package_cost}}</li>
                                     <li class="list-group-item" style="background-color: {{$package->color}}">
                                         <span style="color: white">Color</span>
                                     </li>

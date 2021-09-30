@@ -2,17 +2,17 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Image;
-use Adminetic\Website\Http\Requests\ImageRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ImageRepositoryInterface;
+use Adminetic\Website\Http\Requests\ImageRequest;
 
 class ImageRepository implements ImageRepositoryInterface
 {
     // Image Index
     public function indexImage()
     {
-        $images = config('coderz.caching', true)
+        $images = config('adminetic.caching', true)
             ? (Cache::has('images') ? Cache::get('images') : Cache::rememberForever('images', function () {
                 return Image::latest()->get();
             }))

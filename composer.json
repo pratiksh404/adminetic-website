@@ -47,10 +47,7 @@
         "laravel": {
             "providers": [
                 "Adminetic\\Website\\Provider\\WebsiteServiceProvider"
-            ],
-            "aliases": {
-                "Website": "Adminetic\\Website\\WebsiteFacade"
-            }
+            ]
         }
     }
 }

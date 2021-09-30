@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
 use Adminetic\Website\Models\Admin\Client;
 use Adminetic\Website\Http\Requests\ClientRequest;
+use Illuminate\Support\Facades\Cache;
+use Intervention\Image\Facades\Image;
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
 
 class ClientRepository implements ClientRepositoryInterface
@@ -13,7 +13,7 @@ class ClientRepository implements ClientRepositoryInterface
     // Client Index
     public function indexClient()
     {
-        $clients = config('coderz.caching', true)
+        $clients = config('adminetic.caching', true)
             ? (Cache::has('clients') ? Cache::get('clients') : Cache::rememberForever('clients', function () {
                 return Client::latest()->get();
             }))

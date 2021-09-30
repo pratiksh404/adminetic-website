@@ -33,7 +33,7 @@ class CounterPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return mixed
      */
     public function view(User $user, Counter $counter)
@@ -56,7 +56,7 @@ class CounterPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return mixed
      */
     public function update(User $user, Counter $counter)
@@ -68,7 +68,7 @@ class CounterPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return mixed
      */
     public function delete(User $user, Counter $counter)
@@ -80,7 +80,7 @@ class CounterPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return mixed
      */
     public function restore(User $user, Counter $counter)
@@ -92,7 +92,7 @@ class CounterPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Counter  $counter
+     * @param  \Adminetic\Website\Models\Admin\Counter  $counter
      * @return mixed
      */
     public function forceDelete(User $user, Counter $counter)

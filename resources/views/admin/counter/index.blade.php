@@ -5,7 +5,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-6">
-                <h3>All Counters</h3>
+                <h3>Counters</h3>
             </div>
             <div class="col-6">
                 <ol class="breadcrumb">
@@ -17,10 +17,9 @@
         </div>
     </div>
 </div>
-<x-adminetic-card title="counter" route="counter">
+<x-adminetic-card title="All Counter">
     <x-slot name="buttons">
-        <a href="{{ adminCreateRoute('counter') }}" class="btn btn-primary btn-air-primary mx-1">Create
-            Counter</a>
+        <a href="{{adminCreateRoute('Counter')}}" class="btn btn-primary btn-air-primary">Create Counter</a>
     </x-slot>
     <x-slot name="content">
         {{-- ================================Card================================ --}}
@@ -64,9 +63,9 @@
         </table>
         {{-- =================================================================== --}}
     </x-slot>
-</x-adminetic-card>
-@endsection
+    </x-adminetic-index-page>
+    @endsection
 
-@section('custom_js')
-@include('website::admin.layouts.modules.counter.scripts')
-@endsection
+    @section('custom_js')
+    @include('website::admin.layouts.modules.counter.scripts')
+    @endsection

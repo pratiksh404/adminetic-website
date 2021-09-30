@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Video;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\VideoRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\VideoRepositoryInterface;
 
 class VideoController extends Controller

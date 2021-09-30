@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Service;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\ServiceRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 
 class ServiceController extends Controller
@@ -96,21 +96,5 @@ class ServiceController extends Controller
     {
         $this->serviceRepositoryInterface->destroyService($service);
         return redirect(adminRedirectRoute('service'))->withFail('Service Deleted Successfully.');
-    }
-
-    /**
-     *
-     * Reorder Category Model Data
-     *
-     */
-    public function reorder_services(Request $request)
-    {
-        foreach ($request->input('rows', []) as $row) {
-            Service::find($row['id'])->update([
-                'position' => $row['position']
-            ]);
-        }
-
-        return response()->noContent();
     }
 }

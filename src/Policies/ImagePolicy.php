@@ -33,7 +33,7 @@ class ImagePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return mixed
      */
     public function view(User $user, Image $image)
@@ -56,7 +56,7 @@ class ImagePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return mixed
      */
     public function update(User $user, Image $image)
@@ -68,7 +68,7 @@ class ImagePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return mixed
      */
     public function delete(User $user, Image $image)
@@ -80,7 +80,7 @@ class ImagePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return mixed
      */
     public function restore(User $user, Image $image)
@@ -92,7 +92,7 @@ class ImagePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Image  $image
+     * @param  \Adminetic\Website\Models\Admin\Image  $image
      * @return mixed
      */
     public function forceDelete(User $user, Image $image)

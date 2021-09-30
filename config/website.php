@@ -1,1 +1,3 @@
-D:\WEB\package-boilarplate\config
+<?php
+
+return [];

@@ -5,7 +5,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-6">
-                <h3>All Videos</h3>
+                <h3>Videos</h3>
             </div>
             <div class="col-6">
                 <ol class="breadcrumb">
@@ -19,8 +19,7 @@
 </div>
 <x-adminetic-card title="video" route="video">
     <x-slot name="buttons">
-        <a href="{{ adminCreateRoute('video') }}" class="btn btn-primary btn-air-primary mx-1">Create
-            Video</a>
+        <a href="{{adminCreateRoute('video')}}" class="btn btn-primary btn-air-primary">Create Video</a>
     </x-slot>
     <x-slot name="content">
         {{-- ================================Card================================ --}}
@@ -65,9 +64,9 @@
         </table>
         {{-- =================================================================== --}}
     </x-slot>
-</x-adminetic-card>
-@endsection
+    </x-adminetic-index-page>
+    @endsection
 
-@section('custom_js')
-@include('website::admin.layouts.modules.video.scripts')
-@endsection
+    @section('custom_js')
+    @include('website::admin.layouts.modules.video.scripts')
+    @endsection

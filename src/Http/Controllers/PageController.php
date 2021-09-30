@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Page;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\PageRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PageRepositoryInterface;
 
 class PageController extends Controller
@@ -96,21 +96,5 @@ class PageController extends Controller
     {
         $this->pageRepositoryInterface->destroyPage($page);
         return redirect(adminRedirectRoute('page'))->withFail('Page Deleted Successfully.');
-    }
-
-    /**
-     *
-     * Reorder Pages
-     *
-     */
-    public function reorder_pages(Request $request)
-    {
-        foreach ($request->input('rows', []) as $row) {
-            Page::find($row['id'])->update([
-                'position' => $row['position']
-            ]);
-        }
-
-        return response()->noContent();
     }
 }

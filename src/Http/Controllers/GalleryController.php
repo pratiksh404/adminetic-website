@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Gallery;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\GalleryRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 
 class GalleryController extends Controller

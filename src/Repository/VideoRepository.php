@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Video;
 use Adminetic\Website\Models\Admin\Gallery;
 use Adminetic\Website\Http\Requests\VideoRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\VideoRepositoryInterface;
 
 class VideoRepository implements VideoRepositoryInterface
@@ -14,7 +13,7 @@ class VideoRepository implements VideoRepositoryInterface
     // Video Index
     public function indexVideo()
     {
-        $videos = config('coderz.caching', true)
+        $videos = config('adminetic.caching', true)
             ? (Cache::has('videos') ? Cache::get('videos') : Cache::rememberForever('videos', function () {
                 return Video::latest()->get();
             }))

@@ -2,7 +2,7 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use App\Models\Admin\Page;
+use Adminetic\Website\Models\Admin\Page;
 use Illuminate\Foundation\Http\FormRequest;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 

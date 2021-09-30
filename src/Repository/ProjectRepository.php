@@ -2,18 +2,17 @@
 
 namespace Adminetic\Website\Repository;
 
-
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Project;
-use Adminetic\Website\Http\Requests\ProjectRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ProjectRepositoryInterface;
+use Adminetic\Website\Http\Requests\ProjectRequest;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {
     // Project Index
     public function indexProject()
     {
-        $projects = config('coderz.caching', true)
+        $projects = config('adminetic.caching', true)
             ? (Cache::has('projects') ? Cache::get('projects') : Cache::rememberForever('projects', function () {
                 return Project::latest()->get();
             }))

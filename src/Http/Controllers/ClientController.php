@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Client;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\ClientRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
 
 class ClientController extends Controller

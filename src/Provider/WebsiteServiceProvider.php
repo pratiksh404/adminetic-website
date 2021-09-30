@@ -17,7 +17,6 @@ use Adminetic\Website\Repository\ServiceRepository;
 use Illuminate\Support\ServiceProvider;
 use Adminetic\Website\Models\Admin\Page;
 use Adminetic\Website\Models\Admin\Team;
-use Adminetic\Website\Repository\CategoryRepository;
 use Adminetic\Website\Models\Admin\Image;
 use Adminetic\Website\Models\Admin\Video;
 use Adminetic\Website\Policies\FaqPolicy;
@@ -31,7 +30,6 @@ use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Models\Admin\Service;
 use Adminetic\Website\Policies\ImagePolicy;
 use Adminetic\Website\Policies\VideoPolicy;
-use Adminetic\Website\Models\Admin\Category;
 use Adminetic\Website\Models\Admin\Facility;
 use Adminetic\Website\Policies\ClientPolicy;
 use Adminetic\Website\Policies\CounterPolicy;
@@ -39,7 +37,6 @@ use Adminetic\Website\Policies\GalleryPolicy;
 use Adminetic\Website\Policies\PackagePolicy;
 use Adminetic\Website\Policies\ProjectPolicy;
 use Adminetic\Website\Policies\ServicePolicy;
-use Adminetic\Website\Policies\CategoryPolicy;
 use Adminetic\Website\Policies\FacilityPolicy;
 use Adminetic\Website\Repository\FaqRepository;
 use Adminetic\Website\Repository\ClientRepository;
@@ -56,16 +53,18 @@ use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 use Adminetic\Website\Contracts\PackageRepositoryInterface;
 use Adminetic\Website\Contracts\ProjectRepositoryInterface;
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
-use Adminetic\Website\Contracts\CategoryRepositoryInterface;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
-use Adminetic\Website\Http\Livewire\Admin\Category\QuickCategory;
 use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
+use Adminetic\Website\Http\Livewire\Admin\Facility\ReorderFacility;
+use Adminetic\Website\Http\Livewire\Admin\Faq\ReorderFaq;
+use Adminetic\Website\Http\Livewire\Admin\Page\ReorderPage;
+use Adminetic\Website\Http\Livewire\Admin\Service\ReorderService;
+use Adminetic\Website\Http\Livewire\Admin\Team\ReorderTeam;
 
 class WebsiteServiceProvider extends ServiceProvider
 {
     // Register Policies
     protected $policies = [
-        Category::class => CategoryPolicy::class,
         Client::class => ClientPolicy::class,
         Counter::class => CounterPolicy::class,
         Facility::class => FacilityPolicy::class,
@@ -188,7 +187,11 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerLivewireComponents()
     {
-        Livewire::component('admin.category.quick-category', QuickCategory::class);
+        Livewire::component('admin.facility.reorder-facility', ReorderFacility::class);
+        Livewire::component('admin.faq.reorder-faq', ReorderFaq::class);
+        Livewire::component('admin.page.reorder-page', ReorderPage::class);
+        Livewire::component('admin.service.reorder-service', ReorderService::class);
+        Livewire::component('admin.team.reorder-team', ReorderTeam::class);
     }
 
     /**
@@ -198,7 +201,6 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function repos()
     {
-        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ServiceRepositoryInterface::class, ServiceRepository::class);
         $this->app->bind(FacilityRepositoryInterface::class, FacilityRepository::class);
         $this->app->bind(CounterRepositoryInterface::class, CounterRepository::class);

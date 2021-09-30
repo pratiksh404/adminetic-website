@@ -7,7 +7,8 @@
         </div>
     </div>
     <div class="col-lg-4">
-        @livewire('admin.category.quick-category', ['model' => 'Service','category_id' => $category->id ?? null])
+        @livewire('admin.category.quick-category', ['model' => 'Service','category_id' => $category->id ??
+        null])
     </div>
     <div class="col-lg-2">
         <label for="code">Code</label>

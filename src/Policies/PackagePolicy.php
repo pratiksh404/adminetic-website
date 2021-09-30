@@ -33,7 +33,7 @@ class PackagePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return mixed
      */
     public function view(User $user, Package $package)
@@ -56,7 +56,7 @@ class PackagePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return mixed
      */
     public function update(User $user, Package $package)
@@ -68,7 +68,7 @@ class PackagePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return mixed
      */
     public function delete(User $user, Package $package)
@@ -80,7 +80,7 @@ class PackagePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return mixed
      */
     public function restore(User $user, Package $package)
@@ -92,7 +92,7 @@ class PackagePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Package  $package
+     * @param  \Adminetic\Website\Models\Admin\Package  $package
      * @return mixed
      */
     public function forceDelete(User $user, Package $package)

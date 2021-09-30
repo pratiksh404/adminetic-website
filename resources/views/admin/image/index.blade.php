@@ -5,7 +5,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-6">
-                <h3>All Images</h3>
+                <h3>Images</h3>
             </div>
             <div class="col-6">
                 <ol class="breadcrumb">
@@ -17,10 +17,9 @@
         </div>
     </div>
 </div>
-<x-adminetic-card title="image" route="image">
+<x-adminetic-card title="All Image">
     <x-slot name="buttons">
-        <a href="{{ adminCreateRoute('image') }}" class="btn btn-primary btn-air-primary mx-1">Create
-            Image</a>
+        <a href="{{adminCreateRoute('image')}}" class="btn btn-primary btn-air-primary">Create Image</a>
     </x-slot>
     <x-slot name="content">
         {{-- ================================Card================================ --}}
@@ -62,9 +61,9 @@
         </table>
         {{-- =================================================================== --}}
     </x-slot>
-</x-adminetic-card>
-@endsection
+    </x-adminetic-index-page>
+    @endsection
 
-@section('custom_js')
-@include('website::admin.layouts.modules.image.scripts')
-@endsection
+    @section('custom_js')
+    @include('website::admin.layouts.modules.image.scripts')
+    @endsection

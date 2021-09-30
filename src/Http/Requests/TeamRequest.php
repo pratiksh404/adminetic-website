@@ -55,7 +55,7 @@ class TeamRequest extends FormRequest
             'messenger' => 'nullable|max:255',
             'whatsapp' => 'nullable|max:255',
             'message' => 'nullable|max:10000',
-            'priority' => 'required|numeric|max:100'
+            'position' => 'sometimes|numeric|max:100'
         ];
     }
 }

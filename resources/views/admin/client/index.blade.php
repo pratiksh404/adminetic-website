@@ -5,7 +5,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-6">
-                <h3>All Clients</h3>
+                <h3>Clients</h3>
             </div>
             <div class="col-6">
                 <ol class="breadcrumb">
@@ -17,10 +17,9 @@
         </div>
     </div>
 </div>
-<x-adminetic-card title="client" route="client">
+<x-adminetic-card title="All Client">
     <x-slot name="buttons">
-        <a href="{{ adminCreateRoute('client') }}" class="btn btn-primary btn-air-primary mx-1">Create
-            Client</a>
+        <a href="{{adminCreateRoute('client')}}" class="btn btn-primary btn-air-primary">Create Client</a>
     </x-slot>
     <x-slot name="content">
         {{-- ================================Card================================ --}}
@@ -61,9 +60,9 @@
         </table>
         {{-- =================================================================== --}}
     </x-slot>
-</x-adminetic-card>
-@endsection
+    </x-adminetic-index-page>
+    @endsection
 
-@section('custom_js')
-@include('website::admin.layouts.modules.client.scripts')
-@endsection
+    @section('custom_js')
+    @include('website::admin.layouts.modules.client.scripts')
+    @endsection

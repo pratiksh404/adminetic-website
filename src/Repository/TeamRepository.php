@@ -2,22 +2,21 @@
 
 namespace Adminetic\Website\Repository;
 
-
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Team;
-use Adminetic\Website\Http\Requests\TeamRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Http\Requests\TeamRequest;
 
 class TeamRepository implements TeamRepositoryInterface
 {
     // Team Index
     public function indexTeam()
     {
-        $teams = config('coderz.caching', true)
+        $teams = config('adminetic.caching', true)
             ? (Cache::has('teams') ? Cache::get('teams') : Cache::rememberForever('teams', function () {
-                return Team::latest()->get();
+                return Team::orderBy('position')->get();
             }))
-            : Team::latest()->get();
+            : Team::orderBy('position')->get();
         return compact('teams');
     }
 

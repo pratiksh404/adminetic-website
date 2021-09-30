@@ -12,11 +12,10 @@ use Adminetic\Website\Http\Controllers\GalleryController;
 use Adminetic\Website\Http\Controllers\PackageController;
 use Adminetic\Website\Http\Controllers\ProjectController;
 use Adminetic\Website\Http\Controllers\ServiceController;
-use Adminetic\Website\Http\Controllers\CategoryController;
 use Adminetic\Website\Http\Controllers\FacilityController;
 
 
-Route::resource('category', CategoryController::class);
+
 Route::resource('service', ServiceController::class);
 Route::resource('facility', FacilityController::class);
 Route::resource('counter', CounterController::class);
@@ -32,10 +31,3 @@ Route::resource('video', VideoController::class);
 
 /* SINGLE ROUTES */
 Route::get('delete_gallery_image', [GalleryController::class, 'delete_gallery_image'])->name('delete_gallery_image');
-/* REORDER ROUTES */
-Route::get('reorder-categories', [CategoryController::class, 'reorder_categories'])->name('reorder_categories');
-Route::get('reorder-services', [ServiceController::class, 'reorder_services'])->name('reorder_services');
-Route::get('reorder-facilities', [FacilityController::class, 'reorder_facilities'])->name('reorder_facilities');
-Route::get('reorder-teams', [TeamController::class, 'reorder_teams'])->name('reorder_teams');
-Route::get('reorder-faqs', [TeamController::class, 'reorder_faqs'])->name('reorder_faqs');
-Route::get('reorder-reorder_pages', [PageController::class, 'reorder_pages'])->name('reorder_pages');

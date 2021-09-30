@@ -2,17 +2,17 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Page;
-use Adminetic\Website\Http\Requests\PageRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PageRepositoryInterface;
+use Adminetic\Website\Http\Requests\PageRequest;
 
 class PageRepository implements PageRepositoryInterface
 {
     // Page Index
     public function indexPage()
     {
-        $pages = config('coderz.caching', true)
+        $pages = config('adminetic.caching', true)
             ? (Cache::has('pages') ? Cache::get('pages') : Cache::rememberForever('pages', function () {
                 return Page::orderBy('position')->get();
             }))

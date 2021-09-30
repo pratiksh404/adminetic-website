@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Team;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\TeamRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
-
 
 class TeamController extends Controller
 {

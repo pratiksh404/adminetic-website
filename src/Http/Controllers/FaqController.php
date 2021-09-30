@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Models\Admin\Faq;
+use Illuminate\Http\Request;
 use Adminetic\Website\Http\Requests\FaqRequest;
+use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\FaqRepositoryInterface;
 
 class FaqController extends Controller
@@ -41,7 +42,7 @@ class FaqController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Adminetic\Website\Models\Admin\Faq  $request
+     * @param  \Adminetic\Website\Http\Requests\FaqRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(FaqRequest $request)
@@ -75,7 +76,7 @@ class FaqController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Adminetic\Website\Models\Admin\Faq  $request
+     * @param  \Adminetic\Website\Http\Requests\FaqRequest  $request
      * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return \Illuminate\Http\Response
      */

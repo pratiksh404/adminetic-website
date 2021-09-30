@@ -33,7 +33,7 @@ class FaqPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return mixed
      */
     public function view(User $user, Faq $faq)
@@ -56,7 +56,7 @@ class FaqPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return mixed
      */
     public function update(User $user, Faq $faq)
@@ -68,7 +68,7 @@ class FaqPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return mixed
      */
     public function delete(User $user, Faq $faq)
@@ -80,7 +80,7 @@ class FaqPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return mixed
      */
     public function restore(User $user, Faq $faq)
@@ -92,7 +92,7 @@ class FaqPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Admin\Faq  $faq
+     * @param  \Adminetic\Website\Models\Admin\Faq  $faq
      * @return mixed
      */
     public function forceDelete(User $user, Faq $faq)

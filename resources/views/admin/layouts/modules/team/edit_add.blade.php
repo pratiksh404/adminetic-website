@@ -18,18 +18,11 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-6">
         <label for="designation">Member Designation <span class="text-danger">*</span></label>
         <div class="input-group">
             <input type="text" name="designation" id="designation" class="form-control"
                 value="{{$team->designation ?? old('designation')}}" placeholder="Member Designation">
-        </div>
-    </div>
-    <div class="col-lg-2">
-        <label for="priority">Priority</label>
-        <div class="input-group">
-            <input type="text" name="priority" id="priority" class="touchspin"
-                value="{{$team->priority ?? old('priority') ?? 1}}">
         </div>
     </div>
     <div class="col-lg-6">

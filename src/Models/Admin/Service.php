@@ -3,10 +3,10 @@
 namespace Adminetic\Website\Models\Admin;
 
 use Adminetic\Website\Traits\HasSlug;
+use Adminetic\Category\Traits\HasCategory;
 use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
-use Adminetic\Website\Traits\HasCategory;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Service extends Model

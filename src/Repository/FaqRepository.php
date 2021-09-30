@@ -2,19 +2,17 @@
 
 namespace Adminetic\Website\Repository;
 
-
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Faq;
-use Adminetic\Website\Http\Requests\FaqRequest;
+use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\FaqRepositoryInterface;
-
+use Adminetic\Website\Http\Requests\FaqRequest;
 
 class FaqRepository implements FaqRepositoryInterface
 {
     // Faq Index
     public function indexFaq()
     {
-        $faqs = config('coderz.caching', true)
+        $faqs = config('adminetic.caching', true)
             ? (Cache::has('faqs') ? Cache::get('faqs') : Cache::rememberForever('faqs', function () {
                 return Faq::latest()->get();
             }))
