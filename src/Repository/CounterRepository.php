@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Counter;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\CounterRepositoryInterface;
 use Adminetic\Website\Http\Requests\CounterRequest;
+use Adminetic\Website\Models\Admin\Counter;
+use Illuminate\Support\Facades\Cache;
 
 class CounterRepository implements CounterRepositoryInterface
 {
@@ -17,6 +17,7 @@ class CounterRepository implements CounterRepositoryInterface
                 return Counter::latest()->get();
             }))
             : Counter::latest()->get();
+
         return compact('counters');
     }
 
@@ -58,7 +59,6 @@ class CounterRepository implements CounterRepositoryInterface
         $counter->icon ? $counter->hardDelete('icon') : '';
         $counter->delete();
     }
-
 
     // Upload Image
     protected function uploadImage(Counter $counter)

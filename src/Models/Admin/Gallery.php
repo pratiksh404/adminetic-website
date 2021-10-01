@@ -3,8 +3,8 @@
 namespace Adminetic\Website\Models\Admin;
 
 use Adminetic\Website\Traits\HasSlug;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Gallery extends Model
@@ -37,7 +37,7 @@ class Gallery extends Model
     protected static $logName = 'gallery';
 
     protected $casts = [
-        'url' => 'array'
+        'url' => 'array',
     ];
 
     // Accessors
@@ -45,7 +45,7 @@ class Gallery extends Model
     {
         return [
             1 => 'Image',
-            2 => 'Video'
+            2 => 'Video',
         ][$attribute];
     }
 

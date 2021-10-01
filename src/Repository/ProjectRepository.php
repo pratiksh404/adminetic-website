@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Project;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ProjectRepositoryInterface;
 use Adminetic\Website\Http\Requests\ProjectRequest;
+use Adminetic\Website\Models\Admin\Project;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {
@@ -17,6 +17,7 @@ class ProjectRepository implements ProjectRepositoryInterface
                 return Project::latest()->get();
             }))
             : Project::latest()->get();
+
         return compact('projects');
     }
 

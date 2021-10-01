@@ -26,7 +26,7 @@ class CounterRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'value' => 'required|numeric',
-            'icon' => 'sometimes|file|image|mimes:png|max:2000'
+            'icon' => 'sometimes|file|image|mimes:png|max:2000',
         ];
     }
 }

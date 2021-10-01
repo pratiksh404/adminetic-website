@@ -8,6 +8,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 trait HasSlug
 {
     use Sluggable, SluggableScopeHelpers;
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -17,8 +18,8 @@ trait HasSlug
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
     }
 }

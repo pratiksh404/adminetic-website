@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Client;
+use Adminetic\Website\Contracts\ClientRepositoryInterface;
 use Adminetic\Website\Http\Requests\ClientRequest;
+use Adminetic\Website\Models\Admin\Client;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
-use Adminetic\Website\Contracts\ClientRepositoryInterface;
 
 class ClientRepository implements ClientRepositoryInterface
 {
@@ -18,6 +18,7 @@ class ClientRepository implements ClientRepositoryInterface
                 return Client::latest()->get();
             }))
             : Client::latest()->get();
+
         return compact('clients');
     }
 
@@ -59,16 +60,15 @@ class ClientRepository implements ClientRepositoryInterface
         $client->delete();
     }
 
-    // Image Upload 
+    // Image Upload
     protected function uploadImage(Client $client)
     {
         if (request()->has('image')) {
-
             $client->update([
-                'image' => request()->image->store('website/client', 'public')
+                'image' => request()->image->store('website/client', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/' . $client->image));
+            $image->save(public_path('storage/'.$client->image));
         }
     }
 }

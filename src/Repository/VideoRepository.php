@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Video;
-use Adminetic\Website\Models\Admin\Gallery;
-use Adminetic\Website\Http\Requests\VideoRequest;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\VideoRepositoryInterface;
+use Adminetic\Website\Http\Requests\VideoRequest;
+use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\Video;
+use Illuminate\Support\Facades\Cache;
 
 class VideoRepository implements VideoRepositoryInterface
 {
@@ -18,6 +18,7 @@ class VideoRepository implements VideoRepositoryInterface
                 return Video::latest()->get();
             }))
             : Video::latest()->get();
+
         return compact('videos');
     }
 
@@ -25,6 +26,7 @@ class VideoRepository implements VideoRepositoryInterface
     public function createVideo()
     {
         $galleries = Cache::get('galleries', Gallery::latest()->get());
+
         return compact('galleries');
     }
 
@@ -38,8 +40,8 @@ class VideoRepository implements VideoRepositoryInterface
     // Video Show
     public function showVideo(Video $video)
     {
-
         $galleries = Cache::get('galleries', Gallery::latest()->get());
+
         return compact('video', 'galleries');
     }
 
@@ -76,9 +78,9 @@ class VideoRepository implements VideoRepositoryInterface
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '150',
                         'thumbnail-height' => '100',
-                        'thumbnail-quality' => '50'
-                    ]
-                ]
+                        'thumbnail-quality' => '50',
+                    ],
+                ],
             ];
             $video->makeThumbnail('thumbnail', $thumbnails);
         }

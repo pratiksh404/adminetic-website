@@ -30,7 +30,7 @@ class ImageRequest extends FormRequest
             'url' => 'nullable|max:255',
             'title' => 'required_if:type,4|max:255',
             'excerpt' => 'nullable|max:1000',
-            'position' => 'nullable|numeric'
+            'position' => 'nullable|numeric',
         ];
     }
 }

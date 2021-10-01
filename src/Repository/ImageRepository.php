@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Image;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ImageRepositoryInterface;
 use Adminetic\Website\Http\Requests\ImageRequest;
+use Adminetic\Website\Models\Admin\Image;
+use Illuminate\Support\Facades\Cache;
 
 class ImageRepository implements ImageRepositoryInterface
 {
@@ -17,6 +17,7 @@ class ImageRepository implements ImageRepositoryInterface
                 return Image::latest()->get();
             }))
             : Image::latest()->get();
+
         return compact('images');
     }
 
@@ -58,13 +59,13 @@ class ImageRepository implements ImageRepositoryInterface
         $image->delete();
     }
 
-    // Image Upload 
+    // Image Upload
     protected function uploadImage($image, $request)
     {
         if (request()->image) {
             $dimension = $this->calculateDimention($image, $request);
             $thumbnails = [
-                'storage' => 'website/image/' . validImageFolder($image->type, 'image'),
+                'storage' => 'website/image/'.validImageFolder($image->type, 'image'),
                 'width' => $dimension['width'],
                 'height' => $dimension['height'],
                 'quality' => '70',
@@ -73,9 +74,9 @@ class ImageRepository implements ImageRepositoryInterface
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => $dimension['small-width'],
                         'thumbnail-height' => $dimension['small-height'],
-                        'thumbnail-quality' => '30'
-                    ]
-                ]
+                        'thumbnail-quality' => '30',
+                    ],
+                ],
             ];
             $image->makeThumbnail('image', $thumbnails);
         }
@@ -83,24 +84,24 @@ class ImageRepository implements ImageRepositoryInterface
 
     protected function calculateDimention($image, $request)
     {
-        $dimention = array();
+        $dimention = [];
         if ($request->has('type')) {
-            if ($request->type == 1 || $request->type == "Normal") {
+            if ($request->type == 1 || $request->type == 'Normal') {
                 $dimention['width'] = 600;
                 $dimention['height'] = 600;
                 $dimention['small-width'] = 100;
                 $dimention['small-height'] = 100;
-            } elseif ($request->type == 2 || $request->type == "Horizontal") {
+            } elseif ($request->type == 2 || $request->type == 'Horizontal') {
                 $dimention['width'] = 800;
                 $dimention['height'] = 600;
                 $dimention['small-width'] = 150;
                 $dimention['small-height'] = 100;
-            } elseif ($request->type == 3 || $request->type == "Vertical") {
+            } elseif ($request->type == 3 || $request->type == 'Vertical') {
                 $dimention['width'] = 600;
                 $dimention['height'] = 800;
                 $dimention['small-width'] = 100;
                 $dimention['small-height'] = 150;
-            } elseif ($request->type == 4 || $request->type == "Slider") {
+            } elseif ($request->type == 4 || $request->type == 'Slider') {
                 $dimention['width'] = 1920;
                 $dimention['height'] = 1280;
                 $dimention['small-width'] = 200;
@@ -112,6 +113,7 @@ class ImageRepository implements ImageRepositoryInterface
             $dimention['small-width'] = 100;
             $dimention['small-height'] = 100;
         }
+
         return $dimention;
     }
 }

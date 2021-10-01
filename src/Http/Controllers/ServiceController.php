@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Adminetic\Website\Models\Admin\Service;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\ServiceRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
+use Adminetic\Website\Http\Requests\ServiceRequest;
+use Adminetic\Website\Models\Admin\Service;
+use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
 {
@@ -17,7 +16,6 @@ class ServiceController extends Controller
         $this->serviceRepositoryInterface = $serviceRepositoryInterface;
         $this->authorizeResource(Service::class, 'service');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         $this->serviceRepositoryInterface->storeService($request);
+
         return redirect(adminRedirectRoute('service'))->withSuccess('Service Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, Service $service)
     {
         $this->serviceRepositoryInterface->updateService($request, $service);
+
         return redirect(adminRedirectRoute('service'))->withInfo('Service Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $this->serviceRepositoryInterface->destroyService($service);
+
         return redirect(adminRedirectRoute('service'))->withFail('Service Deleted Successfully.');
     }
 }

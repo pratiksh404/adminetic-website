@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Adminetic\Website\Models\Admin\Image;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\ImageRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ImageRepositoryInterface;
+use Adminetic\Website\Http\Requests\ImageRequest;
+use Adminetic\Website\Models\Admin\Image;
+use App\Http\Controllers\Controller;
 
 class ImageController extends Controller
 {
@@ -17,7 +16,6 @@ class ImageController extends Controller
         $this->imageRepositoryInterface = $imageRepositoryInterface;
         $this->authorizeResource(Image::class, 'image');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class ImageController extends Controller
     public function store(ImageRequest $request)
     {
         $this->imageRepositoryInterface->storeImage($request);
+
         return redirect(adminRedirectRoute('image'))->withSuccess('Image Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class ImageController extends Controller
     public function update(ImageRequest $request, Image $image)
     {
         $this->imageRepositoryInterface->updateImage($request, $image);
+
         return redirect(adminRedirectRoute('image'))->withInfo('Image Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         $this->imageRepositoryInterface->destroyImage($image);
+
         return redirect(adminRedirectRoute('image'))->withFail('Image Deleted Successfully.');
     }
 }
