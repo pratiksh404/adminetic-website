@@ -29,7 +29,7 @@
         })
         // Font Selector
         IconPicker.Init({
-         jsonUrl: "{{asset('website/plugins/iconPicker/dist/iconpicker-1.5.0.json')}}",
+         jsonUrl: "{{asset('adminetic/assets/js/icon-picker/iconpicker-1.5.0.json')}}",
            searchPlaceholder: 'Search Icon',
            showAllButton: 'Show All',
            cancelButton: 'Cancel',

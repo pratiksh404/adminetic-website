@@ -19,12 +19,12 @@ class WebsiteAdapter implements PluginInterface
                     [
                         'type' => 'css',
                         'active' => true,
-                        'location' => 'adminetic/assets/js/iconPicker/dist/iconpicker-1.5.0.css',
+                        'location' => 'adminetic/assets/js/icon-picker/iconpicker-1.5.0.css',
                     ],
                     [
                         'type' => 'js',
                         'active' => true,
-                        'location' => 'adminetic/assets/js/iconPicker/dist/iconpicker-1.5.0.js',
+                        'location' => 'adminetic/assets/js/icon-picker/iconpicker-1.5.0.js',
                     ],
                 ],
             ],
