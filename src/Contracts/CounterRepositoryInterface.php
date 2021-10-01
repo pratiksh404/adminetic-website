@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Counter;
 use Adminetic\Website\Http\Requests\CounterRequest;
+use Adminetic\Website\Models\Admin\Counter;
 
 interface CounterRepositoryInterface
 {

@@ -35,22 +35,22 @@ class WebsiteAdapter implements PluginInterface
                     [
                         'type' => 'css',
                         'active' => true,
-                        'location' => 'adminetic/assets/css/vendors/photoswipe.css'
+                        'location' => 'adminetic/assets/css/vendors/photoswipe.css',
                     ],
                     [
                         'type' => 'js',
                         'active' => true,
-                        'location' => 'adminetic/assets/js/photoswipe/photoswipe.min.js'
+                        'location' => 'adminetic/assets/js/photoswipe/photoswipe.min.js',
                     ],
                     [
                         'type' => 'js',
                         'active' => true,
-                        'location' => 'adminetic/assets/js/photoswipe/photoswipe-ui-default.min.js'
+                        'location' => 'adminetic/assets/js/photoswipe/photoswipe-ui-default.min.js',
                     ],
                     [
                         'type' => 'js',
                         'active' => true,
-                        'location' => 'adminetic/assets/js/photoswipe/photoswipe.js'
+                        'location' => 'adminetic/assets/js/photoswipe/photoswipe.js',
                     ],
                 ],
             ],
@@ -80,7 +80,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Service::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('service', Adminetic\Website\Models\Admin\Service::class)
+                'children' => $this->indexCreateChildren('service', Adminetic\Website\Models\Admin\Service::class),
             ],
             [
                 'type' => 'menu',
@@ -97,7 +97,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Counter::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('counter', Adminetic\Website\Models\Admin\Counter::class)
+                'children' => $this->indexCreateChildren('counter', Adminetic\Website\Models\Admin\Counter::class),
             ],
             [
                 'type' => 'menu',
@@ -114,7 +114,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Team::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('team', Adminetic\Website\Models\Admin\Team::class)
+                'children' => $this->indexCreateChildren('team', Adminetic\Website\Models\Admin\Team::class),
             ],
             [
                 'type' => 'menu',
@@ -131,7 +131,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Faq::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('faq', Adminetic\Website\Models\Admin\Faq::class)
+                'children' => $this->indexCreateChildren('faq', Adminetic\Website\Models\Admin\Faq::class),
             ],
             [
                 'type' => 'menu',
@@ -148,7 +148,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Package::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('package', Adminetic\Website\Models\Admin\Package::class)
+                'children' => $this->indexCreateChildren('package', Adminetic\Website\Models\Admin\Package::class),
             ],
             [
                 'type' => 'menu',
@@ -165,7 +165,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Project::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('project', Adminetic\Website\Models\Admin\Project::class)
+                'children' => $this->indexCreateChildren('project', Adminetic\Website\Models\Admin\Project::class),
             ],
             [
                 'type' => 'menu',
@@ -182,7 +182,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Facility::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('facility', Adminetic\Website\Models\Admin\Facility::class)
+                'children' => $this->indexCreateChildren('facility', Adminetic\Website\Models\Admin\Facility::class),
             ],
             [
                 'type' => 'menu',
@@ -199,7 +199,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Client::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('client', Adminetic\Website\Models\Admin\Client::class)
+                'children' => $this->indexCreateChildren('client', Adminetic\Website\Models\Admin\Client::class),
             ],
             [
                 'type' => 'menu',
@@ -216,7 +216,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Gallery::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('gallery', Adminetic\Website\Models\Admin\Gallery::class)
+                'children' => $this->indexCreateChildren('gallery', Adminetic\Website\Models\Admin\Gallery::class),
             ],
             [
                 'type' => 'menu',
@@ -233,7 +233,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Image::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('image', Adminetic\Website\Models\Admin\Image::class)
+                'children' => $this->indexCreateChildren('image', Adminetic\Website\Models\Admin\Image::class),
             ],
             [
                 'type' => 'menu',
@@ -250,7 +250,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Video::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('video', Adminetic\Website\Models\Admin\Video::class)
+                'children' => $this->indexCreateChildren('video', Adminetic\Website\Models\Admin\Video::class),
             ],
             [
                 'type' => 'menu',
@@ -267,7 +267,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Page::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('page', Adminetic\Website\Models\Admin\Page::class)
+                'children' => $this->indexCreateChildren('page', Adminetic\Website\Models\Admin\Page::class),
             ],
         ];
     }

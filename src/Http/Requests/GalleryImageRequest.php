@@ -32,7 +32,7 @@ class GalleryImageRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'type' => $this->gallery->type == 1 ? 1 : 2
+            'type' => $this->gallery->type == 1 ? 1 : 2,
         ]);
     }
 
@@ -45,7 +45,7 @@ class GalleryImageRequest extends FormRequest
     {
         return [
             'images' => 'required',
-            'images.*' => 'file|image|max:3000'
+            'images.*' => 'file|image|max:3000',
         ];
     }
 }

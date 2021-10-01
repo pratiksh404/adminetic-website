@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Adminetic\Website\Models\Admin\Video;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\VideoRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\VideoRepositoryInterface;
+use Adminetic\Website\Http\Requests\VideoRequest;
+use Adminetic\Website\Models\Admin\Video;
+use App\Http\Controllers\Controller;
 
 class VideoController extends Controller
 {
@@ -17,7 +16,6 @@ class VideoController extends Controller
         $this->videoRepositoryInterface = $videoRepositoryInterface;
         $this->authorizeResource(Video::class, 'video');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class VideoController extends Controller
     public function store(VideoRequest $request)
     {
         $this->videoRepositoryInterface->storeVideo($request);
+
         return redirect(adminRedirectRoute('video'))->withSuccess('Video Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class VideoController extends Controller
     public function update(VideoRequest $request, Video $video)
     {
         $this->videoRepositoryInterface->updateVideo($request, $video);
+
         return redirect(adminRedirectRoute('video'))->withInfo('Video Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class VideoController extends Controller
     public function destroy(Video $video)
     {
         $this->videoRepositoryInterface->destroyVideo($video);
+
         return redirect(adminRedirectRoute('video'))->withFail('Video Deleted Successfully.');
     }
 }

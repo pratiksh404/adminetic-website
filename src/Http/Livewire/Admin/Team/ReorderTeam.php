@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Team;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Team;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Component;
 
 class ReorderTeam extends Component
 {
@@ -19,6 +19,7 @@ class ReorderTeam extends Component
     public function render()
     {
         $teams = Cache::get('teams', Team::orderBy('position')->get());
+
         return view('website::livewire.admin.team.reorder-team', compact('teams'));
     }
 }

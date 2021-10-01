@@ -26,7 +26,7 @@ class FaqRequest extends FormRequest
         return [
             'question' => 'required|max:255',
             'answer' => 'required|max:10000',
-            'position' => 'sometimes|numeric'
+            'position' => 'sometimes|numeric',
         ];
     }
 }

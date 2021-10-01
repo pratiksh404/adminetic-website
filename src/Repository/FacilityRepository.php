@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Facility;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 use Adminetic\Website\Http\Requests\FacilityRequest;
+use Adminetic\Website\Models\Admin\Facility;
+use Illuminate\Support\Facades\Cache;
 
 class FacilityRepository implements FacilityRepositoryInterface
 {
@@ -17,6 +17,7 @@ class FacilityRepository implements FacilityRepositoryInterface
                 return Facility::orderBy('position')->get();
             }))
             : Facility::orderBy('position')->get();
+
         return compact('facilities');
     }
 
@@ -70,10 +71,10 @@ class FacilityRepository implements FacilityRepositoryInterface
     {
         if (request()->icon_image) {
             $facility->update([
-                'icon_image' => request()->icon_image->store('website/facility/image', 'public')
+                'icon_image' => request()->icon_image->store('website/facility/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/' . $facility->icon_image));
+            $image->save(public_path('storage/'.$facility->icon_image));
         }
 
         if (request()->image) {
@@ -87,9 +88,9 @@ class FacilityRepository implements FacilityRepositoryInterface
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '150',
                         'thumbnail-height' => '100',
-                        'thumbnail-quality' => '50'
-                    ]
-                ]
+                        'thumbnail-quality' => '50',
+                    ],
+                ],
             ];
             $facility->makeThumbnail('image', $thumbnails);
         }

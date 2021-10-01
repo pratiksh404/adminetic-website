@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Adminetic\Website\Models\Admin\Category;
 use App\Http\Controllers\Controller;
 

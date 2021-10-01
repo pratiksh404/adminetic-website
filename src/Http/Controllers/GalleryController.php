@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Adminetic\Website\Models\Admin\Gallery;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\GalleryRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\GalleryRepositoryInterface;
+use Adminetic\Website\Http\Requests\GalleryRequest;
+use Adminetic\Website\Models\Admin\Gallery;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
@@ -17,7 +17,6 @@ class GalleryController extends Controller
         $this->galleryRepositoryInterface = $galleryRepositoryInterface;
         $this->authorizeResource(Gallery::class, 'gallery');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +47,7 @@ class GalleryController extends Controller
     public function store(GalleryRequest $request)
     {
         $this->galleryRepositoryInterface->storeGallery($request);
+
         return redirect(adminRedirectRoute('gallery'))->withSuccess('Gallery Created Successfully.');
     }
 
@@ -83,6 +83,7 @@ class GalleryController extends Controller
     public function update(GalleryRequest $request, Gallery $gallery)
     {
         $this->galleryRepositoryInterface->updateGallery($request, $gallery);
+
         return redirect(adminRedirectRoute('gallery'))->withInfo('Gallery Updated Successfully.');
     }
 
@@ -95,6 +96,7 @@ class GalleryController extends Controller
     public function destroy(Gallery $gallery)
     {
         $this->galleryRepositoryInterface->destroyGallery($gallery);
+
         return redirect(adminRedirectRoute('gallery'))->withFail('Gallery Deleted Successfully.');
     }
 

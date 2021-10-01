@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Package;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PackageRepositoryInterface;
 use Adminetic\Website\Http\Requests\PackageRequest;
+use Adminetic\Website\Models\Admin\Package;
+use Illuminate\Support\Facades\Cache;
 
 class PackageRepository implements PackageRepositoryInterface
 {
@@ -17,6 +17,7 @@ class PackageRepository implements PackageRepositoryInterface
                 return Package::latest()->get();
             }))
             : Package::latest()->get();
+
         return compact('packages');
     }
 

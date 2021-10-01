@@ -2,13 +2,12 @@
 
 namespace Adminetic\Website\Repository;
 
-use Illuminate\Http\Request;
-use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 use Adminetic\Website\Http\Requests\GalleryRequest;
+use Adminetic\Website\Models\Admin\Gallery;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
-use Adminetic\Website\Http\Requests\GalleryImageRequest;
-use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 
 class GalleryRepository implements GalleryRepositoryInterface
 {
@@ -20,6 +19,7 @@ class GalleryRepository implements GalleryRepositoryInterface
                 return Gallery::latest()->get();
             }))
             : Gallery::latest()->get();
+
         return compact('galleries');
     }
 
@@ -67,6 +67,7 @@ class GalleryRepository implements GalleryRepositoryInterface
         $image = Image::findOrFail($request->id);
         $image->hardDelete('image');
         $image->delete();
+
         return response()->json(['msg' => 'Gallery Image Deleted Successfully']);
     }
 
@@ -74,17 +75,16 @@ class GalleryRepository implements GalleryRepositoryInterface
     protected function multipleImageUpload($gallery)
     {
         if (request()->has('images')) {
-
             $imageRequest = app(\Adminetic\Website\Http\Requests\GalleryImageRequest::class, ['gallery' => $gallery]);
             $imageRequest->validated();
             foreach (request()->images as $image) {
                 $img = $gallery->images()->create([
-                    'image' => $image
+                    'image' => $image,
                 ]);
 
                 // Multi Image Upload With Thumbnail
                 $multiple = [
-                    'storage' => 'website/gallery/' . validImageFolder($gallery->name, 'gallery'),
+                    'storage' => 'website/gallery/'.validImageFolder($gallery->name, 'gallery'),
                     'width' => '600',
                     'height' => '600',
                     'quality' => '70',
@@ -94,9 +94,9 @@ class GalleryRepository implements GalleryRepositoryInterface
                             'thumbnail-name' => 'small',
                             'thumbnail-width' => '100',
                             'thumbnail-height' => '100',
-                            'thumbnail-quality' => '30'
-                        ]
-                    ]
+                            'thumbnail-quality' => '30',
+                        ],
+                    ],
                 ];
                 $img->makeThumbnail('image', $multiple);
             }

@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 use Adminetic\Website\Http\Requests\ServiceRequest;
+use Adminetic\Website\Models\Admin\Service;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
-use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 
 class ServiceRepository implements ServiceRepositoryInterface
 {
@@ -18,6 +18,7 @@ class ServiceRepository implements ServiceRepositoryInterface
                 return Service::orderBy('position')->get();
             }))
             : Service::orderBy('position')->get();
+
         return compact('services');
     }
 
@@ -71,10 +72,10 @@ class ServiceRepository implements ServiceRepositoryInterface
     {
         if (request()->icon_image) {
             $service->update([
-                'icon_image' => request()->icon_image->store('website/service/image', 'public')
+                'icon_image' => request()->icon_image->store('website/service/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/' . $service->icon_image));
+            $image->save(public_path('storage/'.$service->icon_image));
         }
 
         if (request()->image) {
@@ -88,9 +89,9 @@ class ServiceRepository implements ServiceRepositoryInterface
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '150',
                         'thumbnail-height' => '100',
-                        'thumbnail-quality' => '50'
-                    ]
-                ]
+                        'thumbnail-quality' => '50',
+                    ],
+                ],
             ];
             $service->makeThumbnail('image', $thumbnails);
         }

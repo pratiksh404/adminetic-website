@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Facility;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Facility;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Component;
 
 class ReorderFacility extends Component
 {
@@ -19,6 +19,7 @@ class ReorderFacility extends Component
     public function render()
     {
         $facilities = Cache::get('facilities', Facility::orderBy('position')->get());
+
         return view('website::livewire.admin.facility.reorder-facility', compact('facilities'));
     }
 }

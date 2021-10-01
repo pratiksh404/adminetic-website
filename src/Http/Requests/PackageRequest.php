@@ -30,7 +30,7 @@ class PackageRequest extends FormRequest
             'color' => 'nullable|max:255',
             'features' => 'required',
             'active' => 'required|boolean',
-            'link' => 'nullable|max:255'
+            'link' => 'nullable|max:255',
         ];
     }
 }

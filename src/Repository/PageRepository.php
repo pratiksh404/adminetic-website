@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Page;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PageRepositoryInterface;
 use Adminetic\Website\Http\Requests\PageRequest;
+use Adminetic\Website\Models\Admin\Page;
+use Illuminate\Support\Facades\Cache;
 
 class PageRepository implements PageRepositoryInterface
 {
@@ -17,6 +17,7 @@ class PageRepository implements PageRepositoryInterface
                 return Page::orderBy('position')->get();
             }))
             : Page::orderBy('position')->get();
+
         return compact('pages');
     }
 
@@ -64,7 +65,7 @@ class PageRepository implements PageRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/page/' . validImageFolder($page->type, 'post'),
+                'storage' => 'website/page/'.validImageFolder($page->type, 'post'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '90',
@@ -73,15 +74,15 @@ class PageRepository implements PageRepositoryInterface
                         'thumbnail-name' => 'medium',
                         'thumbnail-width' => '600',
                         'thumbnail-height' => '315',
-                        'thumbnail-quality' => '70'
+                        'thumbnail-quality' => '70',
                     ],
                     [
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '100',
                         'thumbnail-height' => '80',
-                        'thumbnail-quality' => '30'
-                    ]
-                ]
+                        'thumbnail-quality' => '30',
+                    ],
+                ],
             ];
             $page->makeThumbnail('image', $thumbnails);
         }
