@@ -46,7 +46,7 @@
                     <td>{{$project->name}}</td>
                     <td>{{$project->client}}</td>
                     <td>
-                        <x-action :model="$project" route="project" />
+                        <x-adminetic-action :model="$project" route="project" />
                     </td>
                 </tr>
                 @endforeach

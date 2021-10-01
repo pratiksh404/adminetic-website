@@ -42,7 +42,7 @@
                     <tbody>
                         @foreach ($pages as $page)
                         <tr>
-                            <td>{{$page->title}}</td>
+                            <td>{{$page->name}}</td>
                             <td><span
                                     class="badge badge-{{$page->active ? "success" : "danger"}}">{{$page->active ? "Active" : "Inactive"}}</span>
                             </td>

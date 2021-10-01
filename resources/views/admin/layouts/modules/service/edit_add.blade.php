@@ -4,14 +4,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <label for="name">Facility Name <span class="text-danger">*</span></label>
+                        <label for="name">Service Name <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <input type="text" name="name" id="name" class="form-control"
-                                value="{{$service->name ?? old('name')}}" placeholder="Facility Name">
+                                value="{{$service->name ?? old('name')}}" placeholder="Service Name">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        @livewire('admin.category.quick-category', ['model' => 'Facility','category_id' => $category->id
+                        @livewire('admin.category.quick-category', ['model' => 'Service','category_id' => $category->id
                         ??
                         null])
                     </div>
@@ -19,7 +19,7 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-12">
-                        <label for="excerpt">Facility Excerpt <span class="text-danger">*</span></label>
+                        <label for="excerpt">Service Excerpt <span class="text-danger">*</span></label>
                         <textarea name="excerpt" id="excerpt" class="form-control" cols="30"
                             rows="10">{{$service->excerpt ?? ''}}</textarea>
                     </div>
@@ -27,14 +27,14 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-12">
-                        <label for="description">Facility Description</label>
+                        <label for="description">Service Description</label>
                         <textarea name="description" id="heavytexteditor" cols="30"
                             rows="10">{{$service->excerpt ?? ''}}</textarea>
                     </div>
                 </div>
             </div>
         </div>
-        <x-adminetic-edit-add-button :model="$service ?? null" name="Facility" />
+        <x-adminetic-edit-add-button :model="$service ?? null" name="Service" />
     </div>
     <div class="col-lg-4">
         <div class="card shadow-lg">
@@ -108,7 +108,7 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-12">
-                        <label for="image">Facility Image</label>
+                        <label for="image">Service Image</label>
                         <input type="file" name="image" id="image" accept="image/*" onchange="readURL(this);">
                     </div>
                     <div class="col-lg-12">

@@ -19,7 +19,7 @@
 </div>
 <x-adminetic-card title="All Counter">
     <x-slot name="buttons">
-        <a href="{{adminCreateRoute('Counter')}}" class="btn btn-primary btn-air-primary">Create Counter</a>
+        <a href="{{adminCreateRoute('counter')}}" class="btn btn-primary btn-air-primary">Create Counter</a>
     </x-slot>
     <x-slot name="content">
         {{-- ================================Card================================ --}}

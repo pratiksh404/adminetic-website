@@ -9,7 +9,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>{{$gallery->name ?? 'Gallery'}}</h5>
-                            <p class="help-block">{{$gallery->excerpt}}.</p>
+                            @isset($$gallery->excerpt)
+                            {!! $gallery->excerpt !!}
+                            @endisset
                             @isset($$gallery->description)
                             <p class="help-block">{!! $gallery->description !!}</p>
                             @endisset

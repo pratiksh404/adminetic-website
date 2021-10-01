@@ -18,7 +18,7 @@
     </div>
     <div class="col-lg-6">
         @if (isset($client->image))
-        <img src="{{asset($client->thumbnail('image','small'))}}" alt="{{$client->name ?? ''}}" class="img-fluid"
+        <img src="{{asset('storage/' . $client->image)}}" alt="{{$client->name ?? ''}}" class="img-fluid"
             id="partner_image">
         @endif
         <img src="" id="partner_image_plcaeholder" class="img-fluid">
