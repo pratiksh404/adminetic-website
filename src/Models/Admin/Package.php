@@ -3,8 +3,8 @@
 namespace Adminetic\Website\Models\Admin;
 
 use Adminetic\Website\Traits\HasSlug;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Package extends Model
@@ -38,7 +38,7 @@ class Package extends Model
 
     // Casts
     protected $casts = [
-        'features' => 'array'
+        'features' => 'array',
     ];
 
     // Accessors
@@ -51,7 +51,7 @@ class Package extends Model
             3 => 'Per Week',
             4 => 'Per Month',
             5 => 'Per Year',
-            6 => 'Custom Plan'
+            6 => 'Custom Plan',
         ][$attribute];
     }
 }

@@ -2,10 +2,9 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Models\Admin\Gallery;
 use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Image extends Model
@@ -48,7 +47,7 @@ class Image extends Model
             1 => 'Normal',
             2 => 'Horizontal',
             3 => 'Vertical',
-            4 => 'Slider'
+            4 => 'Slider',
         ][$attribute];
     }
 

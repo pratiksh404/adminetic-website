@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Faq;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Faq;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Component;
 
 class ReorderFaq extends Component
 {
@@ -19,6 +19,7 @@ class ReorderFaq extends Component
     public function render()
     {
         $faqs = Cache::get('faqs', Faq::orderBy('position')->get());
+
         return view('website::livewire.admin.faq.reorder-faq', compact('faqs'));
     }
 }

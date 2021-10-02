@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Team;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
 use Adminetic\Website\Http\Requests\TeamRequest;
+use Adminetic\Website\Models\Admin\Team;
+use Illuminate\Support\Facades\Cache;
 
 class TeamRepository implements TeamRepositoryInterface
 {
@@ -17,6 +17,7 @@ class TeamRepository implements TeamRepositoryInterface
                 return Team::orderBy('position')->get();
             }))
             : Team::orderBy('position')->get();
+
         return compact('teams');
     }
 
@@ -63,7 +64,7 @@ class TeamRepository implements TeamRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/team/' . validImageFolder($team->name, 'default'),
+                'storage' => 'website/team/'.validImageFolder($team->name, 'default'),
                 'width' => '600',
                 'height' => '400',
                 'quality' => '90',
@@ -72,15 +73,15 @@ class TeamRepository implements TeamRepositoryInterface
                         'thumbnail-name' => 'medium',
                         'thumbnail-width' => '300',
                         'thumbnail-height' => '200',
-                        'thumbnail-quality' => '70'
+                        'thumbnail-quality' => '70',
                     ],
                     [
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '150',
                         'thumbnail-height' => '100',
-                        'thumbnail-quality' => '50'
-                    ]
-                ]
+                        'thumbnail-quality' => '50',
+                    ],
+                ],
             ];
             $team->makeThumbnail('image', $thumbnails);
         }

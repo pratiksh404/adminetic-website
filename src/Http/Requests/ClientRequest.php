@@ -23,11 +23,12 @@ class ClientRequest extends FormRequest
      */
     public function rules()
     {
-        $validate_image = in_array($this->method(), ['PUT', 'PATCH']) ? "sometimes" : "sometimes|file|image|max:3000";
+        $validate_image = in_array($this->method(), ['PUT', 'PATCH']) ? 'sometimes' : 'sometimes|file|image|max:3000';
+
         return [
             'name' => 'required|max:255',
             'image' => $validate_image,
-            'url' => 'nullable|max:255'
+            'url' => 'nullable|max:255',
         ];
     }
 }

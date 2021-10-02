@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Policies;
 
-use App\Models\User;
 use Adminetic\Website\Models\Admin\Package;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PackagePolicy
@@ -16,7 +16,6 @@ class PackagePolicy
             return true;
         }
     }
-
 
     /**
      * Determine whether the user can view any models.

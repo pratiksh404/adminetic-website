@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Adminetic\Website\Models\Admin\Faq;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\FaqRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\FaqRepositoryInterface;
+use Adminetic\Website\Http\Requests\FaqRequest;
+use Adminetic\Website\Models\Admin\Faq;
+use App\Http\Controllers\Controller;
 
 class FaqController extends Controller
 {
@@ -17,7 +16,6 @@ class FaqController extends Controller
         $this->faqRepositoryInterface = $faqRepositoryInterface;
         $this->authorizeResource(Faq::class, 'faq');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class FaqController extends Controller
     public function store(FaqRequest $request)
     {
         $this->faqRepositoryInterface->storeFaq($request);
+
         return redirect(adminRedirectRoute('faq'))->withSuccess('Faq Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class FaqController extends Controller
     public function update(FaqRequest $request, Faq $faq)
     {
         $this->faqRepositoryInterface->updateFaq($request, $faq);
+
         return redirect(adminRedirectRoute('faq'))->withInfo('Faq Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class FaqController extends Controller
     public function destroy(Faq $faq)
     {
         $this->faqRepositoryInterface->destroyFaq($faq);
+
         return redirect(adminRedirectRoute('faq'))->withFail('Faq Deleted Successfully.');
     }
 }

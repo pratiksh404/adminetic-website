@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Team;
 use Adminetic\Website\Http\Requests\TeamRequest;
+use Adminetic\Website\Models\Admin\Team;
 
 interface TeamRepositoryInterface
 {

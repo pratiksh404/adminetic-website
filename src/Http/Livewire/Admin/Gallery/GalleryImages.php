@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Gallery;
 
-use Livewire\Component;
-use Adminetic\Website\Models\Admin\Image;
 use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\Image;
+use Livewire\Component;
 
 class GalleryImages extends Component
 {
@@ -38,6 +38,7 @@ class GalleryImages extends Component
     public function render()
     {
         $gallery = Gallery::find($this->gallery_id);
+
         return view('website::livewire.admin.gallery.gallery-images', compact('gallery'));
     }
 }

@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Adminetic\Website\Models\Admin\Client;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\ClientRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
+use Adminetic\Website\Http\Requests\ClientRequest;
+use Adminetic\Website\Models\Admin\Client;
+use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
@@ -17,7 +16,6 @@ class ClientController extends Controller
         $this->clientRepositoryInterface = $clientRepositoryInterface;
         $this->authorizeResource(Client::class, 'client');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $this->clientRepositoryInterface->storeClient($request);
+
         return redirect(adminRedirectRoute('client'))->withSuccess('Client Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class ClientController extends Controller
     public function update(ClientRequest $request, Client $client)
     {
         $this->clientRepositoryInterface->updateClient($request, $client);
+
         return redirect(adminRedirectRoute('client'))->withInfo('Client Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $this->clientRepositoryInterface->destroyClient($client);
+
         return redirect(adminRedirectRoute('client'))->withFail('Client Deleted Successfully.');
     }
 }

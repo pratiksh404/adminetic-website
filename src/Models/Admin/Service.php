@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Traits\HasSlug;
 use Adminetic\Category\Traits\HasCategory;
-use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Traits\HasSlug;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Service extends Model
@@ -44,6 +44,6 @@ class Service extends Model
 
     // Casts
     protected $casts = [
-        'meta_keywords' => 'array'
+        'meta_keywords' => 'array',
     ];
 }

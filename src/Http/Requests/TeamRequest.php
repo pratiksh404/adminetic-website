@@ -3,8 +3,8 @@
 namespace Adminetic\Website\Http\Requests;
 
 use Adminetic\Website\Models\Admin\Team;
-use Illuminate\Foundation\Http\FormRequest;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Foundation\Http\FormRequest;
 
 class TeamRequest extends FormRequest
 {
@@ -26,7 +26,7 @@ class TeamRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => SlugService::createSlug(Team::class, 'slug', $this->name)
+            'slug' => SlugService::createSlug(Team::class, 'slug', $this->name),
         ]);
     }
 
@@ -38,10 +38,11 @@ class TeamRequest extends FormRequest
     public function rules()
     {
         $id = $this->team->id ?? '';
+
         return [
-            'code' => 'required|max:255|unique:teams,code,' . $id,
+            'code' => 'required|max:255|unique:teams,code,'.$id,
             'name' => 'required|max:100',
-            'slug' => 'required|max:255|unique:teams,code,' . $id,
+            'slug' => 'required|max:255|unique:teams,code,'.$id,
             'designation' => 'required|max:100',
             'image' => 'sometimes|file|image|max:3000',
             'phone' => 'nullable',
@@ -55,7 +56,7 @@ class TeamRequest extends FormRequest
             'messenger' => 'nullable|max:255',
             'whatsapp' => 'nullable|max:255',
             'message' => 'nullable|max:10000',
-            'position' => 'sometimes|numeric|max:100'
+            'position' => 'sometimes|numeric|max:100',
         ];
     }
 }

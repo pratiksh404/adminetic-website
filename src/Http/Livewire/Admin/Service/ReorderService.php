@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Service;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Service;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Component;
 
 class ReorderService extends Component
 {
@@ -19,6 +19,7 @@ class ReorderService extends Component
     public function render()
     {
         $services = Cache::get('services', Service::orderBy('position')->get());
+
         return view('website::livewire.admin.service.reorder-service', compact('services'));
     }
 }
