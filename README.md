@@ -1,10 +1,30 @@
-# Very short description of the package
+# Announcement Module for Adminetic Admin Panel
+
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/banner.png)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/adminetic/website.svg?style=flat-square)](https://packagist.org/packages/adminetic/website)
-[![Total Downloads](https://img.shields.io/packagist/dt/adminetic/website.svg?style=flat-square)](https://packagist.org/packages/adminetic/website)
-![GitHub Actions](https://github.com/adminetic/website/actions/workflows/main.yml/badge.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+[![Stars](https://img.shields.io/github/stars/pratiksh404/adminetic-website)](https://github.com/pratiksh404/adminetic-website/stargazers) [![Downloads](https://img.shields.io/packagist/dt/adminetic/website.svg?style=flat-square)](https://packagist.org/packages/adminetic/website) [![StyleCI](https://github.styleci.io/repos/385822775/shield?branch=main)](https://github.styleci.io/repos/385822775?branch=main) [![Build Status](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/badges/build.png?b=main)](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/build-status/main) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/?branch=main) [![CodeFactor](https://www.codefactor.io/repository/github/pratiksh404/adminetic-website/badge)](https://www.codefactor.io/repository/github/pratiksh404/adminetic-website) [![License](https://img.shields.io/github/license/pratiksh404/adminetic-website)](//packagist.org/packages/adminetic/website)
+
+Announcement module for Adminetic Admin Panel
+
+For detailed documentaion visit [Adminetic Announcement Module Documentation](https://app.gitbook.com/@pratikdai404/s/adminetic/addons/website)
+
+#### Contains : -
+
+- Service Module
+- Facility Module
+- Counter Module
+- Team Module
+- FAQ Module
+- Package Module
+- Project Module
+- Client Module
+- Gallery Module
+- Image Module
+- Video Module
+- Page Module
+- Category Module
 
 ## Installation
 
@@ -12,13 +32,28 @@ You can install the package via composer:
 
 ```bash
 composer require adminetic/website
+php artisan install:adminetic-category
+php artisan adminetic:website-permission
 ```
 
-## Usage
+for more information visit [Laravel Slack Routing](https://laravel.com/docs/8.x/notifications#routing-slack-notifications)
 
-```php
-// Usage description here
+## Include Adminetic Website Adapter
+
+In config/adminetic.php, include
+
 ```
+    // Adapters
+    'adapters' => [
+        Adminetic\Website\Adapter\WebsiteAdapter::class,
+    ],
+```
+
+## Todo
+
+- [ ] Frontend theme support
+- [ ] Google Analytic Dashboard
+- [ ] Ready made themes
 
 ### Testing
 
@@ -40,13 +75,18 @@ If you discover any security related issues, please email pratikdai404@gmail.com
 
 ## Credits
 
--   [Pratik Shrestha](https://github.com/adminetic)
--   [All Contributors](../../contributors)
+- [Pratik Shrestha](https://github.com/adminetic)
+- [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-## Laravel Package Boilerplate
+## Screenshots
 
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/category.jpg)
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/gallery.jpg)
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/package.jpg)
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/page.jpg)
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/service.jpg)
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/team.jpg)
