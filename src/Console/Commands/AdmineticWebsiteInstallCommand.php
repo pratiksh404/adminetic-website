@@ -40,7 +40,7 @@ class AdmineticWebsiteInstallCommand extends Command
     {
         if ($this->confirm('Do you wish to seed module permission? (y/n)')) {
             Artisan::call('adminetic:website-permission');
-        };
+        }
         Artisan::call('install:adminetic-category');
         $this->info('Star to the admenictic repo would be appreciated.');
     }
