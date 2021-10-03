@@ -40,11 +40,12 @@ class FacilityRequest extends FormRequest
         $id = $this->facility->id ?? '';
 
         return [
-            'code' => 'required|max:255|unique:facilities,code,'.$id,
+            'code' => 'required|max:255|unique:facilities,code,' . $id,
             'name' => 'required|max:60',
-            'slug' => 'required|max:255|unique:facilities,slug,'.$id,
+            'slug' => 'required|max:255|unique:facilities,slug,' . $id,
             'excerpt' => 'required|max:255',
             'description' => 'nullable|max:10000',
+            'category_id' => 'nullable|numeric',
             'icon' => 'nullable|max:255',
             'icon_image' => 'sometimes|file|image|mimes:png|max:1000',
             'image' => 'sometimes|file|image|max:5000',

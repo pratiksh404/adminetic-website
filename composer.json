@@ -17,8 +17,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "adminetic/category": "^0.0.2",
-        "cohensive/embed": "^5.5",
+        "adminetic/category": "^1.0.0",
         "cviebrock/eloquent-sluggable": "^8.0",
         "illuminate/support": "^8.0"
     },

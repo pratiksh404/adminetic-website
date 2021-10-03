@@ -19,7 +19,7 @@ class AdmineticWebsitePermissionCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command to install adminetic website module.';
+    protected $description = 'Command to create website module permission flags.';
 
     /**
      * Create a new command instance.

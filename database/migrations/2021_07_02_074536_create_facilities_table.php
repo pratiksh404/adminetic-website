@@ -24,6 +24,7 @@ class CreateFacilitiesTable extends Migration
             $table->string('icon_image')->nullable();
             $table->string('image')->nullable();
             $table->boolean('active')->default(1);
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->bigInteger('position')->default(0);
 
             $table->string('meta_name')->nullable();

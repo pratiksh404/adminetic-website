@@ -2,6 +2,7 @@
 
 namespace Adminetic\Website\Repository;
 
+use Adminetic\Category\Models\Admin\Category;
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 use Adminetic\Website\Http\Requests\ServiceRequest;
 use Adminetic\Website\Models\Admin\Service;
@@ -33,9 +34,6 @@ class ServiceRepository implements ServiceRepositoryInterface
     {
         $service = Service::create($request->validated());
         $this->uploadImage($service);
-        if (request()->category_id) {
-            $service->categories()->attach(request()->category_id);
-        }
     }
 
     // Service Show
@@ -55,9 +53,6 @@ class ServiceRepository implements ServiceRepositoryInterface
     {
         $service->update($request->validated());
         $this->uploadImage($service);
-        if (request()->category_id) {
-            $service->categories()->sync(request()->category_id);
-        }
     }
 
     // Service Destroy
@@ -75,7 +70,7 @@ class ServiceRepository implements ServiceRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/service/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$service->icon_image));
+            $image->save(public_path('storage/' . $service->icon_image));
         }
 
         if (request()->image) {

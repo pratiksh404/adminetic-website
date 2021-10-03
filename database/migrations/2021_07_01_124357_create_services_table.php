@@ -20,6 +20,7 @@ class CreateServicesTable extends Migration
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->text('description')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->string('icon')->default('fas fa-concierge-bell');
             $table->string('icon_image')->nullable();
             $table->string('image')->nullable();

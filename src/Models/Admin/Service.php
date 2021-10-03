@@ -2,7 +2,7 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Category\Traits\HasCategory;
+use Adminetic\Category\Models\Admin\Category;
 use Adminetic\Website\Traits\HasSlug;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Service extends Model
 {
-    use LogsActivity, HasSlug, Thumbnail, HasCategory;
+    use LogsActivity, HasSlug, Thumbnail;
 
     protected $guarded = [];
 
@@ -46,4 +46,10 @@ class Service extends Model
     protected $casts = [
         'meta_keywords' => 'array',
     ];
+
+    // Relation
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

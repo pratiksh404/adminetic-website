@@ -2,10 +2,11 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Contracts\FacilityRepositoryInterface;
-use Adminetic\Website\Http\Requests\FacilityRequest;
-use Adminetic\Website\Models\Admin\Facility;
 use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Models\Admin\Facility;
+use Adminetic\Category\Models\Admin\Category;
+use Adminetic\Website\Http\Requests\FacilityRequest;
+use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 
 class FacilityRepository implements FacilityRepositoryInterface
 {
@@ -31,9 +32,6 @@ class FacilityRepository implements FacilityRepositoryInterface
     public function storeFacility(FacilityRequest $request)
     {
         $facility = Facility::create($request->validated());
-        if (request()->category_id) {
-            $facility->categories()->sync(request()->category_id);
-        }
         $this->uploadImage($facility);
     }
 
@@ -53,9 +51,6 @@ class FacilityRepository implements FacilityRepositoryInterface
     public function updateFacility(FacilityRequest $request, Facility $facility)
     {
         $facility->update($request->validated());
-        if (request()->category_id) {
-            $facility->categories()->sync(request()->category_id);
-        }
         $this->uploadImage($facility);
     }
 
@@ -74,7 +69,7 @@ class FacilityRepository implements FacilityRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/facility/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$facility->icon_image));
+            $image->save(public_path('storage/' . $facility->icon_image));
         }
 
         if (request()->image) {
