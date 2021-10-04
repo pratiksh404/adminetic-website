@@ -32,11 +32,13 @@ You can install the package via composer:
 
 ```bash
 composer require adminetic/website
-php artisan install:adminetic-category
-php artisan adminetic:website-permission
 ```
 
-for more information visit [Laravel Slack Routing](https://laravel.com/docs/8.x/notifications#routing-slack-notifications)
+Then
+
+```bash
+php artisan install:adminetic-website
+```
 
 ## Include Adminetic Website Adapter
 
@@ -47,6 +49,13 @@ In config/adminetic.php, include
     'adapters' => [
         Adminetic\Website\Adapter\WebsiteAdapter::class,
     ],
+```
+
+## Note
+
+```
+php artisan install:adminetic-category // To install category module only
+php artisan adminetic:website-permission // To seed website module permission only
 ```
 
 ## Todo
