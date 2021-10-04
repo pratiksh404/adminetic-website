@@ -1,14 +1,14 @@
-# Announcement Module for Adminetic Admin Panel
+# Website Module for Adminetic Admin Panel
 
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/banner.png)
+![Adminetic Website Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/banner.png)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/adminetic/website.svg?style=flat-square)](https://packagist.org/packages/adminetic/website)
 
 [![Stars](https://img.shields.io/github/stars/pratiksh404/adminetic-website)](https://github.com/pratiksh404/adminetic-website/stargazers) [![Downloads](https://img.shields.io/packagist/dt/adminetic/website.svg?style=flat-square)](https://packagist.org/packages/adminetic/website) [![StyleCI](https://github.styleci.io/repos/385822775/shield?branch=main)](https://github.styleci.io/repos/385822775?branch=main) [![Build Status](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/badges/build.png?b=main)](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/build-status/main) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/pratiksh404/adminetic-website/?branch=main) [![CodeFactor](https://www.codefactor.io/repository/github/pratiksh404/adminetic-website/badge)](https://www.codefactor.io/repository/github/pratiksh404/adminetic-website) [![License](https://img.shields.io/github/license/pratiksh404/adminetic-website)](//packagist.org/packages/adminetic/website)
 
-Announcement module for Adminetic Admin Panel
+Website module for Adminetic Admin Panel
 
-For detailed documentaion visit [Adminetic Announcement Module Documentation](https://app.gitbook.com/@pratikdai404/s/adminetic/addons/website)
+For detailed documentaion visit [Adminetic Website Module Documentation](https://app.gitbook.com/@pratikdai404/s/adminetic/addons/website)
 
 #### Contains : -
 
