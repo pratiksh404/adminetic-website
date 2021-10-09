@@ -269,6 +269,40 @@ class WebsiteAdapter implements PluginInterface
                 ],
                 'children' => $this->indexCreateChildren('page', Adminetic\Website\Models\Admin\Page::class),
             ],
+            [
+                'type' => 'menu',
+                'name' => 'Post',
+                'icon' => 'fas fa-camera',
+                'is_active' => request()->routeIs('post*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Post::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Post::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('post', Adminetic\Website\Models\Admin\Post::class),
+            ],
+            [
+                'type' => 'menu',
+                'name' => 'Template',
+                'icon' => 'fas fa-paw',
+                'is_active' => request()->routeIs('template*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Template::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Template::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('template', Adminetic\Website\Models\Admin\Template::class),
+            ]
         ];
     }
 }

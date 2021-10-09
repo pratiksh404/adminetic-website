@@ -18,7 +18,8 @@
     "require": {
         "php": "^7.4|^8.0",
         "adminetic/category": "^1.0.0",
-        "cviebrock/eloquent-sluggable": "^8.0",
+        "cyrildewit/eloquent-viewable": "^6.0",
+        "rtconner/laravel-tagging": "^4.1",
         "illuminate/support": "^8.0"
     },
     "require-dev": {

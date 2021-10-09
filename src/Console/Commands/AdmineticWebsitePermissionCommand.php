@@ -62,6 +62,10 @@ class AdmineticWebsitePermissionCommand extends Command
         $this->info('Team Module Permission Created ... ✅');
         Artisan::call('make:permission Video --all');
         $this->info('Video Module Permission Created ... ✅');
+        Artisan::call('make:permission Post --all');
+        $this->info('Client Module Permission Created ... ✅');
+        Artisan::call('make:permission Template --all');
+        $this->info('Template Module Permission Created ... ✅');
         $this->info('Star to the admenictic repo would be appreciated.');
     }
 }

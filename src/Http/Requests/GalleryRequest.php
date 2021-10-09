@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Http\Requests;
 
+use Illuminate\Support\Str;
 use Adminetic\Website\Models\Admin\Gallery;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Foundation\Http\FormRequest;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class GalleryRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class GalleryRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => SlugService::createSlug(Gallery::class, 'slug', $this->name),
+            'slug' => Str::slug($this->name)
         ]);
     }
 
@@ -40,9 +41,9 @@ class GalleryRequest extends FormRequest
         $id = $this->gallery->id ?? '';
 
         return [
-            'code' => 'required|max:255|unique:galleries,code,'.$id,
+            'code' => 'required|max:255|unique:galleries,code,' . $id,
             'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:galleries,slug,'.$id,
+            'slug' => 'required|max:255|unique:galleries,slug,' . $id,
             'excerpt' => 'sometimes|max:1000',
             'description' => 'sometimes|max:4000',
             'image' => 'sometimes|file|image|max:5000',

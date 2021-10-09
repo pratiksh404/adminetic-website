@@ -2,8 +2,7 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Adminetic\Website\Models\Admin\Facility;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FacilityRequest extends FormRequest
@@ -26,7 +25,7 @@ class FacilityRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => SlugService::createSlug(Facility::class, 'slug', $this->name),
+            'slug' => Str::slug($this->name)
         ]);
     }
 
@@ -40,9 +39,9 @@ class FacilityRequest extends FormRequest
         $id = $this->facility->id ?? '';
 
         return [
-            'code' => 'required|max:255|unique:facilities,code,'.$id,
+            'code' => 'required|max:255|unique:facilities,code,' . $id,
             'name' => 'required|max:60',
-            'slug' => 'required|max:255|unique:facilities,slug,'.$id,
+            'slug' => 'required|max:255|unique:facilities,slug,' . $id,
             'excerpt' => 'required|max:255',
             'description' => 'nullable|max:10000',
             'category_id' => 'nullable|numeric',

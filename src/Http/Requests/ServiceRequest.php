@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Http\Requests;
 
+use Illuminate\Support\Str;
 use Adminetic\Website\Models\Admin\Service;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Foundation\Http\FormRequest;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ServiceRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class ServiceRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => SlugService::createSlug(Service::class, 'slug', $this->name),
+            'slug' => Str::slug($this->name)
         ]);
     }
 
@@ -40,9 +41,9 @@ class ServiceRequest extends FormRequest
         $id = $this->service->id ?? '';
 
         return [
-            'code' => 'required|max:255|unique:services,code,'.$id,
+            'code' => 'required|max:255|unique:services,code,' . $id,
             'name' => 'required|max:60',
-            'slug' => 'required|max:255|unique:services,slug,'.$id,
+            'slug' => 'required|max:255|unique:services,slug,' . $id,
             'excerpt' => 'required|max:255',
             'description' => 'nullable|max:10000',
             'icon' => 'nullable|max:255',

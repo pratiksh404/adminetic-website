@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Models\Admin;
 
 use Adminetic\Category\Models\Admin\Category;
-use Adminetic\Website\Traits\HasSlug;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
@@ -11,7 +10,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Facility extends Model
 {
-    use LogsActivity, HasSlug, Thumbnail;
+    use LogsActivity, Thumbnail;
 
     protected $guarded = [];
 
