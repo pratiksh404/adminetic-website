@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Post;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Post;
+use Livewire\Component;
 
 class PostFeatured extends Component
 {
@@ -11,11 +11,10 @@ class PostFeatured extends Component
 
     protected $listeners = ['featured_changed' => 'featuredChanged'];
 
-
     public function featuredChanged(Post $post)
     {
         $post->update([
-            'featured' => !$post->featured
+            'featured' => ! $post->featured,
         ]);
 
         $this->post = $post;

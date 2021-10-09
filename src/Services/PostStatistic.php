@@ -22,6 +22,7 @@ class PostStatistic
 
         return compact('total_posts', 'total_published_posts', 'total_pending_posts', 'total_draft_posts', 'total_featured_posts', 'total_hot_news', 'total_breaking_news', 'total_video_posts', 'most_viewed_posts');
     }
+
     public static function perMonthTotalPosterCount(Poster $poster, $given_year = null)
     {
         $perMonthTotal = [];
@@ -34,6 +35,7 @@ class PostStatistic
                 ->period(Period::create($start_date->toDateString(), $end_date->toDateString()))
                 ->count();
         }
+
         return $perMonthTotal;
     }
 
@@ -49,6 +51,7 @@ class PostStatistic
                 ->period(Period::create($start_date->toDateString(), $end_date->toDateString()))
                 ->count();
         }
+
         return $perMonthTotal;
     }
 
@@ -63,6 +66,7 @@ class PostStatistic
                 ->period(Period::create($start_date->toDateString(), $end_date->toDateString()))
                 ->count();
         }
+
         return $perMonthTotal;
     }
 
@@ -83,6 +87,7 @@ class PostStatistic
             }
             $perMonthTotal[Carbon::create($year, $month, 1)->format('F')] = $total_count;
         }
+
         return $perMonthTotal;
     }
 }

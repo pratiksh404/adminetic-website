@@ -2,14 +2,12 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Post;
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Models\Admin\Template;
-use Adminetic\Website\Http\Requests\PostRequest;
 use Adminetic\Category\Models\Admin\Category;
 use Adminetic\Website\Contracts\PostRepositoryInterface;
-
-
+use Adminetic\Website\Http\Requests\PostRequest;
+use Adminetic\Website\Models\Admin\Post;
+use Adminetic\Website\Models\Admin\Template;
+use Illuminate\Support\Facades\Cache;
 
 class PostRepository implements PostRepositoryInterface
 {
@@ -46,6 +44,7 @@ class PostRepository implements PostRepositoryInterface
         Cache::rememberForever('most_visited_posts_chunked', function () {
             return Post::mostVisitedPostsChunked();
         });
+
         return [];
     }
 
@@ -55,6 +54,7 @@ class PostRepository implements PostRepositoryInterface
         $categories = Cache::get('categories', Category::with('parent', 'categories')->latest()->get());
         $tags = Post::existingTags()->pluck('name');
         $templates = Cache::get('templates', Template::latest()->get());
+
         return compact('categories', 'tags', 'templates');
     }
 
@@ -72,6 +72,7 @@ class PostRepository implements PostRepositoryInterface
     public function showPost(Post $post)
     {
         $tags = $post->tagged->pluck('tag_name');
+
         return compact('post', 'tags');
     }
 
@@ -82,6 +83,7 @@ class PostRepository implements PostRepositoryInterface
         $tags = $post->existingTags()->pluck('name');
         $remove_tags = $post->tagged->pluck('tag_name');
         $templates = Cache::get('templates', Template::latest()->get());
+
         return compact('post', 'categories', 'tags', 'remove_tags', 'templates');
     }
 
@@ -110,7 +112,7 @@ class PostRepository implements PostRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/post/' . validImageFolder($post->id, 'post'),
+                'storage' => 'website/post/'.validImageFolder($post->id, 'post'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '100',
@@ -119,15 +121,15 @@ class PostRepository implements PostRepositoryInterface
                         'thumbnail-name' => 'medium',
                         'thumbnail-width' => '730',
                         'thumbnail-height' => '500',
-                        'thumbnail-quality' => '90'
+                        'thumbnail-quality' => '90',
                     ],
                     [
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '80',
                         'thumbnail-height' => '70',
-                        'thumbnail-quality' => '70'
-                    ]
-                ]
+                        'thumbnail-quality' => '70',
+                    ],
+                ],
             ];
             $post->makeThumbnail('image', $thumbnails);
         }

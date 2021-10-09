@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Post;
 
+use Adminetic\Category\Models\Admin\Category;
+use Adminetic\Website\Models\Admin\Post;
+use App\Models\User;
 use Carbon\Carbon;
+use Conner\Tagging\Model\Tag;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Conner\Tagging\Model\Tag;
-use App\Models\User;
-use Adminetic\Website\Models\Admin\Post;
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Category\Models\Admin\Category;
 
 class PostsTable extends Component
 {
@@ -28,7 +27,6 @@ class PostsTable extends Component
     public $user_id;
 
     public $categoryid;
-
 
     protected $listeners = ['date_range_filter' => 'dateRangeFilter'];
 
@@ -55,24 +53,28 @@ class PostsTable extends Component
         $this->filter_type = 2;
         $this->emit('initialize_posts_table');
     }
+
     public function weekPosts()
     {
         $this->resetPage();
         $this->filter_type = 3;
         $this->emit('initialize_posts_table');
     }
+
     public function monthPosts()
     {
         $this->resetPage();
         $this->filter_type = 4;
         $this->emit('initialize_posts_table');
     }
+
     public function yearPosts()
     {
         $this->resetPage();
         $this->filter_type = 5;
         $this->emit('initialize_posts_table');
     }
+
     public function dateRangeFilter($startDate, $endDate)
     {
         $this->resetPage();
@@ -81,6 +83,7 @@ class PostsTable extends Component
         $this->endDate = $endDate;
         $this->emit('initialize_posts_table');
     }
+
     public function tagPost(Tag $tag)
     {
         $this->resetPage();
@@ -88,24 +91,28 @@ class PostsTable extends Component
         $this->tag_name = $tag->name;
         $this->emit('initialize_posts_table');
     }
+
     public function publishedPosts()
     {
         $this->resetPage();
         $this->filter_type = 8;
         $this->emit('initialize_posts_table');
     }
+
     public function pendingPosts()
     {
         $this->resetPage();
         $this->filter_type = 9;
         $this->emit('initialize_posts_table');
     }
+
     public function featuredPosts()
     {
         $this->resetPage();
         $this->filter_type = 10;
         $this->emit('initialize_posts_table');
     }
+
     public function authorPosts(User $user)
     {
         $this->resetPage();
@@ -113,12 +120,14 @@ class PostsTable extends Component
         $this->user_id = $user->id;
         $this->emit('initialize_posts_table');
     }
+
     public function orderByPriority()
     {
         $this->resetPage();
         $this->filter_type = 12;
         $this->emit('initialize_posts_table');
     }
+
     public function updatedCategoryid($categoryid)
     {
         $this->resetPage();
@@ -139,9 +148,9 @@ class PostsTable extends Component
         $tags = Tag::where('count', '>', 0)->orderBy('count', 'desc')->get();
         $authors = User::has('posts', '>', 0)->with('posts')->get();
         $parentcategories = Category::whereNull('category_id')->with('childrenCategories')->get();
+
         return view('website::livewire.admin.post.posts-table', compact('tags', 'authors', 'parentcategories', 'posts'));
     }
-
 
     protected function initializePosts()
     {
@@ -159,6 +168,7 @@ class PostsTable extends Component
         } elseif ($filter == 6) {
             $start = Carbon::create($this->startDate);
             $end = Carbon::create($this->endDate);
+
             return Post::tenent()->with('author', 'tagged')->whereBetween('updated_at', [$start->toDateString(), $end->toDateString()])->paginate(10);
         } elseif ($filter == 7) {
             return Post::tenent()->withAnyTag($this->tag_name)->with('author', 'tagged')->latest()->paginate(10);
@@ -186,10 +196,10 @@ class PostsTable extends Component
         $search = $this->search ?? null;
         if ($search != '') {
             return Post::where(function ($query) use ($search) {
-                $query->where('name', 'LIKE', '%' . $search . '%')
-                    ->orWhere('excerpt', 'LIKE', '%' . $search . '%')
-                    ->orWhere('seo_name', 'LIKE', '%' . $search . '%')
-                    ->orWhere('meta_description', 'LIKE', '%' . $search . '%');
+                $query->where('name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('excerpt', 'LIKE', '%'.$search.'%')
+                    ->orWhere('seo_name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('meta_description', 'LIKE', '%'.$search.'%');
             });
         } else {
             return Post::latest();

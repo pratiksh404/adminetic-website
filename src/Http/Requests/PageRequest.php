@@ -2,10 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
-use Adminetic\Website\Models\Admin\Page;
 use Illuminate\Foundation\Http\FormRequest;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 class PageRequest extends FormRequest
 {
@@ -27,7 +25,7 @@ class PageRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => Str::slug($this->name)
+            'slug' => Str::slug($this->name),
         ]);
     }
 
@@ -41,8 +39,8 @@ class PageRequest extends FormRequest
         $id = $this->page->id ?? '';
 
         return [
-            'slug' => 'required|max:255|unique:pages,slug,' . $id,
-            'code' => 'required|max:255|unique:pages,slug,' . $id,
+            'slug' => 'required|max:255|unique:pages,slug,'.$id,
+            'code' => 'required|max:255|unique:pages,slug,'.$id,
             'name' => 'required|max:255',
             'meta_name' => 'nullable|max:255',
             'body' => 'nullable|max:65535',

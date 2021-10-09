@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Cache;
 
 class PostRecommendation
 {
-
     public static function recommendedPosts(Post $post, $limit = 6)
     {
         $posts = Cache::get('posts', Post::with('category', 'author', 'tagged')->latest()->get());
@@ -17,6 +16,7 @@ class PostRecommendation
             $tag_weight = $p->withAnyTag($post_tags)->exists() ? (5 / 100) * $p->weight : 0;
             $category_weight = $p->category->id == $post->category_id ? (10 / 100) * $p->weight : 0;
             $weight = $p->weight + $tag_weight + $category_weight;
+
             return $weight;
         })->take($limit);
     }

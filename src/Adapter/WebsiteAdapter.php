@@ -302,7 +302,7 @@ class WebsiteAdapter implements PluginInterface
                     ],
                 ],
                 'children' => $this->indexCreateChildren('template', Adminetic\Website\Models\Admin\Template::class),
-            ]
+            ],
         ];
     }
 }

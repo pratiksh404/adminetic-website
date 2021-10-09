@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Post;
 use Adminetic\Website\Http\Requests\PostRequest;
+use Adminetic\Website\Models\Admin\Post;
 
 interface PostRepositoryInterface
 {

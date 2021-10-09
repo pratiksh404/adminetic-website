@@ -10,7 +10,7 @@ class PostPreference
 {
     public static function trackVisitedPost(Request $request, $post_id)
     {
-        $visited_posts = array();
+        $visited_posts = [];
         if (isset($post_id)) {
             if (self::checkCookieConsent()) {
                 if (self::getCookie($request) !== null) {
@@ -23,7 +23,6 @@ class PostPreference
             }
         }
     }
-
 
     // Get Visited Posts ID
     public static function getVisitedPostsID(Request $request)
@@ -41,6 +40,7 @@ class PostPreference
     {
         $response = new Response('Set Cookie');
         $response->withCookie(cookie()->forever('visited_posts', $value));
+
         return $response;
     }
 
