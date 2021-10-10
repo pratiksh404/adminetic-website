@@ -41,7 +41,7 @@ class AdmineticWebsiteInstallCommand extends Command
         if ($this->confirm('Do you wish to seed module permission?')) {
             Artisan::call('adminetic:website-permission');
         }
-        Artisan::call('vendor:publish --provider="CyrildeWit\EloquentViewable\EloquentViewableServiceProvider" --tag="migrations"');
+        Artisan::call('vendor:publish', ['--provider' => 'CyrildeWit\EloquentViewable\EloquentViewableServiceProvider', '--tag' => 'migrations']);
         Artisan::call('install:adminetic-category');
         Artisan::call('migrate');
         $this->info('Adminetic Website Installed.');
