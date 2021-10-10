@@ -1,23 +1,21 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Adminetic\Website\Http\Controllers\FaqController;
-use Adminetic\Website\Http\Controllers\PageController;
-use Adminetic\Website\Http\Controllers\PostController;
-use Adminetic\Website\Http\Controllers\TeamController;
-use Adminetic\Website\Http\Controllers\EventController;
-use Adminetic\Website\Http\Controllers\ImageController;
-use Adminetic\Website\Http\Controllers\VideoController;
 use Adminetic\Website\Http\Controllers\ClientController;
 use Adminetic\Website\Http\Controllers\CounterController;
+use Adminetic\Website\Http\Controllers\EventController;
+use Adminetic\Website\Http\Controllers\FacilityController;
+use Adminetic\Website\Http\Controllers\FaqController;
 use Adminetic\Website\Http\Controllers\GalleryController;
+use Adminetic\Website\Http\Controllers\ImageController;
 use Adminetic\Website\Http\Controllers\PackageController;
+use Adminetic\Website\Http\Controllers\PageController;
+use Adminetic\Website\Http\Controllers\PostController;
 use Adminetic\Website\Http\Controllers\ProjectController;
 use Adminetic\Website\Http\Controllers\ServiceController;
-use Adminetic\Website\Http\Controllers\FacilityController;
+use Adminetic\Website\Http\Controllers\TeamController;
 use Adminetic\Website\Http\Controllers\TemplateController;
-
-
+use Adminetic\Website\Http\Controllers\VideoController;
+use Illuminate\Support\Facades\Route;
 
 Route::resource('service', ServiceController::class);
 Route::resource('facility', FacilityController::class);

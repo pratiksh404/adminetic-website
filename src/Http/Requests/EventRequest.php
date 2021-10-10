@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class EventRequest extends FormRequest
 {
@@ -17,7 +17,6 @@ class EventRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Prepare the data for validation.
      *
@@ -27,7 +26,7 @@ class EventRequest extends FormRequest
     {
         $this->merge([
             'code' => $this->event->code ?? rand(100000, 999999),
-            'slug' => Str::slug($this->name)
+            'slug' => Str::slug($this->name),
         ]);
     }
 
@@ -39,9 +38,10 @@ class EventRequest extends FormRequest
     public function rules()
     {
         $id = $this->event->id ?? '';
+
         return [
-            'slug' => 'required|max:255|unique:events,slug,' . $id,
-            'code' => 'required|max:255|unique:events,code,' . $id,
+            'slug' => 'required|max:255|unique:events,slug,'.$id,
+            'code' => 'required|max:255|unique:events,code,'.$id,
             'name' => 'required|max:255',
             'description' => 'required|max:55000',
             'single_day' => 'sometimes|boolean',

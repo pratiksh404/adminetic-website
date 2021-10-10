@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-
-use App\Http\Controllers\Controller;
-use Adminetic\Website\Models\Admin\Event;
-use Adminetic\Website\Http\Requests\EventRequest;
 use Adminetic\Website\Contracts\EventRepositoryInterface;
+use Adminetic\Website\Http\Requests\EventRequest;
+use Adminetic\Website\Models\Admin\Event;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
@@ -17,7 +16,6 @@ class EventController extends Controller
         $this->eventRepositoryInterface = $eventRepositoryInterface;
         $this->authorizeResource(Event::class, 'event');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
         $this->eventRepositoryInterface->storeEvent($request);
+
         return redirect(adminRedirectRoute('event'))->withSuccess('Event Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class EventController extends Controller
     public function update(EventRequest $request, Event $event)
     {
         $this->eventRepositoryInterface->updateEvent($request, $event);
+
         return redirect(adminRedirectRoute('event'))->withInfo('Event Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $this->eventRepositoryInterface->destroyEvent($event);
+
         return redirect(adminRedirectRoute('event'))->withFail('Event Deleted Successfully.');
     }
 }

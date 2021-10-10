@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Contracts\EventRepositoryInterface;
+use Adminetic\Website\Http\Requests\EventRequest;
 use Adminetic\Website\Models\Admin\Event;
 use Adminetic\Website\Models\Admin\Gallery;
-use Adminetic\Website\Http\Requests\EventRequest;
-use Adminetic\Website\Contracts\EventRepositoryInterface;
+use Illuminate\Support\Facades\Cache;
 
 class EventRepository implements EventRepositoryInterface
 {
@@ -18,6 +18,7 @@ class EventRepository implements EventRepositoryInterface
                 return Event::latest()->get();
             }))
             : Event::latest()->get();
+
         return compact('events');
     }
 
@@ -25,6 +26,7 @@ class EventRepository implements EventRepositoryInterface
     public function createEvent()
     {
         $galleries = Cache::get('galleries', Gallery::latest()->get());
+
         return compact('galleries');
     }
 
@@ -45,6 +47,7 @@ class EventRepository implements EventRepositoryInterface
     public function editEvent(Event $event)
     {
         $galleries = Cache::get('galleries', Gallery::latest()->get());
+
         return compact('event', 'galleries');
     }
 
@@ -66,7 +69,7 @@ class EventRepository implements EventRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/event/' . validImageFolder($event->id, 'event'),
+                'storage' => 'website/event/'.validImageFolder($event->id, 'event'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '100',
@@ -75,15 +78,15 @@ class EventRepository implements EventRepositoryInterface
                         'thumbnail-name' => 'medium',
                         'thumbnail-width' => '730',
                         'thumbnail-height' => '500',
-                        'thumbnail-quality' => '90'
+                        'thumbnail-quality' => '90',
                     ],
                     [
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '80',
                         'thumbnail-height' => '70',
-                        'thumbnail-quality' => '70'
-                    ]
-                ]
+                        'thumbnail-quality' => '70',
+                    ],
+                ],
             ];
             $event->makeThumbnail('image', $thumbnails);
         }

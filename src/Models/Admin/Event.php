@@ -2,10 +2,9 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
-use Adminetic\Website\Models\Admin\Gallery;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Event extends Model
@@ -39,7 +38,7 @@ class Event extends Model
 
     // Casts
     protected $casts = [
-        'meta_keywords' => 'array'
+        'meta_keywords' => 'array',
     ];
 
     // Relation

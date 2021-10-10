@@ -65,7 +65,7 @@ class PageRepository implements PageRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/page/' . validImageFolder($page->type, 'post'),
+                'storage' => 'website/page/'.validImageFolder($page->type, 'post'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '90',
