@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Post;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Post;
+use Livewire\Component;
 
 class PostPriority extends Component
 {
@@ -22,7 +22,7 @@ class PostPriority extends Component
     public function priorityChanged(Post $post)
     {
         $post->update([
-            'priority' => $this->priority ?? 1
+            'priority' => $this->priority ?? 1,
         ]);
         $this->post = $post;
     }

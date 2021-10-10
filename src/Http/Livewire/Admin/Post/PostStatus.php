@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Post;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Post;
+use Livewire\Component;
 
 class PostStatus extends Component
 {
@@ -11,11 +11,10 @@ class PostStatus extends Component
 
     protected $listeners = ['status_changed' => 'statusChanged'];
 
-
     public function statusChanged($status, Post $post)
     {
         $post->update([
-            'status' => $status
+            'status' => $status,
         ]);
 
         $this->post = $post;

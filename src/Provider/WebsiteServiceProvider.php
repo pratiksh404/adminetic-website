@@ -2,6 +2,7 @@
 
 namespace Adminetic\Website\Provider;
 
+<<<<<<< HEAD
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -14,28 +15,69 @@ use Adminetic\Website\Models\Admin\Event;
 use Adminetic\Website\Models\Admin\Image;
 use Adminetic\Website\Models\Admin\Video;
 use Adminetic\Website\Policies\FaqPolicy;
+=======
+use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
+use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
+use Adminetic\Website\Contracts\ClientRepositoryInterface;
+use Adminetic\Website\Contracts\CounterRepositoryInterface;
+use Adminetic\Website\Contracts\FacilityRepositoryInterface;
+use Adminetic\Website\Contracts\FaqRepositoryInterface;
+use Adminetic\Website\Contracts\GalleryRepositoryInterface;
+use Adminetic\Website\Contracts\ImageRepositoryInterface;
+use Adminetic\Website\Contracts\PackageRepositoryInterface;
+use Adminetic\Website\Contracts\PageRepositoryInterface;
+use Adminetic\Website\Contracts\PostRepositoryInterface;
+use Adminetic\Website\Contracts\ProjectRepositoryInterface;
+use Adminetic\Website\Contracts\ServiceRepositoryInterface;
+use Adminetic\Website\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Contracts\TemplateRepositoryInterface;
+use Adminetic\Website\Contracts\VideoRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Facility\ReorderFacility;
+use Adminetic\Website\Http\Livewire\Admin\Faq\ReorderFaq;
+use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryImages;
+use Adminetic\Website\Http\Livewire\Admin\Page\ReorderPage;
+use Adminetic\Website\Http\Livewire\Admin\Post\PostFeatured;
+use Adminetic\Website\Http\Livewire\Admin\Post\PostPriority;
+use Adminetic\Website\Http\Livewire\Admin\Post\PostsTable;
+use Adminetic\Website\Http\Livewire\Admin\Post\PostStatus;
+use Adminetic\Website\Http\Livewire\Admin\Service\ReorderService;
+use Adminetic\Website\Http\Livewire\Admin\Team\ReorderTeam;
+>>>>>>> 86a6dd279e12bf33ff54b6ef85dc2aff97075a8e
 use Adminetic\Website\Models\Admin\Client;
-use Adminetic\Website\Policies\PagePolicy;
-use Adminetic\Website\Policies\PostPolicy;
-use Adminetic\Website\Policies\TeamPolicy;
 use Adminetic\Website\Models\Admin\Counter;
+use Adminetic\Website\Models\Admin\Facility;
+use Adminetic\Website\Models\Admin\Faq;
 use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\Image;
 use Adminetic\Website\Models\Admin\Package;
+use Adminetic\Website\Models\Admin\Page;
+use Adminetic\Website\Models\Admin\Post;
 use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Models\Admin\Service;
+<<<<<<< HEAD
 use Adminetic\Website\Policies\EventPolicy;
 use Adminetic\Website\Policies\ImagePolicy;
 use Adminetic\Website\Policies\VideoPolicy;
 use Adminetic\Website\Models\Admin\Facility;
+=======
+use Adminetic\Website\Models\Admin\Team;
+>>>>>>> 86a6dd279e12bf33ff54b6ef85dc2aff97075a8e
 use Adminetic\Website\Models\Admin\Template;
+use Adminetic\Website\Models\Admin\Video;
 use Adminetic\Website\Policies\ClientPolicy;
 use Adminetic\Website\Policies\CounterPolicy;
+use Adminetic\Website\Policies\FacilityPolicy;
+use Adminetic\Website\Policies\FaqPolicy;
 use Adminetic\Website\Policies\GalleryPolicy;
+use Adminetic\Website\Policies\ImagePolicy;
 use Adminetic\Website\Policies\PackagePolicy;
+use Adminetic\Website\Policies\PagePolicy;
+use Adminetic\Website\Policies\PostPolicy;
 use Adminetic\Website\Policies\ProjectPolicy;
 use Adminetic\Website\Policies\ServicePolicy;
-use Adminetic\Website\Policies\FacilityPolicy;
+use Adminetic\Website\Policies\TeamPolicy;
 use Adminetic\Website\Policies\TemplatePolicy;
+<<<<<<< HEAD
 use Adminetic\Website\Repositories\FaqRepository;
 use Adminetic\Website\Repositories\PageRepository;
 use Adminetic\Website\Repositories\PostRepository;
@@ -78,6 +120,27 @@ use Adminetic\Website\Http\Livewire\Admin\Service\ReorderService;
 use Adminetic\Website\Http\Livewire\Admin\Facility\ReorderFacility;
 use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
 use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
+=======
+use Adminetic\Website\Policies\VideoPolicy;
+use Adminetic\Website\Repositories\PostRepository;
+use Adminetic\Website\Repositories\TemplateRepository;
+use Adminetic\Website\Repository\ClientRepository;
+use Adminetic\Website\Repository\CounterRepository;
+use Adminetic\Website\Repository\FacilityRepository;
+use Adminetic\Website\Repository\FaqRepository;
+use Adminetic\Website\Repository\GalleryRepository;
+use Adminetic\Website\Repository\ImageRepository;
+use Adminetic\Website\Repository\PackageRepository;
+use Adminetic\Website\Repository\PageRepository;
+use Adminetic\Website\Repository\ProjectRepository;
+use Adminetic\Website\Repository\ServiceRepository;
+use Adminetic\Website\Repository\TeamRepository;
+use Adminetic\Website\Repository\VideoRepository;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+>>>>>>> 86a6dd279e12bf33ff54b6ef85dc2aff97075a8e
 
 class WebsiteServiceProvider extends ServiceProvider
 {
@@ -140,15 +203,15 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__ . '/../../config/website.php' => config_path('website.php'),
+            __DIR__.'/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__ . '/../../database/migrations' => database_path('migrations'),
+            __DIR__.'/../../database/migrations' => database_path('migrations'),
         ], 'website-migrations');
     }
 
@@ -159,8 +222,8 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -185,7 +248,7 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         });
     }
 

@@ -3,8 +3,8 @@
 namespace Adminetic\Website\Http\Requests;
 
 use Adminetic\Website\Models\Admin\Post;
-use Illuminate\Foundation\Http\FormRequest;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
 {
@@ -18,7 +18,6 @@ class PostRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Prepare the data for validation.
      *
@@ -28,7 +27,7 @@ class PostRequest extends FormRequest
     {
         $this->merge([
             'code' => $this->post->code ?? rand(100000, 999999),
-            'slug' => SlugService::createSlug(Post::class, 'slug', $this->name)
+            'slug' => SlugService::createSlug(Post::class, 'slug', $this->name),
         ]);
     }
 
@@ -40,9 +39,10 @@ class PostRequest extends FormRequest
     public function rules()
     {
         $id = $this->post->id ?? '';
+
         return [
-            'slug' => 'required|max:255|unique:posts,slug,' . $id,
-            'code' => 'required|max:255|unique:posts,code,' . $id,
+            'slug' => 'required|max:255|unique:posts,slug,'.$id,
+            'code' => 'required|max:255|unique:posts,code,'.$id,
             'author_id' => 'required|numeric',
             'category_id' => 'required|numeric',
             'name' => 'required|max:255',

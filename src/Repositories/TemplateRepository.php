@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Template;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\TemplateRepositoryInterface;
 use Adminetic\Website\Http\Requests\TemplateRequest;
+use Adminetic\Website\Models\Admin\Template;
+use Illuminate\Support\Facades\Cache;
 
 class TemplateRepository implements TemplateRepositoryInterface
 {
@@ -17,6 +17,7 @@ class TemplateRepository implements TemplateRepositoryInterface
                 return Template::latest()->get();
             }))
             : Template::latest()->get();
+
         return compact('templates');
     }
 

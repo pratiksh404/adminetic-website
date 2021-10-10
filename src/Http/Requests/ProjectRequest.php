@@ -2,9 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
 
 class ProjectRequest extends FormRequest
 {
@@ -26,7 +25,7 @@ class ProjectRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => Str::slug($this->name)
+            'slug' => Str::slug($this->name),
         ]);
     }
 
@@ -41,7 +40,7 @@ class ProjectRequest extends FormRequest
 
         return [
             'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:projects,slug,' . $id,
+            'slug' => 'required|max:255|unique:projects,slug,'.$id,
             'client' => 'required|max:255',
             'duration' => 'required|max:60',
             'category' => 'required|max:80',

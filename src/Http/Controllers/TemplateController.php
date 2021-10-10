@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Adminetic\Website\Models\Admin\Template;
-use Adminetic\Website\Http\Requests\TemplateRequest;
 use Adminetic\Website\Contracts\TemplateRepositoryInterface;
+use Adminetic\Website\Http\Requests\TemplateRequest;
+use Adminetic\Website\Models\Admin\Template;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class TemplateController extends Controller
 {
@@ -17,7 +17,6 @@ class TemplateController extends Controller
         $this->templateRepositoryInterface = $templateRepositoryInterface;
         $this->authorizeResource(Template::class, 'template');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +47,7 @@ class TemplateController extends Controller
     public function store(TemplateRequest $request)
     {
         $this->templateRepositoryInterface->storeTemplate($request);
+
         return redirect(adminRedirectRoute('template'))->withSuccess('Template Created Successfully.');
     }
 
@@ -83,6 +83,7 @@ class TemplateController extends Controller
     public function update(TemplateRequest $request, Template $template)
     {
         $this->templateRepositoryInterface->updateTemplate($request, $template);
+
         return redirect(adminRedirectRoute('template'))->withInfo('Template Updated Successfully.');
     }
 
@@ -95,17 +96,17 @@ class TemplateController extends Controller
     public function destroy(Template $template)
     {
         $this->templateRepositoryInterface->destroyTemplate($template);
+
         return redirect(adminRedirectRoute('template'))->withFail('Template Deleted Successfully.');
     }
 
     /**
-     *
-     * Get Template
-     *
+     * Get Template.
      */
     public function get_template(Request $request)
     {
         $template = Template::find($request->template_id);
+
         return response()->json(['template' => $template], 200);
     }
 }

@@ -2,14 +2,12 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Adminetic\Website\Contracts\PostRepositoryInterface;
+use Adminetic\Website\Http\Requests\PostRequest;
 use Adminetic\Website\Models\Admin\Post;
 use Adminetic\Website\Services\PostStatistic;
-use Adminetic\Website\Http\Requests\PostRequest;
-use Adminetic\Website\Contracts\PostRepositoryInterface;
-
-
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -20,7 +18,6 @@ class PostController extends Controller
         $this->postRepositoryInterface = $postRepositoryInterface;
         $this->authorizeResource(Post::class, 'post');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -51,6 +48,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $this->postRepositoryInterface->storePost($request);
+
         return redirect(adminRedirectRoute('post'))->withSuccess('Post Created Successfully.');
     }
 
@@ -86,6 +84,7 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $this->postRepositoryInterface->updatePost($request, $post);
+
         return redirect(adminRedirectRoute('post'))->withInfo('Post Updated Successfully.');
     }
 
@@ -98,25 +97,22 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->postRepositoryInterface->destroyPost($post);
+
         return redirect(adminRedirectRoute('post'))->withFail('Post Deleted Successfully.');
     }
 
-
     /**
-     *
-     * Import Contacts
-     *
+     * Import Contacts.
      */
     public function import()
     {
         Excel::import(new PostsImport, request()->file('posts'));
+
         return redirect(adminRedirectRoute('post'))->withSuccess('Posts Imported.');
     }
 
     /**
-     *
-     * Export Contacts
-     *
+     * Export Contacts.
      */
     public function export()
     {
@@ -124,13 +120,12 @@ class PostController extends Controller
     }
 
     /**
-     *
-     * Monthly Post Count
-     *
+     * Monthly Post Count.
      */
     public function get_monthly_post_view(Request $request)
     {
         $post = Post::find($request->post_id);
+
         return response()->json(['monthly_counts' => PostStatistic::perMonthTotalPostCount($post)], 200);
     }
 }

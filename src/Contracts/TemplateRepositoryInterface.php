@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Template;
 use Adminetic\Website\Http\Requests\TemplateRequest;
+use Adminetic\Website\Models\Admin\Template;
 
 interface TemplateRepositoryInterface
 {

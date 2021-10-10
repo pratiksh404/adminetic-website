@@ -2,18 +2,22 @@
 
 namespace Adminetic\Website\Models\Admin;
 
+use Adminetic\Category\Models\Admin\Category;
+use Adminetic\Website\Traits\PostTrait;
 use App\Models\User;
 use Conner\Tagging\Taggable;
-use Adminetic\Website\Traits\PostTrait;
-use Adminetic\Category\Models\Admin\Category;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+<<<<<<< HEAD
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use drh2so4\Thumbnail\Traits\Thumbnail;
+=======
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\Traits\LogsActivity;
+>>>>>>> 86a6dd279e12bf33ff54b6ef85dc2aff97075a8e
 
 class Post extends Model implements Viewable
 {
@@ -46,7 +50,7 @@ class Post extends Model implements Viewable
 
     // Casts
     protected $casts = [
-        'meta_keywords' => 'array'
+        'meta_keywords' => 'array',
     ];
 
     /**
@@ -69,16 +73,16 @@ class Post extends Model implements Viewable
         return $attribute <= 3 ? [
             1 => 'Draft',
             2 => 'Pending',
-            3 => 'Published'
+            3 => 'Published',
         ][$attribute] : 'N/A';
     }
-
 
     // Relation
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
@@ -87,6 +91,6 @@ class Post extends Model implements Viewable
     // Helper Function
     public function statusColor()
     {
-        return $this->getRawOriginal('status') == 1 ? "danger" : ($this->getRawOriginal('status') == 2 ? "warning" : "success");
+        return $this->getRawOriginal('status') == 1 ? 'danger' : ($this->getRawOriginal('status') == 2 ? 'warning' : 'success');
     }
 }

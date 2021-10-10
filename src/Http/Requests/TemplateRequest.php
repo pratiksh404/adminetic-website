@@ -26,7 +26,7 @@ class TemplateRequest extends FormRequest
         return [
             'name' => 'required|max:60',
             'template' => 'required|max:50000',
-            'active' => 'sometimes|boolean'
+            'active' => 'sometimes|boolean',
         ];
     }
 }
