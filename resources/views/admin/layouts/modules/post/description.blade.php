@@ -45,6 +45,15 @@
         @endisset
     </div>
     <div class="col-lg-6">
+        @isset($post->video)
+        <div class="card shadow-lg">
+            <div class="card-body p-3">
+                <b>Video :- </b>
+                <hr>
+                {!! $post->video_html !!}
+            </div>
+        </div>
+        @endisset
         @isset($post->excerpt)
         <div class="card shadow-lg">
             <div class="card-body p-3">

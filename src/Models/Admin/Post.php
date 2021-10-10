@@ -2,26 +2,21 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Category\Models\Admin\Category;
-use Adminetic\Website\Traits\PostTrait;
-use App\Models\User;
-use Conner\Tagging\Taggable;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-<<<<<<< HEAD
-use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-use drh2so4\Thumbnail\Traits\Thumbnail;
-=======
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Traits\PostTrait;
+use Illuminate\Database\Eloquent\Model;
+use Adminetic\Category\Models\Admin\Category;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use drh2so4\Thumbnail\Traits\Thumbnail;
 use Spatie\Activitylog\Traits\LogsActivity;
->>>>>>> 86a6dd279e12bf33ff54b6ef85dc2aff97075a8e
+use Conner\Tagging\Taggable;
+
 
 class Post extends Model implements Viewable
 {
-    use LogsActivity, PostTrait, Sluggable, SluggableScopeHelpers, Taggable, InteractsWithViews, Thumbnail;
+    use LogsActivity, PostTrait, Taggable, InteractsWithViews, Thumbnail;
 
     protected $guarded = [];
 
@@ -53,19 +48,9 @@ class Post extends Model implements Viewable
         'meta_keywords' => 'array',
     ];
 
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name',
-            ],
-        ];
-    }
+    // Appends
+    protected $appends = ['video_html'];
+
 
     // Accessors
     public function getStatusAttribute($attribute)
@@ -75,6 +60,13 @@ class Post extends Model implements Viewable
             2 => 'Pending',
             3 => 'Published',
         ][$attribute] : 'N/A';
+    }
+
+    public function getVideoHtmlAttribute()
+    {
+        if (isset($this->video)) {
+            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", "<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>", $this->video);
+        }
     }
 
     // Relation
