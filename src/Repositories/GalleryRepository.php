@@ -84,7 +84,7 @@ class GalleryRepository implements GalleryRepositoryInterface
 
                 // Multi Image Upload With Thumbnail
                 $multiple = [
-                    'storage' => 'website/gallery/' . validImageFolder($gallery->name, 'gallery'),
+                    'storage' => 'website/gallery/'.validImageFolder($gallery->name, 'gallery'),
                     'width' => '600',
                     'height' => '600',
                     'quality' => '70',

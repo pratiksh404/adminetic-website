@@ -2,17 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
+use Adminetic\Category\Models\Admin\Category;
+use Adminetic\Website\Traits\PostTrait;
+use Conner\Tagging\Taggable;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use drh2so4\Thumbnail\Traits\Thumbnail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Traits\PostTrait;
-use Illuminate\Database\Eloquent\Model;
-use Adminetic\Category\Models\Admin\Category;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
-use drh2so4\Thumbnail\Traits\Thumbnail;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Conner\Tagging\Taggable;
-
 
 class Post extends Model implements Viewable
 {
@@ -51,7 +50,6 @@ class Post extends Model implements Viewable
     // Appends
     protected $appends = ['video_html'];
 
-
     // Accessors
     public function getStatusAttribute($attribute)
     {
@@ -65,7 +63,7 @@ class Post extends Model implements Viewable
     public function getVideoHtmlAttribute()
     {
         if (isset($this->video)) {
-            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", "<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>", $this->video);
+            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->video);
         }
     }
 

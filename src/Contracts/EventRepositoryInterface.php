@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Event;
 use Adminetic\Website\Http\Requests\EventRequest;
+use Adminetic\Website\Models\Admin\Event;
 
 interface EventRepositoryInterface
 {
