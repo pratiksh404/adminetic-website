@@ -62,9 +62,9 @@
         </table>
         {{-- =================================================================== --}}
     </x-slot>
-    </x-adminetic-index-page>
-    @endsection
+</x-adminetic-card>
+@endsection
 
-    @section('custom_js')
-    @include('website::admin.layouts.modules.project.scripts')
-    @endsection
+@section('custom_js')
+@include('website::admin.layouts.modules.project.scripts')
+@endsection

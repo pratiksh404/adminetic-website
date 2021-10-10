@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminetic\Website\Repository;
+namespace Adminetic\Website\Repositories;
 
 use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 use Adminetic\Website\Http\Requests\GalleryRequest;
@@ -84,7 +84,7 @@ class GalleryRepository implements GalleryRepositoryInterface
 
                 // Multi Image Upload With Thumbnail
                 $multiple = [
-                    'storage' => 'website/gallery/'.validImageFolder($gallery->name, 'gallery'),
+                    'storage' => 'website/gallery/' . validImageFolder($gallery->name, 'gallery'),
                     'width' => '600',
                     'height' => '600',
                     'quality' => '70',

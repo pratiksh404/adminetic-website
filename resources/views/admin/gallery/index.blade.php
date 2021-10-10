@@ -37,7 +37,7 @@
                 <tr>
                     <td>{{$gallery->name}}</td>
                     <td>{{$gallery->type}}</td>
-                    <td>{{$gallery->images_count}}</td>
+                    <td>{{$gallery->images->count()}}</td>
                     <td>
                         <x-adminetic-action :model="$gallery" route="gallery" />
                     </td>
@@ -55,9 +55,9 @@
         </table>
         {{-- =================================================================== --}}
     </x-slot>
-    </x-adminetic-index-page>
-    @endsection
+</x-adminetic-card>
+@endsection
 
-    @section('custom_js')
-    @include('website::admin.layouts.modules.gallery.scripts')
-    @endsection
+@section('custom_js')
+@include('website::admin.layouts.modules.gallery.scripts')
+@endsection

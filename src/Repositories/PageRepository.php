@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminetic\Website\Repository;
+namespace Adminetic\Website\Repositories;
 
 use Adminetic\Website\Contracts\PageRepositoryInterface;
 use Adminetic\Website\Http\Requests\PageRequest;
@@ -65,7 +65,7 @@ class PageRepository implements PageRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/page/'.validImageFolder($page->type, 'post'),
+                'storage' => 'website/page/' . validImageFolder($page->type, 'post'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '90',

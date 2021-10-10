@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminetic\Website\Repository;
+namespace Adminetic\Website\Repositories;
 
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 use Adminetic\Website\Http\Requests\ServiceRequest;
@@ -69,7 +69,7 @@ class ServiceRepository implements ServiceRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/service/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$service->icon_image));
+            $image->save(public_path('storage/' . $service->icon_image));
         }
 
         if (request()->image) {

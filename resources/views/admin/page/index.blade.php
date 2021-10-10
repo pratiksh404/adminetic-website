@@ -67,9 +67,9 @@
         </div>
         {{-- =================================================================== --}}
     </x-slot>
-    </x-adminetic-index-page>
-    @endsection
+</x-adminetic-card>
+@endsection
 
-    @section('custom_js')
-    @include('website::admin.layouts.modules.page.scripts')
-    @endsection
+@section('custom_js')
+@include('website::admin.layouts.modules.page.scripts')
+@endsection

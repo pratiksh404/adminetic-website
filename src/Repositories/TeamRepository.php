@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminetic\Website\Repository;
+namespace Adminetic\Website\Repositories;
 
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
 use Adminetic\Website\Http\Requests\TeamRequest;
@@ -64,7 +64,7 @@ class TeamRepository implements TeamRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/team/'.validImageFolder($team->name, 'default'),
+                'storage' => 'website/team/' . validImageFolder($team->name, 'default'),
                 'width' => '600',
                 'height' => '400',
                 'quality' => '90',

@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Adminetic\Website\Http\Controllers\FaqController;
 use Adminetic\Website\Http\Controllers\PageController;
+use Adminetic\Website\Http\Controllers\PostController;
 use Adminetic\Website\Http\Controllers\TeamController;
+use Adminetic\Website\Http\Controllers\EventController;
 use Adminetic\Website\Http\Controllers\ImageController;
 use Adminetic\Website\Http\Controllers\VideoController;
 use Adminetic\Website\Http\Controllers\ClientController;
@@ -13,7 +15,6 @@ use Adminetic\Website\Http\Controllers\PackageController;
 use Adminetic\Website\Http\Controllers\ProjectController;
 use Adminetic\Website\Http\Controllers\ServiceController;
 use Adminetic\Website\Http\Controllers\FacilityController;
-use Adminetic\Website\Http\Controllers\PostController;
 use Adminetic\Website\Http\Controllers\TemplateController;
 
 Route::resource('service', ServiceController::class);
@@ -27,6 +28,7 @@ Route::resource('client', ClientController::class);
 Route::resource('gallery', GalleryController::class);
 Route::resource('image', ImageController::class);
 Route::resource('page', PageController::class);
+Route::resource('event', EventController::class);
 Route::resource('video', VideoController::class);
 Route::resource('post', PostController::class);
 Route::resource('template', TemplateController::class);

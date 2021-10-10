@@ -52,6 +52,8 @@ class AdmineticWebsitePermissionCommand extends Command
         $this->info('Image Module Permission Created ... ✅');
         Artisan::call('make:permission Package --all');
         $this->info('Package Module Permission Created ... ✅');
+        Artisan::call('make:permission Event --all');
+        $this->info('Event Module Permission Created ... ✅');
         Artisan::call('make:permission Page --all');
         $this->info('Page Module Permission Created ... ✅');
         Artisan::call('make:permission Project --all');

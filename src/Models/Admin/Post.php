@@ -13,10 +13,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use drh2so4\Thumbnail\Traits\Thumbnail;
 
 class Post extends Model implements Viewable
 {
-    use LogsActivity, PostTrait, Sluggable, SluggableScopeHelpers, Taggable, InteractsWithViews;
+    use LogsActivity, PostTrait, Sluggable, SluggableScopeHelpers, Taggable, InteractsWithViews, Thumbnail;
 
     protected $guarded = [];
 

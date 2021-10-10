@@ -271,6 +271,23 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
+                'name' => 'Event',
+                'icon' => 'fas fa-calendar',
+                'is_active' => request()->routeIs('event*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Event::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Event::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('event', Adminetic\Website\Models\Admin\Event::class),
+            ],
+            [
+                'type' => 'menu',
                 'name' => 'Post',
                 'icon' => 'fas fa-camera',
                 'is_active' => request()->routeIs('post*') ? 'active' : '',

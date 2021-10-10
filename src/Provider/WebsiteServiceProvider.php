@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Adminetic\Website\Models\Admin\Page;
 use Adminetic\Website\Models\Admin\Post;
 use Adminetic\Website\Models\Admin\Team;
+use Adminetic\Website\Models\Admin\Event;
 use Adminetic\Website\Models\Admin\Image;
 use Adminetic\Website\Models\Admin\Video;
 use Adminetic\Website\Policies\FaqPolicy;
@@ -22,6 +23,7 @@ use Adminetic\Website\Models\Admin\Gallery;
 use Adminetic\Website\Models\Admin\Package;
 use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Policies\EventPolicy;
 use Adminetic\Website\Policies\ImagePolicy;
 use Adminetic\Website\Policies\VideoPolicy;
 use Adminetic\Website\Models\Admin\Facility;
@@ -34,24 +36,26 @@ use Adminetic\Website\Policies\ProjectPolicy;
 use Adminetic\Website\Policies\ServicePolicy;
 use Adminetic\Website\Policies\FacilityPolicy;
 use Adminetic\Website\Policies\TemplatePolicy;
-use Adminetic\Website\Repository\FaqRepository;
-use Adminetic\Website\Repository\PageRepository;
-use Adminetic\Website\Repository\TeamRepository;
-use Adminetic\Website\Repository\ImageRepository;
-use Adminetic\Website\Repository\VideoRepository;
+use Adminetic\Website\Repositories\FaqRepository;
+use Adminetic\Website\Repositories\PageRepository;
 use Adminetic\Website\Repositories\PostRepository;
-use Adminetic\Website\Repository\ClientRepository;
-use Adminetic\Website\Repository\CounterRepository;
-use Adminetic\Website\Repository\GalleryRepository;
-use Adminetic\Website\Repository\PackageRepository;
-use Adminetic\Website\Repository\ProjectRepository;
-use Adminetic\Website\Repository\ServiceRepository;
-use Adminetic\Website\Repository\FacilityRepository;
+use Adminetic\Website\Repositories\TeamRepository;
+use Adminetic\Website\Repositories\EventRepository;
+use Adminetic\Website\Repositories\ImageRepository;
+use Adminetic\Website\Repositories\VideoRepository;
+use Adminetic\Website\Repositories\ClientRepository;
+use Adminetic\Website\Repositories\CounterRepository;
+use Adminetic\Website\Repositories\GalleryRepository;
+use Adminetic\Website\Repositories\PackageRepository;
+use Adminetic\Website\Repositories\ProjectRepository;
+use Adminetic\Website\Repositories\ServiceRepository;
+use Adminetic\Website\Repositories\FacilityRepository;
 use Adminetic\Website\Repositories\TemplateRepository;
 use Adminetic\Website\Contracts\FaqRepositoryInterface;
 use Adminetic\Website\Contracts\PageRepositoryInterface;
 use Adminetic\Website\Contracts\PostRepositoryInterface;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Contracts\EventRepositoryInterface;
 use Adminetic\Website\Contracts\ImageRepositoryInterface;
 use Adminetic\Website\Contracts\VideoRepositoryInterface;
 use Adminetic\Website\Http\Livewire\Admin\Faq\ReorderFaq;
@@ -91,6 +95,7 @@ class WebsiteServiceProvider extends ServiceProvider
         Service::class => ServicePolicy::class,
         Team::class => TeamPolicy::class,
         Video::class => VideoPolicy::class,
+        Event::class => EventPolicy::class,
         Post::class => PostPolicy::class,
         Template::class => TemplatePolicy::class,
     ];
@@ -235,6 +240,7 @@ class WebsiteServiceProvider extends ServiceProvider
         $this->app->bind(ImageRepositoryInterface::class, ImageRepository::class);
         $this->app->bind(PageRepositoryInterface::class, PageRepository::class);
         $this->app->bind(VideoRepositoryInterface::class, VideoRepository::class);
+        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
         $this->app->bind(TemplateRepositoryInterface::class, TemplateRepository::class);
     }

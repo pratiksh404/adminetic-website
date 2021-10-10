@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminetic\Website\Repository;
+namespace Adminetic\Website\Repositories;
 
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
 use Adminetic\Website\Http\Requests\ClientRequest;
@@ -68,7 +68,7 @@ class ClientRepository implements ClientRepositoryInterface
                 'image' => request()->image->store('website/client', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/'.$client->image));
+            $image->save(public_path('storage/' . $client->image));
         }
     }
 }

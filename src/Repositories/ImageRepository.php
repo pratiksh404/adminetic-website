@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminetic\Website\Repository;
+namespace Adminetic\Website\Repositories;
 
 use Adminetic\Website\Contracts\ImageRepositoryInterface;
 use Adminetic\Website\Http\Requests\ImageRequest;
@@ -65,7 +65,7 @@ class ImageRepository implements ImageRepositoryInterface
         if (request()->image) {
             $dimension = $this->calculateDimention($image, $request);
             $thumbnails = [
-                'storage' => 'website/image/'.validImageFolder($image->type, 'image'),
+                'storage' => 'website/image/' . validImageFolder($image->type, 'image'),
                 'width' => $dimension['width'],
                 'height' => $dimension['height'],
                 'quality' => '70',
