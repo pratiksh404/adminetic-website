@@ -1,5 +1,6 @@
 <?php
 
+use Adminetic\Website\Http\Controllers\BlockController;
 use Adminetic\Website\Http\Controllers\ClientController;
 use Adminetic\Website\Http\Controllers\CounterController;
 use Adminetic\Website\Http\Controllers\EventController;
@@ -32,6 +33,7 @@ Route::resource('event', EventController::class);
 Route::resource('video', VideoController::class);
 Route::resource('post', PostController::class);
 Route::resource('template', TemplateController::class);
+Route::resource('block', BlockController::class);
 
 /* AJAX ROUTE */
 Route::get('get_template', [TemplateController::class, 'get_template'])->name('get_template');

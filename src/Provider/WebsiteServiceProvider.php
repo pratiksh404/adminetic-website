@@ -4,6 +4,7 @@ namespace Adminetic\Website\Provider;
 
 use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
 use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
+use Adminetic\Website\Contracts\BlockRepositoryInterface;
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
 use Adminetic\Website\Contracts\CounterRepositoryInterface;
 use Adminetic\Website\Contracts\EventRepositoryInterface;
@@ -19,6 +20,7 @@ use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
 use Adminetic\Website\Contracts\TemplateRepositoryInterface;
 use Adminetic\Website\Contracts\VideoRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Block\ReorderBlock;
 use Adminetic\Website\Http\Livewire\Admin\Facility\ReorderFacility;
 use Adminetic\Website\Http\Livewire\Admin\Faq\ReorderFaq;
 use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryImages;
@@ -29,6 +31,7 @@ use Adminetic\Website\Http\Livewire\Admin\Post\PostsTable;
 use Adminetic\Website\Http\Livewire\Admin\Post\PostStatus;
 use Adminetic\Website\Http\Livewire\Admin\Service\ReorderService;
 use Adminetic\Website\Http\Livewire\Admin\Team\ReorderTeam;
+use Adminetic\Website\Models\Admin\Block;
 use Adminetic\Website\Models\Admin\Client;
 use Adminetic\Website\Models\Admin\Counter;
 use Adminetic\Website\Models\Admin\Event;
@@ -44,6 +47,7 @@ use Adminetic\Website\Models\Admin\Service;
 use Adminetic\Website\Models\Admin\Team;
 use Adminetic\Website\Models\Admin\Template;
 use Adminetic\Website\Models\Admin\Video;
+use Adminetic\Website\Policies\BlockPolicy;
 use Adminetic\Website\Policies\ClientPolicy;
 use Adminetic\Website\Policies\CounterPolicy;
 use Adminetic\Website\Policies\EventPolicy;
@@ -59,6 +63,7 @@ use Adminetic\Website\Policies\ServicePolicy;
 use Adminetic\Website\Policies\TeamPolicy;
 use Adminetic\Website\Policies\TemplatePolicy;
 use Adminetic\Website\Policies\VideoPolicy;
+use Adminetic\Website\Repositories\BlockRepository;
 use Adminetic\Website\Repositories\ClientRepository;
 use Adminetic\Website\Repositories\CounterRepository;
 use Adminetic\Website\Repositories\EventRepository;
@@ -98,6 +103,7 @@ class WebsiteServiceProvider extends ServiceProvider
         Event::class => EventPolicy::class,
         Post::class => PostPolicy::class,
         Template::class => TemplatePolicy::class,
+        Block::class => BlockPolicy::class,
     ];
 
     /**
@@ -140,15 +146,15 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__.'/../../config/website.php' => config_path('website.php'),
+            __DIR__ . '/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__.'/../../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../../database/migrations' => database_path('migrations'),
         ], 'website-migrations');
     }
 
@@ -159,8 +165,8 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -185,7 +191,7 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
         });
     }
 
@@ -209,6 +215,7 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerLivewireComponents()
     {
+        Livewire::component('admin.block.reorder-block', ReorderBlock::class);
         Livewire::component('admin.facility.reorder-facility', ReorderFacility::class);
         Livewire::component('admin.faq.reorder-faq', ReorderFaq::class);
         Livewire::component('admin.page.reorder-page', ReorderPage::class);
@@ -243,6 +250,7 @@ class WebsiteServiceProvider extends ServiceProvider
         $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
         $this->app->bind(TemplateRepositoryInterface::class, TemplateRepository::class);
+        $this->app->bind(BlockRepositoryInterface::class, BlockRepository::class);
     }
 
     /**

@@ -320,6 +320,23 @@ class WebsiteAdapter implements PluginInterface
                 ],
                 'children' => $this->indexCreateChildren('template', Adminetic\Website\Models\Admin\Template::class),
             ],
+            [
+                'type' => 'menu',
+                'name' => 'Block',
+                'icon' => 'fas fa-square',
+                'is_active' => request()->routeIs('block*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Block::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Block::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('block', Adminetic\Website\Models\Admin\Block::class),
+            ],
         ];
     }
 }
