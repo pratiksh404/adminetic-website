@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Models\Admin\Block;
-use Adminetic\Website\Http\Requests\BlockRequest;
 use Adminetic\Website\Contracts\BlockRepositoryInterface;
+use Adminetic\Website\Http\Requests\BlockRequest;
+use Adminetic\Website\Models\Admin\Block;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
 class BlockRepository implements BlockRepositoryInterface
@@ -18,6 +18,7 @@ class BlockRepository implements BlockRepositoryInterface
                 return Block::orderBy('position')->get();
             }))
             : Block::orderBy('position')->get();
+
         return compact('blocks');
     }
 
@@ -68,7 +69,7 @@ class BlockRepository implements BlockRepositoryInterface
                 'image' => request()->image->store('website/block', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/' . $block->image));
+            $image->save(public_path('storage/'.$block->image));
         }
     }
 }

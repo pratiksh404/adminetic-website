@@ -2,12 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Adminetic\Website\Models\Admin\Block;
-use Adminetic\Website\Http\Requests\BlockRequest;
 use Adminetic\Website\Contracts\BlockRepositoryInterface;
-
-
+use Adminetic\Website\Http\Requests\BlockRequest;
+use Adminetic\Website\Models\Admin\Block;
+use App\Http\Controllers\Controller;
 
 class BlockController extends Controller
 {
@@ -18,7 +16,6 @@ class BlockController extends Controller
         $this->blockRepositoryInterface = $blockRepositoryInterface;
         $this->authorizeResource(Block::class, 'block');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -49,6 +46,7 @@ class BlockController extends Controller
     public function store(BlockRequest $request)
     {
         $this->blockRepositoryInterface->storeBlock($request);
+
         return redirect(adminRedirectRoute('block'))->withSuccess('Block Created Successfully.');
     }
 
@@ -84,6 +82,7 @@ class BlockController extends Controller
     public function update(BlockRequest $request, Block $block)
     {
         $this->blockRepositoryInterface->updateBlock($request, $block);
+
         return redirect(adminRedirectRoute('block'))->withInfo('Block Updated Successfully.');
     }
 
@@ -96,6 +95,7 @@ class BlockController extends Controller
     public function destroy(Block $block)
     {
         $this->blockRepositoryInterface->destroyBlock($block);
+
         return redirect(adminRedirectRoute('block'))->withFail('Block Deleted Successfully.');
     }
 }
