@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Block;
 use Adminetic\Website\Http\Requests\BlockRequest;
+use Adminetic\Website\Models\Admin\Block;
 
 interface BlockRepositoryInterface
 {
