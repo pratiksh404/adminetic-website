@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Models\Admin\Testimonial;
-use Adminetic\Website\Http\Requests\TestimonialRequest;
 use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
+use Adminetic\Website\Http\Requests\TestimonialRequest;
+use Adminetic\Website\Models\Admin\Testimonial;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
 class TestimonialRepository implements TestimonialRepositoryInterface
@@ -18,6 +18,7 @@ class TestimonialRepository implements TestimonialRepositoryInterface
                 return Testimonial::orderBy('position')->get();
             }))
             : Testimonial::orderBy('position')->get();
+
         return compact('testimonials');
     }
 
@@ -68,7 +69,7 @@ class TestimonialRepository implements TestimonialRepositoryInterface
                 'image' => request()->image->store('website/testimonial', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/' . $testimonial->image));
+            $image->save(public_path('storage/'.$testimonial->image));
         }
     }
 }

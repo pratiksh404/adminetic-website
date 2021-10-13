@@ -16,7 +16,6 @@ class TestimonialRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Prepare the data for validation.
      *
@@ -25,7 +24,7 @@ class TestimonialRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'code' => $this->testimonial->code ?? rand(100000, 9999999)
+            'code' => $this->testimonial->code ?? rand(100000, 9999999),
         ]);
     }
 
@@ -37,10 +36,11 @@ class TestimonialRequest extends FormRequest
     public function rules()
     {
         $id = $this->testimonial->id ?? '';
+
         return [
-            'code' => 'required|unique:testimonials,code,' . $id,
+            'code' => 'required|unique:testimonials,code,'.$id,
             'name' => 'required|max:255',
-            'email' => 'required|unique:testimonials,email,' . $id,
+            'email' => 'required|unique:testimonials,email,'.$id,
             'image' => 'nullable|file|image|max:3000',
             'contact' => 'nullable|numeric',
             'designation' => 'nullable|max:60',
@@ -48,7 +48,7 @@ class TestimonialRequest extends FormRequest
             'body' => 'required|max:3000',
             'rating' => 'nullable|numeric|max:5',
             'position' => 'sometimes|numeric',
-            'approve' => 'sometimes|boolean'
+            'approve' => 'sometimes|boolean',
         ];
     }
 }

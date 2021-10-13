@@ -28,7 +28,7 @@ class VideoRequest extends FormRequest
             'thumbnail' => 'sometimes|file|image|max:3000',
             'url' => 'required|max:255',
             'gallery_id' => 'nullable|numeric',
-            'position' => 'sometimes|numeric'
+            'position' => 'sometimes|numeric',
         ];
     }
 }
