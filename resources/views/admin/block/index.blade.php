@@ -38,6 +38,7 @@
                             <th>Name</th>
                             <th>Location</th>
                             <th>Page</th>
+                            <th>Version</th>
                             <th>Active</th>
                             <th>Actions</th>
                         </tr>
@@ -57,8 +58,9 @@
                             <td>{{$block->name}}</td>
                             <td>{{$block->location ?? 'N/A'}}</td>
                             <td>{{$block->page ?? 'N/A'}}</td>
-                            <td><span
-                                    class="badge badge-{{$block->active ? 'success' : 'danger'}}">{{$block->active ? 'Active' : 'Inactive'}}</span>
+                            <td>{{$block->version ?? 'N/A'}}</td>
+                            <td><span class="badge badge-{{$block->active ? 'success' : 'danger'}}">{{$block->active ?
+                                    'Active' : 'Inactive'}}</span>
                             </td>
                             <td>
                                 <x-adminetic-action :model="$block" route="block" />
@@ -72,6 +74,7 @@
                             <th>Name</th>
                             <th>Location</th>
                             <th>Page</th>
+                            <th>Version</th>
                             <th>Active</th>
                             <th>Actions</th>
                         </tr>

@@ -18,14 +18,17 @@
                                 <b>Page :</b><span class="text-muted">{{$block->page ?? 'N/A'}}</span>
                             </li>
                             <li class="list-group-item">
+                                <b>Version :</b><span class="text-muted">{{$block->version ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
                                 <b>Location :</b><span class="text-muted">{{$block->location ?? 'N/A'}}</span>
                             </li>
                             <li class="list-group-item">
                                 <b>Position :</b><span class="text-muted">{{$block->position ?? 'N/A'}}</span>
                             </li>
                             <li class="list-group-item">
-                                <span
-                                    class="badge badge-{{$block->active ? 'success' : 'danger'}}">{{$block->active ? 'Active' : 'Inactive'}}</span>
+                                <span class="badge badge-{{$block->active ? 'success' : 'danger'}}">{{$block->active ?
+                                    'Active' : 'Inactive'}}</span>
                             </li>
                         </ul>
                     </div>

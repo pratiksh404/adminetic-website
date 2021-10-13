@@ -24,7 +24,9 @@ class BlockRepository implements BlockRepositoryInterface
     // Block Create
     public function createBlock()
     {
-        //
+        $block_domains = Block::latest()->pluck('page')->toArray();
+        $versions = Block::latest()->pluck('version')->toArray();
+        return compact('block_domains', 'versions');
     }
 
     // Block Store
@@ -43,7 +45,9 @@ class BlockRepository implements BlockRepositoryInterface
     // Block Edit
     public function editBlock(Block $block)
     {
-        return compact('block');
+        $block_domains = Block::latest()->pluck('page')->toArray();
+        $versions = Block::latest()->pluck('version')->toArray();
+        return compact('block', 'block_domains', 'versions');
     }
 
     // Block Update

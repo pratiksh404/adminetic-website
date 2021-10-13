@@ -40,6 +40,7 @@ class BlockRequest extends FormRequest
             'code' => 'required|max:255|unique:blocks,code,' . $id,
             'name' => 'required|max:255|unique:blocks,name,' . $id,
             'image' => 'nullable|file|image|max:3000',
+            'version' => 'sometimes|max:60',
             'page' => 'nullable|max:255',
             'location' => 'required|max:255',
             'position' => 'sometimes|numeric',

@@ -37,7 +37,7 @@ class BlockController extends Controller
      */
     public function create()
     {
-        return view('website::admin.block.create');
+        return view('website::admin.block.create', $this->blockRepositoryInterface->createBlock());
     }
 
     /**

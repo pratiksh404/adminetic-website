@@ -18,6 +18,7 @@ class CreateBlocksTable extends Migration
             $table->string('code')->unique();
             $table->string('name')->unique();
             $table->string('image')->nullable();
+            $table->string('version')->default('v1');
             $table->string('page')->nullable();
             $table->string('location');
             $table->bigInteger('position')->default(1);
