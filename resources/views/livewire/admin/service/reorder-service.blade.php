@@ -3,7 +3,7 @@
     <ul wire:sortable="updateServiceOrder">
         @foreach ($services as $service)
         <li wire:sortable.item="{{ $service->id }}" wire:key="service-{{ $service->id }}">
-            <span class="text-muted" wire:sortable.handle>{{ $service->name }}</span>
+            <span class="text-muted" wire:sortable.handle style="cursor:move">{{ $service->name }}</span>
         </li>
         @endforeach
     </ul>

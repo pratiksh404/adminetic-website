@@ -3,7 +3,7 @@
     <ul wire:sortable="updatePageOrder">
         @foreach ($pages as $page)
         <li wire:sortable.item="{{ $page->id }}" wire:key="page-{{ $page->id }}">
-            <span class="text-muted" wire:sortable.handle>{{ $page->name }}</span>
+            <span class="text-muted" wire:sortable.handle style="cursor:move">{{ $page->name }}</span>
         </li>
         @endforeach
     </ul>

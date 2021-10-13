@@ -31,6 +31,7 @@ class PackageRequest extends FormRequest
             'features' => 'required',
             'active' => 'required|boolean',
             'link' => 'nullable|max:255',
+            'position' => 'sometimes|numeric'
         ];
     }
 }

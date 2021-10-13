@@ -1,9 +1,9 @@
 <div>
-    @isset($teams)
-    <ul wire:sortable="updateTeamOrder">
-        @foreach ($teams as $team)
-        <li wire:sortable.item="{{ $team->id }}" wire:key="team-{{ $team->id }}">
-            <span class="text-muted" wire:sortable.handle style="cursor:move">{{ $team->name }}</span>
+    @isset($packages)
+    <ul wire:sortable="updatePackageOrder">
+        @foreach ($packages as $package)
+        <li wire:sortable.item="{{ $package->id }}" wire:key="package-{{ $package->id }}">
+            <div wire:sortable.handle style="cursor:move">{!! $package->name !!}</div>
         </li>
         @endforeach
     </ul>
@@ -29,7 +29,7 @@
                             var notify = $.notify({
                                 title: "<i class='{{ config('adminetic.notify_icon', 'fa fa-bell-o') }}'></i> " +
                                     "Success",
-                                message: "Team Reorderd !"
+                                message: "Package Reorderd !"
                             }, {
                                 type: 'success',
                                 allow_dismiss: notify_allow_dismiss,

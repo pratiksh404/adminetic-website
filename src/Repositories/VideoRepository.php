@@ -15,9 +15,9 @@ class VideoRepository implements VideoRepositoryInterface
     {
         $videos = config('adminetic.caching', true)
             ? (Cache::has('videos') ? Cache::get('videos') : Cache::rememberForever('videos', function () {
-                return Video::latest()->get();
+                return Video::orderBy('position')->get();
             }))
-            : Video::latest()->get();
+            : Video::orderBy('position')->get();
 
         return compact('videos');
     }
@@ -61,6 +61,7 @@ class VideoRepository implements VideoRepositoryInterface
     // Video Destroy
     public function destroyVideo(Video $video)
     {
+        isset($video->thumbnail) ? $video->hardDelete('thumbnail') : '';
         $video->delete();
     }
 

@@ -23,6 +23,11 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->string('image')->nullable();
             $table->string('link')->nullable();
+            $table->bigInteger('position')->default(0);
+
+            $table->string('meta_name')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->json('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

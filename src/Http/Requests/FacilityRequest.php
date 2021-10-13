@@ -39,9 +39,9 @@ class FacilityRequest extends FormRequest
         $id = $this->facility->id ?? '';
 
         return [
-            'code' => 'required|max:255|unique:facilities,code,'.$id,
+            'code' => 'required|max:255|unique:facilities,code,' . $id,
             'name' => 'required|max:60',
-            'slug' => 'required|max:255|unique:facilities,slug,'.$id,
+            'slug' => 'required|max:255|unique:facilities,slug,' . $id,
             'excerpt' => 'required|max:255',
             'description' => 'nullable|max:10000',
             'category_id' => 'nullable|numeric',
@@ -49,6 +49,7 @@ class FacilityRequest extends FormRequest
             'icon_image' => 'sometimes|file|image|mimes:png|max:1000',
             'image' => 'sometimes|file|image|max:5000',
             'active' => 'sometimes|boolean',
+            'position' => 'sometimes|numeric',
             'meta_name' => 'nullable|max:255',
             'meta_description' => 'nullable|max:255',
             'meta_keywords' => 'nullable',

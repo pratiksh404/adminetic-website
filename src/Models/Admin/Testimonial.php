@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Project extends Model
+class Testimonial extends Model
 {
-    use LogsActivity, Thumbnail;
+    use LogsActivity;
 
     protected $guarded = [];
 
@@ -25,19 +24,18 @@ class Project extends Model
         static::deleting(function () {
             self::cacheKey();
         });
+
+        Testimonial::creating(function ($model) {
+            $model->position = Testimonial::max('position') + 1;
+        });
     }
 
     // Cache Keys
     private static function cacheKey()
     {
-        Cache::has('projects') ? Cache::forget('projects') : '';
+        Cache::has('testimonials') ? Cache::forget('testimonials') : '';
     }
 
     // Logs
-    protected static $logName = 'project';
-
-    // Casts
-    protected $casts = [
-        'meta_keywords' => 'array',
-    ];
+    protected static $logName = 'testimonial';
 }

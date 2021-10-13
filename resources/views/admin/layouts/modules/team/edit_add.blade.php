@@ -8,11 +8,18 @@
                 value="{{$category->code ?? old('category')}}" placeholder="Code">
         </div>
     </div>
-    <div class="col-lg-10">
+    <div class="col-lg-6">
         <label for="name">Member Name <span class="text-danger">*</span></label>
         <div class="input-group">
             <input type="text" name="name" id="name" class="form-control" value="{{$team->name ?? old('name')}}"
                 placeholder="Member Name">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <label for="group">Group</label>
+        <div class="input-group">
+            <input type="number" name="group" id="group" class="touchspin"
+                value="{{$team->group ?? old('group') ?? 1}}">
         </div>
     </div>
 </div>

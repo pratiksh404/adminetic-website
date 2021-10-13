@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('url');
             $table->foreignId('gallery_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->bigInteger('position')->default(0);
             $table->timestamps();
         });
     }

@@ -56,7 +56,8 @@ class FacilityRepository implements FacilityRepositoryInterface
     // Facility Destroy
     public function destroyFacility(Facility $facility)
     {
-        $facility->hardDelete('image');
+        isset($facility->image) ? $facility->hardDelete('image') : '';
+        isset($facility->icon_image) ? deleteImage($facility->icon_image) : '';
         $facility->delete();
     }
 
@@ -68,12 +69,12 @@ class FacilityRepository implements FacilityRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/facility/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$facility->icon_image));
+            $image->save(public_path('storage/' . $facility->icon_image));
         }
 
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/facility/icon',
+                'storage' => 'website/facility/image',
                 'width' => '512',
                 'height' => '512',
                 'quality' => '80',

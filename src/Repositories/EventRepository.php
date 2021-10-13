@@ -61,6 +61,7 @@ class EventRepository implements EventRepositoryInterface
     // Event Destroy
     public function destroyEvent(Event $event)
     {
+        isset($event->image) ? $event->hardDelete('image') : '';
         $event->delete();
     }
 
@@ -69,7 +70,7 @@ class EventRepository implements EventRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/event/'.validImageFolder($event->id, 'event'),
+                'storage' => 'website/event/' . validImageFolder($event->id, 'event'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '100',

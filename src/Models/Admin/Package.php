@@ -24,6 +24,10 @@ class Package extends Model
         static::deleting(function () {
             self::cacheKey();
         });
+
+        Package::creating(function ($model) {
+            $model->position = Package::max('position') + 1;
+        });
     }
 
     // Cache Keys

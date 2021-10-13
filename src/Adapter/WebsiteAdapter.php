@@ -337,6 +337,23 @@ class WebsiteAdapter implements PluginInterface
                 ],
                 'children' => $this->indexCreateChildren('block', Adminetic\Website\Models\Admin\Block::class),
             ],
+            [
+                'type' => 'menu',
+                'name' => 'Testimonial',
+                'icon' => 'fas fa-star',
+                'is_active' => request()->routeIs('testimonial*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Testimonial::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Testimonial::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('testimonial', Adminetic\Website\Models\Admin\Testimonial::class),
+            ],
         ];
     }
 }

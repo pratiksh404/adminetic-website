@@ -6,57 +6,63 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="card shadow-lg">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="list-group">
-                                    @if (isset($project->image))
-                                    <img src="{{asset($project->thumbnail('image','medium'))}}" alt="{{$project->name}}"
-                                        class="img-fluid">
-                                    @else
-                                    <img src="{{getImagePlaceholder()}}" alt="{{$project->name}}" class="img-fluid">
-                                    @endif
-                                    <li class="list-group-item"><b>Client : </b>{{$project->client->name}}
-                                        <hr>
-                                        @isset($project->client->image)
-                                        <img src="{{asset('storage/'.$project->client->image)}}"
-                                            alt="{{$project->client->name}}" class="img-fluid">
-                                        @endisset
-                                    </li>
-                                    <li class="list-group-item"><b>Duration :
-                                        </b>{{$project->duration}}</li>
-                                    <li class="list-group-item"><b>Category :
-                                        </b>{{$project->category}}</li>
-                                    @isset($project->link)
-                                    <a href="{{$project->link}}" class="btn btn-primary">Link</a>
-                                    @endisset
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="card-body p-3">
+                        @isset($project->image)
+                        <img src="{{asset('storage/' . $project->image)}}" alt="$project->name" class="img-fluid">
+                        @endisset
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <b>name :</b><span class="text-muted">{{$project->name ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>slug :</b><span class="text-muted">{{$project->slug ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>client :</b><span class="text-muted">{{$project->client ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>duration :</b><span class="text-muted">{{$project->duration ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>category :</b><span class="text-muted">{{$project->category ?? 'N/A'}}</span>
+                            </li>
+                            @isset($project->link)
+                            <li class="list-group-item">
+                                <b>link :</b><a href="{{$project->link}}">Click Me !</a>
+                            </li>
+                            @endisset
+                            <li class="list-group-item">
+                                <b>position :</b><span class="text-muted">{{$project->position ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>meta name :</b><span class="text-muted">{{$project->meta_name ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>meta_description :</b><span class="text-muted">{{$project->meta_description ??
+                                    'N/A'}}</span>
+                            </li>
+                            @isset($project->meta_keywords)
+                            <li class="list-group-item">
+                                <b>Keywords </b>
+                                <hr>
+                                @foreach ($project->meta_keywords as $meta_keyword)
+                                <span class="badge badge-primary">{{$meta_keyword}}</span>
+                                @endforeach
+                            </li>
+                            @endisset
+                        </ul>
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-8">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <label>
-                                    <h2><b>Description</b></h2>
-                                </label>
-                                <br>
-                                <p>
-                                    @isset($project->description)
-                                    {!! $project->description !!}
-                                    @endisset
-                                </p>
-                            </div>
-                        </div>
+                <div class="card shadow-lg">
+                    <div class="card-body p-3">
+                        <h4 class="text-center">Description</h4>
+                        <hr>
+                        {!! $project->description !!}
                     </div>
                 </div>
             </div>
-
         </div>
     </x-slot>
 </x-adminetic-show-page>

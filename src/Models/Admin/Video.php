@@ -25,6 +25,10 @@ class Video extends Model
         static::deleting(function () {
             self::cacheKey();
         });
+
+        Video::creating(function ($model) {
+            $model->position = Video::max('position') + 1;
+        });
     }
 
     // Cache Keys
@@ -33,6 +37,16 @@ class Video extends Model
         Cache::has('videos') ? Cache::forget('videos') : '';
     }
 
+    // Appends
+    protected $appends = ['video_html'];
+
     // Logs
     protected static $logName = 'video';
+
+    public function getVideoHtmlAttribute()
+    {
+        if (isset($this->url)) {
+            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->url);
+        }
+    }
 }

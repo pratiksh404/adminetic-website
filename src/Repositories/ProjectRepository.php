@@ -30,7 +30,8 @@ class ProjectRepository implements ProjectRepositoryInterface
     // Project Store
     public function storeProject(ProjectRequest $request)
     {
-        Project::create($request->validated());
+        $project = Project::create($request->validated());
+        $this->uploadImage($project);
     }
 
     // Project Show
@@ -49,11 +50,41 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function updateProject(ProjectRequest $request, Project $project)
     {
         $project->update($request->validated());
+        $this->uploadImage($project);
     }
 
     // Project Destroy
     public function destroyProject(Project $project)
     {
+        isset($project->image) ? $project->hardDelete('image') : '';
         $project->delete();
+    }
+
+    // Upload Image
+    protected function uploadImage(Project $project)
+    {
+        if (request()->image) {
+            $thumbnails = [
+                'storage' => 'website/project/' . validImageFolder($project->type, 'post'),
+                'width' => '1200',
+                'height' => '630',
+                'quality' => '100',
+                'thumbnails' => [
+                    [
+                        'thumbnail-name' => 'medium',
+                        'thumbnail-width' => '600',
+                        'thumbnail-height' => '315',
+                        'thumbnail-quality' => '80',
+                    ],
+                    [
+                        'thumbnail-name' => 'small',
+                        'thumbnail-width' => '100',
+                        'thumbnail-height' => '80',
+                        'thumbnail-quality' => '50',
+                    ],
+                ],
+            ];
+            $project->makeThumbnail('image', $thumbnails);
+        }
     }
 }

@@ -1,31 +1,53 @@
 <div>
-    @isset($blocks)
-    <ul wire:sortable="updateBlockOrder">
-        @foreach ($blocks as $block)
-        <li wire:sortable.item="{{ $block->id }}" wire:key="block-{{ $block->id }}">
+    @isset($testimonials)
+    <ul wire:sortable="updateTestimonialOrder">
+        @foreach ($testimonials as $testimonial)
+        <li wire:sortable.item="{{ $testimonial->id }}" wire:key="testimonial-{{ $testimonial->id }}">
             <div class="card shadow-lg" wire:sortable.handle style="cursor:move">
                 <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-lg-12">
-                            @if (isset($block->image))
-                            <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}" class="img-fluid">
-                            <hr>
-                            @endif
+                        <div class="col-lg-4">
+                            @isset($testimonial->image)
+                            <img src="{{asset('storage/' . $testimonial->image)}}" class="img-fluid">
+                            @endisset
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <b>Name : </b> <span class="text-muted">{{$block->name ?? 'N/A'}}</span>
+                                    <b>code : </b><span class="text-muted">{{$testimonial->code ?? 'N/A'}}</span>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Pagw : </b> <span class="text-muted">{{$block->page ?? 'N/A'}}</span>
+                                    <b>name : </b><span class="text-muted">{{$testimonial->name ?? 'N/A'}}</span>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Location : </b> <span class="text-muted">{{$block->location ?? 'N/A'}}</span>
+                                    <b>email : </b><span class="text-muted">{{$testimonial->email ?? 'N/A'}}</span>
                                 </li>
                                 <li class="list-group-item">
-                                    <span class="badge badge-{{$block->active ? 'success' : 'danger'}}">{{$block->active
-                                        ? 'Active' : 'Inactive'}}</span>
+                                    <b>contact : </b><span class="text-muted">{{$testimonial->contact ?? 'N/A'}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>designation : </b><span class="text-muted">{{$testimonial->designation ??
+                                        'N/A'}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>company : </b><span class="text-muted">{{$testimonial->company ?? 'N/A'}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>rating : </b><span class="text-muted">{{$testimonial->rating ?? 'N/A'}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>position : </b><span class="text-muted">{{$testimonial->position ??
+                                        'N/A'}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <span
+                                        class="badge badge-{{$testimonial->approve ? 'success' : 'danger'}}">{{$testimonial->approve
+                                        ? 'Approved' : 'Denied'}}</span>
                                 </li>
                             </ul>
+                        </div>
+                        <div class="col-lg-8">
+                            <h4 class="text-center">Testimonial</h4>
+                            <hr>
+                            {!! $testimonial->body !!}
                         </div>
                     </div>
                 </div>
@@ -55,7 +77,7 @@
                             var notify = $.notify({
                                 title: "<i class='{{ config('adminetic.notify_icon', 'fa fa-bell-o') }}'></i> " +
                                     "Success",
-                                message: "Block Reorderd !"
+                                message: "Testimonial Reorderd !"
                             }, {
                                 type: 'success',
                                 allow_dismiss: notify_allow_dismiss,

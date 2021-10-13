@@ -39,9 +39,9 @@ class TeamRequest extends FormRequest
         $id = $this->team->id ?? '';
 
         return [
-            'code' => 'required|max:255|unique:teams,code,'.$id,
+            'code' => 'required|max:255|unique:teams,code,' . $id,
             'name' => 'required|max:100',
-            'slug' => 'required|max:255|unique:teams,code,'.$id,
+            'slug' => 'required|max:255|unique:teams,code,' . $id,
             'designation' => 'required|max:100',
             'image' => 'sometimes|file|image|max:3000',
             'phone' => 'nullable',
@@ -56,6 +56,7 @@ class TeamRequest extends FormRequest
             'whatsapp' => 'nullable|max:255',
             'message' => 'nullable|max:10000',
             'position' => 'sometimes|numeric|max:100',
+            'group' => 'sometimes|numeric|max:100',
         ];
     }
 }

@@ -1,9 +1,13 @@
 <div>
-    @isset($teams)
-    <ul wire:sortable="updateTeamOrder">
-        @foreach ($teams as $team)
-        <li wire:sortable.item="{{ $team->id }}" wire:key="team-{{ $team->id }}">
-            <span class="text-muted" wire:sortable.handle style="cursor:move">{{ $team->name }}</span>
+    @isset($videos)
+    <ul wire:sortable="updateVideoOrder">
+        @foreach ($videos as $video)
+        <li wire:sortable.item="{{ $video->id }}" wire:key="video-{{ $video->id }}">
+            <div class="card shadow-lg" wire:sortable.handle style="cursor:move">
+                <div class="card-body p-3">
+                    {!! $video->video_html !!}
+                </div>
+            </div>
         </li>
         @endforeach
     </ul>
@@ -29,7 +33,7 @@
                             var notify = $.notify({
                                 title: "<i class='{{ config('adminetic.notify_icon', 'fa fa-bell-o') }}'></i> " +
                                     "Success",
-                                message: "Team Reorderd !"
+                                message: "Video Reorderd !"
                             }, {
                                 type: 'success',
                                 allow_dismiss: notify_allow_dismiss,

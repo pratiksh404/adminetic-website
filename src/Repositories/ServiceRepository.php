@@ -57,7 +57,7 @@ class ServiceRepository implements ServiceRepositoryInterface
     // Service Destroy
     public function destroyService(Service $service)
     {
-        $service->hardDelete('image');
+        isset($service->image) ? $service->hardDelete('image') : '';
         $service->delete();
     }
 
@@ -69,7 +69,7 @@ class ServiceRepository implements ServiceRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/service/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$service->icon_image));
+            $image->save(public_path('storage/' . $service->icon_image));
         }
 
         if (request()->image) {

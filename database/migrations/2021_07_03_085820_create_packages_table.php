@@ -22,6 +22,7 @@ class CreatePackagesTable extends Migration
             $table->json('features');
             $table->boolean('active')->default(1);
             $table->string('link')->nullable();
+            $table->bigInteger('position')->default(0);
             $table->timestamps();
         });
     }

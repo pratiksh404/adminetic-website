@@ -58,18 +58,14 @@ class GalleryRepository implements GalleryRepositoryInterface
     // Gallery Destroy
     public function destroyGallery(Gallery $gallery)
     {
+        if ($gallery->images->count() > 0) {
+            foreach ($gallery->images as $image) {
+                $image->hardDelete('image');
+            }
+        }
         $gallery->delete();
     }
 
-    // Destroy Gallery Image Upload
-    public function destroyGalleryImage(Request $request)
-    {
-        $image = Image::findOrFail($request->id);
-        $image->hardDelete('image');
-        $image->delete();
-
-        return response()->json(['msg' => 'Gallery Image Deleted Successfully']);
-    }
 
     // multiple Image Upload
     protected function multipleImageUpload($gallery)
@@ -84,7 +80,7 @@ class GalleryRepository implements GalleryRepositoryInterface
 
                 // Multi Image Upload With Thumbnail
                 $multiple = [
-                    'storage' => 'website/gallery/'.validImageFolder($gallery->name, 'gallery'),
+                    'storage' => 'website/gallery/' . validImageFolder($gallery->name, 'gallery'),
                     'width' => '600',
                     'height' => '600',
                     'quality' => '70',

@@ -3,7 +3,7 @@
     <ul wire:sortable="updateFaqOrder">
         @foreach ($faqs as $faq)
         <li wire:sortable.item="{{ $faq->id }}" wire:key="faq-{{ $faq->id }}">
-            <div wire:sortable.handle>{!! $faq->question !!}</div>
+            <div wire:sortable.handle style="cursor:move">{!! $faq->question !!}</div>
         </li>
         @endforeach
     </ul>

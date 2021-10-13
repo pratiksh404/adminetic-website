@@ -14,9 +14,9 @@ class PackageRepository implements PackageRepositoryInterface
     {
         $packages = config('adminetic.caching', true)
             ? (Cache::has('packages') ? Cache::get('packages') : Cache::rememberForever('packages', function () {
-                return Package::latest()->get();
+                return Package::orderBy('position')->get();
             }))
-            : Package::latest()->get();
+            : Package::orderBy('position')->get();
 
         return compact('packages');
     }

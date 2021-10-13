@@ -30,7 +30,8 @@ class CreateTeamsTable extends Migration
             $table->string('messenger')->nullable();
             $table->string('whatsapp')->nullable();
             $table->text('message')->nullable();
-            $table->integer('position')->default(0);
+            $table->bigInteger('position')->default(0);
+            $table->integer('group')->default(0);
             $table->timestamps();
         });
     }

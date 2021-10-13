@@ -15,6 +15,7 @@ use Adminetic\Website\Http\Controllers\ProjectController;
 use Adminetic\Website\Http\Controllers\ServiceController;
 use Adminetic\Website\Http\Controllers\TeamController;
 use Adminetic\Website\Http\Controllers\TemplateController;
+use Adminetic\Website\Http\Controllers\TestimonialController;
 use Adminetic\Website\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::resource('video', VideoController::class);
 Route::resource('post', PostController::class);
 Route::resource('template', TemplateController::class);
 Route::resource('block', BlockController::class);
+Route::resource('testimonial', TestimonialController::class);
 
 /* AJAX ROUTE */
 Route::get('get_template', [TemplateController::class, 'get_template'])->name('get_template');

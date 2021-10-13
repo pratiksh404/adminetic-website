@@ -3,9 +3,8 @@
 namespace Adminetic\Website\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 
-class ProjectRequest extends FormRequest
+class TestimonialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,6 +16,7 @@ class ProjectRequest extends FormRequest
         return true;
     }
 
+
     /**
      * Prepare the data for validation.
      *
@@ -25,7 +25,7 @@ class ProjectRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'slug' => Str::slug($this->name),
+            'code' => $this->testimonial->code ?? rand(100000, 9999999)
         ]);
     }
 
@@ -36,21 +36,19 @@ class ProjectRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->project->id ?? '';
-
+        $id = $this->testimonial->id ?? '';
         return [
+            'code' => 'required|unique:testimonials,code,' . $id,
             'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:projects,slug,' . $id,
-            'client' => 'required|max:255',
-            'duration' => 'required|max:60',
-            'category' => 'required|max:80',
-            'image' => 'sometimes|file|image|max:3000',
-            'link' => 'nullable|max:255',
-            'description' => 'required|max:10000',
+            'email' => 'required|unique:testimonials,email,' . $id,
+            'image' => 'nullable|file|image|max:3000',
+            'contact' => 'nullable|numeric',
+            'designation' => 'nullable|max:60',
+            'company' => 'nullable|max:60',
+            'body' => 'required|max:3000',
+            'rating' => 'nullable|numeric|max:5',
             'position' => 'sometimes|numeric',
-            'meta_name' => 'nullable|max:255',
-            'meta_description' => 'nullable|max:255',
-            'meta_keywords' => 'nullable',
+            'approve' => 'sometimes|boolean'
         ];
     }
 }
