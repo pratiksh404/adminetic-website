@@ -5,7 +5,6 @@ namespace Adminetic\Website\Repositories;
 use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 use Adminetic\Website\Http\Requests\GalleryRequest;
 use Adminetic\Website\Models\Admin\Gallery;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
@@ -66,7 +65,6 @@ class GalleryRepository implements GalleryRepositoryInterface
         $gallery->delete();
     }
 
-
     // multiple Image Upload
     protected function multipleImageUpload($gallery)
     {
@@ -80,7 +78,7 @@ class GalleryRepository implements GalleryRepositoryInterface
 
                 // Multi Image Upload With Thumbnail
                 $multiple = [
-                    'storage' => 'website/gallery/' . validImageFolder($gallery->name, 'gallery'),
+                    'storage' => 'website/gallery/'.validImageFolder($gallery->name, 'gallery'),
                     'width' => '600',
                     'height' => '600',
                     'quality' => '70',

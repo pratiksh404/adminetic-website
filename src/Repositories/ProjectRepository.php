@@ -65,7 +65,7 @@ class ProjectRepository implements ProjectRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/project/' . validImageFolder($project->type, 'post'),
+                'storage' => 'website/project/'.validImageFolder($project->type, 'post'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '100',

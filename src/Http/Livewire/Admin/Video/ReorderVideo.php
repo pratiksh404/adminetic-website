@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Video;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Models\Admin\Video;
+use Illuminate\Support\Facades\Cache;
+use Livewire\Component;
 
 class ReorderVideo extends Component
 {
@@ -19,6 +19,7 @@ class ReorderVideo extends Component
     public function render()
     {
         $videos = Cache::get('videos', Video::orderBy('position')->get());
+
         return view('website::livewire.admin.video.reorder-video', compact('videos'));
     }
 }

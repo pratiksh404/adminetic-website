@@ -40,7 +40,7 @@ class ProjectRequest extends FormRequest
 
         return [
             'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:projects,slug,' . $id,
+            'slug' => 'required|max:255|unique:projects,slug,'.$id,
             'client' => 'required|max:255',
             'duration' => 'required|max:60',
             'category' => 'required|max:80',

@@ -69,7 +69,7 @@ class ClientRepository implements ClientRepositoryInterface
                 'image' => request()->image->store('website/client', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/' . $client->image));
+            $image->save(public_path('storage/'.$client->image));
         }
     }
 }
