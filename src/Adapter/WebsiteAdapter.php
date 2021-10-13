@@ -254,7 +254,7 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
-                'name' => 'Page',
+                'name' => 'Pages',
                 'icon' => 'fas fa-file',
                 'is_active' => request()->routeIs('page*') ? 'active' : '',
                 'conditions' => [
@@ -271,7 +271,7 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
-                'name' => 'Event',
+                'name' => 'Events',
                 'icon' => 'fas fa-calendar',
                 'is_active' => request()->routeIs('event*') ? 'active' : '',
                 'conditions' => [
@@ -288,7 +288,7 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
-                'name' => 'Post',
+                'name' => 'Posts',
                 'icon' => 'fas fa-camera',
                 'is_active' => request()->routeIs('post*') ? 'active' : '',
                 'conditions' => [
@@ -305,7 +305,7 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
-                'name' => 'Template',
+                'name' => 'Templates',
                 'icon' => 'fas fa-paw',
                 'is_active' => request()->routeIs('template*') ? 'active' : '',
                 'conditions' => [
@@ -322,7 +322,7 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
-                'name' => 'Block',
+                'name' => 'Blocks',
                 'icon' => 'fas fa-square',
                 'is_active' => request()->routeIs('block*') ? 'active' : '',
                 'conditions' => [
@@ -339,7 +339,7 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
-                'name' => 'Testimonial',
+                'name' => 'Testimonials',
                 'icon' => 'fas fa-star',
                 'is_active' => request()->routeIs('testimonial*') ? 'active' : '',
                 'conditions' => [
