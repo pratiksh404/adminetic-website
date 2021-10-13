@@ -27,6 +27,7 @@ class BlockRepository implements BlockRepositoryInterface
     {
         $block_domains = Block::latest()->pluck('page')->toArray();
         $versions = Block::latest()->pluck('version')->toArray();
+
         return compact('block_domains', 'versions');
     }
 
@@ -48,6 +49,7 @@ class BlockRepository implements BlockRepositoryInterface
     {
         $block_domains = Block::latest()->pluck('page')->toArray();
         $versions = Block::latest()->pluck('version')->toArray();
+
         return compact('block', 'block_domains', 'versions');
     }
 
