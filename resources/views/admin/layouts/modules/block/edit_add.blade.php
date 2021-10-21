@@ -88,4 +88,16 @@
         </textarea>
     </div>
 </div>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="mb-3" style="position: static;">
+            <label for="setting">Setting</label>
+            <input type="hidden" name="setting" data-setting="{{ $block->setting ?? '' }}" id="setting">
+            <div class="ace-editor" id="editor">
+
+            </div>
+        </div>
+    </div>
+</div>
 <x-adminetic-edit-add-button :model="$block ?? null" name="Block" />

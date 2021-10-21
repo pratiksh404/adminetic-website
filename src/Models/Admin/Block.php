@@ -38,4 +38,11 @@ class Block extends Model
 
     // Logs
     protected static $logName = 'block';
+
+    public function setting()
+    {
+        return isset($this->setting)
+            ? json_decode($this->setting)
+            : null;
+    }
 }

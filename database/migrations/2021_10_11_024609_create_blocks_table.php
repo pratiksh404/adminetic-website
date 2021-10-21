@@ -23,6 +23,7 @@ class CreateBlocksTable extends Migration
             $table->string('location');
             $table->bigInteger('position')->default(1);
             $table->longText('body')->nullable();
+            $table->json('setting')->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
