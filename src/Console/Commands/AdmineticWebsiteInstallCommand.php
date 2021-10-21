@@ -43,7 +43,7 @@ class AdmineticWebsiteInstallCommand extends Command
         }
         $this->info('Adminetic website permission seeded ... ✅');
         Artisan::call('vendor:publish', [
-            '--tag' => ['website-config']
+            '--tag' => ['website-config'],
         ]);
         Artisan::call('vendor:publish', ['--provider' => 'CyrildeWit\EloquentViewable\EloquentViewableServiceProvider', '--tag' => 'migrations']);
         Artisan::call('vendor:publish', ['--provider' => 'Spatie\Analytics\AnalyticsServiceProvider']);

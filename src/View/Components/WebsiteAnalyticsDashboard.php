@@ -3,8 +3,8 @@
 namespace Adminetic\Website\View\Components;
 
 use Analytics;
-use Spatie\Analytics\Period;
 use Illuminate\View\Component;
+use Spatie\Analytics\Period;
 
 class WebsiteAnalyticsDashboard extends Component
 {
@@ -31,7 +31,7 @@ class WebsiteAnalyticsDashboard extends Component
             [
                 'dimensions' => 'ga:keyword',
                 'metrics' => 'ga:sessions',
-                'sort' => '-ga:sessions'
+                'sort' => '-ga:sessions',
             ]
         )->rows;
 
