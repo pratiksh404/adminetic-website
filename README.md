@@ -61,7 +61,7 @@ php artisan adminetic:website-permission // To seed website module permission on
 ## Todo
 
 - [ ] Frontend theme support
-- [ ] Google Analytic Dashboard
+- [x] Google Analytic Dashboard
 - [ ] Ready made themes
 
 ### Testing
@@ -93,6 +93,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 ## Screenshots
 
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/google-analytic-adminetic-website.jpeg)
 ![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/category.jpg)
 ![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/gallery.jpg)
 ![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/package.jpg)

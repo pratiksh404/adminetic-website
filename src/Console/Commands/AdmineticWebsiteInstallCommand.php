@@ -42,6 +42,7 @@ class AdmineticWebsiteInstallCommand extends Command
             Artisan::call('adminetic:website-permission');
         }
         Artisan::call('vendor:publish', ['--provider' => 'CyrildeWit\EloquentViewable\EloquentViewableServiceProvider', '--tag' => 'migrations']);
+        Artisan::call('vendor:publish', ['--provider' => 'Spatie\Analytics\AnalyticsServiceProvider']);
         Artisan::call('install:adminetic-category');
         Artisan::call('migrate');
         $this->info('Adminetic Website Installed.');

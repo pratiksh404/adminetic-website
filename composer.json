@@ -19,8 +19,9 @@
         "php": "^7.4|^8.0",
         "adminetic/category": "^1.0.0",
         "cyrildewit/eloquent-viewable": "^6.0",
+        "illuminate/support": "^8.0",
         "rtconner/laravel-tagging": "^4.1",
-        "illuminate/support": "^8.0"
+        "spatie/laravel-analytics": "^3.11"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
