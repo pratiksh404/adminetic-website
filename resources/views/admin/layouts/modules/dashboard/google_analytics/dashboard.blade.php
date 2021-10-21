@@ -1,4 +1,4 @@
-@if (config('website.google_analytics_active',false))
+@if (config('website.google_analytics_dashboard_active',false))
 <div class="row">
     <div class="col-lg-4">
         <div class="card shadow-lg">

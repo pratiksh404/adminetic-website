@@ -58,6 +58,26 @@ php artisan install:adminetic-category // To install category module only
 php artisan adminetic:website-permission // To seed website module permission only
 ```
 
+## Dashboard
+
+Include adminetic website dashboard view component to `view/admin/dashboard/index`
+
+```
+<div class="container-fluid">
+    <x-adminetic-website-analytics-dashboard />  <!-- Website Dashboard Component -->
+</div>
+```
+
+You can enable/disable dashboard components from config/website file
+
+```
+'google_analytics_dashboard_active' => false,
+'model_count_dashboard_active' => true,
+'post_dashboard_active' => false,
+```
+
+For google analytics component. Please follow the documentaion [spatie/laravel-analytics](https://github.com/spatie/laravel-analytics)
+
 ## Todo
 
 - [ ] Frontend theme support
@@ -85,6 +105,7 @@ If you discover any security related issues, please email pratikdai404@gmail.com
 ## Credits
 
 - [Pratik Shrestha](https://github.com/adminetic)
+- [spatie/laravel-analytics](https://github.com/spatie/laravel-analytics)
 - [All Contributors](../../contributors)
 
 ## License
@@ -93,6 +114,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 ## Screenshots
 
+![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/dashboard.jpeg)
 ![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/google-analytic-adminetic-website.jpeg)
 ![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/category.jpg)
 ![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/gallery.jpg)

@@ -1,4 +1,4 @@
-@if (config('website.google_analytics_active',false))
+@if (config('website.google_analytics_dashboard_active',false))
 <script>
     $(function(){
                     $(document).ready(function(){
