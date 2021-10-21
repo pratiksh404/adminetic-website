@@ -4,8 +4,8 @@ namespace Adminetic\Website\Http\Controllers;
 
 use Adminetic\Website\Services\PostStatistic;
 use Analytics;
-use Spatie\Analytics\Period;
 use App\Http\Controllers\Controller;
+use Spatie\Analytics\Period;
 
 class WebsiteAnalyticsController extends Controller
 {
@@ -17,27 +17,30 @@ class WebsiteAnalyticsController extends Controller
             [
                 'metrics' => 'ga:sessions,ga:pageviews',
                 'dimensions' => 'ga:country',
-                'sort' => '-ga:pageviews'
+                'sort' => '-ga:pageviews',
             ]
         )->rows;
+
         return response()->json([
-            'analytics' => $analytics
+            'analytics' => $analytics,
         ], 200);
     }
 
     public function viewByDaysColumnChart()
     {
         $analytics = Analytics::fetchTotalVisitorsAndPageViews(Period::days(request()->has('days') ? (int) request()->days : 7));
+
         return response()->json([
-            'analytics' => $analytics
+            'analytics' => $analytics,
         ], 200);
     }
 
     public function topReferrersColumnChart()
     {
         $analytics = Analytics::fetchTopReferrers(Period::days(request()->has('days') ? (int) request()->days : 7), 5);
+
         return response()->json([
-            'analytics' => $analytics
+            'analytics' => $analytics,
         ], 200);
     }
 
@@ -48,11 +51,12 @@ class WebsiteAnalyticsController extends Controller
             'ga:sessions',
             [
                 'dimensions' => 'ga:userType',
-                'metrics' => 'ga:sessions'
+                'metrics' => 'ga:sessions',
             ]
         )->rows;
+
         return response()->json([
-            'analytics' => $analytics
+            'analytics' => $analytics,
         ], 200);
     }
 
@@ -61,7 +65,7 @@ class WebsiteAnalyticsController extends Controller
         $analytics = Analytics::fetchTopBrowsers(Period::days(request()->has('days') ? (int) request()->days : 7), 5);
 
         return response()->json([
-            'analytics' => $analytics
+            'analytics' => $analytics,
         ], 200);
     }
 
@@ -70,7 +74,7 @@ class WebsiteAnalyticsController extends Controller
         $analytics = Analytics::fetchMostVisitedPages(Period::days(request()->has('days') ? (int) request()->days : 7), 5);
 
         return response()->json([
-            'analytics' => $analytics
+            'analytics' => $analytics,
         ], 200);
     }
 

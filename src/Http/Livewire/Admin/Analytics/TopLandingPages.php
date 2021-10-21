@@ -3,8 +3,8 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Analytics;
 
 use Analytics;
-use Spatie\Analytics\Period;
 use Livewire\Component;
+use Spatie\Analytics\Period;
 
 class TopLandingPages extends Component
 {
@@ -18,7 +18,7 @@ class TopLandingPages extends Component
             [
                 'dimensions' => 'ga:landingPagePath',
                 'metrics' => 'ga:entrances,ga:bounces',
-                'sort' => '-ga:entrances'
+                'sort' => '-ga:entrances',
             ]
         )->rows;
 

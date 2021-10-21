@@ -3,8 +3,8 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Analytics;
 
 use Analytics;
-use Spatie\Analytics\Period;
 use Livewire\Component;
+use Spatie\Analytics\Period;
 
 class DurationSpendOnSite extends Component
 {
@@ -19,6 +19,7 @@ class DurationSpendOnSite extends Component
                 'metrics' => 'ga:sessions,ga:sessionDuration',
             ]
         )->rows;
+
         return view('website::livewire.admin.analytics.duration-spend-on-site', compact('site_durations'));
     }
 }

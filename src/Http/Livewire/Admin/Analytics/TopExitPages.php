@@ -3,8 +3,8 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Analytics;
 
 use Analytics;
-use Spatie\Analytics\Period;
 use Livewire\Component;
+use Spatie\Analytics\Period;
 
 class TopExitPages extends Component
 {
@@ -18,7 +18,7 @@ class TopExitPages extends Component
             [
                 'dimensions' => 'ga:exitPagePath',
                 'metrics' => 'ga:exits,ga:pageviews',
-                'sort' => '-ga:exits'
+                'sort' => '-ga:exits',
             ]
         )->rows;
 
