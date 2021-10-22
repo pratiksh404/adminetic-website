@@ -16,9 +16,11 @@ class CreateBlocksTable extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
+            $table->string('type');
             $table->string('name')->unique();
             $table->string('image')->nullable();
-            $table->string('version')->default('v1');
+            $table->integer('version')->default(1);
+            $table->integer('theme')->default(1);
             $table->string('page')->nullable();
             $table->string('location');
             $table->bigInteger('position')->default(1);

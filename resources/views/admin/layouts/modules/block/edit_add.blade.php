@@ -48,21 +48,30 @@
         @endif
         <img src="" id="block_image_plcaeholder" class="img-fluid">
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="mb-2">
-            <label for="version">Version (Select or create one)</label>
+            <label for="type">Block Type (Select or create one)</label>
             <div class="input-group">
-                <select name="version" id="version" class="page">
-                    <option selected disabled>Select Block Version ... </option>
-                    @isset($versions)
-                    @if (count($versions) > 0)
-                    @foreach (array_unique($versions) as $version)
-                    <option value="{{$version}}" {{isset($block->version) ? ($block->version == $version ?
-                        'selected' : '') : ''}}>{{$version}}</option>
+                <select name="type" id="type" class="type">
+                    <option selected disabled>Select Block Type (e.g banner,header,footer) ... </option>
+                    @isset($block_types)
+                    @if (count($block_types) > 0)
+                    @foreach (array_unique($block_types) as $block_type)
+                    <option value="{{$block_type}}" {{isset($block->type) ? ($block->type == $block_type ?
+                        'selected' : '') : ''}}>{{$block_type}}</option>
                     @endforeach
                     @endif
                     @endisset
                 </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="mb-2">
+            <label for="version">Version <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <input type="number" name="version" id="version" class="touchspin"
+                    value="{{$block->version ?? old('version') ?? 1}}">
             </div>
         </div>
     </div>
@@ -74,6 +83,15 @@
                 <input name="active" type="checkbox" value="1" id="active" {{isset($block->active) ? ($block->active ?
                 'checked' : '') : 'checked'}}><span class="switch-state"></span>
             </label>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="mb-2">
+            <label for="theme">Theme</label>
+            <div class="input-group">
+                <input type="number" name="theme" id="theme" class="touchspin"
+                    value="{{$block->theme ?? old('theme') ?? 1}}">
+            </div>
         </div>
     </div>
 </div>

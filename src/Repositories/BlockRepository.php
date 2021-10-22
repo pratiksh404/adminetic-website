@@ -27,14 +27,16 @@ class BlockRepository implements BlockRepositoryInterface
     {
         $block_domains = Block::latest()->pluck('page')->toArray();
         $versions = Block::latest()->pluck('version')->toArray();
+        $block_types = Block::latest()->pluck('type')->toArray();
 
-        return compact('block_domains', 'versions');
+        return compact('block_domains', 'versions', 'block_types');
     }
 
     // Block Store
     public function storeBlock(BlockRequest $request)
     {
         $block = Block::create($request->validated());
+        $this->versionActivationControl($block);
         $this->uploadImage($block);
     }
 
@@ -49,14 +51,16 @@ class BlockRepository implements BlockRepositoryInterface
     {
         $block_domains = Block::latest()->pluck('page')->toArray();
         $versions = Block::latest()->pluck('version')->toArray();
+        $block_types = Block::latest()->pluck('type')->toArray();
 
-        return compact('block', 'block_domains', 'versions');
+        return compact('block', 'block_domains', 'versions', 'block_types');
     }
 
     // Block Update
     public function updateBlock(BlockRequest $request, Block $block)
     {
         $block->update($request->validated());
+        $this->versionActivationControl($block);
         $this->uploadImage($block);
     }
 
@@ -75,7 +79,21 @@ class BlockRepository implements BlockRepositoryInterface
                 'image' => request()->image->store('website/block', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/'.$block->image));
+            $image->save(public_path('storage/' . $block->image));
+        }
+    }
+
+    // Version Activation Control
+    protected function versionActivationControl(Block $block)
+    {
+        $blocks = Block::where([
+            ['id', '<>', $block->id],
+            ['type', '=', $block->type],
+            ['theme', '=', $block->theme],
+        ])->pluck('id')->toArray();
+
+        if ($block->active) {
+            Block::whereIn('id', $blocks)->update(['active' => 0]);
         }
     }
 }

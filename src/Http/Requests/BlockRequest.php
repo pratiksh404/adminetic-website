@@ -25,6 +25,7 @@ class BlockRequest extends FormRequest
     {
         $this->merge([
             'code' => $this->block->code ?? rand(100000, 999999),
+            'type' => strtolower(trim($this->type))
         ]);
     }
 
@@ -39,9 +40,11 @@ class BlockRequest extends FormRequest
 
         return [
             'code' => 'required|max:255|unique:blocks,code,' . $id,
+            'type' => 'required|max:255',
             'name' => 'required|max:255|unique:blocks,name,' . $id,
             'image' => 'nullable|file|image|max:3000',
-            'version' => 'sometimes|max:60',
+            'version' => 'required|numeric|max:60',
+            'theme' => 'nullable|numeric|max:60',
             'page' => 'nullable|max:255',
             'location' => 'required|max:255',
             'position' => 'sometimes|numeric',

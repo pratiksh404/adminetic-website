@@ -4,6 +4,9 @@
         $(".page").select2({
         tags: true
         });
+        $(".type").select2({
+        tags: true
+        });
 
         $(document).ready(function() {
         var setting = $('#setting').data('setting');

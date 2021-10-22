@@ -28,12 +28,16 @@
                     role="tab" aria-controls="info-list" aria-selected="true">List</a></li>
             <li class="nav-item"><a class="nav-link" id="reorder-info-tab" data-bs-toggle="tab" href="#info-reorder"
                     role="tab" aria-controls="info-reorder" aria-selected="false">Reorder Block</a></li>
+            <li class="nav-item"><a class="nav-link" id="block-vc-tab" data-bs-toggle="tab" href="#block-vc" role="tab"
+                    aria-controls="block-vc" aria-selected="false">Block Version Control</a></li>
         </ul>
         <div class="tab-content" id="info-tabContent">
             <div class="tab-pane fade show active" id="info-list" role="tabpanel" aria-labelledby="info-list-tab">
                 <table class="table table-striped table-bordered datatable">
                     <thead>
                         <tr>
+                            <th>Theme</th>
+                            <th>Type</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Location</th>
@@ -46,6 +50,8 @@
                     <tbody>
                         @foreach ($blocks as $block)
                         <tr>
+                            <td>Theme {{$block->theme}}</td>
+                            <td>{{$block->type}}</td>
                             <td>
                                 @if (isset($block->image))
                                 <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}" width="120"
@@ -58,7 +64,7 @@
                             <td>{{$block->name}}</td>
                             <td>{{$block->location ?? 'N/A'}}</td>
                             <td>{{$block->page ?? 'N/A'}}</td>
-                            <td>{{$block->version ?? 'N/A'}}</td>
+                            <td>v{{$block->version ?? 'N/A'}}</td>
                             <td><span class="badge badge-{{$block->active ? 'success' : 'danger'}}">{{$block->active ?
                                     'Active' : 'Inactive'}}</span>
                             </td>
@@ -70,6 +76,8 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>Theme</th>
+                            <th>Type</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Location</th>
@@ -83,6 +91,9 @@
             </div>
             <div class="tab-pane fade" id="info-reorder" role="tabpanel" aria-labelledby="reorder-info-tab">
                 @livewire('admin.block.reorder-block')
+            </div>
+            <div class="tab-pane fade" id="block-vc" role="tabpanel" aria-labelledby="block-vc-tab">
+                @livewire('admin.block.block-vc')
             </div>
         </div>
         {{-- =================================================================== --}}

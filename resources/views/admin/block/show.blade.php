@@ -21,6 +21,12 @@
                                 <b>Version :</b><span class="text-muted">{{$block->version ?? 'N/A'}}</span>
                             </li>
                             <li class="list-group-item">
+                                <b>Theme :</b><span class="text-muted">{{$block->theme ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Type :</b><span class="text-muted">{{$block->type ?? 'N/A'}}</span>
+                            </li>
+                            <li class="list-group-item">
                                 <b>Location :</b><span class="text-muted">{{$block->location ?? 'N/A'}}</span>
                             </li>
                             <li class="list-group-item">

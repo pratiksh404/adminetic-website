@@ -24,6 +24,7 @@ use Adminetic\Website\Contracts\VideoRepositoryInterface;
 use Adminetic\Website\Http\Livewire\Admin\Analytics\DurationSpendOnSite;
 use Adminetic\Website\Http\Livewire\Admin\Analytics\TopExitPages;
 use Adminetic\Website\Http\Livewire\Admin\Analytics\TopLandingPages;
+use Adminetic\Website\Http\Livewire\Admin\Block\BlockVc;
 use Adminetic\Website\Http\Livewire\Admin\Block\ReorderBlock;
 use Adminetic\Website\Http\Livewire\Admin\Facility\ReorderFacility;
 use Adminetic\Website\Http\Livewire\Admin\Faq\ReorderFaq;
@@ -160,15 +161,15 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__.'/../../config/website.php' => config_path('website.php'),
+            __DIR__ . '/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__.'/../../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../../database/migrations' => database_path('migrations'),
         ], 'website-migrations');
     }
 
@@ -179,8 +180,8 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -205,7 +206,7 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
         });
     }
 
@@ -233,6 +234,7 @@ class WebsiteServiceProvider extends ServiceProvider
         Livewire::component('admin.video.reorder-video', ReorderVideo::class);
         Livewire::component('admin.package.reorder-package', ReorderPackage::class);
         Livewire::component('admin.block.reorder-block', ReorderBlock::class);
+        Livewire::component('admin.block.block-vc', BlockVc::class);
         Livewire::component('admin.facility.reorder-facility', ReorderFacility::class);
         Livewire::component('admin.faq.reorder-faq', ReorderFaq::class);
         Livewire::component('admin.page.reorder-page', ReorderPage::class);
