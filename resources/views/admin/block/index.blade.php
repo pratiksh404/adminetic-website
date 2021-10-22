@@ -57,8 +57,13 @@
                                 <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}" width="120"
                                     class="img-fluid">
                                 @else
+                                @if (isset(($block->setting())->image))
+                                <img src="{{asset(($block->setting())->image)}}" alt="{{$block->name}}" width="120"
+                                    class="img-fluid">
+                                @else
                                 <img src="{{getImagePlaceholder()}}" alt="{{$block->name}}" width="120"
                                     class="img-fluid">
+                                @endif
                                 @endif
                             </td>
                             <td>{{$block->name}}</td>
