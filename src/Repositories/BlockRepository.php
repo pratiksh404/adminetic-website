@@ -79,7 +79,7 @@ class BlockRepository implements BlockRepositoryInterface
                 'image' => request()->image->store('website/block', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/' . $block->image));
+            $image->save(public_path('storage/'.$block->image));
         }
     }
 

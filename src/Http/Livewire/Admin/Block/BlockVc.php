@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Block;
 
 use Adminetic\Website\Models\Admin\Block;
-use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 class BlockVc extends Component
@@ -34,7 +33,7 @@ class BlockVc extends Component
 
     public function updatedActiveblocks()
     {
-        $block_ids = array();
+        $block_ids = [];
         foreach ($this->activeblocks as $types) {
             foreach ($types as $type => $block_id) {
                 $block_ids[] = $block_id;
