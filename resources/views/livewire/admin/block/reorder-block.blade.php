@@ -6,17 +6,19 @@
             <div class="card shadow-lg" wire:sortable.handle style="cursor:move">
                 <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-lg-12">
-                            @if (isset($block->image))
-                            <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}" class="img-fluid">
-                            <hr>
-                            @endif
+                        <div class="col-lg-5">
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <b>Name : </b> <span class="text-muted">{{$block->name ?? 'N/A'}}</span>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Pagw : </b> <span class="text-muted">{{$block->page ?? 'N/A'}}</span>
+                                    <b>Theme : </b> <span class="text-muted">{{$block->theme ?? 'N/A'}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Page : </b> <span class="text-muted">{{$block->page ?? 'N/A'}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Version : </b> <span class="text-muted">v{{$block->version ?? 'N/A'}}</span>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Location : </b> <span class="text-muted">{{$block->location ?? 'N/A'}}</span>
@@ -26,6 +28,12 @@
                                         ? 'Active' : 'Inactive'}}</span>
                                 </li>
                             </ul>
+                        </div>
+                        <div class="col-lg-7">
+                            @if (isset($block->image))
+                            <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}" class="img-fluid">
+                            <hr>
+                            @endif
                         </div>
                     </div>
                 </div>

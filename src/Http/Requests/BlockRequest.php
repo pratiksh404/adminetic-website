@@ -39,14 +39,9 @@ class BlockRequest extends FormRequest
         $id = $this->block->id ?? '';
 
         return [
-<<<<<<< HEAD
             'code' => 'required|max:255|unique:blocks,code,' . $id,
             'type' => 'required|max:255',
             'name' => 'required|max:255|unique:blocks,name,' . $id,
-=======
-            'code' => 'required|max:255|unique:blocks,code,'.$id,
-            'name' => 'required|max:255|unique:blocks,name,'.$id,
->>>>>>> 03ed8c22796652ffecb9c7cedb0423656ccc6e3b
             'image' => 'nullable|file|image|max:3000',
             'version' => 'required|numeric|max:60',
             'theme' => 'nullable|numeric|max:60',
