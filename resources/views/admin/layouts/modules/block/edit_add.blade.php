@@ -89,8 +89,13 @@
         <div class="mb-2">
             <label for="theme">Theme</label>
             <div class="input-group">
-                <input type="number" name="theme" id="theme" class="touchspin"
-                    value="{{$block->theme ?? old('theme') ?? 1}}">
+                <select name="theme" id="theme" class="select2" style="width: 100%">
+                    <option selected disabled>Select Theme ... </option>
+                    @foreach (config('website.block_group_themes',array(1)) as $theme)
+                    <option value="{{$theme}}" {{isset($block->theme) ? ($block->theme == $theme ? 'selected' : '') :
+                        ''}}>Theme {{$theme}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>
