@@ -161,15 +161,15 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__ . '/../../config/website.php' => config_path('website.php'),
+            __DIR__.'/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__ . '/../../database/migrations' => database_path('migrations'),
+            __DIR__.'/../../database/migrations' => database_path('migrations'),
         ], 'website-migrations');
     }
 
@@ -180,8 +180,8 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -206,7 +206,7 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         });
     }
 
