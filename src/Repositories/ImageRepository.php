@@ -66,7 +66,7 @@ class ImageRepository implements ImageRepositoryInterface
         if (request()->image) {
             $dimension = $this->calculateDimention($image, $request);
             $thumbnails = [
-                'storage' => 'website/image/' . validImageFolder($image->type, 'image'),
+                'storage' => 'website/image/'.validImageFolder($image->type, 'image'),
                 'width' => $dimension['width'],
                 'height' => $dimension['height'],
                 'quality' => '70',
