@@ -6,7 +6,18 @@
             <div class="card shadow-lg" wire:sortable.handle style="cursor:move">
                 <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-12">
+                            @if (isset($block->image))
+                            <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}" class="img-fluid">
+                            @else
+                            @if (isset(($block->setting())->image))
+                            <img src="{{asset(($block->setting())->image)}}" alt="{{$block->name}}" class="img-fluid">
+                            @else
+                            <img src="{{getImagePlaceholder()}}" alt="{{$block->name}}" class="img-fluid">
+                            @endif
+                            @endif
+                        </div>
+                        <div class="col-lg-12">
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <b>Name : </b> <span class="text-muted">{{$block->name ?? 'N/A'}}</span>
@@ -28,19 +39,6 @@
                                         ? 'Active' : 'Inactive'}}</span>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="col-lg-7">
-                            @if (isset($block->image))
-                            <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}" width="120"
-                                class="img-fluid">
-                            @else
-                            @if (isset(($block->setting())->image))
-                            <img src="{{asset(($block->setting())->image)}}" alt="{{$block->name}}" width="120"
-                                class="img-fluid">
-                            @else
-                            <img src="{{getImagePlaceholder()}}" alt="{{$block->name}}" width="120" class="img-fluid">
-                            @endif
-                            @endif
                         </div>
                     </div>
                 </div>

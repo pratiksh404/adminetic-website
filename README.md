@@ -76,6 +76,35 @@ You can enable/disable dashboard components from config/website file
 'post_dashboard_active' => false,
 ```
 
+Add view id in env
+
+```
+ANALYTICS_VIEW_ID=
+```
+
+Add apex chart asset in config/adminetic.php
+
+```
+    'assets' => [
+        [
+            'name' => 'Charts',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'adminetic/assets/js/chart/apex-chart/apex-chart.js',
+                ],
+                [
+                    'type' => 'js',
+                    'active' => true,
+                    'location' => 'adminetic/assets/js/datepicker/daterange-picker/daterangepicker.js',
+                ],
+            ],
+        ],
+    ],
+```
+
 For google analytics component. Please follow the documentaion [spatie/laravel-analytics](https://github.com/spatie/laravel-analytics)
 
 ## Todo
