@@ -13,6 +13,22 @@ class WebsiteAdapter implements PluginInterface
     {
         return  [
             [
+                'name' => 'Charts',
+                'active' => true,
+                'files' => [
+                    [
+                        'type' => 'js',
+                        'active' => true,
+                        'location' => 'adminetic/assets/js/chart/apex-chart/apex-chart.js',
+                    ],
+                    [
+                        'type' => 'js',
+                        'active' => true,
+                        'location' => 'adminetic/assets/js/datepicker/daterange-picker/daterangepicker.js',
+                    ],
+                ],
+            ],
+            [
                 'name' => 'IconPicker',
                 'active' => true,
                 'files' => [
