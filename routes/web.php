@@ -6,6 +6,7 @@ use Adminetic\Website\Http\Controllers\CounterController;
 use Adminetic\Website\Http\Controllers\EventController;
 use Adminetic\Website\Http\Controllers\FacilityController;
 use Adminetic\Website\Http\Controllers\FaqController;
+use Adminetic\Website\Http\Controllers\FeatureController;
 use Adminetic\Website\Http\Controllers\GalleryController;
 use Adminetic\Website\Http\Controllers\ImageController;
 use Adminetic\Website\Http\Controllers\PackageController;
@@ -37,6 +38,7 @@ Route::resource('post', PostController::class);
 Route::resource('template', TemplateController::class);
 Route::resource('block', BlockController::class);
 Route::resource('testimonial', TestimonialController::class);
+Route::resource('feature', FeatureController::class);
 
 /* AJAX ROUTE */
 Route::get('get_template', [TemplateController::class, 'get_template'])->name('get_template');
