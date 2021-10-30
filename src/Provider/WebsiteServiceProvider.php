@@ -3,7 +3,9 @@
 namespace Adminetic\Website\Provider;
 
 use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteMigrateCommand;
 use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteRollbackCommand;
 use Adminetic\Website\Contracts\BlockRepositoryInterface;
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
 use Adminetic\Website\Contracts\CounterRepositoryInterface;
@@ -175,7 +177,7 @@ class WebsiteServiceProvider extends ServiceProvider
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__ . '/../../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../../database/migrations' => database_path('migrations/website'),
         ], 'website-migrations');
     }
 
@@ -186,7 +188,9 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
+        if (!config('website.publish_migrations', true)) {
+            $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
+        }
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
@@ -201,6 +205,8 @@ class WebsiteServiceProvider extends ServiceProvider
         $this->commands([
             AdmineticWebsiteInstallCommand::class,
             AdmineticWebsitePermissionCommand::class,
+            AdmineticWebsiteMigrateCommand::class,
+            AdmineticWebsiteRollbackCommand::class
         ]);
     }
 

@@ -10,6 +10,8 @@ return [
     'google_analytics_dashboard_active' => false,
     'model_count_dashboard_active' => true,
     'post_dashboard_active' => false,
+    'publish_migrations' => true,
+    'migration_publish_path' => 'database/migrations/website',
 
     /*
     |--------------------------------------------------------------------------
