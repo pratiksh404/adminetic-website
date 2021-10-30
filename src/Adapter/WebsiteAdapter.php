@@ -402,7 +402,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', Adminetic\Category\Models\Admin\Category::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('category', Adminetic\Website\Models\Admin\Category::class)
+                'children' => $this->indexCreateChildren('category', Adminetic\Website\Models\Admin\Category::class),
             ],
         ];
     }

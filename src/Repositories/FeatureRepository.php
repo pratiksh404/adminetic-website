@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Models\Admin\Feature;
-use Adminetic\Website\Http\Requests\FeatureRequest;
 use Adminetic\Website\Contracts\FeatureRepositoryInterface;
+use Adminetic\Website\Http\Requests\FeatureRequest;
+use Adminetic\Website\Models\Admin\Feature;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
 class FeatureRepository implements FeatureRepositoryInterface
@@ -18,6 +18,7 @@ class FeatureRepository implements FeatureRepositoryInterface
                 return Feature::latest()->get();
             }))
             : Feature::latest()->get();
+
         return compact('features');
     }
 
@@ -68,7 +69,7 @@ class FeatureRepository implements FeatureRepositoryInterface
                 'image' => request()->image->store('website/feature/image', 'public'),
             ]);
             $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/' . $feature->image));
+            $image->save(public_path('storage/'.$feature->image));
         }
     }
 }

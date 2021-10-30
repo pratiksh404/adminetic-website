@@ -29,7 +29,7 @@ class FeatureRequest extends FormRequest
             'icon' => 'nullable|max:50',
             'image' => 'nullable|max:255',
             'setting' => 'nullable',
-            'position' => 'sometimes|numeric'
+            'position' => 'sometimes|numeric',
         ];
     }
 }

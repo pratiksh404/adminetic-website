@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class AdmineticWebsiteRollbackCommand extends Command
 {
