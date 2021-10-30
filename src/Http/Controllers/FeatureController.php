@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Adminetic\Website\Models\Admin\Feature;
-use Adminetic\Website\Http\Requests\FeatureRequest;
 use Adminetic\Website\Contracts\FeatureRepositoryInterface;
+use Adminetic\Website\Http\Requests\FeatureRequest;
+use Adminetic\Website\Models\Admin\Feature;
+use App\Http\Controllers\Controller;
 
 class FeatureController extends Controller
 {
@@ -16,7 +16,6 @@ class FeatureController extends Controller
         $this->featureRepositoryInterface = $featureRepositoryInterface;
         $this->authorizeResource(Feature::class, 'feature');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -47,6 +46,7 @@ class FeatureController extends Controller
     public function store(FeatureRequest $request)
     {
         $this->featureRepositoryInterface->storeFeature($request);
+
         return redirect(adminRedirectRoute('feature'))->withSuccess('Feature Created Successfully.');
     }
 
@@ -82,6 +82,7 @@ class FeatureController extends Controller
     public function update(FeatureRequest $request, Feature $feature)
     {
         $this->featureRepositoryInterface->updateFeature($request, $feature);
+
         return redirect(adminRedirectRoute('feature'))->withInfo('Feature Updated Successfully.');
     }
 
@@ -94,6 +95,7 @@ class FeatureController extends Controller
     public function destroy(Feature $feature)
     {
         $this->featureRepositoryInterface->destroyFeature($feature);
+
         return redirect(adminRedirectRoute('feature'))->withFail('Feature Deleted Successfully.');
     }
 }
