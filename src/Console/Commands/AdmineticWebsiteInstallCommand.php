@@ -59,6 +59,7 @@ class AdmineticWebsiteInstallCommand extends Command
         Artisan::call('install:adminetic-category');
         $this->info('Adminetic category installed ... ✅');
         if ($this->confirm('Do you wish to run website table migration?')) {
+            Artisan::call('migrate');
             Artisan::call('migrate:adminetic-website');
         }
         $this->info('Adminetic website module migration complete ... ✅');
