@@ -28,16 +28,34 @@ For detailed documentaion visit [Adminetic Website Module Documentation](https:/
 
 ## Installation
 
+##### Step 1:
+
 You can install the package via composer:
 
 ```bash
 composer require adminetic/website
 ```
 
-Then
+##### Step 2:
+
+Setup adminetic website.
 
 ```bash
 php artisan install:adminetic-website
+```
+
+##### Step 3:
+
+Migrate adminetic website module tables.
+
+```bash
+php artisan migrate:adminetic-website
+```
+
+For rollback
+
+```bash
+php artisan migrate:rollback:adminetic-website
 ```
 
 ## Include Adminetic Website Adapter

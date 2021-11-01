@@ -100,6 +100,23 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
+                'name' => 'Features',
+                'icon' => 'fa fa-burn',
+                'is_active' => request()->routeIs('feature*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Feature::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Feature::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('feature', Adminetic\Website\Models\Admin\Feature::class),
+            ],
+            [
+                'type' => 'menu',
                 'name' => 'Counters',
                 'icon' => 'fa fa-plus',
                 'is_active' => request()->routeIs('counter*') ? 'active' : '',
@@ -369,6 +386,23 @@ class WebsiteAdapter implements PluginInterface
                     ],
                 ],
                 'children' => $this->indexCreateChildren('testimonial', Adminetic\Website\Models\Admin\Testimonial::class),
+            ],
+            [
+                'type' => 'menu',
+                'name' => 'Categories',
+                'icon' => 'fa fa-bars',
+                'is_active' => request()->routeIs('category*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Category\Models\Admin\Category::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Category\Models\Admin\Category::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('category', Adminetic\Website\Models\Admin\Category::class),
             ],
         ];
     }
