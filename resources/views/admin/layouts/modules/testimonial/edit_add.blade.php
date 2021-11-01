@@ -3,7 +3,7 @@
         <div class="mb-2">
             <label for="name">Person Name <span class="text-danger">*</span></label>
             <div class="input-group">
-                <input type="text" name="name" id="name" class="form-control" value="{{$project->name ?? old('name')}}"
+                <input type="text" name="name" id="name" class="form-control" value="{{$testimonial->name ?? old('name')}}"
                     placeholder="Person Name">
             </div>
         </div>
@@ -13,7 +13,7 @@
             <label for="email">Person Email</label>
             <div class="input-group">
                 <input type="email" name="email" id="email" class="form-control"
-                    value="{{$project->email ?? old('email')}}" placeholder="Person Email">
+                    value="{{$testimonial->email ?? old('email')}}" placeholder="Person Email">
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <label for="contact">Person Contact</label>
             <div class="input-group">
                 <input type="number" name="contact" id="contact" class="form-control"
-                    value="{{$project->contact ?? old('contact')}}" placeholder="Person Contact">
+                    value="{{$testimonial->contact ?? old('contact')}}" placeholder="Person Contact">
             </div>
         </div>
     </div>
@@ -33,16 +33,16 @@
             <label for="designation">Person Designation</label>
             <div class="input-group">
                 <input type="text" name="designation" id="designation" class="form-control"
-                    value="{{$project->designation ?? old('designation')}}" placeholder="Person Name">
+                    value="{{$testimonial->designation ?? old('designation')}}" placeholder="Person Name">
             </div>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="mb-2">
-            <label for="company">Person Email</label>
+            <label for="company">Company Name</label>
             <div class="input-group">
                 <input type="text" name="company" id="company" class="form-control"
-                    value="{{$project->company ?? old('company')}}" placeholder="Person Email">
+                    value="{{$testimonial->company ?? old('company')}}" placeholder="Company Name">
             </div>
         </div>
     </div>
