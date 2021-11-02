@@ -69,7 +69,7 @@ class FacilityRepository implements FacilityRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/facility/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/' . $facility->icon_image));
+            $image->save(public_path('storage/'.$facility->icon_image));
         }
 
         if (request()->image) {
