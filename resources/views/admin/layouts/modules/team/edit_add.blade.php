@@ -119,7 +119,7 @@
                         <span class="input-group-text"><i class="fab fa-facebook-messenger"></i></span>
                     </div>
                     <input type="text" name="messenger" id="messenger" class="form-control"
-                        value="{{$team->messenger ?? old('messenger')}}" placeholder="Member Github">
+                        value="{{$team->messenger ?? old('messenger')}}" placeholder="Member Messenger">
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@
                         <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
                     </div>
                     <input type="text" name="whatsapp" id="whatsapp" class="form-control"
-                        value="{{$team->whatsapp ?? old('whatsapp')}}" placeholder="Member Github">
+                        value="{{$team->whatsapp ?? old('whatsapp')}}" placeholder="Member Whatsapp">
                 </div>
             </div>
         </div>
