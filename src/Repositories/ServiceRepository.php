@@ -69,16 +69,22 @@ class ServiceRepository implements ServiceRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/service/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$service->icon_image));
+            $image->save(public_path('storage/' . $service->icon_image));
         }
 
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/service/icon',
-                'width' => '512',
-                'height' => '512',
+                'storage' => 'website/service/image',
+                'width' => '1200',
+                'height' => '630',
                 'quality' => '80',
                 'thumbnails' => [
+                    [
+                        'thumbnail-name' => 'medium',
+                        'thumbnail-width' => '600',
+                        'thumbnail-height' => '600',
+                        'thumbnail-quality' => '80',
+                    ],
                     [
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '150',

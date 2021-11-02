@@ -69,16 +69,22 @@ class FacilityRepository implements FacilityRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/facility/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$facility->icon_image));
+            $image->save(public_path('storage/' . $facility->icon_image));
         }
 
         if (request()->image) {
             $thumbnails = [
                 'storage' => 'website/facility/image',
-                'width' => '512',
-                'height' => '512',
-                'quality' => '80',
+                'width' => '1200',
+                'height' => '630',
+                'quality' => '100',
                 'thumbnails' => [
+                    [
+                        'thumbnail-name' => 'medium',
+                        'thumbnail-width' => '600',
+                        'thumbnail-height' => '600',
+                        'thumbnail-quality' => '80',
+                    ],
                     [
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '150',
