@@ -58,6 +58,16 @@ For rollback
 php artisan migrate:rollback:adminetic-website
 ```
 
+##### Step 4:
+
+Add WebsiteUser Trait to App/Models/User.php
+
+```bash
+namespace Adminetic\Website\Traits\WebsiteUser;
+
+use WebsiteUser;
+```
+
 ## Include Adminetic Website Adapter
 
 In config/adminetic.php, include

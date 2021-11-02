@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Category\Models\Admin\Category;
+use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Adminetic\Category\Models\Admin\Category;
 
 class Facility extends Model
 {

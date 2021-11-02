@@ -18,7 +18,7 @@ class ReorderBlock extends Component
 
     public function render()
     {
-        $blocks = Cache::get('blocks', Block::orderBy('position')->get());
+        $blocks = Block::where('active', 1)->orderBy('position')->get();
 
         return view('website::livewire.admin.block.reorder-block', compact('blocks'));
     }

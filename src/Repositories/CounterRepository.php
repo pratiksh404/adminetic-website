@@ -56,21 +56,19 @@ class CounterRepository implements CounterRepositoryInterface
     // Counter Destroy
     public function destroyCounter(Counter $counter)
     {
-        $counter->icon ? $counter->hardDelete('icon') : '';
+        isset($counter->icon) ? deleteImage($counter->icon) : '';
         $counter->delete();
     }
 
     // Upload Image
     protected function uploadImage(Counter $counter)
     {
-        if (request()->icon) {
-            $solo_image = [
-                'storage' => 'website/counter',
-                'width' => '256',
-                'height' => '256',
-                'quality' => '80',
-            ];
-            $counter->uploadImage('icon', $solo_image);
+        if (request()->has('icon')) {
+            $counter->update([
+                'icon' => request()->icon->store('website/counter', 'public'),
+            ]);
+            $image = Image::make(request()->file('icon')->getRealPath());
+            $image->save(public_path('storage/' . $counter->icon));
         }
     }
 }

@@ -2,13 +2,14 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
+use drh2so4\Thumbnail\Traits\Thumbnail;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Gallery extends Model
 {
-    use LogsActivity;
+    use LogsActivity, Thumbnail;
 
     protected $guarded = [];
 
