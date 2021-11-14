@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Models\Admin\Popup;
-use Adminetic\Website\Http\Requests\PopupRequest;
 use Adminetic\Website\Contracts\PopupRepositoryInterface;
+use Adminetic\Website\Http\Requests\PopupRequest;
+use Adminetic\Website\Models\Admin\Popup;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 
 class PopupRepository implements PopupRepositoryInterface
@@ -18,6 +18,7 @@ class PopupRepository implements PopupRepositoryInterface
                 return Popup::latest()->get();
             }))
             : Popup::latest()->get();
+
         return compact('popups');
     }
 
@@ -64,15 +65,15 @@ class PopupRepository implements PopupRepositoryInterface
     {
         if (request()->has('image')) {
             $popup->update([
-                'image' => request()->image->store('website/popup', 'public')
+                'image' => request()->image->store('website/popup', 'public'),
             ]);
             if (request()->file('image')->getClientOriginalExtension() == 'gif') {
-                $imageName = time() . '.' . request()->image->extension();
+                $imageName = time().'.'.request()->image->extension();
 
                 request()->image->move(public_path('website/popup'), $imageName);
             } else {
                 $image = Image::make(request()->file('image')->getRealPath());
-                $image->save(public_path('storage/' . $popup->image));
+                $image->save(public_path('storage/'.$popup->image));
             }
         }
     }
