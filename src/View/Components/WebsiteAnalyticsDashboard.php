@@ -25,7 +25,7 @@ class WebsiteAnalyticsDashboard extends Component
      */
     public function render()
     {
-        $top_keywords = Analytics::performQuery(
+        $top_keywords = config('website.google_analytics_dashboard_active', false) ? Analytics::performQuery(
             Period::days(request()->has('days') ? (int) request()->days : 7),
             'ga:keyword',
             [
@@ -33,7 +33,7 @@ class WebsiteAnalyticsDashboard extends Component
                 'metrics' => 'ga:sessions',
                 'sort' => '-ga:sessions',
             ]
-        )->rows;
+        )->rows : null;
 
         return view('website::components.website-analytics-dashboard', compact('top_keywords'));
     }
