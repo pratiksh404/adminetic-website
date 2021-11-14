@@ -5,8 +5,8 @@ namespace Adminetic\Website\Repositories;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 use Adminetic\Website\Http\Requests\FacilityRequest;
 use Adminetic\Website\Models\Admin\Facility;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Cache;
+use Intervention\Image\Facades\Image;
 
 class FacilityRepository implements FacilityRepositoryInterface
 {
@@ -70,7 +70,7 @@ class FacilityRepository implements FacilityRepositoryInterface
                 'icon_image' => request()->icon_image->store('website/facility/image', 'public'),
             ]);
             $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/' . $facility->icon_image));
+            $image->save(public_path('storage/'.$facility->icon_image));
         }
 
         if (request()->image) {

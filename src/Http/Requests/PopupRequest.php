@@ -16,7 +16,6 @@ class PopupRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Prepare the data for validation.
      *
@@ -25,7 +24,7 @@ class PopupRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'code' => $this->popup->code ?? rand(100000, 9999998)
+            'code' => $this->popup->code ?? rand(100000, 9999998),
         ]);
     }
 
@@ -37,13 +36,14 @@ class PopupRequest extends FormRequest
     public function rules()
     {
         $id = $this->popup->id ?? '';
+
         return [
-            'code' => 'required|unique:popups,code,' . $id,
+            'code' => 'required|unique:popups,code,'.$id,
             'name' => 'nullable|max:255',
             'image' => 'nullable|file|image|max:3000',
             'body' => 'nullable|max:5500',
             'url' => 'nullable|max:255',
-            'position' => 'sometimes|numeric'
+            'position' => 'sometimes|numeric',
         ];
     }
 }
