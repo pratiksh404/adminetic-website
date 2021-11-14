@@ -389,6 +389,23 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
+                'name' => 'Popups',
+                'icon' => 'fa fa-share-square',
+                'is_active' => request()->routeIs('popup*') ? 'active' : '',
+                'conditions' => [
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Popup::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Popup::class),
+                    ],
+                ],
+                'children' => $this->indexCreateChildren('popup', Adminetic\Website\Models\Admin\Popup::class),
+            ],
+            [
+                'type' => 'menu',
                 'name' => 'Categories',
                 'icon' => 'fa fa-bars',
                 'is_active' => request()->routeIs('category*') ? 'active' : '',

@@ -6,7 +6,7 @@
     </div>
     <div class="col-lg-6">
         <label for="url">URL</label>
-        <input type="text" name="url" id="url" class="form-control" value="{{$client->url ?? old('client')}}"
+        <input type="text" name="url" id="url" class="form-control" value="{{$client->url ?? old('url')}}"
             placeholder="URL">
     </div>
 </div>

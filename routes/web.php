@@ -11,6 +11,7 @@ use Adminetic\Website\Http\Controllers\GalleryController;
 use Adminetic\Website\Http\Controllers\ImageController;
 use Adminetic\Website\Http\Controllers\PackageController;
 use Adminetic\Website\Http\Controllers\PageController;
+use Adminetic\Website\Http\Controllers\PopupController;
 use Adminetic\Website\Http\Controllers\PostController;
 use Adminetic\Website\Http\Controllers\ProjectController;
 use Adminetic\Website\Http\Controllers\ServiceController;
@@ -39,6 +40,7 @@ Route::resource('template', TemplateController::class);
 Route::resource('block', BlockController::class);
 Route::resource('testimonial', TestimonialController::class);
 Route::resource('feature', FeatureController::class);
+Route::resource('popup', PopupController::class);
 
 /* AJAX ROUTE */
 Route::get('get_template', [TemplateController::class, 'get_template'])->name('get_template');
