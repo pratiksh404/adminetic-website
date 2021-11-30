@@ -29,11 +29,17 @@
                                             v{{$block->version}}<span
                                                 class="badge badge-{{$block->active ? 'success' : 'danger'}} pull-right digits">{{$block->active
                                                 ? 'Active' : 'Inactive'}}</span></h6>
-                                        @isset($block->image)
-                                        <p>
-                                            <img src="{{asset('storage/' . $block->image)}}" width="100">
-                                        </p>
-                                        @endisset
+                                        @if (isset($block->image))
+                                        <img src="{{asset('storage/' . $block->image)}}" alt="{{$block->name}}"
+                                            class="img-fluid">
+                                        @else
+                                        @if (isset(($block->setting())->image))
+                                        <img src="{{asset(($block->setting())->image)}}" alt="{{$block->name}}"
+                                            class="img-fluid">
+                                        @else
+                                        <img src="{{getImagePlaceholder()}}" alt="{{$block->name}}" class="img-fluid">
+                                        @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>

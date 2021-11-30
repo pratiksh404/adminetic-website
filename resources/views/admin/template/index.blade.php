@@ -9,7 +9,7 @@
             </div>
             <div class="col-6">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}"> <i data-feather="home"></i></a>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"> <i data-feather="home"></i></a>
                     </li>
                     <li class="breadcrumb-item active">Templates</li>
                 </ol>
@@ -35,8 +35,8 @@
                 @foreach ($templates as $template)
                 <tr>
                     <td>{{ $template->name }}</td>
-                    <td><span
-                            class="badge badge-{{ $template->active ? 'success' : 'danger' }}">{{ $template->active ? 'Active' : 'Inactive' }}</span>
+                    <td><span class="badge badge-{{ $template->active ? 'success' : 'danger' }}">{{ $template->active ?
+                            'Active' : 'Inactive' }}</span>
                     </td>
                     <td>
                         <x-adminetic-action :model="$template" route="template" show="0" />
