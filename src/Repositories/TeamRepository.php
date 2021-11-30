@@ -64,7 +64,7 @@ class TeamRepository implements TeamRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/team/' . validImageFolder($team->name, 'default'),
+                'storage' => 'website/team/'.validImageFolder($team->name, 'default'),
                 'width' => '400',
                 'height' => '600',
                 'quality' => '90',
