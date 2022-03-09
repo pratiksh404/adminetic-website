@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Event;
-use Adminetic\Website\Http\Requests\EventRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\EventRepositoryInterface;
+use Adminetic\Website\Http\Requests\EventRequest;
+use Adminetic\Website\Models\Admin\Event;
+use App\Http\Controllers\Controller;
 
 class EventRestAPIController extends Controller
 {
-
     protected $eventRepositoryInterface;
 
     public function __construct(EventRepositoryInterface $eventRepositoryInterface)
@@ -37,6 +36,7 @@ class EventRestAPIController extends Controller
     public function store(EventRequest $request)
     {
         $event = $this->eventRepositoryInterface->storeEvent($request);
+
         return response()->json($event, 200);
     }
 
@@ -61,6 +61,7 @@ class EventRestAPIController extends Controller
     public function update(EventRequest $request, Event $event)
     {
         $this->eventRepositoryInterface->updateEvent($request, $event);
+
         return response()->json($event, 200);
     }
 
@@ -74,6 +75,7 @@ class EventRestAPIController extends Controller
     {
         $deleted_item = $event;
         $event->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

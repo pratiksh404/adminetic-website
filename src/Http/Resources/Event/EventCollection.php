@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Http\Resources\Event;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Adminetic\Website\Http\Resources\Event\EventResource;
 
 class EventCollection extends ResourceCollection
 {

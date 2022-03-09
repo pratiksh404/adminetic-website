@@ -19,8 +19,8 @@ class ServiceResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('service', $this->id)
-            ]
+                'self' => adminShowRoute('service', $this->id),
+            ],
         ];
     }
 

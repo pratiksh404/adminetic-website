@@ -19,8 +19,8 @@ class FaqResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('faq', $this->id)
-            ]
+                'self' => adminShowRoute('faq', $this->id),
+            ],
         ];
     }
 }

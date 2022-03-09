@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Adminetic\Website\Models\Admin\Testimonial;
 use Adminetic\Website\Http\Resources\Testimonial\TestimonialCollection;
 use Adminetic\Website\Http\Resources\Testimonial\TestimonialResource;
+use Adminetic\Website\Models\Admin\Testimonial;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class TestimonialClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

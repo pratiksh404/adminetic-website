@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Faq;
 
-use Adminetic\Website\Http\Resources\Faq\FaqResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class FaqCollection extends ResourceCollection

@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Counter;
-use Adminetic\Website\Http\Requests\CounterRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\CounterRepositoryInterface;
+use Adminetic\Website\Http\Requests\CounterRequest;
+use Adminetic\Website\Models\Admin\Counter;
+use App\Http\Controllers\Controller;
 
 class CounterRestAPIController extends Controller
 {
-
     protected $counterRepositoryInterface;
 
     public function __construct(CounterRepositoryInterface $counterRepositoryInterface)
@@ -37,6 +36,7 @@ class CounterRestAPIController extends Controller
     public function store(CounterRequest $request)
     {
         $counter = $this->counterRepositoryInterface->storeCounter($request);
+
         return response()->json($counter, 200);
     }
 
@@ -61,6 +61,7 @@ class CounterRestAPIController extends Controller
     public function update(CounterRequest $request, Counter $counter)
     {
         $this->counterRepositoryInterface->updateCounter($request, $counter);
+
         return response()->json($counter, 200);
     }
 
@@ -74,6 +75,7 @@ class CounterRestAPIController extends Controller
     {
         $deleted_item = $counter;
         $counter->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Gallery;
-use Adminetic\Website\Http\Requests\GalleryRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\GalleryRepositoryInterface;
+use Adminetic\Website\Http\Requests\GalleryRequest;
+use Adminetic\Website\Models\Admin\Gallery;
+use App\Http\Controllers\Controller;
 
 class GalleryRestAPIController extends Controller
 {
-
     protected $galleryRepositoryInterface;
 
     public function __construct(GalleryRepositoryInterface $galleryRepositoryInterface)
@@ -37,6 +36,7 @@ class GalleryRestAPIController extends Controller
     public function store(GalleryRequest $request)
     {
         $gallery = $this->galleryRepositoryInterface->storeGallery($request);
+
         return response()->json($gallery, 200);
     }
 
@@ -61,6 +61,7 @@ class GalleryRestAPIController extends Controller
     public function update(GalleryRequest $request, Gallery $gallery)
     {
         $this->galleryRepositoryInterface->updateGallery($request, $gallery);
+
         return response()->json($gallery, 200);
     }
 
@@ -74,6 +75,7 @@ class GalleryRestAPIController extends Controller
     {
         $deleted_item = $gallery;
         $gallery->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Resources\Event;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use Adminetic\Website\Http\Resources\Gallery\GalleryResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class EventResource extends JsonResource
 {
@@ -20,8 +20,8 @@ class EventResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('event', $this->id)
-            ]
+                'self' => adminShowRoute('event', $this->id),
+            ],
         ];
     }
 

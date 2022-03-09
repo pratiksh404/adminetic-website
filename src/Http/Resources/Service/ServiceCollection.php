@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Service;
 
-use Adminetic\Website\Http\Resources\Service\ServiceResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ServiceCollection extends ResourceCollection

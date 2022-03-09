@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Adminetic\Website\Models\Admin\Counter;
 use Adminetic\Website\Http\Resources\Counter\CounterCollection;
 use Adminetic\Website\Http\Resources\Counter\CounterResource;
+use Adminetic\Website\Models\Admin\Counter;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class CounterClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

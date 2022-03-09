@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Http\Resources\Facility;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Adminetic\Website\Http\Resources\Facility\FacilityResource;
 
 class FacilityCollection extends ResourceCollection
 {

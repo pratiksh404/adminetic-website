@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Page;
-use Adminetic\Website\Http\Requests\PageRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PageRepositoryInterface;
+use Adminetic\Website\Http\Requests\PageRequest;
+use Adminetic\Website\Models\Admin\Page;
+use App\Http\Controllers\Controller;
 
 class PageRestAPIController extends Controller
 {
-
     protected $pageRepositoryInterface;
 
     public function __construct(PageRepositoryInterface $pageRepositoryInterface)
@@ -37,6 +36,7 @@ class PageRestAPIController extends Controller
     public function store(PageRequest $request)
     {
         $page = $this->pageRepositoryInterface->storePage($request);
+
         return response()->json($page, 200);
     }
 
@@ -61,6 +61,7 @@ class PageRestAPIController extends Controller
     public function update(PageRequest $request, Page $page)
     {
         $this->pageRepositoryInterface->updatePage($request, $page);
+
         return response()->json($page, 200);
     }
 
@@ -74,6 +75,7 @@ class PageRestAPIController extends Controller
     {
         $deleted_item = $page;
         $page->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

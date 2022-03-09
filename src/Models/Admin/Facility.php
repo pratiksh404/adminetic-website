@@ -58,10 +58,11 @@ class Facility extends Model
     // Accessors
     public function getNetworkIconImageAttribute()
     {
-        return isset($this->icon_image) ? url('storage/' . $this->icon_image) : null;
+        return isset($this->icon_image) ? url('storage/'.$this->icon_image) : null;
     }
+
     public function getNetworkImageAttribute()
     {
-        return isset($this->image) ? url('storage/' . $this->image) : null;
+        return isset($this->image) ? url('storage/'.$this->image) : null;
     }
 }

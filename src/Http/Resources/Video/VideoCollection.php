@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Video;
 
-use Adminetic\Website\Http\Resources\Video\VideoResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class VideoCollection extends ResourceCollection

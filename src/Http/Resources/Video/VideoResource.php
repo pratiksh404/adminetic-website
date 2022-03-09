@@ -19,8 +19,8 @@ class VideoResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('video', $this->id)
-            ]
+                'self' => adminShowRoute('video', $this->id),
+            ],
         ];
     }
 }

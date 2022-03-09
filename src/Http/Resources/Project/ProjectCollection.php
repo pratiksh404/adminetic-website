@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Project;
 
-use Adminetic\Website\Http\Resources\Project\ProjectResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ProjectCollection extends ResourceCollection
