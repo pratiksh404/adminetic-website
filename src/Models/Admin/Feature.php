@@ -38,4 +38,13 @@ class Feature extends Model
 
     // Logs
     protected static $logName = 'feature';
+
+    // Appends
+    protected $appends = ['network_image'];
+
+    // Accessors
+    public function getNetworkImageAttribute()
+    {
+        return isset($this->image) ? url('storage/' . $this->image) : null;
+    }
 }

@@ -46,9 +46,22 @@ class Facility extends Model
         'meta_keywords' => 'array',
     ];
 
+    // Appends
+    protected $appends = ['network_icon_image', 'network_image'];
+
     // Relation
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    // Accessors
+    public function getNetworkIconImageAttribute()
+    {
+        return isset($this->icon_image) ? url('storage/' . $this->icon_image) : null;
+    }
+    public function getNetworkImageAttribute()
+    {
+        return isset($this->image) ? url('storage/' . $this->image) : null;
     }
 }

@@ -40,6 +40,9 @@ class Image extends Model
     // Logs
     protected static $logName = 'image';
 
+    // Appends
+    protected $appends = ['network_image'];
+
     // Accessors
     public function getTypeAttribute($attribute)
     {
@@ -76,5 +79,10 @@ class Image extends Model
     public function scopeSlider($query)
     {
         return $query->where('type', 4);
+    }
+    // Accessors
+    public function getNetworkImageAttribute()
+    {
+        return isset($this->image) ? url('storage/' . $this->image) : null;
     }
 }

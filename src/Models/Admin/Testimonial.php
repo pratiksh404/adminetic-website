@@ -38,4 +38,13 @@ class Testimonial extends Model
 
     // Logs
     protected static $logName = 'testimonial';
+
+    // Appends
+    protected $appends = ['network_image'];
+
+    // Accessors
+    public function getNetworkImageAttribute()
+    {
+        return isset($this->image) ? url('storage/' . $this->image) : null;
+    }
 }

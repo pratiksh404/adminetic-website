@@ -1,5 +1,4 @@
 <div>
-    @isset($top_exit_pages)
     <b class="text-center">Top Exiting Page</b>
     <div class="input-group">
         <span class="input-group-text">Statistics in</span>
@@ -27,6 +26,7 @@
                 </tr>
             </thead>
             <tbody>
+                @isset($top_exit_pages)
                 @if (count($top_exit_pages) > 0)
                 @foreach ($top_exit_pages as $top_exit_page)
                 @if ($loop->index <= 10) <tr>
@@ -37,8 +37,8 @@
                     @endif
                     @endforeach
                     @endif
+                    @endisset
             </tbody>
         </table>
-        @endisset
     </div>
 </div>

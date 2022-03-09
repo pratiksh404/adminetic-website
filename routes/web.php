@@ -46,7 +46,7 @@ Route::resource('popup', PopupController::class);
 Route::get('get_template', [TemplateController::class, 'get_template'])->name('get_template');
 
 /* Charts Routes */
-Route::get('get-monthly-poster-view', [PosterController::class, 'get_monthly_poster_view'])->name('get_monthly_poster_view');
+/* Route::get('get-monthly-poster-view', [PosterController::class, 'get_monthly_poster_view'])->name('get_monthly_poster_view'); */
 Route::get('get-monthly-post-view', [PostController::class, 'get_monthly_post_view'])->name('get_monthly_post_view');
 Route::get('get-monthly-total-post-view', [PostController::class, 'get_monthly_post_total_view'])->name('get_monthly_post_total_view');
 

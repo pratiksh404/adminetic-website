@@ -42,7 +42,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PostRequestt  $request
+     * @param  \Adminetic\Website\Http\Requests\PostRequestt  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request)
@@ -77,7 +77,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PostRequest  $request
+     * @param  \Adminetic\Website\Http\Requests\PostRequest  $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */

@@ -48,7 +48,7 @@ class Post extends Model implements Viewable
     ];
 
     // Appends
-    protected $appends = ['video_html'];
+    protected $appends = ['video_html', 'network_image'];
 
     // Accessors
     public function getStatusAttribute($attribute)
@@ -65,6 +65,10 @@ class Post extends Model implements Viewable
         if (isset($this->video)) {
             return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->video);
         }
+    }
+    public function getNetworkImageAttribute()
+    {
+        return isset($this->image) ? url('storage/' . $this->image) : null;
     }
 
     // Relation

@@ -34,4 +34,13 @@ class Client extends Model
 
     // Logs
     protected static $logName = 'client';
+
+    // Appends
+    protected $appends = ['network_image'];
+
+    // Accessors
+    public function getNetworkImageAttribute()
+    {
+        return isset($this->image) ? url('storage/' . $this->image) : null;
+    }
 }

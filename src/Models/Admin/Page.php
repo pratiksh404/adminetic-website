@@ -46,7 +46,7 @@ class Page extends Model
     ];
 
     // Appends
-    protected $appends = ['video_embed'];
+    protected $appends = ['video_embed', 'network_image'];
 
     //Accessors
     public function getVideoEmbedAttribute()
@@ -56,6 +56,10 @@ class Page extends Model
             '<iframe src="//www.youtube.com/embed/$2" allowfullscreen></iframe>',
             $this->video
         ) : null;
+    }
+    public function getNetworkImageAttribute()
+    {
+        return isset($this->image) ? url('storage/' . $this->image) : null;
     }
 
     // Accessors

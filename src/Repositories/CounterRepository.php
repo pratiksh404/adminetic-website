@@ -6,6 +6,7 @@ use Adminetic\Website\Contracts\CounterRepositoryInterface;
 use Adminetic\Website\Http\Requests\CounterRequest;
 use Adminetic\Website\Models\Admin\Counter;
 use Illuminate\Support\Facades\Cache;
+use Intervention\Image\Facades\Image;
 
 class CounterRepository implements CounterRepositoryInterface
 {
@@ -68,7 +69,7 @@ class CounterRepository implements CounterRepositoryInterface
                 'icon' => request()->icon->store('website/counter', 'public'),
             ]);
             $image = Image::make(request()->file('icon')->getRealPath());
-            $image->save(public_path('storage/'.$counter->icon));
+            $image->save(public_path('storage/' . $counter->icon));
         }
     }
 }

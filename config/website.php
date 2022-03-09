@@ -40,4 +40,17 @@ return [
     |
     */
     'block_group_themes' => [1],
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Configurations
+    |--------------------------------------------------------------------------
+    | 
+    */
+    'website_api_end_points' => true,
+    'website_restful_api_end_points' => true,
+    'website_client_api_end_points' => true,
+    'website_api_prefix' => 'api',
+    'rest_api_prefix' => 'rest',
+    'client_api_prefix' => 'client',
 ];
