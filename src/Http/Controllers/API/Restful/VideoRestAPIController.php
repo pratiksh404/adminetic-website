@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Video;
-use Adminetic\Website\Http\Requests\VideoRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\VideoRepositoryInterface;
+use Adminetic\Website\Http\Requests\VideoRequest;
+use Adminetic\Website\Models\Admin\Video;
+use App\Http\Controllers\Controller;
 
 class VideoRestAPIController extends Controller
 {
-
     protected $videoRepositoryInterface;
 
     public function __construct(VideoRepositoryInterface $videoRepositoryInterface)
@@ -37,6 +36,7 @@ class VideoRestAPIController extends Controller
     public function store(VideoRequest $request)
     {
         $video = $this->videoRepositoryInterface->storeVideo($request);
+
         return response()->json($video, 200);
     }
 
@@ -61,6 +61,7 @@ class VideoRestAPIController extends Controller
     public function update(VideoRequest $request, Video $video)
     {
         $this->videoRepositoryInterface->updateVideo($request, $video);
+
         return response()->json($video, 200);
     }
 
@@ -74,6 +75,7 @@ class VideoRestAPIController extends Controller
     {
         $deleted_item = $video;
         $video->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

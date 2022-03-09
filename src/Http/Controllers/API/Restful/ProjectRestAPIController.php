@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Project;
-use Adminetic\Website\Http\Requests\ProjectRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ProjectRepositoryInterface;
+use Adminetic\Website\Http\Requests\ProjectRequest;
+use Adminetic\Website\Models\Admin\Project;
+use App\Http\Controllers\Controller;
 
 class ProjectRestAPIController extends Controller
 {
-
     protected $projectRepositoryInterface;
 
     public function __construct(ProjectRepositoryInterface $projectRepositoryInterface)
@@ -37,6 +36,7 @@ class ProjectRestAPIController extends Controller
     public function store(ProjectRequest $request)
     {
         $project = $this->projectRepositoryInterface->storeProject($request);
+
         return response()->json($project, 200);
     }
 
@@ -61,6 +61,7 @@ class ProjectRestAPIController extends Controller
     public function update(ProjectRequest $request, Project $project)
     {
         $this->projectRepositoryInterface->updateProject($request, $project);
+
         return response()->json($project, 200);
     }
 
@@ -74,6 +75,7 @@ class ProjectRestAPIController extends Controller
     {
         $deleted_item = $project;
         $project->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

@@ -19,8 +19,8 @@ class PopupResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('popup', $this->id)
-            ]
+                'self' => adminShowRoute('popup', $this->id),
+            ],
         ];
     }
 }

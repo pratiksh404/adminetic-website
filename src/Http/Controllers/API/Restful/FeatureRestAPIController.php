@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Feature;
-use Adminetic\Website\Http\Requests\FeatureRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\FeatureRepositoryInterface;
+use Adminetic\Website\Http\Requests\FeatureRequest;
+use Adminetic\Website\Models\Admin\Feature;
+use App\Http\Controllers\Controller;
 
 class FeatureRestAPIController extends Controller
 {
-
     protected $featureRepositoryInterface;
 
     public function __construct(FeatureRepositoryInterface $featureRepositoryInterface)
@@ -37,6 +36,7 @@ class FeatureRestAPIController extends Controller
     public function store(FeatureRequest $request)
     {
         $feature = $this->featureRepositoryInterface->storeFeature($request);
+
         return response()->json($feature, 200);
     }
 
@@ -61,6 +61,7 @@ class FeatureRestAPIController extends Controller
     public function update(FeatureRequest $request, Feature $feature)
     {
         $this->featureRepositoryInterface->updateFeature($request, $feature);
+
         return response()->json($feature, 200);
     }
 
@@ -74,6 +75,7 @@ class FeatureRestAPIController extends Controller
     {
         $deleted_item = $feature;
         $feature->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

@@ -45,6 +45,6 @@ class Popup extends Model
     // Accessors
     public function getNetworkImageAttribute()
     {
-        return isset($this->image) ? url('storage/' . $this->image) : null;
+        return isset($this->image) ? url('storage/'.$this->image) : null;
     }
 }

@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Image;
-use Adminetic\Website\Http\Requests\ImageRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ImageRepositoryInterface;
+use Adminetic\Website\Http\Requests\ImageRequest;
+use Adminetic\Website\Models\Admin\Image;
+use App\Http\Controllers\Controller;
 
 class ImageRestAPIController extends Controller
 {
-
     protected $imageRepositoryInterface;
 
     public function __construct(ImageRepositoryInterface $imageRepositoryInterface)
@@ -37,6 +36,7 @@ class ImageRestAPIController extends Controller
     public function store(ImageRequest $request)
     {
         $image = $this->imageRepositoryInterface->storeImage($request);
+
         return response()->json($image, 200);
     }
 
@@ -61,6 +61,7 @@ class ImageRestAPIController extends Controller
     public function update(ImageRequest $request, Image $image)
     {
         $this->imageRepositoryInterface->updateImage($request, $image);
+
         return response()->json($image, 200);
     }
 
@@ -74,6 +75,7 @@ class ImageRestAPIController extends Controller
     {
         $deleted_item = $image;
         $image->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Adminetic\Website\Models\Admin\Team;
 use Adminetic\Website\Http\Resources\Team\TeamCollection;
 use Adminetic\Website\Http\Resources\Team\TeamResource;
+use Adminetic\Website\Models\Admin\Team;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class TeamClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

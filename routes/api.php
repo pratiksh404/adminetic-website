@@ -1,41 +1,41 @@
 
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Adminetic\Website\Http\Controllers\API\Restful\FaqRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\FaqClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\PageRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\PostRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\TeamRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\PageClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\PostClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\TeamClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\EventRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\ImageRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\PopupRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\VideoRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\ClientClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\CounterClientAPIController;
 use Adminetic\Website\Http\Controllers\API\Client\EventClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\FacilityClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\FaqClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\FeatureClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\GalleryClientAPIController;
 use Adminetic\Website\Http\Controllers\API\Client\ImageClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\PackageClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\PageClientAPIController;
 use Adminetic\Website\Http\Controllers\API\Client\PopupClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\PostClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\ProjectClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\ServiceClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\TeamClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Client\TestimonialClientAPIController;
 use Adminetic\Website\Http\Controllers\API\Client\VideoClientAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\ClientRestAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\CounterRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\EventRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\FacilityRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\FaqRestAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\FeatureRestAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\GalleryRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\ImageRestAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\PackageRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\PageRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\PopupRestAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\PostRestAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\ProjectRestAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\ServiceRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\CounterClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\FeatureClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\GalleryClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\PackageClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\ProjectClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\ServiceClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Restful\FacilityRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\FacilityClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\TeamRestAPIController;
 use Adminetic\Website\Http\Controllers\API\Restful\TestimonialRestAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\TestimonialClientAPIController;
-use Adminetic\Website\Http\Controllers\API\Client\ClientClientAPIController;
+use Adminetic\Website\Http\Controllers\API\Restful\VideoRestAPIController;
+use Illuminate\Support\Facades\Route;
 
 if (config('website.website_client_api_end_points', true)) {
     Route::prefix(config('website.client_api_prefix', 'client'))->group(function () {

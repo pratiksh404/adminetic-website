@@ -19,8 +19,8 @@ class TestimonialResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('testimonial', $this->id)
-            ]
+                'self' => adminShowRoute('testimonial', $this->id),
+            ],
         ];
     }
 }

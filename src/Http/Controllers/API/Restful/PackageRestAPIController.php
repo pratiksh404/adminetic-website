@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Package;
-use Adminetic\Website\Http\Requests\PackageRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PackageRepositoryInterface;
+use Adminetic\Website\Http\Requests\PackageRequest;
+use Adminetic\Website\Models\Admin\Package;
+use App\Http\Controllers\Controller;
 
 class PackageRestAPIController extends Controller
 {
-
     protected $packageRepositoryInterface;
 
     public function __construct(PackageRepositoryInterface $packageRepositoryInterface)
@@ -37,6 +36,7 @@ class PackageRestAPIController extends Controller
     public function store(PackageRequest $request)
     {
         $package = $this->packageRepositoryInterface->storePackage($request);
+
         return response()->json($package, 200);
     }
 
@@ -61,6 +61,7 @@ class PackageRestAPIController extends Controller
     public function update(PackageRequest $request, Package $package)
     {
         $this->packageRepositoryInterface->updatePackage($request, $package);
+
         return response()->json($package, 200);
     }
 
@@ -74,6 +75,7 @@ class PackageRestAPIController extends Controller
     {
         $deleted_item = $package;
         $package->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

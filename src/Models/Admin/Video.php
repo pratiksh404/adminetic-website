@@ -49,8 +49,9 @@ class Video extends Model
             return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->url);
         }
     }
+
     public function getNetworkThumbnailAttribute()
     {
-        return isset($this->thumbnail) ? url('storage/' . $this->thumbnail) : null;
+        return isset($this->thumbnail) ? url('storage/'.$this->thumbnail) : null;
     }
 }

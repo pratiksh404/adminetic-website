@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Testimonial;
-use Adminetic\Website\Http\Requests\TestimonialRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
+use Adminetic\Website\Http\Requests\TestimonialRequest;
+use Adminetic\Website\Models\Admin\Testimonial;
+use App\Http\Controllers\Controller;
 
 class TestimonialRestAPIController extends Controller
 {
-
     protected $testimonialRepositoryInterface;
 
     public function __construct(TestimonialRepositoryInterface $testimonialRepositoryInterface)
@@ -37,6 +36,7 @@ class TestimonialRestAPIController extends Controller
     public function store(TestimonialRequest $request)
     {
         $testimonial = $this->testimonialRepositoryInterface->storeTestimonial($request);
+
         return response()->json($testimonial, 200);
     }
 
@@ -61,6 +61,7 @@ class TestimonialRestAPIController extends Controller
     public function update(TestimonialRequest $request, Testimonial $testimonial)
     {
         $this->testimonialRepositoryInterface->updateTestimonial($request, $testimonial);
+
         return response()->json($testimonial, 200);
     }
 
@@ -74,6 +75,7 @@ class TestimonialRestAPIController extends Controller
     {
         $deleted_item = $testimonial;
         $testimonial->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

@@ -19,8 +19,8 @@ class PackageResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('package', $this->id)
-            ]
+                'self' => adminShowRoute('package', $this->id),
+            ],
         ];
     }
 }

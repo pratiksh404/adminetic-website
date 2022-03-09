@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Adminetic\Website\Http\Resources\Client\ClientResource;
 
 class ClientCollection extends ResourceCollection
 {

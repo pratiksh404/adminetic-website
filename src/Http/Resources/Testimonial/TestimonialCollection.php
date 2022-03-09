@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Testimonial;
 
-use Adminetic\Website\Http\Resources\Testimonial\TestimonialResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class TestimonialCollection extends ResourceCollection

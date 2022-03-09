@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use App\Http\Controllers\Controller;
-use Adminetic\Website\Models\Admin\Client;
-use Adminetic\Website\Http\Requests\ClientRequest;
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
+use Adminetic\Website\Http\Requests\ClientRequest;
+use Adminetic\Website\Models\Admin\Client;
+use App\Http\Controllers\Controller;
 
 class ClientRestAPIController extends Controller
 {
-
     protected $clientRepositoryInterface;
 
     public function __construct(ClientRepositoryInterface $clientRepositoryInterface)
@@ -37,6 +36,7 @@ class ClientRestAPIController extends Controller
     public function store(ClientRequest $request)
     {
         $client = $this->clientRepositoryInterface->storeClient($request);
+
         return response()->json($client, 200);
     }
 
@@ -61,6 +61,7 @@ class ClientRestAPIController extends Controller
     public function update(ClientRequest $request, Client $client)
     {
         $this->clientRepositoryInterface->updateClient($request, $client);
+
         return response()->json($client, 200);
     }
 
@@ -74,6 +75,7 @@ class ClientRestAPIController extends Controller
     {
         $deleted_item = $client;
         $client->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

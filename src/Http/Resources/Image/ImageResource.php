@@ -19,8 +19,8 @@ class ImageResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('image', $this->id)
-            ]
+                'self' => adminShowRoute('image', $this->id),
+            ],
         ];
     }
 

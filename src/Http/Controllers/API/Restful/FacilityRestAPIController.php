@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Facility;
-use Adminetic\Website\Http\Requests\FacilityRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
+use Adminetic\Website\Http\Requests\FacilityRequest;
+use Adminetic\Website\Models\Admin\Facility;
+use App\Http\Controllers\Controller;
 
 class FacilityRestAPIController extends Controller
 {
-
     protected $facilityRepositoryInterface;
 
     public function __construct(FacilityRepositoryInterface $facilityRepositoryInterface)
@@ -37,6 +36,7 @@ class FacilityRestAPIController extends Controller
     public function store(FacilityRequest $request)
     {
         $facility = $this->facilityRepositoryInterface->storeFacility($request);
+
         return response()->json($facility, 200);
     }
 
@@ -61,6 +61,7 @@ class FacilityRestAPIController extends Controller
     public function update(FacilityRequest $request, Facility $facility)
     {
         $this->facilityRepositoryInterface->updateFacility($request, $facility);
+
         return response()->json($facility, 200);
     }
 
@@ -74,6 +75,7 @@ class FacilityRestAPIController extends Controller
     {
         $deleted_item = $facility;
         $facility->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

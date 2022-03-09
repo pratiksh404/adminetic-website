@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Image;
 
-use Adminetic\Website\Http\Resources\Image\ImageResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ImageCollection extends ResourceCollection

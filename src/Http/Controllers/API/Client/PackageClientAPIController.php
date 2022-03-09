@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Adminetic\Website\Models\Admin\Package;
 use Adminetic\Website\Http\Resources\Package\PackageCollection;
 use Adminetic\Website\Http\Resources\Package\PackageResource;
+use Adminetic\Website\Models\Admin\Package;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class PackageClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
