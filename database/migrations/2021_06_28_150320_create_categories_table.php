@@ -27,7 +27,6 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->bigInteger('position')->default(0);
 
-
             $table->string('meta_name')->nullable();
             $table->string('meta_description')->nullable();
             $table->json('meta_keywords')->nullable();

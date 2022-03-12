@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Category;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Livewire\Component;
 
 class QuickCategory extends Component
 {
@@ -37,9 +37,11 @@ class QuickCategory extends Component
 
         $this->emit('quick_category_created');
     }
+
     public function render()
     {
         $parentcategories = Category::whereNull('category_id')->with('childrenCategories')->get();
+
         return view('website::livewire.admin.category.quick-category', compact('parentcategories'));
     }
 }

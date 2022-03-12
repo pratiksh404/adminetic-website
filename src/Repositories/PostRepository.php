@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Category;
 use Adminetic\Website\Contracts\PostRepositoryInterface;
 use Adminetic\Website\Http\Requests\PostRequest;
+use Adminetic\Website\Models\Admin\Category;
 use Adminetic\Website\Models\Admin\Post;
 use Adminetic\Website\Models\Admin\Template;
 use Illuminate\Support\Facades\Cache;
@@ -112,7 +112,7 @@ class PostRepository implements PostRepositoryInterface
     {
         if (request()->image) {
             $thumbnails = [
-                'storage' => 'website/post/' . validImageFolder($post->id, 'post'),
+                'storage' => 'website/post/'.validImageFolder($post->id, 'post'),
                 'width' => '1200',
                 'height' => '630',
                 'quality' => '100',

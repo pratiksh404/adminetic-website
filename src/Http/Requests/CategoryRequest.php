@@ -2,10 +2,9 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
-use Illuminate\Foundation\Http\FormRequest;
 use Adminetic\Website\Models\Admin\Category;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class CategoryRequest extends FormRequest
 {
@@ -29,12 +28,12 @@ class CategoryRequest extends FormRequest
         if ($this->category_id) {
             $category = Category::find($this->category_id);
             $this->merge([
-                'model' => $category->model ?? $this->model ?? null
+                'model' => $category->model ?? $this->model ?? null,
             ]);
         }
         $this->merge([
             'code' => $this->category->code ?? rand(100000, 999999),
-            'slug' => Str::slug($this->name)
+            'slug' => Str::slug($this->name),
         ]);
     }
 
@@ -46,11 +45,12 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         $id = $this->category->id ?? '';
+
         return [
             'model' => 'required|max:255',
-            'code' => 'required|unique:categories,code,' . $id,
+            'code' => 'required|unique:categories,code,'.$id,
             'name' => 'required|max:255',
-            'slug' => 'required|unique:categories,slug,' . $id,
+            'slug' => 'required|unique:categories,slug,'.$id,
             'category_id' => 'nullable|numeric',
             'active' => 'sometimes|boolean',
             'color' => 'nullable|max:12',
