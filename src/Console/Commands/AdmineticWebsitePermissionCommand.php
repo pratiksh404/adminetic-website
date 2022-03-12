@@ -76,6 +76,8 @@ class AdmineticWebsitePermissionCommand extends Command
         $this->info('Feature Module Permission Created ... ✅');
         Artisan::call('make:permission Popup --all');
         $this->info('Popup Module Permission Created ... ✅');
+        Artisan::call('make:permission Category --all');
+        $this->info('Category Module Permission Created ... ✅');
         $this->info('Star to the admenictic repo would be appreciated.');
     }
 }

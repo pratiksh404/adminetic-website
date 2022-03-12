@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Models\Admin;
 
+use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Event extends Model
@@ -35,6 +36,11 @@ class Event extends Model
 
     // Logs
     protected static $logName = 'event';
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     // Casts
     protected $casts = [

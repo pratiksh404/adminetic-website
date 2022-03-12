@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Models\Admin;
 
+use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Team extends Model
@@ -39,6 +40,11 @@ class Team extends Model
 
     // Logs
     protected static $logName = 'team';
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     // Casts
     protected $casts = [

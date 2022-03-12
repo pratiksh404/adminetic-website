@@ -56,7 +56,7 @@ class AdmineticWebsiteInstallCommand extends Command
         }
         Artisan::call('vendor:publish', ['--provider' => 'Spatie\Analytics\AnalyticsServiceProvider']);
         $this->info('Adminetic website config file published ... ✅');
-        Artisan::call('install:adminetic-category');
+        $this->addBelongsToCategory();
         $this->info('Adminetic category installed ... ✅');
         if ($this->confirm('Do you wish to run website table migration?')) {
             Artisan::call('migrate');
@@ -65,5 +65,22 @@ class AdmineticWebsiteInstallCommand extends Command
         $this->info('Adminetic website module migration complete ... ✅');
         $this->info('Adminetic Website Installed.');
         $this->info('Star to the admenictic repo would be appreciated.');
+    }
+
+    private function addBelongsToCategory()
+    {
+        $traitTemplate = file_get_contents(__DIR__ . '/../../Console/Stubs/CategoryMorphedByMany.stub');
+
+        if (!file_exists($path = app_path('Traits'))) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = app_path('Traits/CategoryMorphedByMany.php');
+        file_put_contents($file, $traitTemplate);
+        if (file_exists($file)) {
+            $this->info('CategoryMorphedByMany  trait created successfully ... ✅');
+        } else {
+            $this->error('Failed to create CategoryMorphedByMany  trait ...');
+        }
     }
 }

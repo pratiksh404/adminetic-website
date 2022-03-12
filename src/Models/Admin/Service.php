@@ -2,10 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Category\Models\Admin\Category;
+use Adminetic\Website\Models\Admin\Category;
+use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Service extends Model
@@ -40,6 +41,11 @@ class Service extends Model
 
     // Logs
     protected static $logName = 'service';
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     // Casts
     protected $casts = [

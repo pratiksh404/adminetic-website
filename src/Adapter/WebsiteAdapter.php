@@ -412,11 +412,11 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', Adminetic\Category\Models\Admin\Category::class),
+                        'condition' => auth()->user()->can('view-any', Adminetic\Website\Models\Admin\Category::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', Adminetic\Category\Models\Admin\Category::class),
+                        'condition' => auth()->user()->can('create', Adminetic\Website\Models\Admin\Category::class),
                     ],
                 ],
                 'children' => $this->indexCreateChildren('category', Adminetic\Website\Models\Admin\Category::class),

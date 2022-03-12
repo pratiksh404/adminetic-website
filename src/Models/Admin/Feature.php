@@ -2,8 +2,9 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Feature extends Model
@@ -38,6 +39,11 @@ class Feature extends Model
 
     // Logs
     protected static $logName = 'feature';
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     // Appends
     protected $appends = ['network_image'];

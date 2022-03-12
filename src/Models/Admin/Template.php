@@ -2,8 +2,9 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Template extends Model
@@ -30,6 +31,11 @@ class Template extends Model
     private static function cacheKey()
     {
         Cache::has('templates') ? Cache::forget('templates') : '';
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
     }
 
     // Logs

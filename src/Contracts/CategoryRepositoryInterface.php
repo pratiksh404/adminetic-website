@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Http\Requests\CategoryRequest;
 use Adminetic\Website\Models\Admin\Category;
+use Adminetic\Website\Http\Requests\CategoryRequest;
 
 interface CategoryRepositoryInterface
 {

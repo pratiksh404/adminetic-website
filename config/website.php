@@ -33,6 +33,12 @@ return [
             'name' => 'Audio Post',
         ],
     ],
+
+    /*
+       * Models to be discovered by category module.
+       */
+    'models' => [],
+
     /*
     |--------------------------------------------------------------------------
     | Block Group Theme
