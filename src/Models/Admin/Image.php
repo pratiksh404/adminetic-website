@@ -86,9 +86,10 @@ class Image extends Model
     {
         return $query->where('type', 4);
     }
+
     // Accessors
     public function getNetworkImageAttribute()
     {
-        return isset($this->image) ? url('storage/' . $this->image) : null;
+        return isset($this->image) ? url('storage/'.$this->image) : null;
     }
 }

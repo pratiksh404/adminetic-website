@@ -19,8 +19,8 @@ class PostResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('post', $this->id)
-            ]
+                'self' => adminShowRoute('post', $this->id),
+            ],
         ];
     }
 

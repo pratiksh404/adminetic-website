@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Team;
 
-use Adminetic\Website\Http\Resources\Team\TeamResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class TeamCollection extends ResourceCollection

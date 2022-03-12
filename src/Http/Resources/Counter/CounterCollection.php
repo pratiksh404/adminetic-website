@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Http\Resources\Counter;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Adminetic\Website\Http\Resources\Counter\CounterResource;
 
 class CounterCollection extends ResourceCollection
 {

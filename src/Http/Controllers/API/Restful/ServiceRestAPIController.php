@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Service;
-use Adminetic\Website\Http\Requests\ServiceRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
+use Adminetic\Website\Http\Requests\ServiceRequest;
+use Adminetic\Website\Models\Admin\Service;
+use App\Http\Controllers\Controller;
 
 class ServiceRestAPIController extends Controller
 {
-
     protected $serviceRepositoryInterface;
 
     public function __construct(ServiceRepositoryInterface $serviceRepositoryInterface)
@@ -37,6 +36,7 @@ class ServiceRestAPIController extends Controller
     public function store(ServiceRequest $request)
     {
         $service = $this->serviceRepositoryInterface->storeService($request);
+
         return response()->json($service, 200);
     }
 
@@ -61,6 +61,7 @@ class ServiceRestAPIController extends Controller
     public function update(ServiceRequest $request, Service $service)
     {
         $this->serviceRepositoryInterface->updateService($request, $service);
+
         return response()->json($service, 200);
     }
 
@@ -74,6 +75,7 @@ class ServiceRestAPIController extends Controller
     {
         $deleted_item = $service;
         $service->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

@@ -69,7 +69,7 @@ class CounterRepository implements CounterRepositoryInterface
                 'icon' => request()->icon->store('website/counter', 'public'),
             ]);
             $image = Image::make(request()->file('icon')->getRealPath());
-            $image->save(public_path('storage/' . $counter->icon));
+            $image->save(public_path('storage/'.$counter->icon));
         }
     }
 }

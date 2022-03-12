@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Package;
 
-use Adminetic\Website\Http\Resources\Package\PackageResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PackageCollection extends ResourceCollection

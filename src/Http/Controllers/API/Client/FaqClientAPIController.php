@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Adminetic\Website\Models\Admin\Faq;
 use Adminetic\Website\Http\Resources\Faq\FaqCollection;
 use Adminetic\Website\Http\Resources\Faq\FaqResource;
+use Adminetic\Website\Models\Admin\Faq;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class FaqClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

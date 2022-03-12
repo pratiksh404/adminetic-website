@@ -19,8 +19,8 @@ class ClientResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('client', $this->id)
-            ]
+                'self' => adminShowRoute('client', $this->id),
+            ],
         ];
     }
 }

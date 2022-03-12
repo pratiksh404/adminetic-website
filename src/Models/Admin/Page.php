@@ -63,9 +63,10 @@ class Page extends Model
             $this->video
         ) : null;
     }
+
     public function getNetworkImageAttribute()
     {
-        return isset($this->image) ? url('storage/' . $this->image) : null;
+        return isset($this->image) ? url('storage/'.$this->image) : null;
     }
 
     // Accessors

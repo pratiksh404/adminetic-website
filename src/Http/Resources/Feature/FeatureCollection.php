@@ -3,7 +3,6 @@
 namespace Adminetic\Website\Http\Resources\Feature;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Adminetic\Website\Http\Resources\Feature\FeatureResource;
 
 class FeatureCollection extends ResourceCollection
 {

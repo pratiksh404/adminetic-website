@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Post;
-use Adminetic\Website\Http\Requests\PostRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PostRepositoryInterface;
+use Adminetic\Website\Http\Requests\PostRequest;
+use Adminetic\Website\Models\Admin\Post;
+use App\Http\Controllers\Controller;
 
 class PostRestAPIController extends Controller
 {
-
     protected $postRepositoryInterface;
 
     public function __construct(PostRepositoryInterface $postRepositoryInterface)
@@ -37,6 +36,7 @@ class PostRestAPIController extends Controller
     public function store(PostRequest $request)
     {
         $post = $this->postRepositoryInterface->storePost($request);
+
         return response()->json($post, 200);
     }
 
@@ -61,6 +61,7 @@ class PostRestAPIController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $this->postRepositoryInterface->updatePost($request, $post);
+
         return response()->json($post, 200);
     }
 
@@ -74,6 +75,7 @@ class PostRestAPIController extends Controller
     {
         $deleted_item = $post;
         $post->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

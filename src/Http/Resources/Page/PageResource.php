@@ -19,8 +19,8 @@ class PageResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('page', $this->id)
-            ]
+                'self' => adminShowRoute('page', $this->id),
+            ],
         ];
     }
 }

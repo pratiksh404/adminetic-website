@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Adminetic\Website\Models\Admin\Client;
-use Adminetic\Website\Http\Resources\Client\ClientResource;
 use Adminetic\Website\Http\Resources\Client\ClientCollection;
+use Adminetic\Website\Http\Resources\Client\ClientResource;
+use Adminetic\Website\Models\Admin\Client;
+use App\Http\Controllers\Controller;
 
 class ClientClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

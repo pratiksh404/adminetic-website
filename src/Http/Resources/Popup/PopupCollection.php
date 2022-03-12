@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Popup;
 
-use Adminetic\Website\Http\Resources\Popup\PopupResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PopupCollection extends ResourceCollection

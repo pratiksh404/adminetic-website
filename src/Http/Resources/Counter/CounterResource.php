@@ -19,8 +19,8 @@ class CounterResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('counter', $this->id)
-            ]
+                'self' => adminShowRoute('counter', $this->id),
+            ],
         ];
     }
 }

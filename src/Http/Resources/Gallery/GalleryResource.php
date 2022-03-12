@@ -20,8 +20,8 @@ class GalleryResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('gallery', $this->id)
-            ]
+                'self' => adminShowRoute('gallery', $this->id),
+            ],
         ];
     }
 

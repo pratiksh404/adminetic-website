@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Team;
-use Adminetic\Website\Http\Requests\TeamRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Http\Requests\TeamRequest;
+use Adminetic\Website\Models\Admin\Team;
+use App\Http\Controllers\Controller;
 
 class TeamRestAPIController extends Controller
 {
-
     protected $teamRepositoryInterface;
 
     public function __construct(TeamRepositoryInterface $teamRepositoryInterface)
@@ -37,6 +36,7 @@ class TeamRestAPIController extends Controller
     public function store(TeamRequest $request)
     {
         $team = $this->teamRepositoryInterface->storeTeam($request);
+
         return response()->json($team, 200);
     }
 
@@ -61,6 +61,7 @@ class TeamRestAPIController extends Controller
     public function update(TeamRequest $request, Team $team)
     {
         $this->teamRepositoryInterface->updateTeam($request, $team);
+
         return response()->json($team, 200);
     }
 
@@ -74,6 +75,7 @@ class TeamRestAPIController extends Controller
     {
         $deleted_item = $team;
         $team->delete();
+
         return response()->json($deleted_item, 200);
     }
 }

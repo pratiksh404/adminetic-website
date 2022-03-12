@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Http\Resources\Project\ProjectCollection;
 use Adminetic\Website\Http\Resources\Project\ProjectResource;
+use Adminetic\Website\Models\Admin\Project;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class ProjectClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

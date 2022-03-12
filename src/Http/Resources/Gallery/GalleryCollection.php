@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Resources\Gallery;
 
-use Adminetic\Website\Http\Resources\Gallery\GalleryResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class GalleryCollection extends ResourceCollection

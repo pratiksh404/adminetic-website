@@ -19,8 +19,8 @@ class TeamResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('team', $this->id)
-            ]
+                'self' => adminShowRoute('team', $this->id),
+            ],
         ];
     }
 }

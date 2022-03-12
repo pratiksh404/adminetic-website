@@ -19,8 +19,8 @@ class FeatureResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => parent::toArray($request),
             'links' => [
-                'self' => adminShowRoute('feature', $this->id)
-            ]
+                'self' => adminShowRoute('feature', $this->id),
+            ],
         ];
     }
 }

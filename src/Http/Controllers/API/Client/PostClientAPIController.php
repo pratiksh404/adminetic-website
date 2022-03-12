@@ -2,15 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Client;
 
-use Adminetic\Website\Models\Admin\Post;
 use Adminetic\Website\Http\Resources\Post\PostCollection;
 use Adminetic\Website\Http\Resources\Post\PostResource;
+use Adminetic\Website\Models\Admin\Post;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class PostClientAPIController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

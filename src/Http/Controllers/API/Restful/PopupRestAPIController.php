@@ -2,14 +2,13 @@
 
 namespace Adminetic\Website\Http\Controllers\API\Restful;
 
-use Adminetic\Website\Models\Admin\Popup;
-use Adminetic\Website\Http\Requests\PopupRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PopupRepositoryInterface;
+use Adminetic\Website\Http\Requests\PopupRequest;
+use Adminetic\Website\Models\Admin\Popup;
+use App\Http\Controllers\Controller;
 
 class PopupRestAPIController extends Controller
 {
-
     protected $popupRepositoryInterface;
 
     public function __construct(PopupRepositoryInterface $popupRepositoryInterface)
@@ -37,6 +36,7 @@ class PopupRestAPIController extends Controller
     public function store(PopupRequest $request)
     {
         $popup = $this->popupRepositoryInterface->storePopup($request);
+
         return response()->json($popup, 200);
     }
 
@@ -61,6 +61,7 @@ class PopupRestAPIController extends Controller
     public function update(PopupRequest $request, Popup $popup)
     {
         $this->popupRepositoryInterface->updatePopup($request, $popup);
+
         return response()->json($popup, 200);
     }
 
@@ -74,6 +75,7 @@ class PopupRestAPIController extends Controller
     {
         $deleted_item = $popup;
         $popup->delete();
+
         return response()->json($deleted_item, 200);
     }
 }
