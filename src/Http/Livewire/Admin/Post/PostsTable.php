@@ -196,10 +196,10 @@ class PostsTable extends Component
         $search = $this->search ?? null;
         if ($search != '') {
             return Post::where(function ($query) use ($search) {
-                $query->where('name', 'LIKE', '%' . $search . '%')
-                    ->orWhere('excerpt', 'LIKE', '%' . $search . '%')
-                    ->orWhere('seo_name', 'LIKE', '%' . $search . '%')
-                    ->orWhere('meta_description', 'LIKE', '%' . $search . '%');
+                $query->where('name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('excerpt', 'LIKE', '%'.$search.'%')
+                    ->orWhere('seo_name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('meta_description', 'LIKE', '%'.$search.'%');
             });
         } else {
             return Post::latest();

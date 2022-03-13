@@ -2,19 +2,18 @@
 
 namespace Adminetic\Website\Provider;
 
-use Livewire\Livewire;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
+use Adminetic\Website\Console\AdmineticCategoryInstallCommand;
+use Adminetic\Website\Contracts\CategoryRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Category\QuickCategory;
+use Adminetic\Website\Http\Livewire\Admin\Category\ReorderChildrenCategory;
+use Adminetic\Website\Http\Livewire\Admin\Category\ReorderParentCategory;
 use Adminetic\Website\Models\Admin\Category;
 use Adminetic\Website\Policies\CategoryPolicy;
 use Adminetic\Website\Repository\CategoryRepository;
-use Adminetic\Website\Contracts\CategoryRepositoryInterface;
-use Adminetic\Website\Console\AdmineticCategoryInstallCommand;
-use Adminetic\Website\Http\Livewire\Admin\Category\QuickCategory;
-use Adminetic\Website\Http\Livewire\Admin\Category\ReorderParentCategory;
-use Adminetic\Website\Http\Livewire\Admin\Category\ReorderChildrenCategory;
-
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class CategoryServiceProvider extends ServiceProvider
 {
@@ -63,15 +62,15 @@ class CategoryServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__ . '/../../config/category.php' => config_path('category.php'),
+            __DIR__.'/../../config/category.php' => config_path('category.php'),
         ], 'category-config');
         // Publish View Files
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/category'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/category'),
         ], 'category-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__ . '/../../database/migrations' => database_path('migrations'),
+            __DIR__.'/../../database/migrations' => database_path('migrations'),
         ], 'category-migrations');
     }
 
@@ -82,8 +81,8 @@ class CategoryServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'category'); // Loading Views Files
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'category'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -107,7 +106,7 @@ class CategoryServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         });
     }
 

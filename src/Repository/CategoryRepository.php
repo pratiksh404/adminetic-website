@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repository;
 
-use Adminetic\Website\Models\Admin\Category;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\CategoryRepositoryInterface;
 use Adminetic\Website\Http\Requests\CategoryRequest;
+use Adminetic\Website\Models\Admin\Category;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -17,6 +17,7 @@ class CategoryRepository implements CategoryRepositoryInterface
                 return Category::whereNull('category_id')->with('childrenCategories')->orderBy('position')->get();
             }))
             : Category::whereNull('category_id')->with('childrenCategories')->orderBy('position')->get();
+
         return compact('categories');
     }
 
@@ -24,6 +25,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function createCategory()
     {
         $parentcategories = Category::whereNull('category_id')->with('childrenCategories')->get();
+
         return compact('parentcategories');
     }
 
@@ -44,6 +46,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function editCategory(Category $category)
     {
         $parentcategories = Category::whereNull('category_id')->with('childrenCategories')->get();
+
         return compact('category', 'parentcategories');
     }
 
@@ -75,9 +78,9 @@ class CategoryRepository implements CategoryRepositoryInterface
                         'thumbnail-name' => 'small',
                         'thumbnail-width' => '100',
                         'thumbnail-height' => '100',
-                        'thumbnail-quality' => '50'
-                    ]
-                ]
+                        'thumbnail-quality' => '50',
+                    ],
+                ],
             ];
             $category->makeThumbnail('image', $thumbnails);
         }

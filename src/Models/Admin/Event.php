@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Event extends Model

@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
 use App\Traits\CategoryMorphedByMany;
+use drh2so4\Thumbnail\Traits\Thumbnail;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Category extends Model
 {
@@ -49,9 +49,8 @@ class Category extends Model
 
     protected $parentColumn = 'category_id';
 
-
     protected $casts = [
-        'meta_keywords' => 'array'
+        'meta_keywords' => 'array',
     ];
 
     /**
@@ -63,11 +62,10 @@ class Category extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
     }
-
 
     // Relation
     public function categorizable()
@@ -96,6 +94,7 @@ class Category extends Model
     {
         return $query->with('children')->orderBy('position', 'desc')->take($limit);
     }
+
     public function scopeActive($query)
     {
         return $query->where('active', 1);

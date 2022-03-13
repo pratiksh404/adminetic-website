@@ -69,9 +69,9 @@ class AdmineticWebsiteInstallCommand extends Command
 
     private function addBelongsToCategory()
     {
-        $traitTemplate = file_get_contents(__DIR__ . '/../../Console/Stubs/CategoryMorphedByMany.stub');
+        $traitTemplate = file_get_contents(__DIR__.'/../../Console/Stubs/CategoryMorphedByMany.stub');
 
-        if (!file_exists($path = app_path('Traits'))) {
+        if (! file_exists($path = app_path('Traits'))) {
             mkdir($path, 0777, true);
         }
 
