@@ -2,10 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Category;
 
-use Livewire\Component;
-use Illuminate\Support\Str;
 use Adminetic\Website\Models\Admin\Category;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
+use Livewire\Component;
 
 class QuickCategory extends Component
 {

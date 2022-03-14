@@ -2,12 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use drh2so4\Thumbnail\Traits\Thumbnail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Adminetic\Website\Models\Admin\Category;
 
 class Facility extends Model
 {
@@ -64,11 +63,11 @@ class Facility extends Model
     // Accessors
     public function getNetworkIconImageAttribute()
     {
-        return isset($this->icon_image) ? url('storage/' . $this->icon_image) : null;
+        return isset($this->icon_image) ? url('storage/'.$this->icon_image) : null;
     }
 
     public function getNetworkImageAttribute()
     {
-        return isset($this->image) ? url('storage/' . $this->image) : null;
+        return isset($this->image) ? url('storage/'.$this->image) : null;
     }
 }
