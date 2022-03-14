@@ -11,7 +11,6 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Category extends Model
 {
     use LogsActivity, Thumbnail, CategoryMorphedByMany;
-    use Sluggable, SluggableScopeHelpers;
 
     protected $guarded = [];
 

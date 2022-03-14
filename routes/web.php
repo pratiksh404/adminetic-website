@@ -1,6 +1,7 @@
 <?php
 
 use Adminetic\Website\Http\Controllers\BlockController;
+use Adminetic\Website\Http\Controllers\CategoryController;
 use Adminetic\Website\Http\Controllers\ClientController;
 use Adminetic\Website\Http\Controllers\CounterController;
 use Adminetic\Website\Http\Controllers\EventController;
@@ -41,6 +42,7 @@ Route::resource('block', BlockController::class);
 Route::resource('testimonial', TestimonialController::class);
 Route::resource('feature', FeatureController::class);
 Route::resource('popup', PopupController::class);
+Route::resource('category', CategoryController::class);
 
 /* AJAX ROUTE */
 Route::get('get_template', [TemplateController::class, 'get_template'])->name('get_template');
