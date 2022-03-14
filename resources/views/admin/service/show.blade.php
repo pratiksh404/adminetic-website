@@ -38,9 +38,16 @@
                                     class="img-fluid">
                             </li>
                             @endisset
+                            @isset($service->category)
+                            <li class="list-group-item">
+                                <b>Category :</b> <span class="text-muted">{{$service->category->name ??
+                                    'N/A'}}</span>
+                            </li>
+                            @endisset
                             <li class="list-group-item">
                                 <b>Active :</b> <span
-                                    class="badge badge-{{$service->active ? 'success' : 'danger'}}">{{$service->active ? 'Yes' : 'No'}}</span>
+                                    class="badge badge-{{$service->active ? 'success' : 'danger'}}">{{$service->active ?
+                                    'Yes' : 'No'}}</span>
                             </li>
                             <li class="list-group-item">
                                 <b>Position :</b> <span class="text-muted"> {{$service->position ?? 'N/A'}}</span>

@@ -9,7 +9,7 @@
             </div>
             <div class="col-6">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}"> <i data-feather="home"></i></a>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"> <i data-feather="home"></i></a>
                     </li>
                     <li class="breadcrumb-item active">Categories</li>
                 </ol>
@@ -64,7 +64,8 @@
                             </td>
                             <td>{{$category->model}}</td>
                             <td><span
-                                    class="badge badge-{{$category->active ? 'success' : 'danger'}}">{{$category->active ? 'Active' : 'Inactive'}}</span>
+                                    class="badge badge-{{$category->active ? 'success' : 'danger'}}">{{$category->active
+                                    ? 'Active' : 'Inactive'}}</span>
                             </td>
                             <td style="background-color: {{$category->color}}"></td>
                             <td>

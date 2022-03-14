@@ -2,9 +2,10 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Category;
 
+use Livewire\Component;
+use Illuminate\Support\Str;
 use Adminetic\Website\Models\Admin\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
-use Livewire\Component;
 
 class QuickCategory extends Component
 {
@@ -30,7 +31,7 @@ class QuickCategory extends Component
             'model' => $this->model,
             'name' => $this->name,
             'category_id' => $this->categoryid ? ($this->categoryid != '' ? $this->categoryid : null) : null,
-            'slug' => SlugService::createSlug(Category::class, 'slug', $this->name),
+            'slug' => Str::slug($this->name),
         ]);
 
         $this->category_id = $category->id;

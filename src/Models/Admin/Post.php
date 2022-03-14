@@ -2,16 +2,17 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Traits\PostTrait;
 use Conner\Tagging\Taggable;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Activitylog\LogOptions;
+use Adminetic\Website\Traits\PostTrait;
+use drh2so4\Thumbnail\Traits\Thumbnail;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Adminetic\Website\Models\Admin\Category;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 
 class Post extends Model implements Viewable
 {
@@ -74,7 +75,7 @@ class Post extends Model implements Viewable
 
     public function getNetworkImageAttribute()
     {
-        return isset($this->image) ? url('storage/'.$this->image) : null;
+        return isset($this->image) ? url('storage/' . $this->image) : null;
     }
 
     // Relation
