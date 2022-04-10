@@ -14,9 +14,9 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $categories = config('adminetic.caching', true)
             ? (Cache::has('categories') ? Cache::get('categories') : Cache::rememberForever('categories', function () {
-                return Category::whereNull('category_id')->with('childrenCategories')->orderBy('position')->get();
+                return Category::whereNull('parent_id')->with('childrenCategories')->orderBy('position')->get();
             }))
-            : Category::whereNull('category_id')->with('childrenCategories')->orderBy('position')->get();
+            : Category::whereNull('parent_id')->with('childrenCategories')->orderBy('position')->get();
 
         return compact('categories');
     }
@@ -24,7 +24,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     // Category Create
     public function createCategory()
     {
-        $parentcategories = Category::whereNull('category_id')->with('childrenCategories')->get();
+        $parentcategories = Category::whereNull('parent_id')->with('childrenCategories')->get();
 
         return compact('parentcategories');
     }
@@ -45,7 +45,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     // Category Edit
     public function editCategory(Category $category)
     {
-        $parentcategories = Category::whereNull('category_id')->with('childrenCategories')->get();
+        $parentcategories = Category::whereNull('parent_id')->with('childrenCategories')->get();
 
         return compact('category', 'parentcategories');
     }

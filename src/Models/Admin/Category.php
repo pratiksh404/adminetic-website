@@ -46,7 +46,7 @@ class Category extends Model
         return LogOptions::defaults();
     }
 
-    protected $parentColumn = 'category_id';
+    protected $parentColumn = 'parent_id';
 
     protected $casts = [
         'meta_keywords' => 'array',
@@ -65,12 +65,22 @@ class Category extends Model
 
     public function categories()
     {
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class, 'parent_id');
     }
 
     public function childrenCategories()
     {
-        return $this->hasMany(Category::class)->with('categories');
+        return $this->hasMany(Category::class, 'parent_id')->with('categories');
+    }
+
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+
+    public function allProperties()
+    {
+        return $this->hasMany(Property::class, 'main_category_id');
     }
 
     // Scopes
@@ -79,7 +89,6 @@ class Category extends Model
     {
         return $query->with('children')->orderBy('position', 'desc')->take($limit);
     }
-
     public function scopeActive($query)
     {
         return $query->where('active', 1);

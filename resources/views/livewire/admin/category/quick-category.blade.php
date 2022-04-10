@@ -3,14 +3,14 @@
     <div class="input-group">
         <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".create-quick-category"><i
                 class="fa fa-plus"></i></button>
-        <select name="category_id" id="category_id" class="form-control">
+        <select name="parent_id" id="category_id" class="form-control">
             <option selected disabled>Select Category</option>
             @isset($parentcategories)
             @foreach ($parentcategories as $parent_category)
             @if ($parent_category->model == ($model ?? null))
             @if (!isset($parent_category->category_id))
-            <option value="{{ $parent_category->id }}"
-                {{isset($category->id) ? ($category->id == $parent_category->id ? 'disabled' : '') : ''}}
+            <option value="{{ $parent_category->id }}" {{isset($category->id) ? ($category->id == $parent_category->id ?
+                'disabled' : '') : ''}}
                 {{isset($category_id) ? ($category_id == $parent_category->id ? 'selected' : '') : ''}}>
                 {{ $parent_category->name }}</option>
             @isset($parent_category->childrenCategories)
@@ -58,8 +58,8 @@
                                     @foreach ($parentcategories as $parent_category)
                                     @if ($parent_category->model == ($model ?? null))
                                     @if (!isset($parent_category->category_id))
-                                    <option value="{{ $parent_category->id }}"
-                                        {{isset($category->id) ? ($category->id == $parent_category->id ? 'disabled' : '') : ''}}>
+                                    <option value="{{ $parent_category->id }}" {{isset($category->id) ? ($category->id
+                                        == $parent_category->id ? 'disabled' : '') : ''}}>
                                         {{ $parent_category->name }}</option>
                                     @isset($parent_category->childrenCategories)
                                     @php

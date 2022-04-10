@@ -19,7 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('main_category_id')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->boolean('active')->default(1);
             $table->string('color')->default(random_color());
             $table->string('icon')->nullable();

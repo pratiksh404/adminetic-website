@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Category;
 
-use Adminetic\Website\Models\Admin\Category;
 use Livewire\Component;
+use Adminetic\Website\Models\Admin\Category;
 
 class ReorderParentCategory extends Component
 {
@@ -14,11 +14,22 @@ class ReorderParentCategory extends Component
         }
         $this->emit('reorderingComplete');
     }
+    public function updateGroupCategories($lists)
+    {
+        foreach ($lists as $list) {
+            $parent_order = $list['order'] ?? 0;
+            if (count($list['items']) > 0) {
+                foreach ($list['items'] as $item) {
+                    Category::find($item['value'])->update(['position' => $parent_order + $item['order']]);
+                }
+            }
+        }
+        $this->emit('reorderingComplete');
+    }
 
     public function render()
     {
-        $parentCategories = Category::whereNull('category_id')->with('childrenCategories')->orderBy('position')->get();
-
+        $parentCategories = Category::whereNull('parent_id')->with('childrenCategories')->orderBy('position')->get();
         return view('website::livewire.admin.category.reorder-parent-category', compact('parentCategories'));
     }
 }

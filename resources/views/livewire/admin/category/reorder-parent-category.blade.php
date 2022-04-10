@@ -1,19 +1,13 @@
 <div>
     @isset($parentCategories)
-    <div wire:sortable="updateParentCategories" wire:sortable-group="updateParentCategories">
+    <div wire:sortable="updateParentCategories" wire:sortable-group="updateGroupCategories">
         @foreach ($parentCategories as $parent_category)
-        @if (!isset($parent_category->category_id))
+        @if (!isset($parent_category->parent_id))
         <div wire:key="group-{{ $parent_category->id }}" wire:sortable.item="{{ $parent_category->id }}"
             style="border: 2px solid rgba(0, 0, 0, 0.466);width:100%" class="m-2 p-2">
 
             <div class="d-flex justify-content-between">
                 <span class="text-bold" wire:sortable.handle>{{ $parent_category->name }}</span>
-                @if (isset($parent_category->categories))
-                @if ($parent_category->categories->count() > 0)
-                <a href="{{route('categoryChildrenReorder',['category'=> $parent_category->id])}}"
-                    class="btn btn-primary btn-sm"><i class="fa fa-list-ul"></i></a>
-                @endif
-                @endif
             </div>
 
             @isset($parent_category->childrenCategories)
@@ -22,7 +16,7 @@
                 $parent_loop_index = $loop->index + 1;
                 @endphp
                 @foreach ($parent_category->childrenCategories->sortBy('position') as $child)
-                @include('website::admin.layouts.modules.category.livewire_child_category', ['category_id' =>
+                @include('website::admin.layouts.modules.category.livewire_child_category', ['parent_id' =>
                 $parent_category->id,'child' => $child,'parent_loop_index'
                 => $parent_loop_index])
                 @endforeach

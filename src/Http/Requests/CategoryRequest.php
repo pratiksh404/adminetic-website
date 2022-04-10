@@ -25,15 +25,11 @@ class CategoryRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        if ($this->category_id) {
-            $category = Category::find($this->category_id);
-            $this->merge([
-                'model' => $category->model ?? $this->model ?? null,
-            ]);
-        }
         $this->merge([
             'code' => $this->category->code ?? rand(100000, 999999),
             'slug' => Str::slug($this->name),
+            'main_category_id' => $this->getMainCategory($this->category->parent_id ?? null),
+            'model' => $this->model ?? $this->category->model ?? "All",
         ]);
     }
 
@@ -48,10 +44,11 @@ class CategoryRequest extends FormRequest
 
         return [
             'model' => 'required|max:255',
-            'code' => 'required|unique:categories,code,'.$id,
+            'code' => 'required|unique:categories,code,' . $id,
             'name' => 'required|max:255',
-            'slug' => 'required|unique:categories,slug,'.$id,
-            'category_id' => 'nullable|numeric',
+            'slug' => 'required|unique:categories,slug,' . $id,
+            'parent_id' => 'nullable|numeric',
+            'main_category_id' => 'nullable|numeric',
             'active' => 'sometimes|boolean',
             'color' => 'nullable|max:12',
             'icon' => 'nullable|max:20',
@@ -61,5 +58,23 @@ class CategoryRequest extends FormRequest
             'meta_description' => 'nullable|max:255',
             'meta_name' => 'nullable',
         ];
+    }
+
+    // Get Main Category
+    public function getMainCategory($given_category_id = null)
+    {
+        $parent_id = $given_category_id ?? $this->parent_id ?? null;
+        $category = Category::find($parent_id);
+        if (isset($category)) {
+            while (true) {
+                if (isset($category->parent_id)) {
+                    $category = Category::find($category->parent_id);
+                } else {
+                    break;
+                }
+            }
+            return $category->id;
+        }
+        return null;
     }
 }

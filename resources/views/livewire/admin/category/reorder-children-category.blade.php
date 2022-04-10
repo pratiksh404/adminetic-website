@@ -17,12 +17,6 @@
             <li wire:sortable.item="{{ $child->id }}" wire:key="child-{{ $child->id }}">
                 <div class="d-flex justify-content-between">
                     <span class="text-muted" wire:sortable.handle>{{ $child->name }}</span>
-                    @if (isset($child->categories))
-                    @if ($child->categories->count() > 0)
-                    <a href="{{route('categoryChildrenReorder',['category'=> $child->id])}}"><i
-                            class="fa fa-list-ul"></i></a>
-                    @endif
-                    @endif
                 </div>
             </li>
             @endforeach

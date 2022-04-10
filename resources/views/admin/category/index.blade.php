@@ -51,7 +51,7 @@
                                 <ul>
                                     <li>{{$category->name}}
                                         @isset($category->childrenCategories)
-                                        @foreach ($category->childrenCategories as $child)
+                                        @foreach ($category->childrenCategories->sortBy('position') as $child)
                                         @include('website::admin.layouts.modules.category.tree_child_category',
                                         ['child'
                                         =>

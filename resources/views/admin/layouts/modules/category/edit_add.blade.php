@@ -16,14 +16,14 @@
                         <div class="mb-2">
                             <label for="parant_id" class="form-label">Category Parent</label>
                             <div class="input-group">
-                                <select name="category_id" id="category_id" class="select2" style="width: 100%">
+                                <select name="parent_id" id="parent_id" class="select2" style="width: 100%">
                                     <option selected disabled>Select Parent Category ... </option>
                                     @isset($parentcategories)
                                     @foreach ($parentcategories as $parent_category)
-                                    @if (!isset($parent_category->category_id))
+                                    @if (!isset($parent_category->parent_id))
                                     <option value="{{ $parent_category->id }}" {{isset($category->id) ? ($category->id
                                         == $parent_category->id ? 'disabled' : '') : ''}}
-                                        {{isset($category->category_id) ? ($category->category_id ==
+                                        {{isset($category->parent_id) ? ($category->parent_id ==
                                         $parent_category->id ? 'selected' : '') : ''}}>
                                         {{ $parent_category->name }}</option>
                                     @isset($parent_category->childrenCategories)
@@ -34,7 +34,9 @@
                                     @include('website::admin.layouts.modules.category.option_child_category', ['child'
                                     =>
                                     $child,'parent_loop_index'
-                                    => $parent_loop_index])
+                                    => $parent_loop_index,
+                                    'parent_id' => $category->parent_id ?? null
+                                    ])
                                     @endforeach
 
                                     @endisset
@@ -63,26 +65,6 @@
     <div class="col-lg-4">
         <div class="card shadow-lg">
             <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="mb-2">
-                            <label for="model">Model</label>
-                            <div class="input-group">
-                                <select name="model" id="model" class="select2" style="width:100%">
-                                    <option selected disabled>Select Model ... </option>
-                                    @foreach(array_unique(array_merge(getAllModelNames(app_path('Models')),config('website.models',[])))
-                                    as $model)
-                                    <option value="{{$model}}" {{isset($category->model) ? ($category->model == $model ?
-                                        'selected' : '') : ''}}>
-                                        {{$model}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
                 <div class="row">
                     <div class="col-lg-7">
                         <label for="active">Active</label>
@@ -114,7 +96,7 @@
                                     data-iconpicker-input="#icon" data-iconpicker-preview="#showIcon">Select
                                     Icon</button>
                                 <input type="hidden" name="icon" id="icon"
-                                    value="{{$service->icon ?? old('icon') ?? 'fa fa-concierge-bell'}}">
+                                    value="{{$category->icon ?? old('icon') ?? 'fa fa-concierge-bell'}}">
                             </div>
                         </div>
                     </div>
