@@ -21,7 +21,6 @@ class GalleryImages extends Component
     {
         $image = Image::find($id);
         if (isset($image)) {
-            $image->hardDelete('image');
             $image->delete();
             $this->emit('galleryImageDeleted');
         }
