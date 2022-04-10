@@ -29,7 +29,7 @@ class CategoryRequest extends FormRequest
             'code' => $this->category->code ?? rand(100000, 999999),
             'slug' => Str::slug($this->name),
             'main_category_id' => $this->getMainCategory($this->category->parent_id ?? null),
-            'model' => $this->model ?? $this->category->model ?? "All",
+            'model' => $this->model ?? $this->category->model ?? 'All',
         ]);
     }
 
@@ -44,9 +44,9 @@ class CategoryRequest extends FormRequest
 
         return [
             'model' => 'required|max:255',
-            'code' => 'required|unique:categories,code,' . $id,
+            'code' => 'required|unique:categories,code,'.$id,
             'name' => 'required|max:255',
-            'slug' => 'required|unique:categories,slug,' . $id,
+            'slug' => 'required|unique:categories,slug,'.$id,
             'parent_id' => 'nullable|numeric',
             'main_category_id' => 'nullable|numeric',
             'active' => 'sometimes|boolean',
@@ -73,8 +73,10 @@ class CategoryRequest extends FormRequest
                     break;
                 }
             }
+
             return $category->id;
         }
+
         return null;
     }
 }
