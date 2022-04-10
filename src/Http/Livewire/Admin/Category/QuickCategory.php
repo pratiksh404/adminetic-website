@@ -29,7 +29,7 @@ class QuickCategory extends Component
             'code' => rand(100000, 999999),
             'model' => $this->model ?? 'All',
             'name' => $this->name,
-            'category_id' => $this->categoryid ? ($this->categoryid != '' ? $this->categoryid : null) : null,
+            'parent_id' => $this->categoryid ? ($this->categoryid != '' ? $this->categoryid : null) : null,
             'slug' => Str::slug($this->name),
         ]);
 
@@ -41,9 +41,8 @@ class QuickCategory extends Component
     public function render()
     {
         $parentcategories = Category::whereNull('parent_id')->where(function ($q) {
-            $q->where('model', $this->model)->orWhere('model', 'All');
+            return $q->where('model', $this->model)->orWhere('model', 'All');
         })->with('childrenCategories')->get();
-
         return view('website::livewire.admin.category.quick-category', compact('parentcategories'));
     }
 }

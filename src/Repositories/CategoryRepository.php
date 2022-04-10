@@ -1,6 +1,6 @@
 <?php
 
-namespace Adminetic\Website\Repository;
+namespace Adminetic\Website\Repositories;
 
 use Adminetic\Website\Contracts\CategoryRepositoryInterface;
 use Adminetic\Website\Http\Requests\CategoryRequest;

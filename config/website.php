@@ -37,7 +37,11 @@ return [
     /*
        * Models to be discovered by category module.
        */
-    'models' => [],
+    'models' => [
+        'Facility',
+        'Feature',
+        'Post',
+    ],
 
     /*
     |--------------------------------------------------------------------------

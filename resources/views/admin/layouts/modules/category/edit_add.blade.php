@@ -63,6 +63,24 @@
         </div>
     </div>
     <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body shadow-lg">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label for="model">Model</label>
+                        <div class="input-group">
+                            <select name="model" id="model" class="form-control" style="width: 100%">
+                                <option value="All">All</option>
+                                @foreach (config('website.models',array('Post','Feature','Facility')) as $model)
+                                <option value="{{trim($model)}}" {{isset($category->model) ? ($category->model ==
+                                    trim($model) ? 'selected' : '') : ''}}>{{trim($model)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card shadow-lg">
             <div class="card-body p-3">
                 <div class="row">

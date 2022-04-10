@@ -7,7 +7,6 @@
             <option selected disabled>Select Category</option>
             @isset($parentcategories)
             @foreach ($parentcategories as $parent_category)
-            @if ($parent_category->model == ($model ?? null))
             @if (!isset($parent_category->category_id))
             <option value="{{ $parent_category->id }}" {{isset($category->id) ? ($category->id == $parent_category->id ?
                 'disabled' : '') : ''}}
@@ -23,7 +22,6 @@
             => $parent_loop_index,'model' => $model ?? null])
             @endforeach
             @endisset
-            @endif
             @endif
             @endforeach
             @endisset
@@ -56,7 +54,6 @@
                                     <option value="">Select Parent ... </option>
                                     @isset($parentcategories)
                                     @foreach ($parentcategories as $parent_category)
-                                    @if ($parent_category->model == ($model ?? null))
                                     @if (!isset($parent_category->category_id))
                                     <option value="{{ $parent_category->id }}" {{isset($category->id) ? ($category->id
                                         == $parent_category->id ? 'disabled' : '') : ''}}>
@@ -72,7 +69,6 @@
                                     => $parent_loop_index,'model' => $model ?? null])
                                     @endforeach
                                     @endisset
-                                    @endif
                                     @endif
                                     @endforeach
                                     @endisset
