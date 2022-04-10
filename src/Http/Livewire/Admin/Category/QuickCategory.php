@@ -43,6 +43,7 @@ class QuickCategory extends Component
         $parentcategories = Category::whereNull('parent_id')->where(function ($q) {
             return $q->where('model', $this->model)->orWhere('model', 'All');
         })->with('childrenCategories')->get();
+
         return view('website::livewire.admin.category.quick-category', compact('parentcategories'));
     }
 }

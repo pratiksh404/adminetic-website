@@ -89,6 +89,7 @@ class Category extends Model
     {
         return $query->with('children')->orderBy('position', 'desc')->take($limit);
     }
+
     public function scopeActive($query)
     {
         return $query->where('active', 1);
