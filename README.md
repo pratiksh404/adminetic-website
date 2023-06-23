@@ -12,111 +12,34 @@ For detailed documentaion visit [Adminetic Website Module Documentation](https:/
 
 #### Contains : -
 
-- Service Module
-- Facility Module
-- Counter Module
-- Team Module
-- FAQ Module
-- Package Module
-- Project Module
-- Client Module
-- Gallery Module
-- Image Module
-- Video Module
-- Page Module
+- Application Module
+- Attribute Module
+- Career Module
 - Category Module
+- Client Module
+- Counter Module
+- Download Module
+- Facility Module
+- FAQ Module
+- Feature Module
+- Gallery Module
+- Inquiry Module
+- Message Module
+- Notice Module
+- Package Module
+- Page Module
+- Payment Module
+- Popup Module
+- Post Module
+- Process Module
+- Product Module
+- Project Module
+- Service Module
+- Software Module
+- Tag Module
+- Team Module
+- Testimonial Module
 
-## Installation
-
-##### Step 1:
-
-You can install the package via composer:
-
-```bash
-composer require adminetic/website
-```
-
-##### Step 2:
-
-Setup adminetic website.
-
-```bash
-php artisan install:adminetic-website
-```
-
-##### Step 3:
-
-Migrate adminetic website module tables.
-
-```bash
-php artisan migrate:adminetic-website
-```
-
-For rollback
-
-```bash
-php artisan migrate:rollback:adminetic-website
-```
-
-##### Step 4:
-
-Add WebsiteUser Trait to App/Models/User.php
-
-```bash
-namespace Adminetic\Website\Traits\WebsiteUser;
-
-use WebsiteUser;
-```
-
-## Include Adminetic Website Adapter
-
-In config/adminetic.php, include
-
-```
-    // Adapters
-    'adapters' => [
-        Adminetic\Website\Adapter\WebsiteAdapter::class,
-    ],
-```
-
-## Note
-
-```
-php artisan install:adminetic-category // To install category module only
-php artisan adminetic:website-permission // To seed website module permission only
-```
-
-## Dashboard
-
-Include adminetic website dashboard view component to `view/admin/dashboard/index`
-
-```
-<div class="container-fluid">
-    <x-adminetic-website-analytics-dashboard />  <!-- Website Dashboard Component -->
-</div>
-```
-
-You can enable/disable dashboard components from config/website file
-
-```
-'google_analytics_dashboard_active' => false,
-'model_count_dashboard_active' => true,
-'post_dashboard_active' => false,
-```
-
-Add view id in env
-
-```
-ANALYTICS_VIEW_ID=
-```
-
-For google analytics component. Please follow the documentaion [spatie/laravel-analytics](https://github.com/spatie/laravel-analytics)
-
-## Todo
-
-- [ ] Frontend theme support
-- [x] Google Analytic Dashboard
-- [ ] Ready made themes
 
 ### Testing
 
