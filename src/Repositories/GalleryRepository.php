@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\GalleryRepositoryInterface;
-use Adminetic\Website\Http\Requests\GalleryRequest;
 use Adminetic\Website\Models\Admin\Gallery;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\GalleryRepositoryInterface;
+use Adminetic\Website\Http\Requests\GalleryRequest;
 
 class GalleryRepository implements GalleryRepositoryInterface
 {
@@ -15,10 +14,9 @@ class GalleryRepository implements GalleryRepositoryInterface
     {
         $galleries = config('adminetic.caching', true)
             ? (Cache::has('galleries') ? Cache::get('galleries') : Cache::rememberForever('galleries', function () {
-                return Gallery::latest()->get();
+                return Gallery::orderBy('position')->get();
             }))
-            : Gallery::latest()->get();
-
+            : Gallery::orderBy('position')->get();
         return compact('galleries');
     }
 
@@ -32,7 +30,7 @@ class GalleryRepository implements GalleryRepositoryInterface
     public function storeGallery(GalleryRequest $request)
     {
         $gallery = Gallery::create($request->validated());
-        $this->multipleImageUpload($gallery);
+        $this->uploadImage($gallery);
     }
 
     // Gallery Show
@@ -51,49 +49,22 @@ class GalleryRepository implements GalleryRepositoryInterface
     public function updateGallery(GalleryRequest $request, Gallery $gallery)
     {
         $gallery->update($request->validated());
-        $this->multipleImageUpload($gallery);
+        $this->uploadImage($gallery);
     }
 
     // Gallery Destroy
     public function destroyGallery(Gallery $gallery)
     {
-        if ($gallery->images->count() > 0) {
-            foreach ($gallery->images as $image) {
-                $image->hardDelete('image');
-            }
-        }
         $gallery->delete();
     }
 
-    // multiple Image Upload
-    protected function multipleImageUpload($gallery)
+    // Upload Image
+    private function uploadImage(Gallery $gallery)
     {
         if (request()->has('images')) {
-            $imageRequest = app(\Adminetic\Website\Http\Requests\GalleryImageRequest::class, ['gallery' => $gallery]);
-            $imageRequest->validated();
-            foreach (request()->images as $image) {
-                $img = $gallery->images()->create([
-                    'image' => $image,
-                ]);
-
-                // Multi Image Upload With Thumbnail
-                $multiple = [
-                    'storage' => 'website/gallery/'.validImageFolder($gallery->name, 'gallery'),
-                    'width' => '600',
-                    'height' => '600',
-                    'quality' => '70',
-                    'image' => $image,
-                    'thumbnails' => [
-                        [
-                            'thumbnail-name' => 'small',
-                            'thumbnail-width' => '100',
-                            'thumbnail-height' => '100',
-                            'thumbnail-quality' => '30',
-                        ],
-                    ],
-                ];
-                $img->makeThumbnail('image', $multiple);
-            }
+            $gallery
+                ->addFromMediaLibraryRequest(request()->images)
+                ->toMediaCollection('images');
         }
     }
 }

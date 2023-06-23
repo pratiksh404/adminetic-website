@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Faq extends Model
 {
@@ -24,10 +24,6 @@ class Faq extends Model
 
         static::deleting(function () {
             self::cacheKey();
-        });
-
-        Faq::creating(function ($model) {
-            $model->position = Faq::max('position') + 1;
         });
     }
 

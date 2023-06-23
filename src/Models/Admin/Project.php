@@ -2,15 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Project extends Model
+class Project extends Model implements HasMedia
 {
-    use LogsActivity, Thumbnail;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -42,17 +43,38 @@ class Project extends Model
         return LogOptions::defaults();
     }
 
-    // Casts
     protected $casts = [
-        'meta_keywords' => 'array',
+        'data' => 'array'
     ];
 
-    //Appends
-    protected $appends = ['network_image'];
-
-    // Accessors
-    public function getNetworkImageAttribute()
+    // Relationships
+    public function category()
     {
-        return isset($this->image) ? url('storage/'.$this->image) : null;
+        return $this->belongsTo(Category::class);
+    }
+
+    // Scopes
+    public function scopePosition($qry)
+    {
+        return $qry->orderBy('position');
+    }
+    public function scopeActive($qry)
+    {
+        return $qry->where('active', 1);
+    }
+    public function scopeFeatured($qry)
+    {
+        return $qry->where('featured', 1);
+    }
+
+    // Attribute
+    public function getStatusAttribute($attribute)
+    {
+        return in_array($attribute, [1, 2, 3]) ?
+            [
+                1 => 'Ongoing',
+                2 => 'Not Started',
+                3 => 'Finished'
+            ][$attribute] : null;
     }
 }

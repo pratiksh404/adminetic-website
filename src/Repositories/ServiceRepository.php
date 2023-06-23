@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\ServiceRepositoryInterface;
-use Adminetic\Website\Http\Requests\ServiceRequest;
 use Adminetic\Website\Models\Admin\Service;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\ServiceRepositoryInterface;
+use Adminetic\Website\Http\Requests\ServiceRequest;
 
 class ServiceRepository implements ServiceRepositoryInterface
 {
@@ -18,7 +17,6 @@ class ServiceRepository implements ServiceRepositoryInterface
                 return Service::orderBy('position')->get();
             }))
             : Service::orderBy('position')->get();
-
         return compact('services');
     }
 
@@ -57,43 +55,21 @@ class ServiceRepository implements ServiceRepositoryInterface
     // Service Destroy
     public function destroyService(Service $service)
     {
-        isset($service->image) ? $service->hardDelete('image') : '';
         $service->delete();
     }
 
     // Upload Image
-    protected function uploadImage(Service $service)
+    private function uploadImage(Service $service)
     {
-        if (request()->icon_image) {
-            $service->update([
-                'icon_image' => request()->icon_image->store('website/service/image', 'public'),
-            ]);
-            $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$service->icon_image));
+        if (request()->has('image')) {
+            $service
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
         }
-
-        if (request()->image) {
-            $thumbnails = [
-                'storage' => 'website/service/image',
-                'width' => '1200',
-                'height' => '630',
-                'quality' => '80',
-                'thumbnails' => [
-                    [
-                        'thumbnail-name' => 'medium',
-                        'thumbnail-width' => '600',
-                        'thumbnail-height' => '600',
-                        'thumbnail-quality' => '80',
-                    ],
-                    [
-                        'thumbnail-name' => 'small',
-                        'thumbnail-width' => '150',
-                        'thumbnail-height' => '100',
-                        'thumbnail-quality' => '50',
-                    ],
-                ],
-            ];
-            $service->makeThumbnail('image', $thumbnails);
+        if (request()->has('icon_image')) {
+            $service
+                ->addFromMediaLibraryRequest(request()->icon_image)
+                ->toMediaCollection('icon_image');
         }
     }
 }

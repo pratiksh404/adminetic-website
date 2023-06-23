@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\PopupRepositoryInterface;
-use Adminetic\Website\Http\Requests\PopupRequest;
 use Adminetic\Website\Models\Admin\Popup;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\PopupRepositoryInterface;
+use Adminetic\Website\Http\Requests\PopupRequest;
 
 class PopupRepository implements PopupRepositoryInterface
 {
@@ -15,10 +14,9 @@ class PopupRepository implements PopupRepositoryInterface
     {
         $popups = config('adminetic.caching', true)
             ? (Cache::has('popups') ? Cache::get('popups') : Cache::rememberForever('popups', function () {
-                return Popup::latest()->get();
+                return Popup::orderBy('position')->get();
             }))
-            : Popup::latest()->get();
-
+            : Popup::orderBy('position')->get();
         return compact('popups');
     }
 
@@ -57,24 +55,21 @@ class PopupRepository implements PopupRepositoryInterface
     // Popup Destroy
     public function destroyPopup(Popup $popup)
     {
-        isset($popup->image) ? deleteImage($popup->image) : '';
         $popup->delete();
     }
 
-    protected function uploadImage(Popup $popup)
+    // Upload Image
+    private function uploadImage(Popup $popup)
     {
         if (request()->has('image')) {
-            $popup->update([
-                'image' => request()->image->store('website/popup', 'public'),
-            ]);
-            if (request()->file('image')->getClientOriginalExtension() == 'gif') {
-                $imageName = time().'.'.request()->image->extension();
-
-                request()->image->move(public_path('website/popup'), $imageName);
-            } else {
-                $image = Image::make(request()->file('image')->getRealPath());
-                $image->save(public_path('storage/'.$popup->image));
-            }
+            $popup
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
+        }
+        if (request()->has('icon_image')) {
+            $popup
+                ->addFromMediaLibraryRequest(request()->icon_image)
+                ->toMediaCollection('icon_image');
         }
     }
 }

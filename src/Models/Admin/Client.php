@@ -2,14 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Client extends Model
+class Client extends Model implements HasMedia
 {
-    use LogsActivity;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -39,14 +41,5 @@ class Client extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults();
-    }
-
-    // Appends
-    protected $appends = ['network_image'];
-
-    // Accessors
-    public function getNetworkImageAttribute()
-    {
-        return isset($this->image) ? url('storage/'.$this->image) : null;
     }
 }

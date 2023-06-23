@@ -2,14 +2,17 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Models\Admin\Category;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Popup extends Model
+class Popup extends Model implements HasMedia
 {
-    use LogsActivity;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -24,10 +27,6 @@ class Popup extends Model
 
         static::deleting(function () {
             self::cacheKey();
-        });
-
-        Popup::creating(function ($model) {
-            $model->position = Popup::max('position') + 1;
         });
     }
 
@@ -45,12 +44,27 @@ class Popup extends Model
         return LogOptions::defaults();
     }
 
-    // Appends
-    protected $appends = ['network_image'];
+    protected $casts = [
+        'data' => 'array'
+    ];
 
-    // Accessors
-    public function getNetworkImageAttribute()
+    // Relationships
+    public function category()
     {
-        return isset($this->image) ? url('storage/'.$this->image) : null;
+        return $this->belongsTo(Category::class);
+    }
+
+    // Scopes
+    public function scopePosition($qry)
+    {
+        return $qry->orderBy('position');
+    }
+    public function scopeActive($qry)
+    {
+        return $qry->where('active', 1);
+    }
+    public function scopePopup($qry)
+    {
+        return $qry->where('popup', 1);
     }
 }

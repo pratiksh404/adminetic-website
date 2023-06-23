@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\FacilityRepositoryInterface;
-use Adminetic\Website\Http\Requests\FacilityRequest;
 use Adminetic\Website\Models\Admin\Facility;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\FacilityRepositoryInterface;
+use Adminetic\Website\Http\Requests\FacilityRequest;
 
 class FacilityRepository implements FacilityRepositoryInterface
 {
@@ -18,7 +17,6 @@ class FacilityRepository implements FacilityRepositoryInterface
                 return Facility::orderBy('position')->get();
             }))
             : Facility::orderBy('position')->get();
-
         return compact('facilities');
     }
 
@@ -57,44 +55,21 @@ class FacilityRepository implements FacilityRepositoryInterface
     // Facility Destroy
     public function destroyFacility(Facility $facility)
     {
-        isset($facility->image) ? $facility->hardDelete('image') : '';
-        isset($facility->icon_image) ? deleteImage($facility->icon_image) : '';
         $facility->delete();
     }
 
     // Upload Image
-    protected function uploadImage(Facility $facility)
+    private function uploadImage(Facility $facility)
     {
-        if (request()->icon_image) {
-            $facility->update([
-                'icon_image' => request()->icon_image->store('website/facility/image', 'public'),
-            ]);
-            $image = Image::make(request()->file('icon_image')->getRealPath());
-            $image->save(public_path('storage/'.$facility->icon_image));
+        if (request()->has('image')) {
+            $facility
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
         }
-
-        if (request()->image) {
-            $thumbnails = [
-                'storage' => 'website/facility/image',
-                'width' => '1200',
-                'height' => '630',
-                'quality' => '100',
-                'thumbnails' => [
-                    [
-                        'thumbnail-name' => 'medium',
-                        'thumbnail-width' => '600',
-                        'thumbnail-height' => '600',
-                        'thumbnail-quality' => '80',
-                    ],
-                    [
-                        'thumbnail-name' => 'small',
-                        'thumbnail-width' => '150',
-                        'thumbnail-height' => '100',
-                        'thumbnail-quality' => '50',
-                    ],
-                ],
-            ];
-            $facility->makeThumbnail('image', $thumbnails);
+        if (request()->has('icon_image')) {
+            $facility
+                ->addFromMediaLibraryRequest(request()->icon_image)
+                ->toMediaCollection('icon_image');
         }
     }
 }

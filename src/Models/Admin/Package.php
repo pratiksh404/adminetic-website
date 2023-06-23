@@ -2,14 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Package extends Model
+class Package extends Model implements HasMedia
 {
-    use LogsActivity;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -24,10 +26,6 @@ class Package extends Model
 
         static::deleting(function () {
             self::cacheKey();
-        });
-
-        Package::creating(function ($model) {
-            $model->position = Package::max('position') + 1;
         });
     }
 
@@ -45,22 +43,27 @@ class Package extends Model
         return LogOptions::defaults();
     }
 
-    // Casts
     protected $casts = [
-        'features' => 'array',
+        'data' => 'array'
     ];
 
-    // Accessors
-
-    public function getPackageTimeAttribute($attribute)
+    // Relationships
+    public function category()
     {
-        return [
-            1 => 'Per Hour',
-            2 => 'Per Day',
-            3 => 'Per Week',
-            4 => 'Per Month',
-            5 => 'Per Year',
-            6 => 'Custom Plan',
-        ][$attribute];
+        return $this->belongsTo(Category::class);
+    }
+
+    // Scopes
+    public function scopePosition($qry)
+    {
+        return $qry->orderBy('position');
+    }
+    public function scopeActive($qry)
+    {
+        return $qry->where('active', 1);
+    }
+    public function scopeFeatured($qry)
+    {
+        return $qry->where('featured', 1);
     }
 }

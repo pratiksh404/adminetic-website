@@ -2,15 +2,17 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Models\Admin\Category;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Page extends Model
+class Page extends Model implements HasMedia
 {
-    use LogsActivity, Thumbnail;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -25,10 +27,6 @@ class Page extends Model
 
         static::deleting(function () {
             self::cacheKey();
-        });
-
-        Page::creating(function ($model) {
-            $model->position = Page::max('position') + 1;
         });
     }
 
@@ -46,37 +44,27 @@ class Page extends Model
         return LogOptions::defaults();
     }
 
-    // Casts
     protected $casts = [
-        'meta_keywords' => 'array',
+        'data' => 'array'
     ];
 
-    // Appends
-    protected $appends = ['video_embed', 'network_image'];
-
-    //Accessors
-    public function getVideoEmbedAttribute()
+    // Relationships
+    public function category()
     {
-        return isset($this->video) ? preg_replace(
-            "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
-            '<iframe src="//www.youtube.com/embed/$2" allowfullscreen></iframe>',
-            $this->video
-        ) : null;
+        return $this->belongsTo(Category::class);
     }
 
-    public function getNetworkImageAttribute()
+    // Scopes
+    public function scopePosition($qry)
     {
-        return isset($this->image) ? url('storage/'.$this->image) : null;
+        return $qry->orderBy('position');
     }
-
-    // Accessors
-    public function getTypeAttribute($attribute)
+    public function scopeActive($qry)
     {
-        return [
-            1 => 'Event',
-            2 => 'Case Study',
-            3 => 'Vacancy Announcement',
-            4 => 'Custom Page',
-        ][$attribute];
+        return $qry->where('active', 1);
+    }
+    public function scopeFeatured($qry)
+    {
+        return $qry->where('featured', 1);
     }
 }

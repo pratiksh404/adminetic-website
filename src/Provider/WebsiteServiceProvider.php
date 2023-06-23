@@ -2,143 +2,161 @@
 
 namespace Adminetic\Website\Provider;
 
-use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
-use Adminetic\Website\Console\Commands\AdmineticWebsiteMigrateCommand;
-use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
-use Adminetic\Website\Console\Commands\AdmineticWebsiteRollbackCommand;
-use Adminetic\Website\Contracts\BlockRepositoryInterface;
-use Adminetic\Website\Contracts\CategoryRepositoryInterface;
-use Adminetic\Website\Contracts\ClientRepositoryInterface;
-use Adminetic\Website\Contracts\CounterRepositoryInterface;
-use Adminetic\Website\Contracts\EventRepositoryInterface;
-use Adminetic\Website\Contracts\FacilityRepositoryInterface;
-use Adminetic\Website\Contracts\FaqRepositoryInterface;
-use Adminetic\Website\Contracts\FeatureRepositoryInterface;
-use Adminetic\Website\Contracts\GalleryRepositoryInterface;
-use Adminetic\Website\Contracts\ImageRepositoryInterface;
-use Adminetic\Website\Contracts\PackageRepositoryInterface;
-use Adminetic\Website\Contracts\PageRepositoryInterface;
-use Adminetic\Website\Contracts\PopupRepositoryInterface;
-use Adminetic\Website\Contracts\PostRepositoryInterface;
-use Adminetic\Website\Contracts\ProjectRepositoryInterface;
-use Adminetic\Website\Contracts\ServiceRepositoryInterface;
-use Adminetic\Website\Contracts\TeamRepositoryInterface;
-use Adminetic\Website\Contracts\TemplateRepositoryInterface;
-use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
-use Adminetic\Website\Contracts\VideoRepositoryInterface;
-use Adminetic\Website\Http\Livewire\Admin\Analytics\DurationSpendOnSite;
-use Adminetic\Website\Http\Livewire\Admin\Analytics\TopExitPages;
-use Adminetic\Website\Http\Livewire\Admin\Analytics\TopLandingPages;
-use Adminetic\Website\Http\Livewire\Admin\Block\BlockVc;
-use Adminetic\Website\Http\Livewire\Admin\Block\ReorderBlock;
-use Adminetic\Website\Http\Livewire\Admin\Category\QuickCategory;
-use Adminetic\Website\Http\Livewire\Admin\Category\ReorderChildrenCategory;
-use Adminetic\Website\Http\Livewire\Admin\Category\ReorderParentCategory;
-use Adminetic\Website\Http\Livewire\Admin\Facility\ReorderFacility;
-use Adminetic\Website\Http\Livewire\Admin\Faq\ReorderFaq;
-use Adminetic\Website\Http\Livewire\Admin\Feature\ReorderFeature;
-use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryImages;
-use Adminetic\Website\Http\Livewire\Admin\Package\ReorderPackage;
-use Adminetic\Website\Http\Livewire\Admin\Page\ReorderPage;
-use Adminetic\Website\Http\Livewire\Admin\Popup\ReorderPopup;
-use Adminetic\Website\Http\Livewire\Admin\Post\PostFeatured;
-use Adminetic\Website\Http\Livewire\Admin\Post\PostPriority;
-use Adminetic\Website\Http\Livewire\Admin\Post\PostsTable;
-use Adminetic\Website\Http\Livewire\Admin\Post\PostStatus;
-use Adminetic\Website\Http\Livewire\Admin\Service\ReorderService;
-use Adminetic\Website\Http\Livewire\Admin\Team\ReorderTeam;
-use Adminetic\Website\Http\Livewire\Admin\Testimonial\ReorderTestimonial;
-use Adminetic\Website\Http\Livewire\Admin\Video\ReorderVideo;
-use Adminetic\Website\Models\Admin\Block;
-use Adminetic\Website\Models\Admin\Category;
-use Adminetic\Website\Models\Admin\Client;
-use Adminetic\Website\Models\Admin\Counter;
-use Adminetic\Website\Models\Admin\Event;
-use Adminetic\Website\Models\Admin\Facility;
-use Adminetic\Website\Models\Admin\Faq;
-use Adminetic\Website\Models\Admin\Feature;
-use Adminetic\Website\Models\Admin\Gallery;
-use Adminetic\Website\Models\Admin\Image;
-use Adminetic\Website\Models\Admin\Package;
-use Adminetic\Website\Models\Admin\Page;
-use Adminetic\Website\Models\Admin\Popup;
-use Adminetic\Website\Models\Admin\Post;
-use Adminetic\Website\Models\Admin\Project;
-use Adminetic\Website\Models\Admin\Service;
-use Adminetic\Website\Models\Admin\Team;
-use Adminetic\Website\Models\Admin\Template;
-use Adminetic\Website\Models\Admin\Testimonial;
-use Adminetic\Website\Models\Admin\Video;
-use Adminetic\Website\Policies\BlockPolicy;
-use Adminetic\Website\Policies\CategoryPolicy;
-use Adminetic\Website\Policies\ClientPolicy;
-use Adminetic\Website\Policies\CounterPolicy;
-use Adminetic\Website\Policies\EventPolicy;
-use Adminetic\Website\Policies\FacilityPolicy;
-use Adminetic\Website\Policies\FaqPolicy;
-use Adminetic\Website\Policies\FeaturePolicy;
-use Adminetic\Website\Policies\GalleryPolicy;
-use Adminetic\Website\Policies\ImagePolicy;
-use Adminetic\Website\Policies\PackagePolicy;
-use Adminetic\Website\Policies\PagePolicy;
-use Adminetic\Website\Policies\PopupPolicy;
-use Adminetic\Website\Policies\PostPolicy;
-use Adminetic\Website\Policies\ProjectPolicy;
-use Adminetic\Website\Policies\ServicePolicy;
-use Adminetic\Website\Policies\TeamPolicy;
-use Adminetic\Website\Policies\TemplatePolicy;
-use Adminetic\Website\Policies\TestimonialPolicy;
-use Adminetic\Website\Policies\VideoPolicy;
-use Adminetic\Website\Repositories\BlockRepository;
-use Adminetic\Website\Repositories\CategoryRepository;
-use Adminetic\Website\Repositories\ClientRepository;
-use Adminetic\Website\Repositories\CounterRepository;
-use Adminetic\Website\Repositories\EventRepository;
-use Adminetic\Website\Repositories\FacilityRepository;
-use Adminetic\Website\Repositories\FaqRepository;
-use Adminetic\Website\Repositories\FeatureRepository;
-use Adminetic\Website\Repositories\GalleryRepository;
-use Adminetic\Website\Repositories\ImageRepository;
-use Adminetic\Website\Repositories\PackageRepository;
-use Adminetic\Website\Repositories\PageRepository;
-use Adminetic\Website\Repositories\PopupRepository;
-use Adminetic\Website\Repositories\PostRepository;
-use Adminetic\Website\Repositories\ProjectRepository;
-use Adminetic\Website\Repositories\ServiceRepository;
-use Adminetic\Website\Repositories\TeamRepository;
-use Adminetic\Website\Repositories\TemplateRepository;
-use Adminetic\Website\Repositories\TestimonialRepository;
-use Adminetic\Website\Repositories\VideoRepository;
-use Adminetic\Website\View\Components\WebsiteAnalyticsDashboard;
+use Livewire\Livewire;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use Adminetic\Website\Models\Admin\Faq;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
+use Adminetic\Website\Models\Admin\Page;
+use Adminetic\Website\Models\Admin\Post;
+use Adminetic\Website\Models\Admin\Team;
+use Adminetic\Website\Models\Admin\Popup;
+use Adminetic\Website\Policies\FaqPolicy;
+use Adminetic\Website\Models\Admin\Career;
+use Adminetic\Website\Models\Admin\Client;
+use Adminetic\Website\Models\Admin\Notice;
+use Adminetic\Website\Policies\PagePolicy;
+use Adminetic\Website\Policies\PostPolicy;
+use Adminetic\Website\Policies\TeamPolicy;
+use Adminetic\Website\Models\Admin\Counter;
+use Adminetic\Website\Models\Admin\Feature;
+use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\Package;
+use Adminetic\Website\Models\Admin\Payment;
+use Adminetic\Website\Models\Admin\Process;
+use Adminetic\Website\Models\Admin\Product;
+use Adminetic\Website\Models\Admin\Project;
+use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Policies\PopupPolicy;
+use Adminetic\Website\Models\Admin\Category;
+use Adminetic\Website\Models\Admin\Download;
+use Adminetic\Website\Models\Admin\Facility;
+use Adminetic\Website\Models\Admin\Software;
+use Adminetic\Website\Policies\CareerPolicy;
+use Adminetic\Website\Policies\ClientPolicy;
+use Adminetic\Website\Policies\NoticePolicy;
+use Adminetic\Website\Models\Admin\Attribute;
+use Adminetic\Website\Policies\CounterPolicy;
+use Adminetic\Website\Policies\FeaturePolicy;
+use Adminetic\Website\Policies\GalleryPolicy;
+use Adminetic\Website\Policies\PackagePolicy;
+use Adminetic\Website\Policies\PaymentPolicy;
+use Adminetic\Website\Policies\ProcessPolicy;
+use Adminetic\Website\Policies\ProductPolicy;
+use Adminetic\Website\Policies\ProjectPolicy;
+use Adminetic\Website\Policies\ServicePolicy;
+use Adminetic\Website\Policies\CategoryPolicy;
+use Adminetic\Website\Policies\DownloadPolicy;
+use Adminetic\Website\Policies\FacilityPolicy;
+use Adminetic\Website\Policies\SoftwarePolicy;
+use Adminetic\Website\Models\Admin\Application;
+use Adminetic\Website\Models\Admin\Testimonial;
+use Adminetic\Website\Policies\AttributePolicy;
+use Adminetic\Website\Policies\ApplicationPolicy;
+use Adminetic\Website\Policies\TestimonialPolicy;
+use Adminetic\Website\Repositories\FaqRepository;
+use Adminetic\Website\Repositories\PageRepository;
+use Adminetic\Website\Repositories\TeamRepository;
+use Adminetic\Website\Repositories\PopupRepository;
+use Adminetic\Website\Repositories\ClientRepository;
+use Adminetic\Website\Repositories\NoticeRepository;
+use Adminetic\Website\Repositories\CounterRepository;
+use Adminetic\Website\Repositories\FeatureRepository;
+use Adminetic\Website\Repositories\GalleryRepository;
+use Adminetic\Website\Repositories\PackageRepository;
+use Adminetic\Website\Repositories\ProjectRepository;
+use Adminetic\Website\Repositories\ServiceRepository;
+use Adminetic\Website\Repositories\CategoryRepository;
+use Adminetic\Website\Repositories\DownloadRepository;
+use Adminetic\Website\Repositories\FacilityRepository;
+use Adminetic\Website\Contracts\FaqRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Faq\FaqTable;
+use Adminetic\Website\Contracts\PageRepositoryInterface;
+use Adminetic\Website\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Contracts\PopupRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Career\Summary;
+use Adminetic\Website\Http\Livewire\Admin\Page\PageTable;
+use Adminetic\Website\Http\Livewire\Admin\Post\PostTable;
+use Adminetic\Website\Http\Livewire\Admin\Team\TeamTable;
+use Adminetic\Website\Repositories\TestimonialRepository;
+use Adminetic\Website\Contracts\ClientRepositoryInterface;
+use Adminetic\Website\Contracts\NoticeRepositoryInterface;
+use Adminetic\Website\Contracts\CounterRepositoryInterface;
+use Adminetic\Website\Contracts\FeatureRepositoryInterface;
+use Adminetic\Website\Contracts\GalleryRepositoryInterface;
+use Adminetic\Website\Contracts\PackageRepositoryInterface;
+use Adminetic\Website\Contracts\ProjectRepositoryInterface;
+use Adminetic\Website\Contracts\ServiceRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Career\Selection;
+use Adminetic\Website\Http\Livewire\Admin\Popup\PopupTable;
+use Adminetic\Website\Contracts\CategoryRepositoryInterface;
+use Adminetic\Website\Contracts\DownloadRepositoryInterface;
+use Adminetic\Website\Contracts\FacilityRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Career\CareerTable;
+use Adminetic\Website\Http\Livewire\Admin\Client\ClientTable;
+use Adminetic\Website\Http\Livewire\Admin\Notice\NoticeTable;
+use Adminetic\Website\Http\Livewire\Admin\System\UploadImage;
+use Adminetic\Website\Console\Commands\SitemapGenerateCommand;
+use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Counter\CounterTable;
+use Adminetic\Website\Http\Livewire\Admin\Feature\FeatureTable;
+use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryTable;
+use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryVideo;
+use Adminetic\Website\Http\Livewire\Admin\Package\PackageTable;
+use Adminetic\Website\Http\Livewire\Admin\Payment\PaymentPanel;
+use Adminetic\Website\Http\Livewire\Admin\Payment\PaymentTable;
+use Adminetic\Website\Http\Livewire\Admin\Process\ProcessTable;
+use Adminetic\Website\Http\Livewire\Admin\Product\ProductTable;
+use Adminetic\Website\Http\Livewire\Admin\Project\ProjectTable;
+use Adminetic\Website\Http\Livewire\Admin\Service\ServiceTable;
+use Adminetic\Website\Http\Livewire\Admin\Payment\PaymentMaster;
+use Adminetic\Website\Http\Livewire\Admin\Category\CategoryTable;
+use Adminetic\Website\Http\Livewire\Admin\Category\QuickCategory;
+use Adminetic\Website\Http\Livewire\Admin\Dashboard\NewsHeadline;
+use Adminetic\Website\Http\Livewire\Admin\Download\DownloadTable;
+use Adminetic\Website\Http\Livewire\Admin\Facility\FacilityTable;
+use Adminetic\Website\Http\Livewire\Admin\Package\PackageFeature;
+use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareTable;
+use Adminetic\Website\Http\Livewire\Admin\Career\ApplicationTable;
+use Adminetic\Website\Http\Livewire\Admin\Attribute\AttributeTable;
+use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareModules;
+use Adminetic\Website\Http\Livewire\Admin\Dashboard\WebsiteDashboard;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteMigrateCommand;
+use Adminetic\Website\Http\Livewire\Admin\Charts\Event\EventPassChart;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteRollbackCommand;
+use Adminetic\Website\Http\Livewire\Admin\Testimonial\TestimonialTable;
+use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
+use Adminetic\Website\Http\Livewire\Admin\Charts\Event\EventPaymentChart;
 
 class WebsiteServiceProvider extends ServiceProvider
 {
     // Register Policies
     protected $policies = [
+        Application::class => ApplicationPolicy::class,
+        Attribute::class => AttributePolicy::class,
+        Career::class => CareerPolicy::class,
+        Category::class => CategoryPolicy::class,
         Client::class => ClientPolicy::class,
         Counter::class => CounterPolicy::class,
+        Download::class => DownloadPolicy::class,
         Facility::class => FacilityPolicy::class,
         Faq::class => FaqPolicy::class,
+        Feature::class => FeaturePolicy::class,
         Gallery::class => GalleryPolicy::class,
-        Image::class => ImagePolicy::class,
+        Notice::class => NoticePolicy::class,
         Package::class => PackagePolicy::class,
         Page::class => PagePolicy::class,
+        Payment::class => PaymentPolicy::class,
+        Popup::class => PopupPolicy::class,
+        Post::class => PostPolicy::class,
+        Process::class => ProcessPolicy::class,
+        Product::class => ProductPolicy::class,
         Project::class => ProjectPolicy::class,
         Service::class => ServicePolicy::class,
+        Software::class => SoftwarePolicy::class,
         Team::class => TeamPolicy::class,
-        Video::class => VideoPolicy::class,
-        Event::class => EventPolicy::class,
-        Post::class => PostPolicy::class,
-        Template::class => TemplatePolicy::class,
-        Block::class => BlockPolicy::class,
         Testimonial::class => TestimonialPolicy::class,
-        Feature::class => FeaturePolicy::class,
-        Popup::class => PopupPolicy::class,
-        Category::class => CategoryPolicy::class,
     ];
 
     /**
@@ -156,8 +174,6 @@ class WebsiteServiceProvider extends ServiceProvider
         $this->registerResource();
         // Register Policies
         $this->registerPolicies();
-        // Register View Components
-        $this->registerComponents();
         // Register View Components
         $this->registerLivewireComponents();
     }
@@ -183,16 +199,22 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__.'/../../config/website.php' => config_path('website.php'),
+            __DIR__ . '/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__.'/../../database/migrations' => database_path('migrations/website'),
+            __DIR__ . '/../../database/migrations' => database_path('migrations/website'),
         ], 'website-migrations');
+        $this->publishes([
+            __DIR__ . '/../../payload/assets' => public_path('plugins/website'),
+        ], 'website-assets');
+        $this->publishes([
+            __DIR__ . '/../../payload/modules' => app_path('Modules'),
+        ], 'website-modules');
     }
 
     /**
@@ -202,10 +224,10 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        if (! config('website.publish_migrations', true)) {
-            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
+        if (!config('website.publish_migrations', true)) {
+            $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
         }
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -221,6 +243,7 @@ class WebsiteServiceProvider extends ServiceProvider
             AdmineticWebsitePermissionCommand::class,
             AdmineticWebsiteMigrateCommand::class,
             AdmineticWebsiteRollbackCommand::class,
+            SitemapGenerateCommand::class,
         ]);
     }
 
@@ -232,12 +255,12 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
         });
 
         if (config('website.website_api_end_points', true)) {
             Route::group($this->apiRouteConfiguration(), function () {
-                $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
+                $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
             });
         }
     }
@@ -275,41 +298,43 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerLivewireComponents()
     {
-        Livewire::component('admin.popup.reorder-popup', ReorderPopup::class);
-        Livewire::component('admin.feature.reorder-feature', ReorderFeature::class);
-        Livewire::component('admin.testimonial.reorder-testimonial', ReorderTestimonial::class);
-        Livewire::component('admin.video.reorder-video', ReorderVideo::class);
-        Livewire::component('admin.package.reorder-package', ReorderPackage::class);
-        Livewire::component('admin.block.reorder-block', ReorderBlock::class);
-        Livewire::component('admin.block.block-vc', BlockVc::class);
-        Livewire::component('admin.facility.reorder-facility', ReorderFacility::class);
-        Livewire::component('admin.faq.reorder-faq', ReorderFaq::class);
-        Livewire::component('admin.page.reorder-page', ReorderPage::class);
-        Livewire::component('admin.service.reorder-service', ReorderService::class);
-        Livewire::component('admin.team.reorder-team', ReorderTeam::class);
-        Livewire::component('admin.gallery.gallery-images', GalleryImages::class);
-        Livewire::component('admin.post.post-featured', PostFeatured::class);
-        Livewire::component('admin.post.post-priority', PostPriority::class);
-        Livewire::component('admin.post.posts-table', PostsTable::class);
-        Livewire::component('admin.post.post-status', PostStatus::class);
-        Livewire::component('admin.analytics.duration-spend-on-site', DurationSpendOnSite::class);
-        Livewire::component('admin.analytics.top-exit-pages', TopExitPages::class);
-        Livewire::component('admin.analytics.top-landing-pages', TopLandingPages::class);
+        Livewire::component('admin.attribute.attribute-table', AttributeTable::class);
+        Livewire::component('admin.career.application-table', ApplicationTable::class);
+        Livewire::component('admin.career.career-table', CareerTable::class);
+        Livewire::component('admin.career.selection', Selection::class);
+        Livewire::component('admin.career.summary', Summary::class);
+        Livewire::component('admin.category.category-table', CategoryTable::class);
         Livewire::component('admin.category.quick-category', QuickCategory::class);
-        Livewire::component('admin.category.reorder-children-category', ReorderChildrenCategory::class);
-        Livewire::component('admin.category.reorder-parent-category', ReorderParentCategory::class);
-    }
-
-    /**
-     * Register View Components.
-     *
-     *@return void
-     */
-    protected function registerComponents()
-    {
-        $this->loadViewComponentsAs('adminetic', [
-            WebsiteAnalyticsDashboard::class,
-        ]);
+        Livewire::component('admin.charts.event.event-pass-chart', EventPassChart::class);
+        Livewire::component('admin.charts.event.event-payment-chart', EventPaymentChart::class);
+        Livewire::component('admin.client.client-table', ClientTable::class);
+        Livewire::component('admin.counter.counter-table', CounterTable::class);
+        Livewire::component('admin.dashboard.news-headline', NewsHeadline::class);
+        Livewire::component('admin.dashboard.website-dashboard', WebsiteDashboard::class);
+        Livewire::component('admin.download.download-table', DownloadTable::class);
+        Livewire::component('admin.facility.facility-table', FacilityTable::class);
+        Livewire::component('admin.faq.faq-table', FaqTable::class);
+        Livewire::component('admin.feature.feature-table', FeatureTable::class);
+        Livewire::component('admin.gallery.gallery-table', GalleryTable::class);
+        Livewire::component('admin.gallery.gallery-video', GalleryVideo::class);
+        Livewire::component('admin.notice.notice-table', NoticeTable::class);
+        Livewire::component('admin.package.package-table', PackageTable::class);
+        Livewire::component('admin.package.package-feature', PackageFeature::class);
+        Livewire::component('admin.page.page-table', PageTable::class);
+        Livewire::component('admin.payment.payment-master', PaymentMaster::class);
+        Livewire::component('admin.payment.payment-panel', PaymentPanel::class);
+        Livewire::component('admin.payment.payment-table', PaymentTable::class);
+        Livewire::component('admin.popup.faq-table', PopupTable::class);
+        Livewire::component('admin.post.post-table', PostTable::class);
+        Livewire::component('admin.process.process-table', ProcessTable::class);
+        Livewire::component('admin.product.product-table', ProductTable::class);
+        Livewire::component('admin.project.project-table', ProjectTable::class);
+        Livewire::component('admin.service.service-table', ServiceTable::class);
+        Livewire::component('admin.software.software-table', SoftwareTable::class);
+        Livewire::component('admin.software.software-modules', SoftwareModules::class);
+        Livewire::component('admin.system.upload-image', UploadImage::class);
+        Livewire::component('admin.team.team-table', TeamTable::class);
+        Livewire::component('admin.testimonial.testimonial-table', TestimonialTable::class);
     }
 
     /**
@@ -319,26 +344,33 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function repos()
     {
-        $this->app->bind(ServiceRepositoryInterface::class, ServiceRepository::class);
-        $this->app->bind(FacilityRepositoryInterface::class, FacilityRepository::class);
-        $this->app->bind(CounterRepositoryInterface::class, CounterRepository::class);
-        $this->app->bind(TeamRepositoryInterface::class, TeamRepository::class);
-        $this->app->bind(FaqRepositoryInterface::class, FaqRepository::class);
-        $this->app->bind(PackageRepositoryInterface::class, PackageRepository::class);
-        $this->app->bind(ProjectRepositoryInterface::class, ProjectRepository::class);
-        $this->app->bind(ClientRepositoryInterface::class, ClientRepository::class);
-        $this->app->bind(GalleryRepositoryInterface::class, GalleryRepository::class);
-        $this->app->bind(ImageRepositoryInterface::class, ImageRepository::class);
-        $this->app->bind(PageRepositoryInterface::class, PageRepository::class);
-        $this->app->bind(VideoRepositoryInterface::class, VideoRepository::class);
-        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
-        $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
-        $this->app->bind(TemplateRepositoryInterface::class, TemplateRepository::class);
-        $this->app->bind(BlockRepositoryInterface::class, BlockRepository::class);
-        $this->app->bind(TestimonialRepositoryInterface::class, TestimonialRepository::class);
-        $this->app->bind(FeatureRepositoryInterface::class, FeatureRepository::class);
-        $this->app->bind(PopupRepositoryInterface::class, PopupRepository::class);
-        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\CategoryRepositoryInterface::class, \Adminetic\Website\Repositories\CategoryRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\ServiceRepositoryInterface::class, \Adminetic\Website\Repositories\ServiceRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\FacilityRepositoryInterface::class, \Adminetic\Website\Repositories\FacilityRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\FeatureRepositoryInterface::class, \Adminetic\Website\Repositories\FeatureRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\FaqRepositoryInterface::class, \Adminetic\Website\Repositories\FaqRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\CounterRepositoryInterface::class, \Adminetic\Website\Repositories\CounterRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\GalleryRepositoryInterface::class, \Adminetic\Website\Repositories\GalleryRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\ClientRepositoryInterface::class, \Adminetic\Website\Repositories\ClientRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\NoticeRepositoryInterface::class, \Adminetic\Website\Repositories\NoticeRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\PopupRepositoryInterface::class, \Adminetic\Website\Repositories\PopupRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\DownloadRepositoryInterface::class, \Adminetic\Website\Repositories\DownloadRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\PageRepositoryInterface::class, \Adminetic\Website\Repositories\PageRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\TestimonialRepositoryInterface::class, \Adminetic\Website\Repositories\TestimonialRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\TeamRepositoryInterface::class, \Adminetic\Website\Repositories\TeamRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\PackageRepositoryInterface::class, \Adminetic\Website\Repositories\PackageRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\ProjectRepositoryInterface::class, \Adminetic\Website\Repositories\ProjectRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\EventRepositoryInterface::class, \Adminetic\Website\Repositories\EventRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\TicketRepositoryInterface::class, \Adminetic\Website\Repositories\TicketRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\GuestRepositoryInterface::class, \Adminetic\Website\Repositories\GuestRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\CouponRepositoryInterface::class, \Adminetic\Website\Repositories\CouponRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\PaymentRepositoryInterface::class, \Adminetic\Website\Repositories\PaymentRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\PostRepositoryInterface::class, \Adminetic\Website\Repositories\PostRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\CareerRepositoryInterface::class, \Adminetic\Website\Repositories\CareerRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\AttributeRepositoryInterface::class, \Adminetic\Website\Repositories\AttributeRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\ProductRepositoryInterface::class, \Adminetic\Website\Repositories\ProductRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\ProcessRepositoryInterface::class, \Adminetic\Website\Repositories\ProcessRepository::class);
+        $this->app->bind(\Adminetic\Website\Contracts\SoftwareRepositoryInterface::class, \Adminetic\Website\Repositories\SoftwareRepository::class);
     }
 
     /**

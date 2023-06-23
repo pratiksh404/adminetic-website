@@ -1,14 +1,13 @@
-@extends('adminetic::admin.layouts.app')
+@extends(request()->header('layout') ?? (request()->header('layout') ?? 'adminetic::admin.layouts.app'))
 
 @section('content')
-<x-adminetic-show-page name="counter" route="counter" :model="$counter">
-    <x-slot name="content">
+    <x-adminetic-show-page name="counter" route="counter" :model="$counter">
+        <x-slot name="content">
 
-    </x-slot>
-</x-adminetic-show-page>
+        </x-slot>
+        </x-admin.show-page>
+    @endsection
 
-@endsection
-
-@section('custom_js')
-@include('website::admin.layouts.modules.counter.scripts')
-@endsection
+    @section('custom_js')
+        @include('website::admin.layouts.modules.counter.scripts')
+    @endsection

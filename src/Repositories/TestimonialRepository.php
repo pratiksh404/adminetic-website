@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
-use Adminetic\Website\Http\Requests\TestimonialRequest;
 use Adminetic\Website\Models\Admin\Testimonial;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
+use Adminetic\Website\Http\Requests\TestimonialRequest;
 
 class TestimonialRepository implements TestimonialRepositoryInterface
 {
@@ -18,7 +17,6 @@ class TestimonialRepository implements TestimonialRepositoryInterface
                 return Testimonial::orderBy('position')->get();
             }))
             : Testimonial::orderBy('position')->get();
-
         return compact('testimonials');
     }
 
@@ -57,19 +55,16 @@ class TestimonialRepository implements TestimonialRepositoryInterface
     // Testimonial Destroy
     public function destroyTestimonial(Testimonial $testimonial)
     {
-        isset($testimonial->image) ? deleteImage($testimonial->image) : '';
         $testimonial->delete();
     }
 
-    // Image Upload
-    protected function uploadImage(Testimonial $testimonial)
+    // Upload Image
+    private function uploadImage(Testimonial $testimonial)
     {
         if (request()->has('image')) {
-            $testimonial->update([
-                'image' => request()->image->store('website/testimonial', 'public'),
-            ]);
-            $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/'.$testimonial->image));
+            $testimonial
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
         }
     }
 }

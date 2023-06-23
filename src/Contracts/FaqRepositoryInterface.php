@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Http\Requests\FaqRequest;
 use Adminetic\Website\Models\Admin\Faq;
+use Adminetic\Website\Http\Requests\FaqRequest;
 
 interface FaqRepositoryInterface
 {

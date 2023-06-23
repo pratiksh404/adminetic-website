@@ -2,15 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use App\Traits\CategoryMorphedByMany;
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Model
+class Category extends Model implements HasMedia
 {
-    use LogsActivity, Thumbnail, CategoryMorphedByMany;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -26,16 +27,13 @@ class Category extends Model
         static::deleting(function () {
             self::cacheKey();
         });
-
-        Category::creating(function ($model) {
-            $model->position = Category::max('position') + 1;
-        });
     }
 
     // Cache Keys
     private static function cacheKey()
     {
         Cache::has('categories') ? Cache::forget('categories') : '';
+        Cache::has('parent_categories') ? Cache::forget('parent_categories') : '';
     }
 
     // Logs
@@ -46,21 +44,18 @@ class Category extends Model
         return LogOptions::defaults();
     }
 
+    // Relationship
     protected $parentColumn = 'parent_id';
 
-    protected $casts = [
-        'meta_keywords' => 'array',
-    ];
-
-    // Relation
-    public function categorizable()
-    {
-        return $this->morphTo();
-    }
 
     public function parent()
     {
         return $this->belongsTo(Category::class, $this->parentColumn);
+    }
+
+    public function root_parent()
+    {
+        return $this->belongsTo(Category::class, $this->root_parent_id);
     }
 
     public function categories()
@@ -73,25 +68,25 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id')->with('categories');
     }
 
-    public function properties()
-    {
-        return $this->hasMany(Property::class);
-    }
-
-    public function allProperties()
-    {
-        return $this->hasMany(Property::class, 'main_category_id');
-    }
-
     // Scopes
-
-    public function scopePositionCategory($query, $limit = 4)
+    public function scopeWhoIsParent($qry)
     {
-        return $query->with('children')->orderBy('position', 'desc')->take($limit);
+        return $qry->whereNull('parent_id');
     }
-
-    public function scopeActive($query)
+    public function scopeWhoIsRootParent($qry)
     {
-        return $query->where('active', 1);
+        return $qry->whoIsParent()->whereNull('root_parent_id');
+    }
+    public function scopePosition($qry)
+    {
+        return $qry->orderBy('position');
+    }
+    public function scopeActive($qry)
+    {
+        return $qry->where('active', 1);
+    }
+    public function scopeFeatured($qry)
+    {
+        return $qry->where('featured', 1);
     }
 }

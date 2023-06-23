@@ -8,47 +8,27 @@ class TestimonialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'code' => $this->testimonial->code ?? rand(100000, 9999999),
-        ]);
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
-        $id = $this->testimonial->id ?? '';
-
         return [
-            'code' => 'required|unique:testimonials,code,'.$id,
-            'name' => 'required|max:255',
-            'email' => 'required|unique:testimonials,email,'.$id,
-            'image' => 'nullable|file|image|max:3000',
-            'contact' => 'nullable|numeric',
-            'designation' => 'nullable|max:60',
-            'company' => 'nullable|max:60',
-            'body' => 'required|max:3000',
-            'rating' => 'nullable|numeric|max:5',
-            'position' => 'sometimes|numeric',
-            'approve' => 'sometimes|boolean',
+            'name' => 'required|max:100',
+            'email' => 'nullable|email',
+            'company' => 'nullable|max:255',
+            'designation' => 'nullable|max:100',
+            'message' => 'required|max:5500',
+            'approved' => 'sometimes|boolean',
+            'rating' => 'sometimes|numeric'
         ];
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\ClientRepositoryInterface;
-use Adminetic\Website\Http\Requests\ClientRequest;
 use Adminetic\Website\Models\Admin\Client;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\ClientRepositoryInterface;
+use Adminetic\Website\Http\Requests\ClientRequest;
+use Adminetic\Website\Models\Admin\Gallery;
 
 class ClientRepository implements ClientRepositoryInterface
 {
@@ -15,10 +15,9 @@ class ClientRepository implements ClientRepositoryInterface
     {
         $clients = config('adminetic.caching', true)
             ? (Cache::has('clients') ? Cache::get('clients') : Cache::rememberForever('clients', function () {
-                return Client::latest()->get();
+                return Client::orderBy('position')->get();
             }))
-            : Client::latest()->get();
-
+            : Client::orderBy('position')->get();
         return compact('clients');
     }
 
@@ -57,19 +56,16 @@ class ClientRepository implements ClientRepositoryInterface
     // Client Destroy
     public function destroyClient(Client $client)
     {
-        isset($client->image) ? deleteImage($client->image) : '';
         $client->delete();
     }
 
-    // Image Upload
-    protected function uploadImage(Client $client)
+    // Upload Image
+    private function uploadImage(Client $client)
     {
         if (request()->has('image')) {
-            $client->update([
-                'image' => request()->image->store('website/client', 'public'),
-            ]);
-            $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/'.$client->image));
+            $client
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
         }
     }
 }

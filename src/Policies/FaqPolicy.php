@@ -17,6 +17,7 @@ class FaqPolicy
         }
     }
 
+
     /**
      * Determine whether the user can view any models.
      *

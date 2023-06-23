@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\TeamRepositoryInterface;
-use Adminetic\Website\Http\Requests\TeamRequest;
 use Adminetic\Website\Models\Admin\Team;
 use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Http\Requests\TeamRequest;
 
 class TeamRepository implements TeamRepositoryInterface
 {
@@ -17,7 +17,6 @@ class TeamRepository implements TeamRepositoryInterface
                 return Team::orderBy('position')->get();
             }))
             : Team::orderBy('position')->get();
-
         return compact('teams');
     }
 
@@ -56,34 +55,16 @@ class TeamRepository implements TeamRepositoryInterface
     // Team Destroy
     public function destroyTeam(Team $team)
     {
-        isset($team->image) ? $team->hardDelete('image') : '';
         $team->delete();
     }
 
-    protected function uploadImage(Team $team)
+    // Upload Image
+    private function uploadImage(Team $team)
     {
-        if (request()->image) {
-            $thumbnails = [
-                'storage' => 'website/team/'.validImageFolder($team->name, 'default'),
-                'width' => '400',
-                'height' => '600',
-                'quality' => '90',
-                'thumbnails' => [
-                    [
-                        'thumbnail-name' => 'medium',
-                        'thumbnail-width' => '200',
-                        'thumbnail-height' => '300',
-                        'thumbnail-quality' => '70',
-                    ],
-                    [
-                        'thumbnail-name' => 'small',
-                        'thumbnail-width' => '100',
-                        'thumbnail-height' => '150',
-                        'thumbnail-quality' => '50',
-                    ],
-                ],
-            ];
-            $team->makeThumbnail('image', $thumbnails);
+        if (request()->has('image')) {
+            $team
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
         }
     }
 }

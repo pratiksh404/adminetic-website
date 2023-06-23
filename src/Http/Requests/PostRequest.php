@@ -2,63 +2,60 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Prepare the data for validation.
-     *
-     * @return void
      */
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
-            'code' => $this->post->code ?? rand(100000, 999999),
-            'slug' => Str::slug($this->name),
+            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'meta_name' => $this->post->meta_name ?? $this->meta_name ?? $this->name ?? null,
+            'meta_description' => $this->post->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
+            'user_id' => Auth::user()->id
         ]);
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
         $id = $this->post->id ?? '';
-
         return [
-            'slug' => 'required|max:255|unique:posts,slug,'.$id,
-            'code' => 'required|max:255|unique:posts,code,'.$id,
-            'author_id' => 'required|numeric',
-            'category_id' => 'required|numeric',
-            'name' => 'required|max:255',
-            'excerpt' => 'required|max:255',
-            'body' => 'sometimes|max:65535',
-            'image' => 'sometimes|file|image:max:3000',
-            'status' => 'required',
-            'featured' => 'required|boolean',
-            'priority' => 'nullable|numeric',
-            'type' => 'nullable|numeric',
-            'video' => 'nullable|max:255',
-            'audio' => 'nullable|max:255',
-            'breaking_news' => 'nullable|boolean',
-            'hot_news' => 'nullable|boolean',
-            'seo_name' => 'sometimes|max:255',
-            'meta_description' => 'sometimes|max:255',
-            'meta_keywords' => 'sometimes',
+            'slug' => 'required|max:100|unique:categories,slug,' . $id,
+            'name' => 'required|max:100|unique:categories,name,' . $id,
+            'excerpt' => 'nullable|max:5500',
+            'description' => 'nullable|max:55000',
+            'category_id' => 'nullable|exists:categories,id',
+            'active' => 'sometimes|boolean',
+            'featured' => 'sometimes|boolean',
+            'position' => 'nullable|numeric',
+            'icon' => 'nullable|max:255',
+            'color' => 'nullable|max:255',
+            'meta_name' => 'nullable|max:100',
+            'meta_description' => 'nullable|max:255',
+            'meta_keywords' => 'nullable|max:100',
+            'videos' => 'nullable',
+            'status' => 'sometimes|numeric',
+            'type' => 'sometimes|numeric',
+            'user_id' => 'required|exists:users,id',
+            'approved_by' => 'nullable|exists:users,id',
         ];
     }
 }

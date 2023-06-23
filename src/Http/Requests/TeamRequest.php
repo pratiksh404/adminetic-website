@@ -2,61 +2,45 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Http\FormRequest;
 
 class TeamRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Prepare the data for validation.
-     *
-     * @return void
      */
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => Str::slug($this->name),
+            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
         ]);
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
         $id = $this->team->id ?? '';
-
         return [
-            'code' => 'required|max:255|unique:teams,code,'.$id,
-            'name' => 'required|max:100',
-            'slug' => 'required|max:255|unique:teams,code,'.$id,
-            'designation' => 'required|max:100',
-            'image' => 'sometimes|file|image|max:3000',
-            'phone' => 'nullable',
-            'phone.*' => 'nullable|numeric',
-            'email' => 'nullable|email|max:255',
-            'facebook' => 'nullable|max:255',
-            'instagram' => 'nullable|max:255',
-            'twitter' => 'nullable|max:255',
-            'linkedin' => 'nullable|max:255',
-            'github' => 'nullable|max:255',
-            'messenger' => 'nullable|max:255',
-            'whatsapp' => 'nullable|max:255',
-            'message' => 'nullable|max:10000',
-            'position' => 'sometimes|numeric|max:100',
-            'group' => 'sometimes|numeric|max:100',
+            'name' => 'required|max:100|unique:teams,name,' . $id,
+            'slug' => 'required|max:100|unique:teams,slug,' . $id,
+            'short_message' => 'nullable|max:255',
+            'description' => 'nullable|max:55000',
+            'social_medias' => 'nullable',
+            'phone' => 'nullable|max:100',
+            'group' => 'nullable|numeric',
+            'position' => 'nullable|numeric',
         ];
     }
 }

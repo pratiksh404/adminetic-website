@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\PackageRepositoryInterface;
-use Adminetic\Website\Http\Requests\PackageRequest;
 use Adminetic\Website\Models\Admin\Package;
 use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Contracts\PackageRepositoryInterface;
+use Adminetic\Website\Http\Requests\PackageRequest;
 
 class PackageRepository implements PackageRepositoryInterface
 {
@@ -17,7 +17,6 @@ class PackageRepository implements PackageRepositoryInterface
                 return Package::orderBy('position')->get();
             }))
             : Package::orderBy('position')->get();
-
         return compact('packages');
     }
 
@@ -30,7 +29,8 @@ class PackageRepository implements PackageRepositoryInterface
     // Package Store
     public function storePackage(PackageRequest $request)
     {
-        Package::create($request->validated());
+        $package = Package::create($request->validated());
+        $this->uploadImage($package);
     }
 
     // Package Show
@@ -49,11 +49,27 @@ class PackageRepository implements PackageRepositoryInterface
     public function updatePackage(PackageRequest $request, Package $package)
     {
         $package->update($request->validated());
+        $this->uploadImage($package);
     }
 
     // Package Destroy
     public function destroyPackage(Package $package)
     {
         $package->delete();
+    }
+
+    // Upload Image
+    private function uploadImage(Package $package)
+    {
+        if (request()->has('image')) {
+            $package
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
+        }
+        if (request()->has('icon_image')) {
+            $package
+                ->addFromMediaLibraryRequest(request()->icon_image)
+                ->toMediaCollection('icon_image');
+        }
     }
 }

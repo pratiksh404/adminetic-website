@@ -17,10 +17,11 @@ class PostPolicy
         }
     }
 
+
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \Adminetic\Website\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -31,7 +32,7 @@ class PostPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \Adminetic\Website\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \Adminetic\Website\Models\Admin\Post  $post
      * @return mixed
      */
@@ -43,7 +44,7 @@ class PostPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \Adminetic\Website\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -54,7 +55,7 @@ class PostPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \Adminetic\Website\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \Adminetic\Website\Models\Admin\Post  $post
      * @return mixed
      */
@@ -66,7 +67,7 @@ class PostPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \Adminetic\Website\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \Adminetic\Website\Models\Admin\Post  $post
      * @return mixed
      */
@@ -78,7 +79,7 @@ class PostPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param  \Adminetic\Website\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \Adminetic\Website\Models\Admin\Post  $post
      * @return mixed
      */
@@ -90,7 +91,7 @@ class PostPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param  \Adminetic\Website\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \Adminetic\Website\Models\Admin\Post  $post
      * @return mixed
      */

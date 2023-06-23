@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\FeatureRepositoryInterface;
-use Adminetic\Website\Http\Requests\FeatureRequest;
 use Adminetic\Website\Models\Admin\Feature;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\FeatureRepositoryInterface;
+use Adminetic\Website\Http\Requests\FeatureRequest;
 
 class FeatureRepository implements FeatureRepositoryInterface
 {
@@ -15,10 +14,9 @@ class FeatureRepository implements FeatureRepositoryInterface
     {
         $features = config('adminetic.caching', true)
             ? (Cache::has('features') ? Cache::get('features') : Cache::rememberForever('features', function () {
-                return Feature::latest()->get();
+                return Feature::orderBy('position')->get();
             }))
-            : Feature::latest()->get();
-
+            : Feature::orderBy('position')->get();
         return compact('features');
     }
 
@@ -57,19 +55,21 @@ class FeatureRepository implements FeatureRepositoryInterface
     // Feature Destroy
     public function destroyFeature(Feature $feature)
     {
-        $feature->image ? deleteImage($feature->image) : '';
         $feature->delete();
     }
 
     // Upload Image
-    protected function uploadImage(Feature $feature)
+    private function uploadImage(Feature $feature)
     {
-        if (request()->image) {
-            $feature->update([
-                'image' => request()->image->store('website/feature/image', 'public'),
-            ]);
-            $image = Image::make(request()->file('image')->getRealPath());
-            $image->save(public_path('storage/'.$feature->image));
+        if (request()->has('image')) {
+            $feature
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
+        }
+        if (request()->has('icon_image')) {
+            $feature
+                ->addFromMediaLibraryRequest(request()->icon_image)
+                ->toMediaCollection('icon_image');
         }
     }
 }

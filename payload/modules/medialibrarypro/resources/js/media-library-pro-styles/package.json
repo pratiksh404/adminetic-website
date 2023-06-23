@@ -1,0 +1,26 @@
+{
+    "name": "@spatie/media-library-pro-styles",
+    "version": "1.2.2",
+    "homepage": "https://medialibrary.pro",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com/spatie/laravel-medialibrary-pro.git",
+        "directory": "resources/js/media-library-pro-styles"
+    },
+    "author": "Willem Van Bockstal <willem@spatie.be>",
+    "main": "dist/styles.css",
+    "scripts": {
+        "build": "postcss src/styles.css --output dist/styles.css --env production --use tailwindcss --verbose",
+        "build:dev": "postcss src/styles.css --output dist/styles.css --use tailwindcss --verbose",
+        "watch": "postcss src/styles.css --output dist/styles.css --watch --use tailwindcss --verbose",
+        "run-link": "yarn link"
+    },
+    "dependencies": {
+        "postcss": "^7.0.35",
+        "postcss-cli": "^7.1.1",
+        "tailwindcss": "^1.9.6"
+    }
+}

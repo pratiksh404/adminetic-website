@@ -1,0 +1,44 @@
+{
+    "name": "@spatie/media-library-pro-vue2-attachment",
+    "version": "1.2.4",
+    "author": "Adriaan Marain <adriaan@spatie.be>",
+    "homepage": "https://medialibrary.pro",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com/spatie/laravel-medialibrary-pro.git",
+        "directory": "resources/js/media-library-pro-vue2-attachment"
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "NODE_ENV=production rollup -c --environment BUILD:production",
+        "build:dev": "NODE_ENV=development rollup -c --environment BUILD:development",
+        "watch": "npm run build:dev -- --watch",
+        "analyze": "yarn build --analyze",
+        "run-link": "yarn link"
+    },
+    "dependencies": {
+        "@spatie/media-library-pro-core": "^1.2.3",
+        "@spatie/media-library-pro-vue2": "^1.2.4"
+    },
+    "peerDependencies": {
+        "vue": "^2.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.11.6",
+        "@babel/plugin-proposal-optional-chaining": "^7.11.0",
+        "@babel/plugin-transform-runtime": "^7.11.5",
+        "@babel/preset-env": "^7.11.5",
+        "@babel/preset-react": "^7.10.4",
+        "@babel/preset-typescript": "^7.10.4",
+        "@babel/runtime": "^7.11.2",
+        "@rollup/plugin-babel": "^5.2.1",
+        "@rollup/plugin-commonjs": "^15.1.0",
+        "@rollup/plugin-json": "^4.1.0",
+        "@rollup/plugin-node-resolve": "^9.0.0",
+        "rollup": "^2.29.0",
+        "rollup-plugin-vue": "^5.1.9"
+    }
+}

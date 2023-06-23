@@ -2,16 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Gallery extends Model
+class Gallery extends Model implements HasMedia
 {
-    use LogsActivity, Thumbnail;
-
+    use LogsActivity, InteractsWithMedia;
     protected $guarded = [];
 
     // Forget cache on updating or saving and deleting
@@ -43,32 +43,6 @@ class Gallery extends Model
     }
 
     protected $casts = [
-        'url' => 'array',
+        'videos' => 'array'
     ];
-
-    // Accessors
-    public function getTypeAttribute($attribute)
-    {
-        return [
-            1 => 'Image',
-            2 => 'Video',
-        ][$attribute];
-    }
-
-    // Scopes
-    public function scopeImageGallery($query)
-    {
-        return $query->where('type', 1);
-    }
-
-    public function scopeVideoGallery($query)
-    {
-        return $query->where('type', 2);
-    }
-
-    // Relations
-    public function images()
-    {
-        return $this->hasMany(Image::class);
-    }
 }

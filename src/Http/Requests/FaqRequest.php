@@ -8,10 +8,8 @@ class FaqRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -19,14 +17,13 @@ class FaqRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'question' => 'required|max:255',
-            'answer' => 'required|max:10000',
-            'position' => 'sometimes|numeric',
+            'question' => 'required|max:5500',
+            'answer' => 'required|max:55000'
         ];
     }
 }

@@ -2,15 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Team extends Model
+class Team extends Model implements HasMedia
 {
-    use LogsActivity, Thumbnail;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -25,10 +26,6 @@ class Team extends Model
 
         static::deleting(function () {
             self::cacheKey();
-        });
-
-        Team::creating(function ($model) {
-            $model->position = Team::max('position') + 1;
         });
     }
 
@@ -46,8 +43,8 @@ class Team extends Model
         return LogOptions::defaults();
     }
 
-    // Casts
+
     protected $casts = [
-        'phone' => 'array',
+        'social_medias' => 'array'
     ];
 }

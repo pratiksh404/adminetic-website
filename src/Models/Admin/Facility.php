@@ -2,15 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use drh2so4\Thumbnail\Traits\Thumbnail;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Facility extends Model
+class Facility extends Model implements HasMedia
 {
-    use LogsActivity, Thumbnail;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -25,10 +26,6 @@ class Facility extends Model
 
         static::deleting(function () {
             self::cacheKey();
-        });
-
-        Facility::creating(function ($model) {
-            $model->position = Facility::max('position') + 1;
         });
     }
 
@@ -46,28 +43,29 @@ class Facility extends Model
         return LogOptions::defaults();
     }
 
-    // Casts
-    protected $casts = [
-        'meta_keywords' => 'array',
-    ];
-
-    // Appends
-    protected $appends = ['network_icon_image', 'network_image'];
-
-    // Relation
+    // Relationships
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
-    // Accessors
-    public function getNetworkIconImageAttribute()
-    {
-        return isset($this->icon_image) ? url('storage/'.$this->icon_image) : null;
-    }
 
-    public function getNetworkImageAttribute()
+    protected $casts = [
+        'data' => 'array'
+    ];
+
+
+    // Scopes
+    public function scopePosition($qry)
     {
-        return isset($this->image) ? url('storage/'.$this->image) : null;
+        return $qry->orderBy('position');
+    }
+    public function scopeActive($qry)
+    {
+        return $qry->where('active', 1);
+    }
+    public function scopeFeatured($qry)
+    {
+        return $qry->where('featured', 1);
     }
 }

@@ -1,16 +1,26 @@
 <script>
-    $(function(){    
-             $('#add_feature').on('click',function(){
-            var html = '';
-            html += '<tr class="feature_unit">';
-            html += '<td><input type="text" name="features[]" class="feature form-control"></td>';
-            html += '<td><button type="button" class="btn btn-danger delete-feature"><i class="fas fa-trash"></i></button></td>';
-            html += '</tr>';
-            $('#features').append(html);
+    // Font Selector
+    IconPicker.Init({
+        jsonUrl: "{{ asset('adminetic/assets/js/icon-picker/iconpicker-1.5.0.json') }}",
+        searchPlaceholder: 'Search Icon',
+        showAllButton: 'Show All',
+        cancelButton: 'Cancel',
+        noResultsFound: 'No results found.',
+        borderRadius: '20px',
+    });
+
+    IconPicker.Run('#iconPicker');
+</script>
+
+<script>
+    $(function() {
+        $('#name').on('keyup', function() {
+            var name = $('#name').val();
+            $('#meta_name').val(name);
         });
-    
-        $(document).on('click','.delete-feature',function(){
-            $(this).closest('.feature_unit').remove();
+        $('#excerpt').on('keyup', function() {
+            var excerpt = $('#excerpt').val();
+            $('#meta_description').val(excerpt);
         });
     });
 </script>

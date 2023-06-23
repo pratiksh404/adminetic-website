@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\CounterRepositoryInterface;
-use Adminetic\Website\Http\Requests\CounterRequest;
 use Adminetic\Website\Models\Admin\Counter;
 use Illuminate\Support\Facades\Cache;
-use Intervention\Image\Facades\Image;
+use Adminetic\Website\Contracts\CounterRepositoryInterface;
+use Adminetic\Website\Http\Requests\CounterRequest;
 
 class CounterRepository implements CounterRepositoryInterface
 {
@@ -15,10 +14,9 @@ class CounterRepository implements CounterRepositoryInterface
     {
         $counters = config('adminetic.caching', true)
             ? (Cache::has('counters') ? Cache::get('counters') : Cache::rememberForever('counters', function () {
-                return Counter::latest()->get();
+                return Counter::orderBy('position')->get();
             }))
-            : Counter::latest()->get();
-
+            : Counter::orderBy('position')->get();
         return compact('counters');
     }
 
@@ -57,19 +55,16 @@ class CounterRepository implements CounterRepositoryInterface
     // Counter Destroy
     public function destroyCounter(Counter $counter)
     {
-        isset($counter->icon) ? deleteImage($counter->icon) : '';
         $counter->delete();
     }
 
     // Upload Image
-    protected function uploadImage(Counter $counter)
+    private function uploadImage(Counter $counter)
     {
-        if (request()->has('icon')) {
-            $counter->update([
-                'icon' => request()->icon->store('website/counter', 'public'),
-            ]);
-            $image = Image::make(request()->file('icon')->getRealPath());
-            $image->save(public_path('storage/'.$counter->icon));
+        if (request()->has('icon_image')) {
+            $counter
+                ->addFromMediaLibraryRequest(request()->icon_image)
+                ->toMediaCollection('icon_image');
         }
     }
 }

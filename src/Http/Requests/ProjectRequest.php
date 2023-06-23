@@ -2,55 +2,55 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Prepare the data for validation.
-     *
-     * @return void
      */
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => Str::slug($this->name),
+            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'meta_name' => $this->project->meta_name ?? $this->meta_name ?? $this->name ?? null,
+            'meta_description' => $this->project->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
         ]);
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
         $id = $this->project->id ?? '';
-
         return [
-            'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:projects,slug,'.$id,
-            'client' => 'required|max:255',
-            'duration' => 'required|max:60',
-            'category' => 'required|max:80',
-            'image' => 'sometimes|file|image|max:3000',
-            'link' => 'nullable|max:255',
-            'description' => 'required|max:10000',
-            'position' => 'sometimes|numeric',
-            'meta_name' => 'nullable|max:255',
+            'slug' => 'required|max:100|unique:categories,slug,' . $id,
+            'name' => 'required|max:100|unique:categories,name,' . $id,
+            'excerpt' => 'nullable|max:5500',
+            'description' => 'nullable|max:55000',
+            'category_id' => 'nullable|exists:categories,id',
+            'active' => 'sometimes|boolean',
+            'featured' => 'sometimes|boolean',
+            'position' => 'nullable|numeric',
+            'icon' => 'nullable|max:255',
+            'color' => 'nullable|max:255',
+            'data' => 'nullable',
+            'status' => 'sometimes|numeric',
+            'meta_name' => 'nullable|max:100',
             'meta_description' => 'nullable|max:255',
-            'meta_keywords' => 'nullable',
+            'meta_keywords' => 'nullable|max:100',
         ];
     }
 }

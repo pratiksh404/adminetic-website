@@ -5,7 +5,7 @@
         "adminetic",
         "website"
     ],
-    "homepage": "https://github.com/pratiksh404/adminetic-website",
+    "homepage": "https://github.com/pratiksh404/admin.website",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -17,9 +17,10 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "cyrildewit/eloquent-viewable": "^6.0",
-        "rtconner/laravel-tagging": "^4.1",
-        "spatie/laravel-analytics": "^3.0|^4.0"
+        "pratiksh/nepalidate": "^1.4",
+        "rappasoft/laravel-livewire-tables": "^2.12",
+        "spatie/laravel-sitemap": "^6.3",
+        "spatie/schema-org": "^3.14"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
@@ -38,7 +39,6 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true

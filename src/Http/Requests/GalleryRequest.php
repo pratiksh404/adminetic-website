@@ -2,51 +2,42 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Http\FormRequest;
 
 class GalleryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
     /**
      * Prepare the data for validation.
-     *
-     * @return void
      */
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => Str::slug($this->name),
+            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
         ]);
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
         $id = $this->gallery->id ?? '';
-
         return [
-            'code' => 'required|max:255|unique:galleries,code,'.$id,
-            'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:galleries,slug,'.$id,
-            'excerpt' => 'sometimes|max:1000',
-            'description' => 'sometimes|max:4000',
-            'image' => 'sometimes|file|image|max:5000',
-            'type' => 'required|numeric',
-            'url' => 'required_if:type,2',
+            'name' => 'required|max:100|unique:galleries,name,' . $id,
+            'slug' => 'required|max:100|unique:galleries,slug,' . $id,
+            'videos' => 'nullable',
+            'description' => 'nullable|max:5500'
         ];
     }
 }

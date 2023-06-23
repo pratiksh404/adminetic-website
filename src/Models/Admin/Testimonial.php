@@ -2,14 +2,16 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Testimonial extends Model
+class Testimonial extends Model implements HasMedia
 {
-    use LogsActivity;
+    use LogsActivity, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -24,10 +26,6 @@ class Testimonial extends Model
 
         static::deleting(function () {
             self::cacheKey();
-        });
-
-        Testimonial::creating(function ($model) {
-            $model->position = Testimonial::max('position') + 1;
         });
     }
 
@@ -45,12 +43,9 @@ class Testimonial extends Model
         return LogOptions::defaults();
     }
 
-    // Appends
-    protected $appends = ['network_image'];
-
-    // Accessors
-    public function getNetworkImageAttribute()
+    // Scope
+    public function scopeApproved($qry)
     {
-        return isset($this->image) ? url('storage/'.$this->image) : null;
+        return $qry->where('approved', 1);
     }
 }

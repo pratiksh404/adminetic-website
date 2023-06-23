@@ -2,136 +2,92 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Contracts\PostRepositoryInterface;
-use Adminetic\Website\Http\Requests\PostRequest;
-use Adminetic\Website\Models\Admin\Category;
+use Adminetic\Website\Models\Admin\Tag;
 use Adminetic\Website\Models\Admin\Post;
-use Adminetic\Website\Models\Admin\Template;
+use Illuminate\Support\Str;
+use Adminetic\Website\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Cache;
+use Adminetic\Website\Contracts\PostRepositoryInterface;
 
 class PostRepository implements PostRepositoryInterface
 {
     // Post Index
     public function indexPost()
     {
-        Cache::rememberForever('posts', function () {
-            return Post::with('author')->latest()->get();
-        });
-        Cache::rememberForever('latest_limited_posts', function () {
-            return Post::latestLimitedPosts()->get();
-        });
-        Cache::rememberForever('featured_limited_posts', function () {
-            return Post::featuredLimitedPosts()->get();
-        });
-        Cache::rememberForever('limited_breaking_news', function () {
-            return Post::limitedBreakingNews()->get();
-        });
-        Cache::rememberForever('limited_hot_news', function () {
-            return Post::limitedHotNews()->get();
-        });
-        Cache::rememberForever('limited_trending_posts', function () {
-            return Post::trending();
-        });
-        Cache::rememberForever('limited_priority_posts', function () {
-            return Post::limitedPriorityPosts()->get();
-        });
-        Cache::rememberForever('yesterday_most_visited_posts', function () {
-            return Post::yesterdayMostVisitedPosts()->get();
-        });
-        Cache::rememberForever('week_most_visited_posts', function () {
-            return Post::weekMostVisitedPosts()->get();
-        });
-        Cache::rememberForever('most_visited_posts_chunked', function () {
-            return Post::mostVisitedPostsChunked();
-        });
-
-        return [];
+        $posts = config('adminetic.caching', true)
+            ? (Cache::has('posts') ? Cache::get('posts') : Cache::rememberForever('posts', function () {
+                return Post::orderBy('position')->get();
+            }))
+            : Post::orderBy('position')->get();
+        return compact('posts');
     }
 
     // Post Create
     public function createPost()
     {
-        $categories = Cache::get('categories', Category::with('parent', 'categories')->latest()->get());
-        $tags = Post::existingTags()->pluck('name');
-        $templates = Cache::get('templates', Template::latest()->get());
-
-        return compact('categories', 'tags', 'templates');
+        $tags = Tag::latest()->get();
+        return compact('tags');
     }
 
     // Post Store
     public function storePost(PostRequest $request)
     {
         $post = Post::create($request->validated());
-        if (request()->tags) {
-            $post->tag(array_unique(request()->tags));
-        }
-        $request->image ? $this->uploadImage($post) : '';
+        $this->syncTags($post);
+        $this->uploadImage($post);
     }
 
     // Post Show
     public function showPost(Post $post)
     {
-        $tags = $post->tagged->pluck('tag_name');
-
-        return compact('post', 'tags');
+        return compact('post');
     }
 
     // Post Edit
     public function editPost(Post $post)
     {
-        $categories = Cache::get('categories', Category::with('parent', 'categories')->latest()->get());
-        $tags = $post->existingTags()->pluck('name');
-        $remove_tags = $post->tagged->pluck('tag_name');
-        $templates = Cache::get('templates', Template::latest()->get());
-
-        return compact('post', 'categories', 'tags', 'remove_tags', 'templates');
+        $tags = Tag::latest()->get();
+        return compact('post', 'tags');
     }
 
     // Post Update
     public function updatePost(PostRequest $request, Post $post)
     {
         $post->update($request->validated());
-        if (request()->remove_tags) {
-            $post->untag(request()->remove_tags);
-        }
-        if (request()->tags) {
-            $post->tag(array_unique(request()->tags));
-        }
-        $request->image ? $this->uploadImage($post) : '';
+        $this->syncTags($post);
+        $this->uploadImage($post);
     }
 
     // Post Destroy
     public function destroyPost(Post $post)
     {
-        $post->image ? $post->hardDelete('image') : '';
+        $post->tags()->detach();
         $post->delete();
     }
 
+
     // Upload Image
-    protected function uploadImage(Post $post)
+    private function uploadImage(Post $post)
     {
-        if (request()->image) {
-            $thumbnails = [
-                'storage' => 'website/post/'.validImageFolder($post->id, 'post'),
-                'width' => '1200',
-                'height' => '630',
-                'quality' => '100',
-                'thumbnails' => [
-                    [
-                        'thumbnail-name' => 'medium',
-                        'thumbnail-width' => '730',
-                        'thumbnail-height' => '500',
-                        'thumbnail-quality' => '90',
-                    ],
-                    [
-                        'thumbnail-name' => 'small',
-                        'thumbnail-width' => '80',
-                        'thumbnail-height' => '70',
-                        'thumbnail-quality' => '70',
-                    ],
-                ],
-            ];
-            $post->makeThumbnail('image', $thumbnails);
+        if (request()->has('image')) {
+            $post
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
+        }
+    }
+
+    // Tags
+    private function syncTags(Post $post)
+    {
+        if (request()->has('tags')) {
+            $post->tags()->detach();
+            foreach (request()->tags as $tag_name) {
+                $tag = Tag::firstOrCreate([
+                    'name' => trim($tag_name),
+                    'slug' => Str::slug(trim($tag_name)),
+                ]);
+                $post->tags()->attach($tag->id);
+            }
         }
     }
 }

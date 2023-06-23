@@ -1,0 +1,44 @@
+{
+    "name": "root",
+    "private": true,
+    "scripts": {
+        "lerna": "lerna",
+        "build-all": "lerna run build",
+        "build-all-dev": "lerna run build:dev",
+        "tswatch": "./node_modules/typescript/bin/tsc --watch",
+        "tscheck": "./node_modules/typescript/bin/tsc",
+        "watch": "lerna run --parallel watch",
+        "link-all": "lerna run run-link",
+        "setup": "yarn && yarn lerna bootstrap && yarn link-all && yarn build-all",
+        "prepublishOnly": "lerna run build-all",
+        "format": "prettier --write 'resources/js/**/src/**/*.{css,js,vue,ts,tsx,json}'",
+        "publish-all": "lerna publish --registry=https://npm.pkg.github.com",
+        "clean": "find ./resources -name 'node_modules' -type d -prune -exec rm -rf '{}' + && find ./resources -name 'dist' -type d -prune -exec rm -rf '{}' +"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.11.6",
+        "@babel/plugin-proposal-optional-chaining": "^7.11.0",
+        "@babel/plugin-transform-runtime": "^7.11.5",
+        "@babel/preset-env": "^7.11.5",
+        "@babel/preset-react": "^7.10.4",
+        "@babel/preset-typescript": "^7.10.4",
+        "@babel/runtime": "^7.11.2",
+        "@fullhuman/postcss-purgecss": "^2.1.0",
+        "husky": "^4.2.5",
+        "lerna": "^3.20.2",
+        "lint-staged": "^10.2.11",
+        "prettier": "^2.0.5",
+        "tailwindcss": "^1.2.0",
+        "typescript": "^3.8.2",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "dependencies": {
+        "ini": "^2.0.0",
+        "node-fetch": "^2.6.1"
+    }
+}
