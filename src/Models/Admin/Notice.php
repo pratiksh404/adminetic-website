@@ -2,12 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Models\Admin\Category;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Notice extends Model implements HasMedia
@@ -45,7 +44,7 @@ class Notice extends Model implements HasMedia
     }
 
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     // Relationships
@@ -59,10 +58,12 @@ class Notice extends Model implements HasMedia
     {
         return $qry->orderBy('position');
     }
+
     public function scopeActive($qry)
     {
         return $qry->where('active', 1);
     }
+
     public function scopePopup($qry)
     {
         return $qry->where('popup', 1);

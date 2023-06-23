@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Team;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
 use Adminetic\Website\Http\Requests\TeamRequest;
+use Adminetic\Website\Models\Admin\Team;
+use Illuminate\Support\Facades\Cache;
 
 class TeamRepository implements TeamRepositoryInterface
 {
@@ -17,6 +17,7 @@ class TeamRepository implements TeamRepositoryInterface
                 return Team::orderBy('position')->get();
             }))
             : Team::orderBy('position')->get();
+
         return compact('teams');
     }
 

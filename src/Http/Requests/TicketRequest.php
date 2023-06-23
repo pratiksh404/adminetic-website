@@ -28,7 +28,7 @@ class TicketRequest extends FormRequest
             'color' => 'nullable|max:100',
             'image' => 'nullable|file|image|max:3000',
             'description' => 'nullable|max:55000',
-            'active' => 'sometimes'
+            'active' => 'sometimes',
         ];
     }
 }

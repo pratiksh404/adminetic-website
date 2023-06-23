@@ -25,7 +25,7 @@ class CounterRequest extends FormRequest
             'name' => 'required|max:100',
             'icon' => 'nullable|max:255',
             'count' => 'required',
-            'type' => 'sometimes|numeric'
+            'type' => 'sometimes|numeric',
         ];
     }
 }

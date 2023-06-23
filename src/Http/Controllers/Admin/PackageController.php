@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Package;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\PackageRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PackageRepositoryInterface;
+use Adminetic\Website\Http\Requests\PackageRequest;
+use Adminetic\Website\Models\Admin\Package;
+use App\Http\Controllers\Controller;
 
 class PackageController extends Controller
 {
@@ -17,7 +16,6 @@ class PackageController extends Controller
         $this->packageRepositoryInterface = $packageRepositoryInterface;
         $this->authorizeResource(Package::class, 'package');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class PackageController extends Controller
     public function store(PackageRequest $request)
     {
         $this->packageRepositoryInterface->storePackage($request);
+
         return redirect(adminRedirectRoute('package'))->withSuccess('Package Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class PackageController extends Controller
     public function update(PackageRequest $request, Package $package)
     {
         $this->packageRepositoryInterface->updatePackage($request, $package);
+
         return redirect(adminRedirectRoute('package'))->withInfo('Package Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class PackageController extends Controller
     public function destroy(Package $package)
     {
         $this->packageRepositoryInterface->destroyPackage($package);
+
         return redirect(adminRedirectRoute('package'))->withFail('Package Deleted Successfully.');
     }
 }

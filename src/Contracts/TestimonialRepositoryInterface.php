@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Testimonial;
 use Adminetic\Website\Http\Requests\TestimonialRequest;
+use Adminetic\Website\Models\Admin\Testimonial;
 
 interface TestimonialRepositoryInterface
 {

@@ -19,7 +19,7 @@ class PaymentRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'type' => $this->payment->getRawOriginal('type') ?? 2
+            'type' => $this->payment->getRawOriginal('type') ?? 2,
         ]);
     }
 
@@ -33,7 +33,7 @@ class PaymentRequest extends FormRequest
         return [
             'amount' => 'required|numeric',
             'particular' => 'nullable|max:255',
-            'type' => 'required|numeric'
+            'type' => 'required|numeric',
         ];
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Popup;
 use Adminetic\Website\Http\Requests\PopupRequest;
+use Adminetic\Website\Models\Admin\Popup;
 
 interface PopupRepositoryInterface
 {

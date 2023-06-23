@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Notice;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\NoticeRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\NoticeRepositoryInterface;
+use Adminetic\Website\Http\Requests\NoticeRequest;
+use Adminetic\Website\Models\Admin\Notice;
+use App\Http\Controllers\Controller;
 
 class NoticeController extends Controller
 {
@@ -17,7 +16,6 @@ class NoticeController extends Controller
         $this->noticeRepositoryInterface = $noticeRepositoryInterface;
         $this->authorizeResource(Notice::class, 'notice');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class NoticeController extends Controller
     public function store(NoticeRequest $request)
     {
         $this->noticeRepositoryInterface->storeNotice($request);
+
         return redirect(adminRedirectRoute('notice'))->withSuccess('Notice Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class NoticeController extends Controller
     public function update(NoticeRequest $request, Notice $notice)
     {
         $this->noticeRepositoryInterface->updateNotice($request, $notice);
+
         return redirect(adminRedirectRoute('notice'))->withInfo('Notice Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class NoticeController extends Controller
     public function destroy(Notice $notice)
     {
         $this->noticeRepositoryInterface->destroyNotice($notice);
+
         return redirect(adminRedirectRoute('notice'))->withFail('Notice Deleted Successfully.');
     }
 }

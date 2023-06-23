@@ -2,19 +2,17 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Models\Admin\Inquiry;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\SchemaOrg\Schema;
 
 class Service extends Model implements HasMedia
 {
     use LogsActivity, InteractsWithMedia;
-
 
     protected $guarded = [];
 
@@ -47,7 +45,7 @@ class Service extends Model implements HasMedia
     }
 
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     // Relationships
@@ -55,6 +53,7 @@ class Service extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+
     public function inquiries()
     {
         return $this->hasMany(Inquiry::class);
@@ -65,10 +64,12 @@ class Service extends Model implements HasMedia
     {
         return $qry->orderBy('position');
     }
+
     public function scopeActive($qry)
     {
         return $qry->where('active', 1);
     }
+
     public function scopeFeatured($qry)
     {
         return $qry->where('featured', 1);

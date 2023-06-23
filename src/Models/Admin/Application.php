@@ -2,9 +2,8 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Models\Admin\Career;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {

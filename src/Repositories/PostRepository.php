@@ -2,12 +2,12 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Tag;
-use Adminetic\Website\Models\Admin\Post;
-use Illuminate\Support\Str;
-use Adminetic\Website\Http\Requests\PostRequest;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PostRepositoryInterface;
+use Adminetic\Website\Http\Requests\PostRequest;
+use Adminetic\Website\Models\Admin\Post;
+use Adminetic\Website\Models\Admin\Tag;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class PostRepository implements PostRepositoryInterface
 {
@@ -19,6 +19,7 @@ class PostRepository implements PostRepositoryInterface
                 return Post::orderBy('position')->get();
             }))
             : Post::orderBy('position')->get();
+
         return compact('posts');
     }
 
@@ -26,6 +27,7 @@ class PostRepository implements PostRepositoryInterface
     public function createPost()
     {
         $tags = Tag::latest()->get();
+
         return compact('tags');
     }
 
@@ -47,6 +49,7 @@ class PostRepository implements PostRepositoryInterface
     public function editPost(Post $post)
     {
         $tags = Tag::latest()->get();
+
         return compact('post', 'tags');
     }
 
@@ -64,7 +67,6 @@ class PostRepository implements PostRepositoryInterface
         $post->tags()->detach();
         $post->delete();
     }
-
 
     // Upload Image
     private function uploadImage(Post $post)

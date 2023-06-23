@@ -3,12 +3,11 @@
 namespace Adminetic\Website\Models\Admin;
 
 use App\Models\User;
-use Adminetic\Website\Models\Admin\Customer;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Payment extends Model
 {
@@ -57,7 +56,7 @@ class Payment extends Model
         return in_array($attribute ?? null, [1, 2])
             ? [
                 1 => 'Income',
-                2 => 'Expense'
+                2 => 'Expense',
             ][$attribute]
             : null;
     }
@@ -66,10 +65,11 @@ class Payment extends Model
     public function getTypeColor()
     {
         $attribute = $this->getRawOriginal('type');
+
         return in_array($attribute ?? null, [1, 2])
             ? [
                 1 => 'success',
-                2 => 'danger'
+                2 => 'danger',
             ][$attribute]
             : null;
     }

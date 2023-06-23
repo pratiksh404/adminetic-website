@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Software;
 use Adminetic\Website\Http\Requests\SoftwareRequest;
+use Adminetic\Website\Models\Admin\Software;
 
 interface SoftwareRepositoryInterface
 {

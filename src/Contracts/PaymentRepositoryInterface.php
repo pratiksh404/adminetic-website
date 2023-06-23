@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Payment;
 use Adminetic\Website\Http\Requests\PaymentRequest;
+use Adminetic\Website\Models\Admin\Payment;
 
 interface PaymentRepositoryInterface
 {

@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Download;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\DownloadRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\DownloadRepositoryInterface;
+use Adminetic\Website\Http\Requests\DownloadRequest;
+use Adminetic\Website\Models\Admin\Download;
+use App\Http\Controllers\Controller;
 
 class DownloadController extends Controller
 {
@@ -17,7 +16,6 @@ class DownloadController extends Controller
         $this->downloadRepositoryInterface = $downloadRepositoryInterface;
         $this->authorizeResource(Download::class, 'download');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class DownloadController extends Controller
     public function store(DownloadRequest $request)
     {
         $this->downloadRepositoryInterface->storeDownload($request);
+
         return redirect(adminRedirectRoute('download'))->withSuccess('Download Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class DownloadController extends Controller
     public function update(DownloadRequest $request, Download $download)
     {
         $this->downloadRepositoryInterface->updateDownload($request, $download);
+
         return redirect(adminRedirectRoute('download'))->withInfo('Download Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class DownloadController extends Controller
     public function destroy(Download $download)
     {
         $this->downloadRepositoryInterface->destroyDownload($download);
+
         return redirect(adminRedirectRoute('download'))->withFail('Download Deleted Successfully.');
     }
 }

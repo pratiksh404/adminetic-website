@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Faq;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\FaqRepositoryInterface;
 use Adminetic\Website\Http\Requests\FaqRequest;
+use Adminetic\Website\Models\Admin\Faq;
+use Illuminate\Support\Facades\Cache;
 
 class FaqRepository implements FaqRepositoryInterface
 {
@@ -17,6 +17,7 @@ class FaqRepository implements FaqRepositoryInterface
                 return Faq::orderBy('position')->get();
             }))
             : Faq::orderBy('position')->get();
+
         return compact('faqs');
     }
 

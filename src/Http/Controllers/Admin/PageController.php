@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Page;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\PageRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PageRepositoryInterface;
+use Adminetic\Website\Http\Requests\PageRequest;
+use Adminetic\Website\Models\Admin\Page;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -17,7 +16,6 @@ class PageController extends Controller
         $this->pageRepositoryInterface = $pageRepositoryInterface;
         $this->authorizeResource(Page::class, 'page');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class PageController extends Controller
     public function store(PageRequest $request)
     {
         $this->pageRepositoryInterface->storePage($request);
+
         return redirect(adminRedirectRoute('page'))->withSuccess('Page Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class PageController extends Controller
     public function update(PageRequest $request, Page $page)
     {
         $this->pageRepositoryInterface->updatePage($request, $page);
+
         return redirect(adminRedirectRoute('page'))->withInfo('Page Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         $this->pageRepositoryInterface->destroyPage($page);
+
         return redirect(adminRedirectRoute('page'))->withFail('Page Deleted Successfully.');
     }
 }

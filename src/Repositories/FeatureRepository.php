@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Feature;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\FeatureRepositoryInterface;
 use Adminetic\Website\Http\Requests\FeatureRequest;
+use Adminetic\Website\Models\Admin\Feature;
+use Illuminate\Support\Facades\Cache;
 
 class FeatureRepository implements FeatureRepositoryInterface
 {
@@ -17,6 +17,7 @@ class FeatureRepository implements FeatureRepositoryInterface
                 return Feature::orderBy('position')->get();
             }))
             : Feature::orderBy('position')->get();
+
         return compact('features');
     }
 

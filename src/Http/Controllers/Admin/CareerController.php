@@ -2,12 +2,11 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Career;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\CareerRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\CareerRepositoryInterface;
+use Adminetic\Website\Http\Requests\CareerRequest;
 use Adminetic\Website\Models\Admin\Application;
+use Adminetic\Website\Models\Admin\Career;
+use App\Http\Controllers\Controller;
 
 class CareerController extends Controller
 {
@@ -18,7 +17,6 @@ class CareerController extends Controller
         $this->careerRepositoryInterface = $careerRepositoryInterface;
         $this->authorizeResource(Career::class, 'career');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -49,6 +47,7 @@ class CareerController extends Controller
     public function store(CareerRequest $request)
     {
         $this->careerRepositoryInterface->storeCareer($request);
+
         return redirect(adminRedirectRoute('career'))->withSuccess('Career Created Successfully.');
     }
 
@@ -84,6 +83,7 @@ class CareerController extends Controller
     public function update(CareerRequest $request, Career $career)
     {
         $this->careerRepositoryInterface->updateCareer($request, $career);
+
         return redirect(adminRedirectRoute('career'))->withInfo('Career Updated Successfully.');
     }
 
@@ -96,6 +96,7 @@ class CareerController extends Controller
     public function destroy(Career $career)
     {
         $this->careerRepositoryInterface->destroyCareer($career);
+
         return redirect(adminRedirectRoute('career'))->withFail('Career Deleted Successfully.');
     }
 

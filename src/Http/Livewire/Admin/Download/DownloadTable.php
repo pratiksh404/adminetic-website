@@ -3,11 +3,10 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Download;
 
 use Adminetic\Website\Models\Admin\Download;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class DownloadTable extends DataTableComponent
 {
@@ -41,24 +40,24 @@ class DownloadTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Download::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Download::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->format(
-                    fn ($value, $row, Column $column) => '<a href="' . $row->getFirstMediaUrl('file') . '" download>' . $row->name . '</a>'
+                    fn ($value, $row, Column $column) => '<a href="'.$row->getFirstMediaUrl('file').'" download>'.$row->name.'</a>'
                 )
                 ->html()
                 ->sortable()
                 ->searchable(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="download" :show="0" />', ['model' => $row])
                 )

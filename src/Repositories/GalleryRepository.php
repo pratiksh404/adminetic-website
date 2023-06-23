@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Gallery;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\GalleryRepositoryInterface;
 use Adminetic\Website\Http\Requests\GalleryRequest;
+use Adminetic\Website\Models\Admin\Gallery;
+use Illuminate\Support\Facades\Cache;
 
 class GalleryRepository implements GalleryRepositoryInterface
 {
@@ -17,6 +17,7 @@ class GalleryRepository implements GalleryRepositoryInterface
                 return Gallery::orderBy('position')->get();
             }))
             : Gallery::orderBy('position')->get();
+
         return compact('galleries');
     }
 

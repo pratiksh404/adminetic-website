@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Package extends Model implements HasMedia
@@ -44,7 +44,7 @@ class Package extends Model implements HasMedia
     }
 
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     // Relationships
@@ -58,10 +58,12 @@ class Package extends Model implements HasMedia
     {
         return $qry->orderBy('position');
     }
+
     public function scopeActive($qry)
     {
         return $qry->where('active', 1);
     }
+
     public function scopeFeatured($qry)
     {
         return $qry->where('featured', 1);

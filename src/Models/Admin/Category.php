@@ -2,11 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Category extends Model implements HasMedia
@@ -47,7 +47,6 @@ class Category extends Model implements HasMedia
     // Relationship
     protected $parentColumn = 'parent_id';
 
-
     public function parent()
     {
         return $this->belongsTo(Category::class, $this->parentColumn);
@@ -73,18 +72,22 @@ class Category extends Model implements HasMedia
     {
         return $qry->whereNull('parent_id');
     }
+
     public function scopeWhoIsRootParent($qry)
     {
         return $qry->whoIsParent()->whereNull('root_parent_id');
     }
+
     public function scopePosition($qry)
     {
         return $qry->orderBy('position');
     }
+
     public function scopeActive($qry)
     {
         return $qry->where('active', 1);
     }
+
     public function scopeFeatured($qry)
     {
         return $qry->where('featured', 1);

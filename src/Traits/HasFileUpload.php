@@ -10,12 +10,12 @@ trait HasFileUpload
 {
     public function fileUpload($file, $directory, $given_name = null)
     {
-        if (!$file->isValid()) {
+        if (! $file->isValid()) {
             throw new \Exception('File was not uploaded successfully');
         }
 
         /** Check if folder exits or not. If not then create the folder */
-        if (!File::exists(storage_path($directory))) {
+        if (! File::exists(storage_path($directory))) {
             File::makeDirectory(storage_path($directory), 0775, true);
         }
 
@@ -23,7 +23,7 @@ trait HasFileUpload
         $timestamp = Carbon::now()->toDateString();
         $extension = $file->getClientOriginalExtension();
         $size = $file->getSize();
-        $name = str_replace(' ', '', $original_name . '-' . Carbon::now()->toDateString() . '-' . $size . '.' . $file->getClientOriginalExtension());
+        $name = str_replace(' ', '', $original_name.'-'.Carbon::now()->toDateString().'-'.$size.'.'.$file->getClientOriginalExtension());
 
         $disk = config('filesystems.default', 'public');
 

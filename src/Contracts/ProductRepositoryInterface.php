@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Product;
 use Adminetic\Website\Http\Requests\ProductRequest;
+use Adminetic\Website\Models\Admin\Product;
 
 interface ProductRepositoryInterface
 {

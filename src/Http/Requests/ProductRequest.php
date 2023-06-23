@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class ProductRequest extends FormRequest
 {
@@ -21,8 +21,8 @@ class ProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
-            'sku' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
+            'sku' => ! is_null($this->name) ? Str::slug($this->name) : null,
             'meta_name' => $this->project->meta_name ?? $this->meta_name ?? $this->name ?? null,
             'meta_description' => $this->project->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
         ]);
@@ -36,10 +36,11 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->product->id ?? '';
+
         return [
-            'sku' => 'required|unique:products,sku,' . $id,
-            'name' => 'required|unique:products,name,' . $id,
-            'slug' => 'required|unique:products,slug,' . $id,
+            'sku' => 'required|unique:products,sku,'.$id,
+            'name' => 'required|unique:products,name,'.$id,
+            'slug' => 'required|unique:products,slug,'.$id,
             'category_id' => 'nullable|exists:categories,id',
             'selling_price' => 'required|numeric',
             'cost_price' => 'nullable|numeric',

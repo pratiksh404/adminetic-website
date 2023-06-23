@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Attribute;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\AttributeRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\AttributeRepositoryInterface;
+use Adminetic\Website\Http\Requests\AttributeRequest;
+use Adminetic\Website\Models\Admin\Attribute;
+use App\Http\Controllers\Controller;
 
 class AttributeController extends Controller
 {
@@ -17,7 +16,6 @@ class AttributeController extends Controller
         $this->attributeRepositoryInterface = $attributeRepositoryInterface;
         $this->authorizeResource(Attribute::class, 'attribute');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class AttributeController extends Controller
     public function store(AttributeRequest $request)
     {
         $this->attributeRepositoryInterface->storeAttribute($request);
+
         return redirect(adminRedirectRoute('attribute'))->withSuccess('Attribute Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class AttributeController extends Controller
     public function update(AttributeRequest $request, Attribute $attribute)
     {
         $this->attributeRepositoryInterface->updateAttribute($request, $attribute);
+
         return redirect(adminRedirectRoute('attribute'))->withInfo('Attribute Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class AttributeController extends Controller
     public function destroy(Attribute $attribute)
     {
         $this->attributeRepositoryInterface->destroyAttribute($attribute);
+
         return redirect(adminRedirectRoute('attribute'))->withFail('Attribute Deleted Successfully.');
     }
 }

@@ -6,7 +6,7 @@ return [
     |--------------------------------------------------------------------------
     | General Information
     |--------------------------------------------------------------------------
-    | 
+    |
     */
     'phone' => '9843652012',
     'email' => 'info@doctypeinnovations.com,doctypeinnovation@gmail.com',
@@ -57,8 +57,7 @@ return [
     | Report Type
     |--------------------------------------------------------------------------
     */
-    'report_types' =>
-    [
+    'report_types' => [
         1 => 'Annual Report',
         2 => 'Quarterly Report',
         3 => 'Compliance Report',

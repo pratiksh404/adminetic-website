@@ -25,7 +25,6 @@ class UploadImage extends Component
         return view('website::livewire.admin.system.upload-image');
     }
 
-
     public function removeImage(Media $media, $collection = null)
     {
         $media->delete();

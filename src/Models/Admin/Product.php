@@ -2,13 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Models\Admin\Inquiry;
-use Adminetic\Website\Models\Admin\Attribute;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
@@ -46,7 +44,7 @@ class Product extends Model implements HasMedia
     }
 
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     // Relationships
@@ -54,10 +52,12 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class)->withPivot('values')->withTimestamps();
     }
+
     public function inquiries()
     {
         return $this->hasMany(Inquiry::class);
@@ -68,6 +68,7 @@ class Product extends Model implements HasMedia
     {
         return $qry->orderBy('position');
     }
+
     public function scopeActive($qry)
     {
         return $qry->where('active', 1);

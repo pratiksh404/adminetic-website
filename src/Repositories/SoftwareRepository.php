@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Software;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\SoftwareRepositoryInterface;
 use Adminetic\Website\Http\Requests\SoftwareRequest;
+use Adminetic\Website\Models\Admin\Software;
+use Illuminate\Support\Facades\Cache;
 
 class SoftwareRepository implements SoftwareRepositoryInterface
 {
@@ -17,6 +17,7 @@ class SoftwareRepository implements SoftwareRepositoryInterface
                 return Software::orderBy('position')->get();
             }))
             : Software::orderBy('position')->get();
+
         return compact('software');
     }
 
@@ -57,7 +58,6 @@ class SoftwareRepository implements SoftwareRepositoryInterface
     {
         $software->delete();
     }
-
 
     // Upload Image
     private function uploadImage(Software $software)

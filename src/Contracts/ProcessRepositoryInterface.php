@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Process;
 use Adminetic\Website\Http\Requests\ProcessRequest;
+use Adminetic\Website\Models\Admin\Process;
 
 interface ProcessRepositoryInterface
 {

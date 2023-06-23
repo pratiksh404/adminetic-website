@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Category;
 
-use Livewire\Component;
-use Illuminate\Support\Str;
 use Adminetic\Website\Models\Admin\Category;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+use Livewire\Component;
 
 class QuickCategory extends Component
 {
@@ -27,7 +27,7 @@ class QuickCategory extends Component
     public $name;
     public $parent_id;
 
-    public function __construct($model = null, $attribute = 'category_id', $category_id = null, $label = "Category")
+    public function __construct($model = null, $attribute = 'category_id', $category_id = null, $label = 'Category')
     {
         $this->parent_categories = Cache::get('parent_categories', Category::whoIsParent()->position()->get());
         $this->model = $model;
@@ -40,7 +40,7 @@ class QuickCategory extends Component
     {
         $this->validate([
             'name' => 'required|max:100',
-            'parent_id' => 'nullable|numeric|exists:categories,id'
+            'parent_id' => 'nullable|numeric|exists:categories,id',
         ]);
 
         $category = Category::create([
@@ -48,7 +48,7 @@ class QuickCategory extends Component
             'parent_id' => $this->parent_id,
             'slug' => Str::slug($this->name),
             'model' => trim($this->model),
-            'name' => $this->name
+            'name' => $this->name,
         ]);
 
         $this->category_id = $category->id;
@@ -62,7 +62,6 @@ class QuickCategory extends Component
 
         $this->emit('quick_category_success', 'Category created successfully');
     }
-
 
     public function render()
     {

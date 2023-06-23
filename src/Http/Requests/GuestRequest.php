@@ -26,7 +26,7 @@ class GuestRequest extends FormRequest
         return [
             'name' => 'required|max:100',
             'image' => 'nullable|file|image|max:3000',
-            'description' => 'nullable|max:5500'
+            'description' => 'nullable|max:5500',
         ];
     }
 }

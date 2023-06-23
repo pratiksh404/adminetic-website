@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Download;
 use Adminetic\Website\Http\Requests\DownloadRequest;
+use Adminetic\Website\Models\Admin\Download;
 
 interface DownloadRepositoryInterface
 {

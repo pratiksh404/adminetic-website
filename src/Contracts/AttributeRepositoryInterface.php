@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Attribute;
 use Adminetic\Website\Http\Requests\AttributeRequest;
+use Adminetic\Website\Models\Admin\Attribute;
 
 interface AttributeRepositoryInterface
 {

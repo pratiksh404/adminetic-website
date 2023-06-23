@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PopupRequest extends FormRequest

@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Process;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ProcessRepositoryInterface;
 use Adminetic\Website\Http\Requests\ProcessRequest;
+use Adminetic\Website\Models\Admin\Process;
+use Illuminate\Support\Facades\Cache;
 
 class ProcessRepository implements ProcessRepositoryInterface
 {
@@ -17,6 +17,7 @@ class ProcessRepository implements ProcessRepositoryInterface
                 return Process::orderBy('position')->get();
             }))
             : Process::orderBy('position')->get();
+
         return compact('processes');
     }
 

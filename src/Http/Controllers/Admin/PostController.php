@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Post;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\PostRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PostRepositoryInterface;
+use Adminetic\Website\Http\Requests\PostRequest;
+use Adminetic\Website\Models\Admin\Post;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -17,7 +16,6 @@ class PostController extends Controller
         $this->postRepositoryInterface = $postRepositoryInterface;
         $this->authorizeResource(Post::class, 'post');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $this->postRepositoryInterface->storePost($request);
+
         return redirect(adminRedirectRoute('post'))->withSuccess('Post Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $this->postRepositoryInterface->updatePost($request, $post);
+
         return redirect(adminRedirectRoute('post'))->withInfo('Post Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->postRepositoryInterface->destroyPost($post);
+
         return redirect(adminRedirectRoute('post'))->withFail('Post Deleted Successfully.');
     }
 }

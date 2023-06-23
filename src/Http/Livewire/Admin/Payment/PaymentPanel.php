@@ -10,7 +10,6 @@ class PaymentPanel extends Component
 {
     public $toggle_modal = false;
 
-
     public $model;
     public $type;
 
@@ -23,27 +22,27 @@ class PaymentPanel extends Component
     {
         $this->model = $model;
         $this->type = $type;
-        $this->particular = ("An " . ($this->type ? "income" : "expense") . " of " . currency() . $this->amount . ' is registered under ' . class_basename($this->model) . ' : ' . $this->model->track_id);
+        $this->particular = ('An '.($this->type ? 'income' : 'expense').' of '.currency().$this->amount.' is registered under '.class_basename($this->model).' : '.$this->model->track_id);
     }
 
     public function updatedAmount()
     {
-        $this->particular = ("An " . ($this->type ? "income" : "expense") . " of " . currency() . $this->amount . ' is registered under ' . class_basename($this->model) . ' : ' . $this->model->track_id);
+        $this->particular = ('An '.($this->type ? 'income' : 'expense').' of '.currency().$this->amount.' is registered under '.class_basename($this->model).' : '.$this->model->track_id);
     }
 
     public function store()
     {
         $this->validate([
-            'amount' => 'required|numeric'
+            'amount' => 'required|numeric',
         ]);
 
-        $particular = $this->particular ?? ("An " . ($this->type ? "income" : "expense") . " of " . currency() . $this->amount . ' is registered under ' . class_basename($this->model) . ' : ' . $this->model->track_id);
+        $particular = $this->particular ?? ('An '.($this->type ? 'income' : 'expense').' of '.currency().$this->amount.' is registered under '.class_basename($this->model).' : '.$this->model->track_id);
 
         $this->model->payments()->create([
             'user_id' => Auth::user()->id,
             'type' => $this->type,
             'amount' => $this->amount,
-            'particular' => $particular
+            'particular' => $particular,
         ]);
         $this->amount = null;
 
@@ -54,16 +53,16 @@ class PaymentPanel extends Component
     public function update()
     {
         $this->validate([
-            'amount' => 'required|numeric'
+            'amount' => 'required|numeric',
         ]);
 
-        $particular = $this->particular ?? ("An " . ($this->type ? "income" : "expense") . " of " . currency() . $this->amount . ' is registered under ' . class_basename($this->model) . ' : ' . $this->model->track_id . '(Updated)');
+        $particular = $this->particular ?? ('An '.($this->type ? 'income' : 'expense').' of '.currency().$this->amount.' is registered under '.class_basename($this->model).' : '.$this->model->track_id.'(Updated)');
 
         Payment::find($this->payment_id)->update([
             'user_id' => Auth::user()->id,
             'type' => $this->type,
             'amount' => $this->amount,
-            'particular' => $particular
+            'particular' => $particular,
         ]);
         $this->amount = null;
         $this->payment_id = null;
@@ -81,6 +80,7 @@ class PaymentPanel extends Component
     public function render()
     {
         $payments = $this->model->payments;
+
         return view('website::livewire.admin.payment.payment-panel', compact('payments'));
     }
 }

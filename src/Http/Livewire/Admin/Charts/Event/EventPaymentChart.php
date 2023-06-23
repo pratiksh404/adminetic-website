@@ -2,11 +2,9 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Charts\Event;
 
-use Livewire\Component;
-use Adminetic\Website\Models\Admin\Event;
 use Adminetic\Website\Models\Admin\Payment;
 use Adminetic\Website\Services\Statistic;
-use Illuminate\Support\Facades\Cache;
+use Livewire\Component;
 
 class EventPaymentChart extends Component
 {
@@ -20,13 +18,15 @@ class EventPaymentChart extends Component
     public function mount($event = null)
     {
         $this->event = $event;
-        $this->payments = !is_null($event) ? $event->payments : Payment::orderBy('position')->get();
+        $this->payments = ! is_null($event) ? $event->payments : Payment::orderBy('position')->get();
     }
+
     public function initializeEventPaymentChart()
     {
         $payments = $this->payments;
         $this->dispatchBrowserEvent('initializeEventPaymentChart', (new Statistic)->perDayPaymentTotal($payments));
     }
+
     public function render()
     {
         return view('website::livewire.admin.charts.event.event-payment-chart');

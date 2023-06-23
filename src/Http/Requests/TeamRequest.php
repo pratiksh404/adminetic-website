@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class TeamRequest extends FormRequest
 {
@@ -21,9 +21,10 @@ class TeamRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
         ]);
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -32,9 +33,10 @@ class TeamRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->team->id ?? '';
+
         return [
-            'name' => 'required|max:100|unique:teams,name,' . $id,
-            'slug' => 'required|max:100|unique:teams,slug,' . $id,
+            'name' => 'required|max:100|unique:teams,name,'.$id,
+            'slug' => 'required|max:100|unique:teams,slug,'.$id,
             'short_message' => 'nullable|max:255',
             'description' => 'nullable|max:55000',
             'social_medias' => 'nullable',

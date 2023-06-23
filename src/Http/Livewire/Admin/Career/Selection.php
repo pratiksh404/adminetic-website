@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Career;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Application;
+use Livewire\Component;
 
 class Selection extends Component
 {
@@ -17,7 +17,6 @@ class Selection extends Component
         $this->short_listed = $application->short_listed ?? false;
         $this->selected = $application->selected ?? false;
     }
-
 
     public function updatedShortListed()
     {

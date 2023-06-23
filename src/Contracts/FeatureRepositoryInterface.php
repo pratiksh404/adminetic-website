@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Feature;
 use Adminetic\Website\Http\Requests\FeatureRequest;
+use Adminetic\Website\Models\Admin\Feature;
 
 interface FeatureRepositoryInterface
 {

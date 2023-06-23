@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Process;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\ProcessRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ProcessRepositoryInterface;
+use Adminetic\Website\Http\Requests\ProcessRequest;
+use Adminetic\Website\Models\Admin\Process;
+use App\Http\Controllers\Controller;
 
 class ProcessController extends Controller
 {
@@ -17,7 +16,6 @@ class ProcessController extends Controller
         $this->processRepositoryInterface = $processRepositoryInterface;
         $this->authorizeResource(Process::class, 'process');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class ProcessController extends Controller
     public function store(ProcessRequest $request)
     {
         $this->processRepositoryInterface->storeProcess($request);
+
         return redirect(adminRedirectRoute('process'))->withSuccess('Process Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class ProcessController extends Controller
     public function update(ProcessRequest $request, Process $process)
     {
         $this->processRepositoryInterface->updateProcess($request, $process);
+
         return redirect(adminRedirectRoute('process'))->withInfo('Process Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class ProcessController extends Controller
     public function destroy(Process $process)
     {
         $this->processRepositoryInterface->destroyProcess($process);
+
         return redirect(adminRedirectRoute('process'))->withFail('Process Deleted Successfully.');
     }
 }
