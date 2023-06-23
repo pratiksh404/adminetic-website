@@ -71,11 +71,9 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 ## Screenshots
 
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/dashboard.jpeg)
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/google-analytic-adminetic-website.jpeg)
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/category.jpg)
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/gallery.jpg)
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/package.jpg)
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/page.jpg)
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/service.jpg)
-![Adminetic Announcemment Module](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/team.jpg)
+![Dashboard](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/dashboard.jpeg)
+
+![Module 1](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/1.jpeg)
+![Module 2](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/2.jpeg)
+![Module 3](https://github.com/pratiksh404/adminetic-website/blob/main/screenshots/3.jpeg)
+
