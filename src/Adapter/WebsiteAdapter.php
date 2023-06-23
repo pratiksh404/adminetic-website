@@ -102,7 +102,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Project::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("project", \App\Models\Admin\Project::class),
+                'children' => $this->indexCreateChildren('project', \App\Models\Admin\Project::class),
 
             ], [
                 'type' => 'menu',
@@ -119,7 +119,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Package::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("package", \App\Models\Admin\Package::class),
+                'children' => $this->indexCreateChildren('package', \App\Models\Admin\Package::class),
 
             ], [
                 'type' => 'menu',
@@ -136,7 +136,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Team::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("team", \App\Models\Admin\Team::class),
+                'children' => $this->indexCreateChildren('team', \App\Models\Admin\Team::class),
 
             ], [
                 'type' => 'menu',
@@ -153,7 +153,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Testimonial::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("testimonial", \App\Models\Admin\Testimonial::class),
+                'children' => $this->indexCreateChildren('testimonial', \App\Models\Admin\Testimonial::class),
 
             ], [
                 'type' => 'menu',
@@ -170,7 +170,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Page::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("page", \App\Models\Admin\Page::class),
+                'children' => $this->indexCreateChildren('page', \App\Models\Admin\Page::class),
             ], [
                 'type' => 'menu',
                 'name' => 'Download',
@@ -186,7 +186,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Download::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("download", \App\Models\Admin\Download::class),
+                'children' => $this->indexCreateChildren('download', \App\Models\Admin\Download::class),
 
             ],
             [
@@ -204,7 +204,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Process::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("process", \App\Models\Admin\Process::class),
+                'children' => $this->indexCreateChildren('process', \App\Models\Admin\Process::class),
 
             ],
             [
@@ -222,7 +222,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Career::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("career", \App\Models\Admin\Career::class),
+                'children' => $this->indexCreateChildren('career', \App\Models\Admin\Career::class),
 
             ], [
                 'type' => 'menu',
@@ -239,7 +239,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Popup::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("popup", \App\Models\Admin\Popup::class),
+                'children' => $this->indexCreateChildren('popup', \App\Models\Admin\Popup::class),
 
             ], [
                 'type' => 'menu',
@@ -256,7 +256,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Notice::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("notice", \App\Models\Admin\Notice::class),
+                'children' => $this->indexCreateChildren('notice', \App\Models\Admin\Notice::class),
 
             ], [
                 'type' => 'menu',
@@ -273,7 +273,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Client::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("client", \App\Models\Admin\Client::class),
+                'children' => $this->indexCreateChildren('client', \App\Models\Admin\Client::class),
 
             ], [
                 'type' => 'menu',
@@ -290,7 +290,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Gallery::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("gallery", \App\Models\Admin\Gallery::class),
+                'children' => $this->indexCreateChildren('gallery', \App\Models\Admin\Gallery::class),
 
             ], [
                 'type' => 'menu',
@@ -307,7 +307,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Counter::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("counter", \App\Models\Admin\Counter::class),
+                'children' => $this->indexCreateChildren('counter', \App\Models\Admin\Counter::class),
 
             ], [
                 'type' => 'menu',
@@ -324,7 +324,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Faq::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("faq", \App\Models\Admin\Faq::class),
+                'children' => $this->indexCreateChildren('faq', \App\Models\Admin\Faq::class),
 
             ], [
                 'type' => 'menu',
@@ -341,7 +341,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Feature::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("feature", \App\Models\Admin\Feature::class),
+                'children' => $this->indexCreateChildren('feature', \App\Models\Admin\Feature::class),
 
             ], [
                 'type' => 'menu',
@@ -358,7 +358,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Facility::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("facility", \App\Models\Admin\Facility::class),
+                'children' => $this->indexCreateChildren('facility', \App\Models\Admin\Facility::class),
 
             ], [
                 'type' => 'menu',
@@ -375,7 +375,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Service::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("service", \App\Models\Admin\Service::class),
+                'children' => $this->indexCreateChildren('service', \App\Models\Admin\Service::class),
 
             ], [
                 'type' => 'menu',
@@ -392,7 +392,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Category::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("category", \App\Models\Admin\Category::class),
+                'children' => $this->indexCreateChildren('category', \App\Models\Admin\Category::class),
             ],
             [
                 'type' => 'menu',
@@ -409,7 +409,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Post::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("post", \App\Models\Admin\Post::class),
+                'children' => $this->indexCreateChildren('post', \App\Models\Admin\Post::class),
             ],
             [
                 'type' => 'link',
@@ -448,7 +448,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Payment::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("payment", \App\Models\Admin\Payment::class),
+                'children' => $this->indexCreateChildren('payment', \App\Models\Admin\Payment::class),
 
             ],
             [
@@ -466,7 +466,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Product::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("product", \App\Models\Admin\Product::class),
+                'children' => $this->indexCreateChildren('product', \App\Models\Admin\Product::class),
 
             ],
             [
@@ -484,7 +484,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Software::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("software", \App\Models\Admin\Software::class),
+                'children' => $this->indexCreateChildren('software', \App\Models\Admin\Software::class),
             ], [
                 'type' => 'menu',
                 'name' => 'Attribute',
@@ -500,7 +500,7 @@ class WebsiteAdapter implements PluginInterface
                         'condition' => auth()->user()->can('create', \App\Models\Admin\Attribute::class),
                     ],
                 ],
-                "children" => $this->indexCreateChildren("attribute", \App\Models\Admin\Attribute::class),
+                'children' => $this->indexCreateChildren('attribute', \App\Models\Admin\Attribute::class),
 
             ],
         ];

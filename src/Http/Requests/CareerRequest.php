@@ -2,10 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
-
-use function PHPSTORM_META\map;
+use Illuminate\Support\Str;
 
 class CareerRequest extends FormRequest
 {
@@ -39,9 +37,10 @@ class CareerRequest extends FormRequest
     public function rules()
     {
         $id = $this->career->id ?? '';
+
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:careers,slug,' . $id,
+            'slug' => 'required|max:255|unique:careers,slug,'.$id,
             'designation' => 'required|max:255',
             'group' => 'nullable|numeric',
             'location' => 'nullable|max:255',
@@ -55,7 +54,7 @@ class CareerRequest extends FormRequest
             'application_sort_list' => 'nullable|file',
             'application_result' => 'nullable|file',
             'add_apply_button' => 'nullable',
-            'active' => 'sometimes|boolean'
+            'active' => 'sometimes|boolean',
         ];
     }
 }

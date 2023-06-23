@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class SoftwareRequest extends FormRequest
 {
@@ -21,7 +21,7 @@ class SoftwareRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
             'meta_name' => $this->software->meta_name ?? $this->meta_name ?? $this->name ?? null,
             'meta_description' => $this->software->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
         ]);
@@ -35,9 +35,10 @@ class SoftwareRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->software->id ?? '';
+
         return [
-            'slug' => 'required|max:100|unique:categories,slug,' . $id,
-            'name' => 'required|max:100|unique:categories,name,' . $id,
+            'slug' => 'required|max:100|unique:categories,slug,'.$id,
+            'name' => 'required|max:100|unique:categories,name,'.$id,
             'type' => 'nullable|max:255',
             'excerpt' => 'nullable|max:5500',
             'description' => 'nullable|max:55000',

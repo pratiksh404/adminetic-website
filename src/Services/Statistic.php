@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Services;
 
-use Carbon\CarbonPeriod;
 use Adminetic\Website\Models\Admin\Pass;
 use Adminetic\Website\Models\Admin\Payment;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
+use Carbon\CarbonPeriod;
 
 class Statistic
 {
@@ -20,7 +19,7 @@ class Statistic
         $data = null;
         $period = CarbonPeriod::create($start_date, $end_date);
         foreach ($period as $date) {
-            if (!is_null($event)) {
+            if (! is_null($event)) {
                 $payments = $event->payments->filter(function ($payment) use ($date) {
                     return $payment->created_at->format('Y-m-d') == $date->format('Y-m-d');
                 });
@@ -38,8 +37,9 @@ class Statistic
             ];
         }
 
-        return !is_null($data) ? array_reverse($data) : null;
+        return ! is_null($data) ? array_reverse($data) : null;
     }
+
     /*
     |--------------------------------------------------------------------------
     | Pass Statistics
@@ -51,7 +51,7 @@ class Statistic
         if ($data->count() > 0) {
             $data = $data->sortByDesc('created_at');
             $end_date = $data->first()->created_at;
-            $start_date  = $end_date->copy()->subDays($limit);
+            $start_date = $end_date->copy()->subDays($limit);
             $period = CarbonPeriod::create($start_date, $end_date);
             $total = [];
             foreach ($period as $date) {
@@ -59,8 +59,10 @@ class Statistic
                     return $p->created_at->format('Y-m-d') == $date->format('Y-m-d');
                 })->count();
             }
+
             return $total;
         }
+
         return null;
     }
 
@@ -75,7 +77,7 @@ class Statistic
         if ($data->count() > 0) {
             $data = $data->sortByDesc('created_at');
             $end_date = $data->first()->created_at;
-            $start_date  = $end_date->copy()->subDays($limit);
+            $start_date = $end_date->copy()->subDays($limit);
             $period = CarbonPeriod::create($start_date, $end_date);
             $total = [];
             foreach ($period as $date) {
@@ -83,8 +85,10 @@ class Statistic
                     return $p->created_at->format('Y-m-d') == $date->format('Y-m-d');
                 })->sum('payment');
             }
+
             return $total;
         }
+
         return  null;
     }
 }

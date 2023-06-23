@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Download;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\DownloadRepositoryInterface;
 use Adminetic\Website\Http\Requests\DownloadRequest;
+use Adminetic\Website\Models\Admin\Download;
+use Illuminate\Support\Facades\Cache;
 
 class DownloadRepository implements DownloadRepositoryInterface
 {
@@ -17,6 +17,7 @@ class DownloadRepository implements DownloadRepositoryInterface
                 return Download::orderBy('position')->get();
             }))
             : Download::orderBy('position')->get();
+
         return compact('downloads');
     }
 

@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Product;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ProductRepositoryInterface;
 use Adminetic\Website\Http\Requests\ProductRequest;
+use Adminetic\Website\Models\Admin\Product;
+use Illuminate\Support\Facades\Cache;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -17,6 +17,7 @@ class ProductRepository implements ProductRepositoryInterface
                 return Product::orderBy('position')->get();
             }))
             : Product::orderBy('position')->get();
+
         return compact('products');
     }
 
@@ -60,7 +61,6 @@ class ProductRepository implements ProductRepositoryInterface
         $product->delete();
     }
 
-
     // Upload Image
     private function uploadImage(Product $product)
     {
@@ -78,7 +78,7 @@ class ProductRepository implements ProductRepositoryInterface
             $product->attributes()->detach();
             foreach (request()->product_attributes as $attribute_id => $values) {
                 $product->attributes()->attach($attribute_id, [
-                    'values' => json_encode($values)
+                    'values' => json_encode($values),
                 ]);
             }
         }

@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Counter;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\CounterRepositoryInterface;
 use Adminetic\Website\Http\Requests\CounterRequest;
+use Adminetic\Website\Models\Admin\Counter;
+use Illuminate\Support\Facades\Cache;
 
 class CounterRepository implements CounterRepositoryInterface
 {
@@ -17,6 +17,7 @@ class CounterRepository implements CounterRepositoryInterface
                 return Counter::orderBy('position')->get();
             }))
             : Counter::orderBy('position')->get();
+
         return compact('counters');
     }
 

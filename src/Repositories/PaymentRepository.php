@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Payment;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PaymentRepositoryInterface;
 use Adminetic\Website\Http\Requests\PaymentRequest;
+use Adminetic\Website\Models\Admin\Payment;
+use Illuminate\Support\Facades\Cache;
 
 class PaymentRepository implements PaymentRepositoryInterface
 {
@@ -17,6 +17,7 @@ class PaymentRepository implements PaymentRepositoryInterface
                 return Payment::orderBy('position')->get();
             }))
             : Payment::orderBy('position')->get();
+
         return compact('payments');
     }
 

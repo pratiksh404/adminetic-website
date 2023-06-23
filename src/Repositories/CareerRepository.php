@@ -2,15 +2,16 @@
 
 namespace Adminetic\Website\Repositories;
 
+use Adminetic\Website\Contracts\CareerRepositoryInterface;
+use Adminetic\Website\Http\Requests\CareerRequest;
 use Adminetic\Website\Models\Admin\Career;
 use Adminetic\Website\Traits\HasFileUpload;
-use Adminetic\Website\Http\Requests\CareerRequest;
 use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Contracts\CareerRepositoryInterface;
 
 class CareerRepository implements CareerRepositoryInterface
 {
     use HasFileUpload;
+
     // Career Index
     public function indexCareer()
     {
@@ -65,27 +66,27 @@ class CareerRepository implements CareerRepositoryInterface
     private function uploadFiles(Career $career)
     {
         if (request()->has('application_description')) {
-            $application_description = $this->fileUpload(request()->application_description, 'website/career/' . validImageFolder($career->title), 'application_description');
+            $application_description = $this->fileUpload(request()->application_description, 'website/career/'.validImageFolder($career->title), 'application_description');
             $career->update([
-                'application_description' => $application_description->path
+                'application_description' => $application_description->path,
             ]);
         }
         if (request()->has('application_syllabus')) {
-            $application_syllabus = $this->fileUpload(request()->application_syllabus, 'website/career/' . validImageFolder($career->title), 'application_syllabus');
+            $application_syllabus = $this->fileUpload(request()->application_syllabus, 'website/career/'.validImageFolder($career->title), 'application_syllabus');
             $career->update([
-                'application_syllabus' => $application_syllabus->path
+                'application_syllabus' => $application_syllabus->path,
             ]);
         }
         if (request()->has('application_sort_list')) {
-            $application_sort_list = $this->fileUpload(request()->application_sort_list, 'website/career/' . validImageFolder($career->title), 'application_sort_list');
+            $application_sort_list = $this->fileUpload(request()->application_sort_list, 'website/career/'.validImageFolder($career->title), 'application_sort_list');
             $career->update([
-                'application_sort_list' => $application_sort_list->path
+                'application_sort_list' => $application_sort_list->path,
             ]);
         }
         if (request()->has('application_result')) {
-            $application_result = $this->fileUpload(request()->application_result, 'website/career/' . validImageFolder($career->title), 'application_result');
+            $application_result = $this->fileUpload(request()->application_result, 'website/career/'.validImageFolder($career->title), 'application_result');
             $career->update([
-                'application_result' => $application_result->path
+                'application_result' => $application_result->path,
             ]);
         }
     }

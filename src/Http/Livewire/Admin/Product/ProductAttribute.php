@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Product;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Attribute;
+use Livewire\Component;
 
 class ProductAttribute extends Component
 {
@@ -17,7 +17,7 @@ class ProductAttribute extends Component
     {
         $this->product = $product;
         $this->attributes = Attribute::orderBy('position')->get();
-        if (!is_null($product)) {
+        if (! is_null($product)) {
             $product_attributes = [];
             $this->selected_attribute_ids = $product->attributes->pluck('id')->toArray();
             $this->updatedSelectedAttributeIds();
@@ -28,12 +28,10 @@ class ProductAttribute extends Component
         }
     }
 
-
     public function updatedSelectedAttributeIds()
     {
         $this->selected_attributes = Attribute::find($this->selected_attribute_ids);
     }
-
 
     public function render()
     {

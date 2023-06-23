@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Popup;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\PopupRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PopupRepositoryInterface;
+use Adminetic\Website\Http\Requests\PopupRequest;
+use Adminetic\Website\Models\Admin\Popup;
+use App\Http\Controllers\Controller;
 
 class PopupController extends Controller
 {
@@ -17,7 +16,6 @@ class PopupController extends Controller
         $this->popupRepositoryInterface = $popupRepositoryInterface;
         $this->authorizeResource(Popup::class, 'popup');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class PopupController extends Controller
     public function store(PopupRequest $request)
     {
         $this->popupRepositoryInterface->storePopup($request);
+
         return redirect(adminRedirectRoute('popup'))->withSuccess('Popup Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class PopupController extends Controller
     public function update(PopupRequest $request, Popup $popup)
     {
         $this->popupRepositoryInterface->updatePopup($request, $popup);
+
         return redirect(adminRedirectRoute('popup'))->withInfo('Popup Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class PopupController extends Controller
     public function destroy(Popup $popup)
     {
         $this->popupRepositoryInterface->destroyPopup($popup);
+
         return redirect(adminRedirectRoute('popup'))->withFail('Popup Deleted Successfully.');
     }
 }

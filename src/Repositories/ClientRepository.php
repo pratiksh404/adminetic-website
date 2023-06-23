@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Client;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ClientRepositoryInterface;
 use Adminetic\Website\Http\Requests\ClientRequest;
-use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\Client;
+use Illuminate\Support\Facades\Cache;
 
 class ClientRepository implements ClientRepositoryInterface
 {
@@ -18,6 +17,7 @@ class ClientRepository implements ClientRepositoryInterface
                 return Client::orderBy('position')->get();
             }))
             : Client::orderBy('position')->get();
+
         return compact('clients');
     }
 

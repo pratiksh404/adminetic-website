@@ -26,7 +26,7 @@ class AttributeRequest extends FormRequest
         $id = $this->attribute->id ?? '';
 
         return [
-            'code' => 'required|unique:attributes,code,' . $id,
+            'code' => 'required|unique:attributes,code,'.$id,
             'name' => 'required|max:60',
             'values' => 'required',
             'is_searchable' => 'sometimes|boolean',

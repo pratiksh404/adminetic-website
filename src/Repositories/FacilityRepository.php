@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Facility;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
 use Adminetic\Website\Http\Requests\FacilityRequest;
+use Adminetic\Website\Models\Admin\Facility;
+use Illuminate\Support\Facades\Cache;
 
 class FacilityRepository implements FacilityRepositoryInterface
 {
@@ -17,6 +17,7 @@ class FacilityRepository implements FacilityRepositoryInterface
                 return Facility::orderBy('position')->get();
             }))
             : Facility::orderBy('position')->get();
+
         return compact('facilities');
     }
 

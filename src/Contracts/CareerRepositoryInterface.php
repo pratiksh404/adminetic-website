@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Career;
 use Adminetic\Website\Http\Requests\CareerRequest;
+use Adminetic\Website\Models\Admin\Career;
 
 interface CareerRepositoryInterface
 {

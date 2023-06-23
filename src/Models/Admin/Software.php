@@ -2,13 +2,11 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Models\Admin\Inquiry;
-use Adminetic\Website\Models\Admin\Category;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\SchemaOrg\Schema;
 use Spatie\SchemaOrg\SoftwareApplication;
@@ -50,13 +48,13 @@ class Software extends Model implements HasMedia
     protected $appends = ['banner'];
 
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     // Accessors
     public function getBannerAttribute()
     {
-        return !is_null($this->getFirstMedia('banner')) ? $this->getFirstMediaUrl('banner') : logoBanner();
+        return ! is_null($this->getFirstMedia('banner')) ? $this->getFirstMediaUrl('banner') : logoBanner();
     }
 
     // Relationships
@@ -64,6 +62,7 @@ class Software extends Model implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+
     public function inquiries()
     {
         return $this->hasMany(Inquiry::class);
@@ -74,10 +73,12 @@ class Software extends Model implements HasMedia
     {
         return $qry->orderBy('position');
     }
+
     public function scopeActive($qry)
     {
         return $qry->where('active', 1);
     }
+
     public function scopeFeatured($qry)
     {
         return $qry->where('featured', 1);
@@ -91,7 +92,7 @@ class Software extends Model implements HasMedia
             ->author(title())
             ->description($this->meta_description ?? $this->excerpt)
             ->image($this->banner)
-            ->if(!is_null($modules), function (SoftwareApplication $schema) use ($modules) {
+            ->if(! is_null($modules), function (SoftwareApplication $schema) use ($modules) {
                 $schema->email(collect($modules)->pluck('name')->toArray());
             })
             ->url(route('website.software', ['software' => $this->slug]))

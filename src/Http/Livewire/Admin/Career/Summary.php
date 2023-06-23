@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Career;
 
-use Livewire\Component;
 use Adminetic\Website\Models\Admin\Career;
+use Livewire\Component;
 
 class Summary extends Component
 {
@@ -18,7 +18,7 @@ class Summary extends Component
         $this->career_id = $career_id;
         $career = Career::find($career_id);
         $this->i = isset($career->summary) ? count($career->summary) : 0;
-        $this->summary = isset($career->summary) ? $career->summary : array();
+        $this->summary = isset($career->summary) ? $career->summary : [];
     }
 
     public function add($i)

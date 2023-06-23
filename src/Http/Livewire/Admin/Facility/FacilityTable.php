@@ -3,10 +3,10 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Facility;
 
 use Adminetic\Website\Models\Admin\Facility;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class FacilityTable extends DataTableComponent
@@ -74,51 +74,51 @@ class FacilityTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Facility::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Facility::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make("Category", "category_id")
+            Column::make('Category', 'category_id')
                 ->format(
                     fn ($value, $row, Column $column) => $row->category->name ?? '-'
                 )
                 ->sortable()
                 ->searchable()
                 ->collapseOnTablet(),
-            Column::make("Active", "active")
+            Column::make('Active', 'active')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('active') ? "success" : "danger") . ' ">' . ($row->getRawOriginal('active') ? "Active" : "Inactive") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('active') ? 'success' : 'danger').' ">'.($row->getRawOriginal('active') ? 'Active' : 'Inactive').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Featured", "featured")
+            Column::make('Featured', 'featured')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('featured') ? "success" : "primary") . ' ">' . ($row->getRawOriginal('featured') ? "Featured" : "Not Featured") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('featured') ? 'success' : 'primary').' ">'.($row->getRawOriginal('featured') ? 'Featured' : 'Not Featured').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Icon", "icon")
+            Column::make('Icon', 'icon')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="' . $row->icon . ' "></span>'
+                    fn ($value, $row, Column $column) => '<span class="'.$row->icon.' "></span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Color", "color")
+            Column::make('Color', 'color')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span style="height:30px;width:50px;background-color:' . $row->color . '"></span>'
+                    fn ($value, $row, Column $column) => '<span style="height:30px;width:50px;background-color:'.$row->color.'"></span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="facility" />', ['model' => $row])
                 )

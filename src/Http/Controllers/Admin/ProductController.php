@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Product;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\ProductRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ProductRepositoryInterface;
+use Adminetic\Website\Http\Requests\ProductRequest;
+use Adminetic\Website\Models\Admin\Product;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -17,7 +16,6 @@ class ProductController extends Controller
         $this->productRepositoryInterface = $productRepositoryInterface;
         $this->authorizeResource(Product::class, 'product');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $this->productRepositoryInterface->storeProduct($request);
+
         return redirect(adminRedirectRoute('product'))->withSuccess('Product Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $this->productRepositoryInterface->updateProduct($request, $product);
+
         return redirect(adminRedirectRoute('product'))->withInfo('Product Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $this->productRepositoryInterface->destroyProduct($product);
+
         return redirect(adminRedirectRoute('product'))->withFail('Product Deleted Successfully.');
     }
 }

@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Payment;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\PaymentRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\PaymentRepositoryInterface;
+use Adminetic\Website\Http\Requests\PaymentRequest;
+use Adminetic\Website\Models\Admin\Payment;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
@@ -17,7 +16,6 @@ class PaymentController extends Controller
         $this->paymentRepositoryInterface = $paymentRepositoryInterface;
         $this->authorizeResource(Payment::class, 'payment');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class PaymentController extends Controller
     public function store(PaymentRequest $request)
     {
         $this->paymentRepositoryInterface->storePayment($request);
+
         return redirect(adminRedirectRoute('payment'))->withSuccess('Payment Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class PaymentController extends Controller
     public function update(PaymentRequest $request, Payment $payment)
     {
         $this->paymentRepositoryInterface->updatePayment($request, $payment);
+
         return redirect(adminRedirectRoute('payment'))->withInfo('Payment Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $this->paymentRepositoryInterface->destroyPayment($payment);
+
         return redirect(adminRedirectRoute('payment'))->withFail('Payment Deleted Successfully.');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Testimonial;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
 use Adminetic\Website\Http\Requests\TestimonialRequest;
+use Adminetic\Website\Models\Admin\Testimonial;
+use Illuminate\Support\Facades\Cache;
 
 class TestimonialRepository implements TestimonialRepositoryInterface
 {
@@ -17,6 +17,7 @@ class TestimonialRepository implements TestimonialRepositoryInterface
                 return Testimonial::orderBy('position')->get();
             }))
             : Testimonial::orderBy('position')->get();
+
         return compact('testimonials');
     }
 

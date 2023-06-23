@@ -3,11 +3,10 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Gallery;
 
 use Adminetic\Website\Models\Admin\Gallery;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class GalleryTable extends DataTableComponent
 {
@@ -41,20 +40,20 @@ class GalleryTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Gallery::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Gallery::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="gallery" :show="0" />', ['model' => $row])
                 )

@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class GalleryRequest extends FormRequest
 {
@@ -21,7 +21,7 @@ class GalleryRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
         ]);
     }
 
@@ -33,11 +33,12 @@ class GalleryRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->gallery->id ?? '';
+
         return [
-            'name' => 'required|max:100|unique:galleries,name,' . $id,
-            'slug' => 'required|max:100|unique:galleries,slug,' . $id,
+            'name' => 'required|max:100|unique:galleries,name,'.$id,
+            'slug' => 'required|max:100|unique:galleries,slug,'.$id,
             'videos' => 'nullable',
-            'description' => 'nullable|max:5500'
+            'description' => 'nullable|max:5500',
         ];
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\Notice;
 use Adminetic\Website\Http\Requests\NoticeRequest;
+use Adminetic\Website\Models\Admin\Notice;
 
 interface NoticeRepositoryInterface
 {

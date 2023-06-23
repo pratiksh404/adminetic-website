@@ -2,16 +2,16 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Payment;
 
+use Adminetic\Website\Exports\Payment\DateWisePaymentExport;
+use Adminetic\Website\Exports\Payment\PaymentGeneralExport;
+use Adminetic\Website\Exports\Payment\TypeWisePaymentExport;
+use Adminetic\Website\Models\Admin\Event;
+use Adminetic\Website\Models\Admin\Payment;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Adminetic\Website\Models\Admin\Payment;
-use Adminetic\Website\Models\Admin\Event;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Cache;
-use Adminetic\Website\Exports\Payment\PaymentGeneralExport;
-use Adminetic\Website\Exports\Payment\DateWisePaymentExport;
-use Adminetic\Website\Exports\Payment\TypeWisePaymentExport;
 
 class PaymentMaster extends Component
 {
@@ -44,7 +44,6 @@ class PaymentMaster extends Component
     |
     */
     public $payment_type;
-
 
     /*
     |--------------------------------------------------------------------------
@@ -138,39 +137,45 @@ class PaymentMaster extends Component
 
     private function filterByEventId($data)
     {
-        if (!is_null($this->event_id)) {
+        if (! is_null($this->event_id)) {
             $event = Event::find($this->event_id);
+
             return $data->whereIn('id', $event->payments->pluck('id'));
         }
+
         return $data;
     }
 
     private function filterByPaymentType($data)
     {
         $payment_type = $this->payment_type;
-        if (!is_null($payment_type)) {
+        if (! is_null($payment_type)) {
             return $data->where('type', $payment_type);
         }
+
         return $data;
     }
 
     private function filterByDateMode($data)
     {
         $date_mode = $this->date_mode;
-        if (!is_null($date_mode)) {
+        if (! is_null($date_mode)) {
             if ($date_mode == 1) {
                 $date = $this->date ?? Carbon::now();
+
                 return $data->whereDate('created_at', $date);
             }
             if ($date_mode == 2) {
                 $start_date = $this->start_date;
                 $end_date = $this->end_date;
-                if (!is_null($start_date) && !is_null($end_date)) {
+                if (! is_null($start_date) && ! is_null($end_date)) {
                     return $data->whereBetween('created_at', [$start_date, $end_date]);
                 }
             }
+
             return $data;
         }
+
         return $data;
     }
 
@@ -178,13 +183,14 @@ class PaymentMaster extends Component
     {
         $order_by = $this->order_by;
 
-        if (!is_null($order_by)) {
+        if (! is_null($order_by)) {
             if ($order_by == 1) {
                 return $data->latest();
             } elseif ($order_by == 2) {
                 return $data->oldest();
             }
         }
+
         return $data;
     }
 

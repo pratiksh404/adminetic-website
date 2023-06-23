@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class ClientRequest extends FormRequest
 {
@@ -21,7 +21,7 @@ class ClientRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
         ]);
     }
 
@@ -33,9 +33,10 @@ class ClientRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->client->id ?? '';
+
         return [
-            'name' => 'required|max:100|unique:clients,name,' . $id,
-            'slug' => 'required|max:100|unique:clients,slug,' . $id,
+            'name' => 'required|max:100|unique:clients,name,'.$id,
+            'slug' => 'required|max:100|unique:clients,slug,'.$id,
             'description' => 'nullable|max:5500',
             'group' => 'nullable|numeric',
             'position' => 'nullable|numeric',

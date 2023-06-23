@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Service;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\ServiceRepositoryInterface;
 use Adminetic\Website\Http\Requests\ServiceRequest;
+use Adminetic\Website\Models\Admin\Service;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceRepository implements ServiceRepositoryInterface
 {
@@ -17,6 +17,7 @@ class ServiceRepository implements ServiceRepositoryInterface
                 return Service::orderBy('position')->get();
             }))
             : Service::orderBy('position')->get();
+
         return compact('services');
     }
 

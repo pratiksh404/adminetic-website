@@ -28,7 +28,7 @@ class TestimonialRequest extends FormRequest
             'designation' => 'nullable|max:100',
             'message' => 'required|max:5500',
             'approved' => 'sometimes|boolean',
-            'rating' => 'sometimes|numeric'
+            'rating' => 'sometimes|numeric',
         ];
     }
 }

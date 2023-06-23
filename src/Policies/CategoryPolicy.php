@@ -17,7 +17,6 @@ class CategoryPolicy
         }
     }
 
-
     /**
      * Determine whether the user can view any models.
      *

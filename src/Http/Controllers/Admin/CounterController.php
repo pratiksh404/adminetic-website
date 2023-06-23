@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Counter;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\CounterRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\CounterRepositoryInterface;
+use Adminetic\Website\Http\Requests\CounterRequest;
+use Adminetic\Website\Models\Admin\Counter;
+use App\Http\Controllers\Controller;
 
 class CounterController extends Controller
 {
@@ -17,7 +16,6 @@ class CounterController extends Controller
         $this->counterRepositoryInterface = $counterRepositoryInterface;
         $this->authorizeResource(Counter::class, 'counter');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class CounterController extends Controller
     public function store(CounterRequest $request)
     {
         $this->counterRepositoryInterface->storeCounter($request);
+
         return redirect(adminRedirectRoute('counter'))->withSuccess('Counter Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class CounterController extends Controller
     public function update(CounterRequest $request, Counter $counter)
     {
         $this->counterRepositoryInterface->updateCounter($request, $counter);
+
         return redirect(adminRedirectRoute('counter'))->withInfo('Counter Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class CounterController extends Controller
     public function destroy(Counter $counter)
     {
         $this->counterRepositoryInterface->destroyCounter($counter);
+
         return redirect(adminRedirectRoute('counter'))->withFail('Counter Deleted Successfully.');
     }
 }

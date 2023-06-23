@@ -3,12 +3,10 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Team;
 
 use Adminetic\Website\Models\Admin\Team;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class TeamTable extends DataTableComponent
 {
@@ -26,7 +24,6 @@ class TeamTable extends DataTableComponent
         Team::whereIn('id', $this->getSelected())->delete();
     }
 
-
     public function configure(): void
     {
         $this->setPrimaryKey('id');
@@ -43,30 +40,30 @@ class TeamTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Team::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Team::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make("Phone", "phone")
+            Column::make('Phone', 'phone')
                 ->sortable()
                 ->searchable(),
-            Column::make("Social Media", "social_medias")
+            Column::make('Social Media', 'social_medias')
                 ->format(
                     fn ($value, $row, Column $column) => view('website::admin.layouts.modules.team.social_media', ['team' => $row])
                 ),
-            Column::make("Group", "group")
+            Column::make('Group', 'group')
                 ->sortable()
                 ->searchable(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="team" />', ['model' => $row])
                 )

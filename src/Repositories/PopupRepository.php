@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Popup;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PopupRepositoryInterface;
 use Adminetic\Website\Http\Requests\PopupRequest;
+use Adminetic\Website\Models\Admin\Popup;
+use Illuminate\Support\Facades\Cache;
 
 class PopupRepository implements PopupRepositoryInterface
 {
@@ -17,6 +17,7 @@ class PopupRepository implements PopupRepositoryInterface
                 return Popup::orderBy('position')->get();
             }))
             : Popup::orderBy('position')->get();
+
         return compact('popups');
     }
 

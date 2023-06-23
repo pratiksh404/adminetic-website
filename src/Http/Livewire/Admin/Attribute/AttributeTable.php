@@ -3,10 +3,10 @@
 namespace Adminetic\Website\Http\Livewire\Admin\Attribute;
 
 use Adminetic\Website\Models\Admin\Attribute;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class AttributeTable extends DataTableComponent
@@ -60,31 +60,31 @@ class AttributeTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Attribute::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Attribute::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make("Values", "values")
+            Column::make('Values', 'values')
                 ->format(
                     fn ($value, $row, Column $column) => view('website::admin.layouts.modules.attribute.values', ['attribute' => $row])
                 )
                 ->collapseOnTablet(),
-            Column::make("Searchable", "is_searchable")
+            Column::make('Searchable', 'is_searchable')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('is_searchable') ? "success" : "danger") . ' ">' . ($row->getRawOriginal('is_searchable') ? "Yes" : "No") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('is_searchable') ? 'success' : 'danger').' ">'.($row->getRawOriginal('is_searchable') ? 'Yes' : 'No').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="attribute" :show="0" />', ['model' => $row])
                 )

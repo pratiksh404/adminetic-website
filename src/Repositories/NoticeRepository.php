@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Notice;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\NoticeRepositoryInterface;
 use Adminetic\Website\Http\Requests\NoticeRequest;
+use Adminetic\Website\Models\Admin\Notice;
+use Illuminate\Support\Facades\Cache;
 
 class NoticeRepository implements NoticeRepositoryInterface
 {
@@ -17,6 +17,7 @@ class NoticeRepository implements NoticeRepositoryInterface
                 return Notice::orderBy('position')->get();
             }))
             : Notice::orderBy('position')->get();
+
         return compact('notices');
     }
 

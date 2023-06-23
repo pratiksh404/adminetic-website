@@ -24,10 +24,11 @@ class CouponRequest extends FormRequest
     public function rules()
     {
         $id = $this->coupon->id ?? '';
+
         return [
-            'name' => 'required|unique:coupons,name,' . $id,
+            'name' => 'required|unique:coupons,name,'.$id,
             'image' => 'nullable|file|image|max:3000',
-            'description' => 'nullable|max:5000'
+            'description' => 'nullable|max:5000',
         ];
     }
 }

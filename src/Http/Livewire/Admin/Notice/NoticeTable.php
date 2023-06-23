@@ -4,10 +4,10 @@ namespace Adminetic\Website\Http\Livewire\Admin\Notice;
 
 use Adminetic\Website\Models\Admin\Notice;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class NoticeTable extends DataTableComponent
@@ -75,57 +75,57 @@ class NoticeTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Notice::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Notice::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make("Category", "category_id")
+            Column::make('Category', 'category_id')
                 ->format(
                     fn ($value, $row, Column $column) => $row->category->name ?? '-'
                 )
                 ->sortable()
                 ->searchable()
                 ->collapseOnTablet(),
-            Column::make("Active", "active")
+            Column::make('Active', 'active')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('active') ? "success" : "danger") . ' ">' . ($row->getRawOriginal('active') ? "Active" : "Inactive") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('active') ? 'success' : 'danger').' ">'.($row->getRawOriginal('active') ? 'Active' : 'Inactive').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Popup", "popup")
+            Column::make('Popup', 'popup')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('popup') ? "success" : "primary") . ' ">' . ($row->getRawOriginal('popup') ? "Popup" : "No Popup") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('popup') ? 'success' : 'primary').' ">'.($row->getRawOriginal('popup') ? 'Popup' : 'No Popup').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Icon", "icon")
+            Column::make('Icon', 'icon')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="' . $row->icon . ' "></span>'
+                    fn ($value, $row, Column $column) => '<span class="'.$row->icon.' "></span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Color", "color")
+            Column::make('Color', 'color')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span style="height:30px;width:50px;background-color:' . $row->color . '"></span>'
+                    fn ($value, $row, Column $column) => '<span style="height:30px;width:50px;background-color:'.$row->color.'"></span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Expiry", "expire")
+            Column::make('Expiry', 'expire')
                 ->format(
-                    fn ($value, $row, Column $column) => !is_null($row->expire) ? (Carbon::create($row->expire))->toFormattedDayDateString() : ''
+                    fn ($value, $row, Column $column) => ! is_null($row->expire) ? (Carbon::create($row->expire))->toFormattedDayDateString() : ''
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="notice" />', ['model' => $row])
                 )

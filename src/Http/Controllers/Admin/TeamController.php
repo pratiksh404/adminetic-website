@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Team;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\TeamRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\TeamRepositoryInterface;
+use Adminetic\Website\Http\Requests\TeamRequest;
+use Adminetic\Website\Models\Admin\Team;
+use App\Http\Controllers\Controller;
 
 class TeamController extends Controller
 {
@@ -17,7 +16,6 @@ class TeamController extends Controller
         $this->teamRepositoryInterface = $teamRepositoryInterface;
         $this->authorizeResource(Team::class, 'team');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class TeamController extends Controller
     public function store(TeamRequest $request)
     {
         $this->teamRepositoryInterface->storeTeam($request);
+
         return redirect(adminRedirectRoute('team'))->withSuccess('Team Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class TeamController extends Controller
     public function update(TeamRequest $request, Team $team)
     {
         $this->teamRepositoryInterface->updateTeam($request, $team);
+
         return redirect(adminRedirectRoute('team'))->withInfo('Team Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $this->teamRepositoryInterface->destroyTeam($team);
+
         return redirect(adminRedirectRoute('team'))->withFail('Team Deleted Successfully.');
     }
 }

@@ -2,15 +2,14 @@
 
 namespace Adminetic\Website\Http\Livewire\Admin\Post;
 
-use App\Models\User;
 use Adminetic\Website\Models\Admin\Post;
-use Illuminate\Support\Facades\Blade;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-
 
 class PostTable extends DataTableComponent
 {
@@ -40,7 +39,7 @@ class PostTable extends DataTableComponent
     {
         Post::whereIn('id', $this->getSelected())->update([
             'status' => 0,
-            'approved_by' => Auth::user()->id
+            'approved_by' => Auth::user()->id,
         ]);
     }
 
@@ -48,7 +47,7 @@ class PostTable extends DataTableComponent
     {
         Post::whereIn('id', $this->getSelected())->update([
             'status' => 1,
-            'approved_by' => Auth::user()->id
+            'approved_by' => Auth::user()->id,
         ]);
     }
 
@@ -56,7 +55,7 @@ class PostTable extends DataTableComponent
     {
         Post::whereIn('id', $this->getSelected())->update([
             'status' => 2,
-            'approved_by' => Auth::user()->id
+            'approved_by' => Auth::user()->id,
         ]);
     }
 
@@ -64,7 +63,7 @@ class PostTable extends DataTableComponent
     {
         Post::whereIn('id', $this->getSelected())->update([
             'status' => 3,
-            'approved_by' => Auth::user()->id
+            'approved_by' => Auth::user()->id,
         ]);
     }
 
@@ -123,7 +122,7 @@ class PostTable extends DataTableComponent
                     return [$user->id => $user->name];
                 })->toArray()))
                 ->filter(function (Builder $builder, string $value) {
-                    $builder->where('user_id', (int)$value);
+                    $builder->where('user_id', (int) $value);
                 }),
         ];
     }
@@ -150,45 +149,45 @@ class PostTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Post::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Post::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make("Category", "category_id")
+            Column::make('Category', 'category_id')
                 ->format(
                     fn ($value, $row, Column $column) => $row->category->name ?? '-'
                 )
                 ->sortable()
                 ->searchable()
                 ->collapseOnTablet(),
-            Column::make("Active", "active")
+            Column::make('Active', 'active')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('active') ? "success" : "danger") . ' ">' . ($row->getRawOriginal('active') ? "Active" : "Inactive") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('active') ? 'success' : 'danger').' ">'.($row->getRawOriginal('active') ? 'Active' : 'Inactive').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Featured", "featured")
+            Column::make('Featured', 'featured')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('featured') ? "success" : "primary") . ' ">' . ($row->getRawOriginal('featured') ? "Featured" : "Not Featured") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('featured') ? 'success' : 'primary').' ">'.($row->getRawOriginal('featured') ? 'Featured' : 'Not Featured').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Status", "status")
+            Column::make('Status', 'status')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getStatusColor()) . ' ">' . ($row->status) . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.$row->getStatusColor().' ">'.$row->status.'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="post" />', ['model' => $row])
                 )

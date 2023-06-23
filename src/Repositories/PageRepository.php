@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Page;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\PageRepositoryInterface;
 use Adminetic\Website\Http\Requests\PageRequest;
+use Adminetic\Website\Models\Admin\Page;
+use Illuminate\Support\Facades\Cache;
 
 class PageRepository implements PageRepositoryInterface
 {
@@ -17,6 +17,7 @@ class PageRepository implements PageRepositoryInterface
                 return Page::orderBy('position')->get();
             }))
             : Page::orderBy('position')->get();
+
         return compact('pages');
     }
 

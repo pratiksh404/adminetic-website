@@ -17,7 +17,7 @@ class PackageFeature extends Component
 
     public function addFeature()
     {
-        $features =  $this->features;
+        $features = $this->features;
         $features[] = [
             'name' => '',
             'included' => true,
@@ -27,7 +27,7 @@ class PackageFeature extends Component
 
     public function removeFeature($index)
     {
-        $features =  $this->features;
+        $features = $this->features;
         unset($features[$index]);
         $this->features = $features;
     }

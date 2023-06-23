@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Project;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\ProjectRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\ProjectRepositoryInterface;
+use Adminetic\Website\Http\Requests\ProjectRequest;
+use Adminetic\Website\Models\Admin\Project;
+use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
@@ -17,7 +16,6 @@ class ProjectController extends Controller
         $this->projectRepositoryInterface = $projectRepositoryInterface;
         $this->authorizeResource(Project::class, 'project');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $this->projectRepositoryInterface->storeProject($request);
+
         return redirect(adminRedirectRoute('project'))->withSuccess('Project Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class ProjectController extends Controller
     public function update(ProjectRequest $request, Project $project)
     {
         $this->projectRepositoryInterface->updateProject($request, $project);
+
         return redirect(adminRedirectRoute('project'))->withInfo('Project Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $this->projectRepositoryInterface->destroyProject($project);
+
         return redirect(adminRedirectRoute('project'))->withFail('Project Deleted Successfully.');
     }
 }

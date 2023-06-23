@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Facility;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\FacilityRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\FacilityRepositoryInterface;
+use Adminetic\Website\Http\Requests\FacilityRequest;
+use Adminetic\Website\Models\Admin\Facility;
+use App\Http\Controllers\Controller;
 
 class FacilityController extends Controller
 {
@@ -17,7 +16,6 @@ class FacilityController extends Controller
         $this->facilityRepositoryInterface = $facilityRepositoryInterface;
         $this->authorizeResource(Facility::class, 'facility');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class FacilityController extends Controller
     public function store(FacilityRequest $request)
     {
         $this->facilityRepositoryInterface->storeFacility($request);
+
         return redirect(adminRedirectRoute('facility'))->withSuccess('Facility Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class FacilityController extends Controller
     public function update(FacilityRequest $request, Facility $facility)
     {
         $this->facilityRepositoryInterface->updateFacility($request, $facility);
+
         return redirect(adminRedirectRoute('facility'))->withInfo('Facility Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class FacilityController extends Controller
     public function destroy(Facility $facility)
     {
         $this->facilityRepositoryInterface->destroyFacility($facility);
+
         return redirect(adminRedirectRoute('facility'))->withFail('Facility Deleted Successfully.');
     }
 }

@@ -23,7 +23,7 @@ class DownloadRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
-            'active' => 'sometimes|boolean'
+            'active' => 'sometimes|boolean',
         ];
     }
 }

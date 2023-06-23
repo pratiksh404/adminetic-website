@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Testimonial;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\TestimonialRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
+use Adminetic\Website\Http\Requests\TestimonialRequest;
+use Adminetic\Website\Models\Admin\Testimonial;
+use App\Http\Controllers\Controller;
 
 class TestimonialController extends Controller
 {
@@ -17,7 +16,6 @@ class TestimonialController extends Controller
         $this->testimonialRepositoryInterface = $testimonialRepositoryInterface;
         $this->authorizeResource(Testimonial::class, 'testimonial');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class TestimonialController extends Controller
     public function store(TestimonialRequest $request)
     {
         $this->testimonialRepositoryInterface->storeTestimonial($request);
+
         return redirect(adminRedirectRoute('testimonial'))->withSuccess('Testimonial Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class TestimonialController extends Controller
     public function update(TestimonialRequest $request, Testimonial $testimonial)
     {
         $this->testimonialRepositoryInterface->updateTestimonial($request, $testimonial);
+
         return redirect(adminRedirectRoute('testimonial'))->withInfo('Testimonial Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class TestimonialController extends Controller
     public function destroy(Testimonial $testimonial)
     {
         $this->testimonialRepositoryInterface->destroyTestimonial($testimonial);
+
         return redirect(adminRedirectRoute('testimonial'))->withFail('Testimonial Deleted Successfully.');
     }
 }

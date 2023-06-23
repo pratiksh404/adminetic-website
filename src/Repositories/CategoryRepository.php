@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\Category;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\CategoryRepositoryInterface;
 use Adminetic\Website\Http\Requests\CategoryRequest;
+use Adminetic\Website\Models\Admin\Category;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -19,11 +19,12 @@ class CategoryRepository implements CategoryRepositoryInterface
             : Category::orderBy('position')->get();
 
         // Parent Categories
-        if (!Cache::has('parent_categories')) {
+        if (! Cache::has('parent_categories')) {
             Cache::rememberForever('parent_categories', function () {
                 return Category::whoIsParent()->position()->get();
             });
         }
+
         return compact('categories');
     }
 

@@ -2,132 +2,100 @@
 
 namespace Adminetic\Website\Provider;
 
-use Livewire\Livewire;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
-use Adminetic\Website\Models\Admin\Faq;
-use Illuminate\Support\ServiceProvider;
-use Adminetic\Website\Models\Admin\Page;
-use Adminetic\Website\Models\Admin\Post;
-use Adminetic\Website\Models\Admin\Team;
-use Adminetic\Website\Models\Admin\Popup;
-use Adminetic\Website\Policies\FaqPolicy;
-use Adminetic\Website\Models\Admin\Career;
-use Adminetic\Website\Models\Admin\Client;
-use Adminetic\Website\Models\Admin\Notice;
-use Adminetic\Website\Policies\PagePolicy;
-use Adminetic\Website\Policies\PostPolicy;
-use Adminetic\Website\Policies\TeamPolicy;
-use Adminetic\Website\Models\Admin\Counter;
-use Adminetic\Website\Models\Admin\Feature;
-use Adminetic\Website\Models\Admin\Gallery;
-use Adminetic\Website\Models\Admin\Package;
-use Adminetic\Website\Models\Admin\Payment;
-use Adminetic\Website\Models\Admin\Process;
-use Adminetic\Website\Models\Admin\Product;
-use Adminetic\Website\Models\Admin\Project;
-use Adminetic\Website\Models\Admin\Service;
-use Adminetic\Website\Policies\PopupPolicy;
-use Adminetic\Website\Models\Admin\Category;
-use Adminetic\Website\Models\Admin\Download;
-use Adminetic\Website\Models\Admin\Facility;
-use Adminetic\Website\Models\Admin\Software;
-use Adminetic\Website\Policies\CareerPolicy;
-use Adminetic\Website\Policies\ClientPolicy;
-use Adminetic\Website\Policies\NoticePolicy;
-use Adminetic\Website\Models\Admin\Attribute;
-use Adminetic\Website\Policies\CounterPolicy;
-use Adminetic\Website\Policies\FeaturePolicy;
-use Adminetic\Website\Policies\GalleryPolicy;
-use Adminetic\Website\Policies\PackagePolicy;
-use Adminetic\Website\Policies\PaymentPolicy;
-use Adminetic\Website\Policies\ProcessPolicy;
-use Adminetic\Website\Policies\ProductPolicy;
-use Adminetic\Website\Policies\ProjectPolicy;
-use Adminetic\Website\Policies\ServicePolicy;
-use Adminetic\Website\Policies\CategoryPolicy;
-use Adminetic\Website\Policies\DownloadPolicy;
-use Adminetic\Website\Policies\FacilityPolicy;
-use Adminetic\Website\Policies\SoftwarePolicy;
-use Adminetic\Website\Models\Admin\Application;
-use Adminetic\Website\Models\Admin\Testimonial;
-use Adminetic\Website\Policies\AttributePolicy;
-use Adminetic\Website\Policies\ApplicationPolicy;
-use Adminetic\Website\Policies\TestimonialPolicy;
-use Adminetic\Website\Repositories\FaqRepository;
-use Adminetic\Website\Repositories\PageRepository;
-use Adminetic\Website\Repositories\TeamRepository;
-use Adminetic\Website\Repositories\PopupRepository;
-use Adminetic\Website\Repositories\ClientRepository;
-use Adminetic\Website\Repositories\NoticeRepository;
-use Adminetic\Website\Repositories\CounterRepository;
-use Adminetic\Website\Repositories\FeatureRepository;
-use Adminetic\Website\Repositories\GalleryRepository;
-use Adminetic\Website\Repositories\PackageRepository;
-use Adminetic\Website\Repositories\ProjectRepository;
-use Adminetic\Website\Repositories\ServiceRepository;
-use Adminetic\Website\Repositories\CategoryRepository;
-use Adminetic\Website\Repositories\DownloadRepository;
-use Adminetic\Website\Repositories\FacilityRepository;
-use Adminetic\Website\Contracts\FaqRepositoryInterface;
-use Adminetic\Website\Http\Livewire\Admin\Faq\FaqTable;
-use Adminetic\Website\Contracts\PageRepositoryInterface;
-use Adminetic\Website\Contracts\TeamRepositoryInterface;
-use Adminetic\Website\Contracts\PopupRepositoryInterface;
-use Adminetic\Website\Http\Livewire\Admin\Career\Summary;
-use Adminetic\Website\Http\Livewire\Admin\Page\PageTable;
-use Adminetic\Website\Http\Livewire\Admin\Post\PostTable;
-use Adminetic\Website\Http\Livewire\Admin\Team\TeamTable;
-use Adminetic\Website\Repositories\TestimonialRepository;
-use Adminetic\Website\Contracts\ClientRepositoryInterface;
-use Adminetic\Website\Contracts\NoticeRepositoryInterface;
-use Adminetic\Website\Contracts\CounterRepositoryInterface;
-use Adminetic\Website\Contracts\FeatureRepositoryInterface;
-use Adminetic\Website\Contracts\GalleryRepositoryInterface;
-use Adminetic\Website\Contracts\PackageRepositoryInterface;
-use Adminetic\Website\Contracts\ProjectRepositoryInterface;
-use Adminetic\Website\Contracts\ServiceRepositoryInterface;
-use Adminetic\Website\Http\Livewire\Admin\Career\Selection;
-use Adminetic\Website\Http\Livewire\Admin\Popup\PopupTable;
-use Adminetic\Website\Contracts\CategoryRepositoryInterface;
-use Adminetic\Website\Contracts\DownloadRepositoryInterface;
-use Adminetic\Website\Contracts\FacilityRepositoryInterface;
-use Adminetic\Website\Http\Livewire\Admin\Career\CareerTable;
-use Adminetic\Website\Http\Livewire\Admin\Client\ClientTable;
-use Adminetic\Website\Http\Livewire\Admin\Notice\NoticeTable;
-use Adminetic\Website\Http\Livewire\Admin\System\UploadImage;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteMigrateCommand;
+use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
+use Adminetic\Website\Console\Commands\AdmineticWebsiteRollbackCommand;
 use Adminetic\Website\Console\Commands\SitemapGenerateCommand;
-use Adminetic\Website\Contracts\TestimonialRepositoryInterface;
+use Adminetic\Website\Http\Livewire\Admin\Attribute\AttributeTable;
+use Adminetic\Website\Http\Livewire\Admin\Career\ApplicationTable;
+use Adminetic\Website\Http\Livewire\Admin\Career\CareerTable;
+use Adminetic\Website\Http\Livewire\Admin\Career\Selection;
+use Adminetic\Website\Http\Livewire\Admin\Career\Summary;
+use Adminetic\Website\Http\Livewire\Admin\Category\CategoryTable;
+use Adminetic\Website\Http\Livewire\Admin\Category\QuickCategory;
+use Adminetic\Website\Http\Livewire\Admin\Charts\Event\EventPassChart;
+use Adminetic\Website\Http\Livewire\Admin\Charts\Event\EventPaymentChart;
+use Adminetic\Website\Http\Livewire\Admin\Client\ClientTable;
 use Adminetic\Website\Http\Livewire\Admin\Counter\CounterTable;
+use Adminetic\Website\Http\Livewire\Admin\Dashboard\NewsHeadline;
+use Adminetic\Website\Http\Livewire\Admin\Dashboard\WebsiteDashboard;
+use Adminetic\Website\Http\Livewire\Admin\Download\DownloadTable;
+use Adminetic\Website\Http\Livewire\Admin\Facility\FacilityTable;
+use Adminetic\Website\Http\Livewire\Admin\Faq\FaqTable;
 use Adminetic\Website\Http\Livewire\Admin\Feature\FeatureTable;
 use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryTable;
 use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryVideo;
+use Adminetic\Website\Http\Livewire\Admin\Notice\NoticeTable;
+use Adminetic\Website\Http\Livewire\Admin\Package\PackageFeature;
 use Adminetic\Website\Http\Livewire\Admin\Package\PackageTable;
+use Adminetic\Website\Http\Livewire\Admin\Page\PageTable;
+use Adminetic\Website\Http\Livewire\Admin\Payment\PaymentMaster;
 use Adminetic\Website\Http\Livewire\Admin\Payment\PaymentPanel;
 use Adminetic\Website\Http\Livewire\Admin\Payment\PaymentTable;
+use Adminetic\Website\Http\Livewire\Admin\Popup\PopupTable;
+use Adminetic\Website\Http\Livewire\Admin\Post\PostTable;
 use Adminetic\Website\Http\Livewire\Admin\Process\ProcessTable;
 use Adminetic\Website\Http\Livewire\Admin\Product\ProductTable;
 use Adminetic\Website\Http\Livewire\Admin\Project\ProjectTable;
 use Adminetic\Website\Http\Livewire\Admin\Service\ServiceTable;
-use Adminetic\Website\Http\Livewire\Admin\Payment\PaymentMaster;
-use Adminetic\Website\Http\Livewire\Admin\Category\CategoryTable;
-use Adminetic\Website\Http\Livewire\Admin\Category\QuickCategory;
-use Adminetic\Website\Http\Livewire\Admin\Dashboard\NewsHeadline;
-use Adminetic\Website\Http\Livewire\Admin\Download\DownloadTable;
-use Adminetic\Website\Http\Livewire\Admin\Facility\FacilityTable;
-use Adminetic\Website\Http\Livewire\Admin\Package\PackageFeature;
-use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareTable;
-use Adminetic\Website\Http\Livewire\Admin\Career\ApplicationTable;
-use Adminetic\Website\Http\Livewire\Admin\Attribute\AttributeTable;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareModules;
-use Adminetic\Website\Http\Livewire\Admin\Dashboard\WebsiteDashboard;
-use Adminetic\Website\Console\Commands\AdmineticWebsiteInstallCommand;
-use Adminetic\Website\Console\Commands\AdmineticWebsiteMigrateCommand;
-use Adminetic\Website\Http\Livewire\Admin\Charts\Event\EventPassChart;
-use Adminetic\Website\Console\Commands\AdmineticWebsiteRollbackCommand;
+use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareTable;
+use Adminetic\Website\Http\Livewire\Admin\System\UploadImage;
+use Adminetic\Website\Http\Livewire\Admin\Team\TeamTable;
 use Adminetic\Website\Http\Livewire\Admin\Testimonial\TestimonialTable;
-use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
-use Adminetic\Website\Http\Livewire\Admin\Charts\Event\EventPaymentChart;
+use Adminetic\Website\Models\Admin\Application;
+use Adminetic\Website\Models\Admin\Attribute;
+use Adminetic\Website\Models\Admin\Career;
+use Adminetic\Website\Models\Admin\Category;
+use Adminetic\Website\Models\Admin\Client;
+use Adminetic\Website\Models\Admin\Counter;
+use Adminetic\Website\Models\Admin\Download;
+use Adminetic\Website\Models\Admin\Facility;
+use Adminetic\Website\Models\Admin\Faq;
+use Adminetic\Website\Models\Admin\Feature;
+use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\Notice;
+use Adminetic\Website\Models\Admin\Package;
+use Adminetic\Website\Models\Admin\Page;
+use Adminetic\Website\Models\Admin\Payment;
+use Adminetic\Website\Models\Admin\Popup;
+use Adminetic\Website\Models\Admin\Post;
+use Adminetic\Website\Models\Admin\Process;
+use Adminetic\Website\Models\Admin\Product;
+use Adminetic\Website\Models\Admin\Project;
+use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Models\Admin\Software;
+use Adminetic\Website\Models\Admin\Team;
+use Adminetic\Website\Models\Admin\Testimonial;
+use Adminetic\Website\Policies\ApplicationPolicy;
+use Adminetic\Website\Policies\AttributePolicy;
+use Adminetic\Website\Policies\CareerPolicy;
+use Adminetic\Website\Policies\CategoryPolicy;
+use Adminetic\Website\Policies\ClientPolicy;
+use Adminetic\Website\Policies\CounterPolicy;
+use Adminetic\Website\Policies\DownloadPolicy;
+use Adminetic\Website\Policies\FacilityPolicy;
+use Adminetic\Website\Policies\FaqPolicy;
+use Adminetic\Website\Policies\FeaturePolicy;
+use Adminetic\Website\Policies\GalleryPolicy;
+use Adminetic\Website\Policies\NoticePolicy;
+use Adminetic\Website\Policies\PackagePolicy;
+use Adminetic\Website\Policies\PagePolicy;
+use Adminetic\Website\Policies\PaymentPolicy;
+use Adminetic\Website\Policies\PopupPolicy;
+use Adminetic\Website\Policies\PostPolicy;
+use Adminetic\Website\Policies\ProcessPolicy;
+use Adminetic\Website\Policies\ProductPolicy;
+use Adminetic\Website\Policies\ProjectPolicy;
+use Adminetic\Website\Policies\ServicePolicy;
+use Adminetic\Website\Policies\SoftwarePolicy;
+use Adminetic\Website\Policies\TeamPolicy;
+use Adminetic\Website\Policies\TestimonialPolicy;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class WebsiteServiceProvider extends ServiceProvider
 {
@@ -199,21 +167,21 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__ . '/../../config/website.php' => config_path('website.php'),
+            __DIR__.'/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__ . '/../../database/migrations' => database_path('migrations/website'),
+            __DIR__.'/../../database/migrations' => database_path('migrations/website'),
         ], 'website-migrations');
         $this->publishes([
-            __DIR__ . '/../../payload/assets' => public_path('plugins/website'),
+            __DIR__.'/../../payload/assets' => public_path('plugins/website'),
         ], 'website-assets');
         $this->publishes([
-            __DIR__ . '/../../payload/modules' => app_path('Modules'),
+            __DIR__.'/../../payload/modules' => app_path('Modules'),
         ], 'website-modules');
     }
 
@@ -224,10 +192,10 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        if (!config('website.publish_migrations', true)) {
-            $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
+        if (! config('website.publish_migrations', true)) {
+            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
         }
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -255,12 +223,12 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         });
 
         if (config('website.website_api_end_points', true)) {
             Route::group($this->apiRouteConfiguration(), function () {
-                $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
+                $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
             });
         }
     }

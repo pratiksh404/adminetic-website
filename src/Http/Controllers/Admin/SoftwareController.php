@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Software;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\SoftwareRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\SoftwareRepositoryInterface;
+use Adminetic\Website\Http\Requests\SoftwareRequest;
+use Adminetic\Website\Models\Admin\Software;
+use App\Http\Controllers\Controller;
 
 class SoftwareController extends Controller
 {
@@ -17,7 +16,6 @@ class SoftwareController extends Controller
         $this->softwareRepositoryInterface = $softwareRepositoryInterface;
         $this->authorizeResource(Software::class, 'software');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class SoftwareController extends Controller
     public function store(SoftwareRequest $request)
     {
         $this->softwareRepositoryInterface->storeSoftware($request);
+
         return redirect(adminRedirectRoute('software'))->withSuccess('Software Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class SoftwareController extends Controller
     public function update(SoftwareRequest $request, Software $software)
     {
         $this->softwareRepositoryInterface->updateSoftware($request, $software);
+
         return redirect(adminRedirectRoute('software'))->withInfo('Software Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class SoftwareController extends Controller
     public function destroy(Software $software)
     {
         $this->softwareRepositoryInterface->destroySoftware($software);
+
         return redirect(adminRedirectRoute('software'))->withFail('Software Deleted Successfully.');
     }
 }

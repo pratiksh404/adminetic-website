@@ -2,9 +2,9 @@
 
 namespace Adminetic\Website\Http\Requests;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostRequest extends FormRequest
 {
@@ -22,10 +22,10 @@ class PostRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
             'meta_name' => $this->post->meta_name ?? $this->meta_name ?? $this->name ?? null,
             'meta_description' => $this->post->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
         ]);
     }
 
@@ -37,9 +37,10 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->post->id ?? '';
+
         return [
-            'slug' => 'required|max:100|unique:categories,slug,' . $id,
-            'name' => 'required|max:100|unique:categories,name,' . $id,
+            'slug' => 'required|max:100|unique:categories,slug,'.$id,
+            'name' => 'required|max:100|unique:categories,name,'.$id,
             'excerpt' => 'nullable|max:5500',
             'description' => 'nullable|max:55000',
             'category_id' => 'nullable|exists:categories,id',

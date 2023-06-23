@@ -2,10 +2,9 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Adminetic\Website\Models\Admin\Application;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\SchemaOrg\Schema;
 
@@ -45,8 +44,8 @@ class Career extends Model
     }
 
     // Appends
-    protected  $casts = [
-        'summary' => 'array'
+    protected $casts = [
+        'summary' => 'array',
     ];
 
     // Relationship
@@ -58,7 +57,7 @@ class Career extends Model
     // Accessors
     public function getGroupAttribute($attribute)
     {
-        return !is_null($attribute) ? (config('website.career_group', [
+        return ! is_null($attribute) ? (config('website.career_group', [
             1 => 'REASEARCHERS/STAFF',
             2 => 'FIELD STAFF',
             3 => 'INTERN/VOLUNTEERS',
@@ -76,6 +75,7 @@ class Career extends Model
     {
         return Application::where('career_id', $this->id)->where('selected', 1)->latest()->get();
     }
+
     public function searchSchema()
     {
         $schema = Schema::jobPosting()

@@ -2,11 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\Category;
-use Illuminate\Http\Request;
-use Adminetic\Website\Http\Requests\CategoryRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\CategoryRepositoryInterface;
+use Adminetic\Website\Http\Requests\CategoryRequest;
+use Adminetic\Website\Models\Admin\Category;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -17,7 +16,6 @@ class CategoryController extends Controller
         $this->categoryRepositoryInterface = $categoryRepositoryInterface;
         $this->authorizeResource(Category::class, 'category');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $this->categoryRepositoryInterface->storeCategory($request);
+
         return redirect(adminRedirectRoute('category'))->withSuccess('Category Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $this->categoryRepositoryInterface->updateCategory($request, $category);
+
         return redirect(adminRedirectRoute('category'))->withInfo('Category Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $this->categoryRepositoryInterface->destroyCategory($category);
+
         return redirect(adminRedirectRoute('category'))->withFail('Category Deleted Successfully.');
     }
 }

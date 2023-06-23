@@ -4,11 +4,10 @@ namespace Adminetic\Website\Http\Livewire\Admin\Career;
 
 use Adminetic\Website\Models\Admin\Career;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Facades\Blade;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class CareerTable extends DataTableComponent
 {
@@ -42,58 +41,58 @@ class CareerTable extends DataTableComponent
     public function reorder($items): void
     {
         foreach ($items as $item) {
-            Career::find((int)$item['value'])->update(['position' => (int)$item['order']]);
+            Career::find((int) $item['value'])->update(['position' => (int) $item['order']]);
         }
     }
 
     public function columns(): array
     {
         return [
-            Column::make("ID", "id")
+            Column::make('ID', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Title", "title")
+            Column::make('Title', 'title')
                 ->sortable()
                 ->searchable(),
-            Column::make("Group", "group")
+            Column::make('Group', 'group')
                 ->label(
                     fn ($row, Column $column) => $row->group ?? '-'
                 )
                 ->sortable()
                 ->searchable(),
-            Column::make("Designation", "designation")
+            Column::make('Designation', 'designation')
                 ->sortable()
                 ->searchable(),
-            Column::make("Location", "location")
+            Column::make('Location', 'location')
                 ->sortable()
                 ->searchable(),
-            Column::make("Salary", "salary")
+            Column::make('Salary', 'salary')
                 ->label(
-                    fn ($row, Column $column) => !is_null($row->salary) ? (currency() . $row->salary) : '-'
+                    fn ($row, Column $column) => ! is_null($row->salary) ? (currency().$row->salary) : '-'
                 )
                 ->searchable(),
-            Column::make("Deadline", "deadline")
+            Column::make('Deadline', 'deadline')
                 ->label(
-                    fn ($row, Column $column) => !is_null($row->deadline) ? (Carbon::crate($row->deadline))->toFormattedDateString() : '-'
+                    fn ($row, Column $column) => ! is_null($row->deadline) ? (Carbon::crate($row->deadline))->toFormattedDateString() : '-'
                 )
                 ->sortable()
                 ->searchable(),
-            Column::make("Excerpt", "excerpt")
+            Column::make('Excerpt', 'excerpt')
                 ->sortable()
                 ->searchable(),
-            Column::make("Active", "active")
+            Column::make('Active', 'active')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('active') ? "success" : "danger") . ' ">' . ($row->getRawOriginal('active') ? "Active" : "Inactive") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('active') ? 'success' : 'danger').' ">'.($row->getRawOriginal('active') ? 'Active' : 'Inactive').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Apply Button", "add_apply_button")
+            Column::make('Apply Button', 'add_apply_button')
                 ->format(
-                    fn ($value, $row, Column $column) => '<span class="badge badge-' . ($row->getRawOriginal('add_apply_button') ? "success" : "danger") . ' ">' . ($row->getRawOriginal('add_apply_button') ? "Active" : "Inactive") . '</span>'
+                    fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('add_apply_button') ? 'success' : 'danger').' ">'.($row->getRawOriginal('add_apply_button') ? 'Active' : 'Inactive').'</span>'
                 )
                 ->html()
                 ->collapseOnTablet(),
-            Column::make("Action")
+            Column::make('Action')
                 ->label(
                     fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="career"><x-slot name="buttons"><a href="{{ route("career.applications", ["career" => $model->id]) }}"class="btn btn-info btn-air-info p-2 btn-sm"><i class="fa fa-file"></i> <span class="mx-2 p-2"style="background-color: white;color:black">{{ $model->applications->count() }}</span></a></x-slot></x-adminetic-action>', ['model' => $row])
                 )
