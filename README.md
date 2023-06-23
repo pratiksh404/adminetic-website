@@ -62,7 +62,7 @@ If you discover any security related issues, please email pratikdai404@gmail.com
 ## Credits
 
 - [Pratik Shrestha](https://github.com/adminetic)
-- [spatie/laravel-analytics](https://github.com/spatie/laravel-analytics)
+- [Spatie](https://github.com/spatie)
 - [All Contributors](../../contributors)
 
 ## License
