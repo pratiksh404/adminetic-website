@@ -501,7 +501,6 @@ class WebsiteAdapter implements PluginInterface
                     ],
                 ],
                 'children' => $this->indexCreateChildren('attribute', \App\Models\Admin\Attribute::class),
-
             ],
         ];
     }
