@@ -21,7 +21,7 @@
 
     @if ($category_panel_toggle)
         <div class="card"
-            style="position: fixed;top: 10vh;right: 5vw;bottom: 0;left: 5vw;z-index: 999;width: 90vw;height:30vh;overflow: auto">
+            style="position: fixed;top: 10vh;right: 5vw;bottom: 0;left: 5vw;z-index: 999;width: 90vw;height:50vh;overflow: auto">
             <div class="card-header">
                 <div class="d-flex justify-content-center">
                     <b>Quick Category Create</b>

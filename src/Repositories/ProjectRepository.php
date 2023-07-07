@@ -30,7 +30,8 @@ class ProjectRepository implements ProjectRepositoryInterface
     // Project Store
     public function storeProject(ProjectRequest $request)
     {
-        Project::create($request->validated());
+        $project = Project::create($request->validated());
+        $this->uploadImage($project);
     }
 
     // Project Show
@@ -49,11 +50,28 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function updateProject(ProjectRequest $request, Project $project)
     {
         $project->update($request->validated());
+        $this->uploadImage($project);
+
     }
 
     // Project Destroy
     public function destroyProject(Project $project)
     {
         $project->delete();
+    }
+
+    // Upload Image
+    private function uploadImage(Project $project)
+    {
+        if (request()->has('image')) {
+            $project
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
+        }
+        if (request()->has('icon_image')) {
+            $project
+                ->addFromMediaLibraryRequest(request()->icon_image)
+                ->toMediaCollection('icon_image');
+        }
     }
 }
