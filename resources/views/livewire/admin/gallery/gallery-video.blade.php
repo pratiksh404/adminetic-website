@@ -30,6 +30,7 @@
             </div>
 
             @if (!is_null($video))
+            {{dd('hi')}}
                 <br>
                 <div class="row">
                     <div class="col-12">

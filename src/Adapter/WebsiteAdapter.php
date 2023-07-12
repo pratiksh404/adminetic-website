@@ -89,6 +89,24 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'menu',
+                'name' => 'Slider',
+                'icon' => 'fa fa-wrench',
+                'is_active' => request()->routeIs('slider*') ? 'active' : '',
+                'conditions' => [
+                [
+                'type' => 'or',
+                'condition' => auth()->user()->can('view-any', \App\Models\Admin\Slider::class),
+                ],
+                [
+                'type' => 'or',
+                'condition' => auth()->user()->can('create', \App\Models\Admin\Slider::class),
+                ],
+                ],
+                "children" => $this->indexCreateChildren("slider", \App\Models\Admin\Slider::class),
+
+                ],
+            [
+                'type' => 'menu',
                 'name' => 'Project',
                 'icon' => 'fa fa-wrench',
                 'is_active' => request()->routeIs('project*') ? 'active' : '',

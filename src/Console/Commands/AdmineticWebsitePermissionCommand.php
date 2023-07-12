@@ -96,5 +96,7 @@ class AdmineticWebsitePermissionCommand extends Command
         $this->info('Process Module Permission Created ... ✅');
         Artisan::call('make:permission Software --all');
         $this->info('Software Module Permission Created ... ✅');
+        Artisan::call('make:permission Slider --all');
+        $this->info('Slider Module Permission Created ... ✅');
     }
 }
