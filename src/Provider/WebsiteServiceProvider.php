@@ -24,7 +24,6 @@ use Adminetic\Website\Http\Livewire\Admin\Download\DownloadTable;
 use Adminetic\Website\Http\Livewire\Admin\Facility\FacilityTable;
 use Adminetic\Website\Http\Livewire\Admin\Faq\FaqTable;
 use Adminetic\Website\Http\Livewire\Admin\Feature\FeatureTable;
-use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
 use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryTable;
 use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryVideo;
 use Adminetic\Website\Http\Livewire\Admin\Notice\NoticeTable;
@@ -40,6 +39,7 @@ use Adminetic\Website\Http\Livewire\Admin\Process\ProcessTable;
 use Adminetic\Website\Http\Livewire\Admin\Product\ProductTable;
 use Adminetic\Website\Http\Livewire\Admin\Project\ProjectTable;
 use Adminetic\Website\Http\Livewire\Admin\Service\ServiceTable;
+use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareModules;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareTable;
 use Adminetic\Website\Http\Livewire\Admin\System\UploadImage;
@@ -66,6 +66,7 @@ use Adminetic\Website\Models\Admin\Process;
 use Adminetic\Website\Models\Admin\Product;
 use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Models\Admin\Slider;
 use Adminetic\Website\Models\Admin\Software;
 use Adminetic\Website\Models\Admin\Team;
 use Adminetic\Website\Models\Admin\Testimonial;
@@ -90,11 +91,10 @@ use Adminetic\Website\Policies\ProcessPolicy;
 use Adminetic\Website\Policies\ProductPolicy;
 use Adminetic\Website\Policies\ProjectPolicy;
 use Adminetic\Website\Policies\ServicePolicy;
+use Adminetic\Website\Policies\SliderPolicy;
 use Adminetic\Website\Policies\SoftwarePolicy;
 use Adminetic\Website\Policies\TeamPolicy;
 use Adminetic\Website\Policies\TestimonialPolicy;
-use Adminetic\Website\Models\Admin\Slider;
-use Adminetic\Website\Policies\SliderPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -308,7 +308,6 @@ class WebsiteServiceProvider extends ServiceProvider
         Livewire::component('admin.team.team-table', TeamTable::class);
         Livewire::component('admin.testimonial.testimonial-table', TestimonialTable::class);
         Livewire::component('admin.slider.slider-table', SliderTable::class);
-
     }
 
     /**
@@ -346,7 +345,6 @@ class WebsiteServiceProvider extends ServiceProvider
         $this->app->bind(\Adminetic\Website\Contracts\ProcessRepositoryInterface::class, \Adminetic\Website\Repositories\ProcessRepository::class);
         $this->app->bind(\Adminetic\Website\Contracts\SoftwareRepositoryInterface::class, \Adminetic\Website\Repositories\SoftwareRepository::class);
         $this->app->bind(\Adminetic\Website\Contracts\SliderRepositoryInterface::class, \Adminetic\Website\Repositories\SliderRepository::class);
-
     }
 
     /**

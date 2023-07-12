@@ -51,7 +51,6 @@ class ProjectRepository implements ProjectRepositoryInterface
     {
         $project->update($request->validated());
         $this->uploadImage($project);
-
     }
 
     // Project Destroy
