@@ -3,11 +3,34 @@
         <div class="card">
             <div class="card-body shadow-lg p-3">
                 <div class="mt-4">
-                    <label for="name">{{ label('products', 'name') }}</label>
-                    <input type="text" name="name" id="name" class="form-control"
-                        value="{{ $product->name ?? old('name') }}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="name">{{ label('products', 'name') }}</label>
+                            <input type="text" name="name" id="name" class="form-control"
+                                value="{{ $product->name ?? old('name') }}">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="generic_name">Generic Name</label>
+                            <input type="text" name="generic_name" id="generic_name" class="form-control"
+                                value="{{ $product->generic_name ?? old('generic_name') }}">
+                        </div>
+                    </div>
                 </div>
-                <br>
+
+                <div class="mt-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="strength">Strength</label>
+                            <input type="text" name="strength" id="strength" class="form-control"
+                                value="{{ $product->strength ?? old('strength') }}">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="dosage_form">Dosage Form</label>
+                            <input type="text" name="dosage_form" id="dosage_form" class="form-control" value="{{ $product->dosage_form ?? old('dosage_form') }}">
+                        </div>
+                    </div>
+
+                </div>
                 <div class="mt-4">
                     <label for="excerpt">{{ label('products', 'excerpt') }}</label>
                     <textarea name="excerpt" id="excerpt" class="form-control" cols="30" rows="10">{{ $product->excerpt ?? old('excerpt') }}</textarea>
@@ -23,11 +46,11 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+        {{-- <div class="card">
             <div class="card-body shadow-lg p-3">
                 @livewire('admin.product.product-attribute', ['product' => $product ?? null])
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="col-lg-4">
         <div class="card">

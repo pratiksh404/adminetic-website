@@ -32,6 +32,8 @@ class Gallery extends Model implements HasMedia
     private static function cacheKey()
     {
         Cache::has('galleries') ? Cache::forget('galleries') : '';
+        Cache::has('slider') ? Cache::forget('slider') : '';
+
     }
 
     // Logs
@@ -45,4 +47,12 @@ class Gallery extends Model implements HasMedia
     protected $casts = [
         'videos' => 'array',
     ];
+
+
+    // Accessors
+    public function getImagesAttribute()
+    {
+        return !is_null($this->getMedia('images')) ? $this->getMedia('images') : null;
+    }
+
 }

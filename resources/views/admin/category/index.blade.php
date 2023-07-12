@@ -1,13 +1,7 @@
 @extends(request()->header('layout') ?? (request()->header('layout') ?? 'adminetic::admin.layouts.app'))
 
 @section('content')
-    <x-adminetic-index-page name="category" route="category">
-        <x-slot name="content">
-            {{-- ================================Card================================ --}}
-            @livewire('admin.category.category-table')
-            {{-- =================================================================== --}}
-        </x-slot>
-    </x-adminetic-index-page>
+
     <x-adminetic-card title="All Category">
         <x-slot name="buttons">
             <a href="{{ adminCreateRoute('category') }}" class="btn btn-primary btn-air-primary">Create Category</a>

@@ -52,11 +52,12 @@ class AdmineticWebsiteInstallCommand extends Command
         Artisan::call('vendor:publish', [
             '--tag' => ['website-config'],
         ]);
-        Artisan::call('vendor:publish', [
-            '--provider' => ['Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider'],
-            '--tag' => ['livewire-tables-config'],
-        ]);
         $this->info('Adminetic website config file published ... ✅');
+        Artisan::call('vendor:publish', [
+            '--provider' => 'Rappasoft\LaravelLivewireTables\LaravelLivewireTablesServiceProvider',
+            '--tag' => 'livewire-tables-config',
+        ]);
+        $this->info('Laravel datatable config file published ... ✅');
 
         if ($this->confirm('Do you wish to run website table migration?')) {
             Artisan::call('migrate');

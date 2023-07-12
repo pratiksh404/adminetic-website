@@ -40,6 +40,9 @@ class ProductRequest extends FormRequest
         return [
             'sku' => 'required|unique:products,sku,'.$id,
             'name' => 'required|unique:products,name,'.$id,
+            'generic_name' => 'nullable',
+            'strength' => 'nullable',
+            'dosage_form' => 'nullable',
             'slug' => 'required|unique:products,slug,'.$id,
             'category_id' => 'nullable|exists:categories,id',
             'selling_price' => 'required|numeric',

@@ -33,6 +33,7 @@ class Feature extends Model implements HasMedia
     private static function cacheKey()
     {
         Cache::has('features') ? Cache::forget('features') : '';
+        Cache::has('home_features') ? Cache::forget('home_features') : '';
     }
 
     // Logs
@@ -66,5 +67,11 @@ class Feature extends Model implements HasMedia
     public function scopeFeatured($qry)
     {
         return $qry->where('featured', 1);
+    }
+
+    // Scopes
+    public function scopeHomeFeatures($query, $limit = 3)
+    {
+        return $query->orderBy('position')->take($limit ?? 3);
     }
 }
