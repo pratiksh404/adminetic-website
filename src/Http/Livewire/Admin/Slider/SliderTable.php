@@ -86,7 +86,7 @@ class SliderTable extends DataTableComponent
 
             Column::make('Action')
                 ->label(
-                    fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="slider" />', ['model' => $row])
+                    fn ($row, Column $column) => Blade::render('<x-adminetic-action :model="$model" route="slider" :show=false />', ['model' => $row])
                 )
                 ->html()
                 ->collapseOnTablet(),
