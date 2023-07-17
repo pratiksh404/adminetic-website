@@ -73,4 +73,10 @@ class Product extends Model implements HasMedia
     {
         return $qry->where('active', 1);
     }
+
+     // Accessors
+   public function getImageAttribute()
+   {
+       return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/slider.jpg');
+   }
 }

@@ -2,14 +2,14 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Slider extends Model implements HasMedia
+class History extends Model implements HasMedia
 {
     use LogsActivity, InteractsWithMedia;
 
@@ -32,18 +32,17 @@ class Slider extends Model implements HasMedia
     // Cache Keys
     private static function cacheKey()
     {
-        Cache::has('sliders') ? Cache::forget('sliders') : '';
+        Cache::has('histories') ? Cache::forget('histories') : '';
     }
 
     // Logs
-    protected static $logName = 'slider';
+    protected static $logName = 'history';
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults();
     }
-
-   // Accessors
+     // Accessors
    public function getImageAttribute()
    {
        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');

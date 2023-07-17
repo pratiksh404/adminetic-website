@@ -32,7 +32,6 @@ class Gallery extends Model implements HasMedia
     private static function cacheKey()
     {
         Cache::has('galleries') ? Cache::forget('galleries') : '';
-        Cache::has('slider') ? Cache::forget('slider') : '';
 
     }
 

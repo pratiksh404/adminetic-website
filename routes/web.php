@@ -47,3 +47,5 @@ Route::get('inquiry', [\Adminetic\Website\Http\Controllers\Admin\InquiryControll
 
 
 Route::resource('slider',\Adminetic\Website\Http\Controllers\Admin\SliderController::class);
+Route::resource('about',\Adminetic\Website\Http\Controllers\Admin\AboutController::class);
+Route::resource('history',\Adminetic\Website\Http\Controllers\Admin\HistoryController::class);

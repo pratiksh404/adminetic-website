@@ -64,10 +64,10 @@ class ProductRepository implements ProductRepositoryInterface
     // Upload Image
     private function uploadImage(Product $product)
     {
-        if (request()->has('images')) {
+        if (request()->has('image')) {
             $product
-                ->addFromMediaLibraryRequest(request()->images)
-                ->toMediaCollection('images');
+                ->addFromMediaLibraryRequest(request()->image)
+                ->toMediaCollection('image');
         }
     }
 
