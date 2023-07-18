@@ -24,6 +24,7 @@ class HistoryRequest extends FormRequest
         return [
             'title' => 'required|max:200',
             'description' => 'nullable',
+            'date' => 'nullable|date',
             'active' => 'nullable',
             'position' => 'nullable',
             'meta_name' => 'nullable|max:100',

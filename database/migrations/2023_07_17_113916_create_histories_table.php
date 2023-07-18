@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->date('date')->nullable();
             $table->boolean('active')->default(1);
             $table->integer('position')->default(0);
             // SEO Part

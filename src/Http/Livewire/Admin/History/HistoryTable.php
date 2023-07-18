@@ -74,6 +74,9 @@ class HistoryTable extends DataTableComponent
             Column::make('Title', 'title')
                 ->sortable()
                 ->searchable(),
+            Column::make('Date', 'date')
+                ->sortable()
+                ->searchable(),
             Column::make('Active', 'active')
                 ->format(
                     fn ($value, $row, Column $column) => '<span class="badge badge-'.($row->getRawOriginal('active') ? 'success' : 'danger').' ">'.($row->getRawOriginal('active') ? 'Active' : 'Inactive').'</span>'

@@ -38,7 +38,12 @@
                 @livewire('admin.system.upload-image', ['model' => $history ?? null, 'attribute' => 'image'])
             </div>
         </div>
-
+        <div class="card">
+            <div class="card-body shadow-lg p-3">
+                <label>{{ label('histories', 'date') }}</label> <br>
+                <input type="date" name="date" class="form-control" value="{{ $history->date ?? old('date') }}">
+            </div>
+        </div>
         <div class="card">
             <div class="card-body shadow-lg p-3">
                 <div class="row">
