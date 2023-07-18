@@ -180,21 +180,21 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__.'/../../config/website.php' => config_path('website.php'),
+            __DIR__ . '/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__.'/../../database/migrations' => database_path('migrations/website'),
+            __DIR__ . '/../../database/migrations' => database_path('migrations/website'),
         ], 'website-migrations');
         $this->publishes([
-            __DIR__.'/../../payload/assets' => public_path('plugins/website'),
+            __DIR__ . '/../../payload/assets' => public_path('plugins/website'),
         ], 'website-assets');
         $this->publishes([
-            __DIR__.'/../../payload/modules' => app_path('Modules'),
+            __DIR__ . '/../../payload/modules' => app_path('Modules'),
         ], 'website-modules');
     }
 
@@ -205,10 +205,10 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        if (! config('website.publish_migrations', true)) {
-            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
+        if (!config('website.publish_migrations', true)) {
+            $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
         }
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -236,12 +236,12 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
         });
 
         if (config('website.website_api_end_points', true)) {
             Route::group($this->apiRouteConfiguration(), function () {
-                $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
+                $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
             });
         }
     }
@@ -344,10 +344,6 @@ class WebsiteServiceProvider extends ServiceProvider
         $this->app->bind(\Adminetic\Website\Contracts\TeamRepositoryInterface::class, \Adminetic\Website\Repositories\TeamRepository::class);
         $this->app->bind(\Adminetic\Website\Contracts\PackageRepositoryInterface::class, \Adminetic\Website\Repositories\PackageRepository::class);
         $this->app->bind(\Adminetic\Website\Contracts\ProjectRepositoryInterface::class, \Adminetic\Website\Repositories\ProjectRepository::class);
-        $this->app->bind(\Adminetic\Website\Contracts\EventRepositoryInterface::class, \Adminetic\Website\Repositories\EventRepository::class);
-        $this->app->bind(\Adminetic\Website\Contracts\TicketRepositoryInterface::class, \Adminetic\Website\Repositories\TicketRepository::class);
-        $this->app->bind(\Adminetic\Website\Contracts\GuestRepositoryInterface::class, \Adminetic\Website\Repositories\GuestRepository::class);
-        $this->app->bind(\Adminetic\Website\Contracts\CouponRepositoryInterface::class, \Adminetic\Website\Repositories\CouponRepository::class);
         $this->app->bind(\Adminetic\Website\Contracts\PaymentRepositoryInterface::class, \Adminetic\Website\Repositories\PaymentRepository::class);
         $this->app->bind(\Adminetic\Website\Contracts\PostRepositoryInterface::class, \Adminetic\Website\Repositories\PostRepository::class);
         $this->app->bind(\Adminetic\Website\Contracts\CareerRepositoryInterface::class, \Adminetic\Website\Repositories\CareerRepository::class);

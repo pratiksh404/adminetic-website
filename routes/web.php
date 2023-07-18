@@ -25,17 +25,7 @@ Route::resource('attribute', \Adminetic\Website\Http\Controllers\Admin\Attribute
 Route::resource('product', \Adminetic\Website\Http\Controllers\Admin\ProductController::class);
 Route::resource('process', \Adminetic\Website\Http\Controllers\Admin\ProcessController::class);
 Route::resource('software', \Adminetic\Website\Http\Controllers\Admin\SoftwareController::class);
-//EVENT
-Route::get('event-ticket-planning/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'ticket_planning'])->name('event.ticket_planning');
-Route::get('event-claim-card/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'claim_card'])->name('event.claim_card');
-Route::get('event-questionnaire/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'questionnaire'])->name('event.questionnaire');
-Route::get('event-images/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'images'])->name('event.images');
-Route::get('event-passes/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'passes'])->name('event.passes');
-Route::get('event-pass/{pass}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'pass'])->name('event.pass');
-Route::get('event-faqs/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'faqs'])->name('event.faqs');
-Route::get('event-testimonials/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'testimonials'])->name('event.testimonials');
-Route::get('event-counters/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'counters'])->name('event.counters');
-Route::get('event-website/{event}', [\Adminetic\Website\Http\Controllers\Admin\EventController::class, 'website'])->name('event.website');
+
 
 // CAREER
 Route::get('career-application/{career}', [\Adminetic\Website\Http\Controllers\Admin\CareerController::class, 'applications'])->name('career.applications');

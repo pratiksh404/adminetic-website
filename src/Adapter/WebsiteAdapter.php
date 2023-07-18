@@ -94,14 +94,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\About::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\About::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\About::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\About::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('about', \App\Models\Admin\About::class),
+                'children' => $this->indexCreateChildren('about', \Adminetic\Website\Models\Admin\About::class),
 
             ], [
                 'type' => 'menu',
@@ -111,14 +111,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\History::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\History::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\History::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\History::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('history', \App\Models\Admin\History::class),
+                'children' => $this->indexCreateChildren('history', \Adminetic\Website\Models\Admin\History::class),
 
             ],
             [
@@ -129,14 +129,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Slider::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Slider::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Slider::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Slider::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('slider', \App\Models\Admin\Slider::class),
+                'children' => $this->indexCreateChildren('slider', \Adminetic\Website\Models\Admin\Slider::class),
 
             ],
             [
@@ -147,14 +147,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Project::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Project::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Project::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Project::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('project', \App\Models\Admin\Project::class),
+                'children' => $this->indexCreateChildren('project', \Adminetic\Website\Models\Admin\Project::class),
 
             ], [
                 'type' => 'menu',
@@ -164,14 +164,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Package::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Package::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Package::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Package::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('package', \App\Models\Admin\Package::class),
+                'children' => $this->indexCreateChildren('package', \Adminetic\Website\Models\Admin\Package::class),
 
             ], [
                 'type' => 'menu',
@@ -181,14 +181,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Team::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Team::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Team::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Team::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('team', \App\Models\Admin\Team::class),
+                'children' => $this->indexCreateChildren('team', \Adminetic\Website\Models\Admin\Team::class),
 
             ], [
                 'type' => 'menu',
@@ -198,14 +198,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Testimonial::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Testimonial::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Testimonial::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Testimonial::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('testimonial', \App\Models\Admin\Testimonial::class),
+                'children' => $this->indexCreateChildren('testimonial', \Adminetic\Website\Models\Admin\Testimonial::class),
 
             ], [
                 'type' => 'menu',
@@ -215,14 +215,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Page::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Page::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Page::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Page::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('page', \App\Models\Admin\Page::class),
+                'children' => $this->indexCreateChildren('page', \Adminetic\Website\Models\Admin\Page::class),
             ], [
                 'type' => 'menu',
                 'name' => 'Download',
@@ -231,14 +231,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Download::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Download::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Download::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Download::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('download', \App\Models\Admin\Download::class),
+                'children' => $this->indexCreateChildren('download', \Adminetic\Website\Models\Admin\Download::class),
 
             ],
             [
@@ -249,14 +249,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Process::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Process::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Process::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Process::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('process', \App\Models\Admin\Process::class),
+                'children' => $this->indexCreateChildren('process', \Adminetic\Website\Models\Admin\Process::class),
 
             ],
             [
@@ -267,14 +267,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Career::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Career::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Career::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Career::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('career', \App\Models\Admin\Career::class),
+                'children' => $this->indexCreateChildren('career', \Adminetic\Website\Models\Admin\Career::class),
 
             ], [
                 'type' => 'menu',
@@ -284,14 +284,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Popup::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Popup::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Popup::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Popup::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('popup', \App\Models\Admin\Popup::class),
+                'children' => $this->indexCreateChildren('popup', \Adminetic\Website\Models\Admin\Popup::class),
 
             ], [
                 'type' => 'menu',
@@ -301,14 +301,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Notice::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Notice::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Notice::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Notice::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('notice', \App\Models\Admin\Notice::class),
+                'children' => $this->indexCreateChildren('notice', \Adminetic\Website\Models\Admin\Notice::class),
 
             ], [
                 'type' => 'menu',
@@ -318,14 +318,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Client::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Client::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Client::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Client::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('client', \App\Models\Admin\Client::class),
+                'children' => $this->indexCreateChildren('client', \Adminetic\Website\Models\Admin\Client::class),
 
             ], [
                 'type' => 'menu',
@@ -335,14 +335,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Gallery::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Gallery::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Gallery::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Gallery::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('gallery', \App\Models\Admin\Gallery::class),
+                'children' => $this->indexCreateChildren('gallery', \Adminetic\Website\Models\Admin\Gallery::class),
 
             ], [
                 'type' => 'menu',
@@ -352,14 +352,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Counter::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Counter::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Counter::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Counter::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('counter', \App\Models\Admin\Counter::class),
+                'children' => $this->indexCreateChildren('counter', \Adminetic\Website\Models\Admin\Counter::class),
 
             ], [
                 'type' => 'menu',
@@ -369,14 +369,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Faq::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Faq::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Faq::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Faq::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('faq', \App\Models\Admin\Faq::class),
+                'children' => $this->indexCreateChildren('faq', \Adminetic\Website\Models\Admin\Faq::class),
 
             ], [
                 'type' => 'menu',
@@ -386,14 +386,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Feature::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Feature::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Feature::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Feature::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('feature', \App\Models\Admin\Feature::class),
+                'children' => $this->indexCreateChildren('feature', \Adminetic\Website\Models\Admin\Feature::class),
 
             ], [
                 'type' => 'menu',
@@ -403,14 +403,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Facility::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Facility::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Facility::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Facility::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('facility', \App\Models\Admin\Facility::class),
+                'children' => $this->indexCreateChildren('facility', \Adminetic\Website\Models\Admin\Facility::class),
 
             ], [
                 'type' => 'menu',
@@ -420,14 +420,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Service::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Service::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Service::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Service::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('service', \App\Models\Admin\Service::class),
+                'children' => $this->indexCreateChildren('service', \Adminetic\Website\Models\Admin\Service::class),
 
             ], [
                 'type' => 'menu',
@@ -437,14 +437,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Category::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Category::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Category::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Category::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('category', \App\Models\Admin\Category::class),
+                'children' => $this->indexCreateChildren('category', \Adminetic\Website\Models\Admin\Category::class),
             ],
             [
                 'type' => 'menu',
@@ -454,14 +454,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Post::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Post::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Post::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Post::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('post', \App\Models\Admin\Post::class),
+                'children' => $this->indexCreateChildren('post', \Adminetic\Website\Models\Admin\Post::class),
             ],
             [
                 'type' => 'link',
@@ -488,14 +488,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Payment::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Payment::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Payment::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Payment::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('payment', \App\Models\Admin\Payment::class),
+                'children' => $this->indexCreateChildren('payment', \Adminetic\Website\Models\Admin\Payment::class),
 
             ],
             [
@@ -506,14 +506,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Product::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Product::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Product::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Product::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('product', \App\Models\Admin\Product::class),
+                'children' => $this->indexCreateChildren('product', \Adminetic\Website\Models\Admin\Product::class),
 
             ],
             [
@@ -524,14 +524,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Software::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Software::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Software::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Software::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('software', \App\Models\Admin\Software::class),
+                'children' => $this->indexCreateChildren('software', \Adminetic\Website\Models\Admin\Software::class),
             ], [
                 'type' => 'menu',
                 'name' => 'Attribute',
@@ -540,14 +540,14 @@ class WebsiteAdapter implements PluginInterface
                 'conditions' => [
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\Attribute::class),
+                        'condition' => auth()->user()->can('view-any', \Adminetic\Website\Models\Admin\Attribute::class),
                     ],
                     [
                         'type' => 'or',
-                        'condition' => auth()->user()->can('create', \App\Models\Admin\Attribute::class),
+                        'condition' => auth()->user()->can('create', \Adminetic\Website\Models\Admin\Attribute::class),
                     ],
                 ],
-                'children' => $this->indexCreateChildren('attribute', \App\Models\Admin\Attribute::class),
+                'children' => $this->indexCreateChildren('attribute', \Adminetic\Website\Models\Admin\Attribute::class),
             ],
         ];
     }
