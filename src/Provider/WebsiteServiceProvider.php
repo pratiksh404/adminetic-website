@@ -7,6 +7,7 @@ use Adminetic\Website\Console\Commands\AdmineticWebsiteMigrateCommand;
 use Adminetic\Website\Console\Commands\AdmineticWebsitePermissionCommand;
 use Adminetic\Website\Console\Commands\AdmineticWebsiteRollbackCommand;
 use Adminetic\Website\Console\Commands\SitemapGenerateCommand;
+use Adminetic\Website\Http\Livewire\Admin\About\AboutTable;
 use Adminetic\Website\Http\Livewire\Admin\Attribute\AttributeTable;
 use Adminetic\Website\Http\Livewire\Admin\Career\ApplicationTable;
 use Adminetic\Website\Http\Livewire\Admin\Career\CareerTable;
@@ -24,10 +25,9 @@ use Adminetic\Website\Http\Livewire\Admin\Download\DownloadTable;
 use Adminetic\Website\Http\Livewire\Admin\Facility\FacilityTable;
 use Adminetic\Website\Http\Livewire\Admin\Faq\FaqTable;
 use Adminetic\Website\Http\Livewire\Admin\Feature\FeatureTable;
-use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
-use Adminetic\Website\Http\Livewire\Admin\About\AboutTable;
 use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryTable;
 use Adminetic\Website\Http\Livewire\Admin\Gallery\GalleryVideo;
+use Adminetic\Website\Http\Livewire\Admin\History\HistoryTable;
 use Adminetic\Website\Http\Livewire\Admin\Notice\NoticeTable;
 use Adminetic\Website\Http\Livewire\Admin\Package\PackageFeature;
 use Adminetic\Website\Http\Livewire\Admin\Package\PackageTable;
@@ -42,12 +42,13 @@ use Adminetic\Website\Http\Livewire\Admin\Product\ProductTable;
 use Adminetic\Website\Http\Livewire\Admin\Project\ProjectTable;
 use Adminetic\Website\Http\Livewire\Admin\Service\ServiceTable;
 use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
+use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareModules;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareTable;
 use Adminetic\Website\Http\Livewire\Admin\System\UploadImage;
 use Adminetic\Website\Http\Livewire\Admin\Team\TeamTable;
 use Adminetic\Website\Http\Livewire\Admin\Testimonial\TestimonialTable;
-use Adminetic\Website\Http\Livewire\Admin\History\HistoryTable;
+use Adminetic\Website\Models\Admin\About;
 use Adminetic\Website\Models\Admin\Application;
 use Adminetic\Website\Models\Admin\Attribute;
 use Adminetic\Website\Models\Admin\Career;
@@ -59,6 +60,7 @@ use Adminetic\Website\Models\Admin\Facility;
 use Adminetic\Website\Models\Admin\Faq;
 use Adminetic\Website\Models\Admin\Feature;
 use Adminetic\Website\Models\Admin\Gallery;
+use Adminetic\Website\Models\Admin\History;
 use Adminetic\Website\Models\Admin\Notice;
 use Adminetic\Website\Models\Admin\Package;
 use Adminetic\Website\Models\Admin\Page;
@@ -70,9 +72,11 @@ use Adminetic\Website\Models\Admin\Product;
 use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Models\Admin\Service;
 use Adminetic\Website\Models\Admin\Slider;
+use Adminetic\Website\Models\Admin\Slider;
 use Adminetic\Website\Models\Admin\Software;
 use Adminetic\Website\Models\Admin\Team;
 use Adminetic\Website\Models\Admin\Testimonial;
+use Adminetic\Website\Policies\AboutPolicy;
 use Adminetic\Website\Policies\ApplicationPolicy;
 use Adminetic\Website\Policies\AttributePolicy;
 use Adminetic\Website\Policies\CareerPolicy;
@@ -84,6 +88,7 @@ use Adminetic\Website\Policies\FacilityPolicy;
 use Adminetic\Website\Policies\FaqPolicy;
 use Adminetic\Website\Policies\FeaturePolicy;
 use Adminetic\Website\Policies\GalleryPolicy;
+use Adminetic\Website\Policies\HistoryPolicy;
 use Adminetic\Website\Policies\NoticePolicy;
 use Adminetic\Website\Policies\PackagePolicy;
 use Adminetic\Website\Policies\PagePolicy;
@@ -95,15 +100,10 @@ use Adminetic\Website\Policies\ProductPolicy;
 use Adminetic\Website\Policies\ProjectPolicy;
 use Adminetic\Website\Policies\ServicePolicy;
 use Adminetic\Website\Policies\SliderPolicy;
+use Adminetic\Website\Policies\SliderPolicy;
 use Adminetic\Website\Policies\SoftwarePolicy;
 use Adminetic\Website\Policies\TeamPolicy;
 use Adminetic\Website\Policies\TestimonialPolicy;
-use Adminetic\Website\Models\Admin\Slider;
-use Adminetic\Website\Policies\SliderPolicy;
-use Adminetic\Website\Models\Admin\About;
-use Adminetic\Website\Policies\AboutPolicy;
-use Adminetic\Website\Models\Admin\History;
-use Adminetic\Website\Policies\HistoryPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -141,7 +141,6 @@ class WebsiteServiceProvider extends ServiceProvider
         About::class => AboutPolicy::class,
         History::class => HistoryPolicy::class,
 
-
     ];
 
     /**
@@ -178,7 +177,7 @@ class WebsiteServiceProvider extends ServiceProvider
     /**
      * Publish Package Resource.
      *
-     *@return void
+     * @return void
      */
     protected function publishResource()
     {
@@ -205,7 +204,7 @@ class WebsiteServiceProvider extends ServiceProvider
     /**
      * Register Package Resource.
      *
-     *@return void
+     * @return void
      */
     protected function registerResource()
     {
@@ -219,7 +218,7 @@ class WebsiteServiceProvider extends ServiceProvider
     /**
      * Register Package Command.
      *
-     *@return void
+     * @return void
      */
     protected function registerCommands()
     {
@@ -266,7 +265,7 @@ class WebsiteServiceProvider extends ServiceProvider
     /**
      * Register API Route Configuration.
      *
-     *@return array
+     * @return array
      */
     protected function apiRouteConfiguration()
     {
@@ -279,7 +278,7 @@ class WebsiteServiceProvider extends ServiceProvider
     /**
      * Register Components.
      *
-     *@return void
+     * @return void
      */
     protected function registerLivewireComponents()
     {
@@ -367,7 +366,7 @@ class WebsiteServiceProvider extends ServiceProvider
     /**
      * Register Policies.
      *
-     *@return void
+     * @return void
      */
     protected function registerPolicies()
     {

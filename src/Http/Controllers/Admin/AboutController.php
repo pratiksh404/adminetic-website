@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\About;
-use Adminetic\Website\Http\Requests\AboutRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\AboutRepositoryInterface;
+use Adminetic\Website\Http\Requests\AboutRequest;
+use Adminetic\Website\Models\Admin\About;
+use App\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
@@ -16,7 +16,6 @@ class AboutController extends Controller
         $this->aboutRepositoryInterface = $aboutRepositoryInterface;
         $this->authorizeResource(About::class, 'about');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -47,6 +46,7 @@ class AboutController extends Controller
     public function store(AboutRequest $request)
     {
         $this->aboutRepositoryInterface->storeAbout($request);
+
         return redirect(adminRedirectRoute('about'))->withSuccess('About Created Successfully.');
     }
 
@@ -82,6 +82,7 @@ class AboutController extends Controller
     public function update(AboutRequest $request, About $about)
     {
         $this->aboutRepositoryInterface->updateAbout($request, $about);
+
         return redirect(adminRedirectRoute('about'))->withInfo('About Updated Successfully.');
     }
 
@@ -94,6 +95,7 @@ class AboutController extends Controller
     public function destroy(About $about)
     {
         $this->aboutRepositoryInterface->destroyAbout($about);
+
         return redirect(adminRedirectRoute('about'))->withFail('About Deleted Successfully.');
     }
 }

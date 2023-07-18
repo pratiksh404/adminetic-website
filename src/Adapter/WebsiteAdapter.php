@@ -86,41 +86,41 @@ class WebsiteAdapter implements PluginInterface
                 'type' => 'breaker',
                 'name' => 'Website',
                 'description' => 'CMS',
-            ],[
+            ], [
                 'type' => 'menu',
                 'name' => 'About',
                 'icon' => 'fa fa-wrench',
                 'is_active' => request()->routeIs('about*') ? 'active' : '',
                 'conditions' => [
-                [
-                'type' => 'or',
-                'condition' => auth()->user()->can('view-any', \App\Models\Admin\About::class),
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\About::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', \App\Models\Admin\About::class),
+                    ],
                 ],
-                [
-                'type' => 'or',
-                'condition' => auth()->user()->can('create', \App\Models\Admin\About::class),
-                ],
-                ],
-                "children" => $this->indexCreateChildren("about", \App\Models\Admin\About::class),
+                'children' => $this->indexCreateChildren('about', \App\Models\Admin\About::class),
 
-            ],[
+            ], [
                 'type' => 'menu',
                 'name' => 'History',
                 'icon' => 'fa fa-wrench',
                 'is_active' => request()->routeIs('history*') ? 'active' : '',
                 'conditions' => [
-                [
-                'type' => 'or',
-                'condition' => auth()->user()->can('view-any', \App\Models\Admin\History::class),
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('view-any', \App\Models\Admin\History::class),
+                    ],
+                    [
+                        'type' => 'or',
+                        'condition' => auth()->user()->can('create', \App\Models\Admin\History::class),
+                    ],
                 ],
-                [
-                'type' => 'or',
-                'condition' => auth()->user()->can('create', \App\Models\Admin\History::class),
-                ],
-                ],
-                "children" => $this->indexCreateChildren("history", \App\Models\Admin\History::class),
+                'children' => $this->indexCreateChildren('history', \App\Models\Admin\History::class),
 
-                ],
+            ],
             [
                 'type' => 'menu',
                 'name' => 'Slider',
