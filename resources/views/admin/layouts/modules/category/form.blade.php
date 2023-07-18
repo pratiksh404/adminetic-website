@@ -33,11 +33,13 @@
                     <label for="model">Model</label>
                     <select name="model" id="model" class="form-control" style="width: 100%">
                         <option selected disabled>Select ...</option>
-                        @foreach (getAllModelNames(app_path('Models')) as $model)
+                        {{-- @foreach (getAllModelNames(app_path('Models')) as $model)
                             <option value="{{ $model }}"
                                 {{ isset($category->model) ? ($category->model ? 'selected' : '') : ($model == 'Category' ? 'selected' : '') }}>
                                 {{ $model }}</option>
-                        @endforeach
+                        @endforeach --}}
+                        <option value="Product" {{ isset($category->model) ? ($category->model ? 'selected' : '') : '' }}>
+                                Product</option>
                     </select>
                 </div>
             </div>

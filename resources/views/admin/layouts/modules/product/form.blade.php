@@ -55,7 +55,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body shadow-lg p-3">
-                @livewire('admin.category.quick-category', ['model' => 'Service', 'category_id' => $product->category_id ?? null, 'attribute' => 'category_id'])
+                @livewire('admin.category.quick-category', ['model' => 'Product', 'category_id' => $product->category_id ?? null, 'attribute' => 'category_id'])
             </div>
         </div>
         <div class="card">
@@ -75,7 +75,7 @@
                 <div class="mt-4">
                     <label for="discount">{{ label('products', 'discount') }}</label>
                     <input type="number" step="any" name="discount" id="discount" class="form-control"
-                        value="{{ $product->discount ?? old('discount') }}">
+                        value="{{ $product->discount ?? old('discount') ?? 0 }}">
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                 Product Image
             </div>
             <div class="card-body shadow-lg p-3">
-                @livewire('admin.system.upload-image', ['model' => $product ?? null, 'attribute' => 'images', 'multiple' => true])
+                @livewire('admin.system.upload-image', ['model' => $product ?? null, 'attribute' => 'image', 'multiple' => false])
             </div>
         </div>
         <div class="card">

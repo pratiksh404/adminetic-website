@@ -34,6 +34,8 @@ class Category extends Model implements HasMedia
     {
         Cache::has('categories') ? Cache::forget('categories') : '';
         Cache::has('parent_categories') ? Cache::forget('parent_categories') : '';
+        Cache::has('product_categories') ? Cache::forget('product_categories') : '';
+
     }
 
     // Logs
@@ -67,6 +69,11 @@ class Category extends Model implements HasMedia
         return $this->hasMany(Category::class, 'parent_id')->with('categories');
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class,'category_id');
+    }
+
     // Scopes
     public function scopeWhoIsParent($qry)
     {
@@ -91,5 +98,16 @@ class Category extends Model implements HasMedia
     public function scopeFeatured($qry)
     {
         return $qry->where('featured', 1);
+    }
+
+    // Accessors
+    public function getImageAttribute()
+    {
+        return !is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : null;
+    }
+
+    public function getIconImageAttribute()
+    {
+        return !is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : null;
     }
 }
