@@ -3,8 +3,6 @@
 namespace Adminetic\Website\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
-
 
 class SliderRequest extends FormRequest
 {
@@ -27,7 +25,7 @@ class SliderRequest extends FormRequest
             'title' => 'nullable|max:200',
             'text' => 'nullable|max:255',
             'url' => 'nullable|max:255',
-            'position' => 'nullable'
+            'position' => 'nullable',
         ];
     }
 }

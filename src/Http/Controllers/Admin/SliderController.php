@@ -2,7 +2,6 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-
 use Adminetic\Website\Contracts\SliderRepositoryInterface;
 use Adminetic\Website\Http\Requests\SliderRequest;
 use Adminetic\Website\Models\Admin\Slider;
@@ -17,7 +16,6 @@ class SliderController extends Controller
         $this->sliderRepositoryInterface = $sliderRepositoryInterface;
         $this->authorizeResource(Slider::class, 'slider');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -48,6 +46,7 @@ class SliderController extends Controller
     public function store(SliderRequest $request)
     {
         $this->sliderRepositoryInterface->storeSlider($request);
+
         return redirect(adminRedirectRoute('slider'))->withSuccess('Slider Created Successfully.');
     }
 
@@ -83,6 +82,7 @@ class SliderController extends Controller
     public function update(SliderRequest $request, Slider $slider)
     {
         $this->sliderRepositoryInterface->updateSlider($request, $slider);
+
         return redirect(adminRedirectRoute('slider'))->withInfo('Slider Updated Successfully.');
     }
 
@@ -95,6 +95,7 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         $this->sliderRepositoryInterface->destroySlider($slider);
+
         return redirect(adminRedirectRoute('slider'))->withFail('Slider Deleted Successfully.');
     }
 }

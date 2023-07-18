@@ -41,6 +41,7 @@ use Adminetic\Website\Http\Livewire\Admin\Process\ProcessTable;
 use Adminetic\Website\Http\Livewire\Admin\Product\ProductTable;
 use Adminetic\Website\Http\Livewire\Admin\Project\ProjectTable;
 use Adminetic\Website\Http\Livewire\Admin\Service\ServiceTable;
+use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareModules;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareTable;
 use Adminetic\Website\Http\Livewire\Admin\System\UploadImage;
@@ -68,6 +69,7 @@ use Adminetic\Website\Models\Admin\Process;
 use Adminetic\Website\Models\Admin\Product;
 use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Models\Admin\Service;
+use Adminetic\Website\Models\Admin\Slider;
 use Adminetic\Website\Models\Admin\Software;
 use Adminetic\Website\Models\Admin\Team;
 use Adminetic\Website\Models\Admin\Testimonial;
@@ -92,6 +94,7 @@ use Adminetic\Website\Policies\ProcessPolicy;
 use Adminetic\Website\Policies\ProductPolicy;
 use Adminetic\Website\Policies\ProjectPolicy;
 use Adminetic\Website\Policies\ServicePolicy;
+use Adminetic\Website\Policies\SliderPolicy;
 use Adminetic\Website\Policies\SoftwarePolicy;
 use Adminetic\Website\Policies\TeamPolicy;
 use Adminetic\Website\Policies\TestimonialPolicy;
@@ -320,9 +323,6 @@ class WebsiteServiceProvider extends ServiceProvider
         Livewire::component('admin.slider.slider-table', SliderTable::class);
         Livewire::component('admin.about.about-table', AboutTable::class);
         Livewire::component('admin.history.history-table', HistoryTable::class);
-
-
-
     }
 
     /**

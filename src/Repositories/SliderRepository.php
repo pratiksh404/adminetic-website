@@ -7,7 +7,6 @@ use Adminetic\Website\Http\Requests\SliderRequest;
 use Adminetic\Website\Models\Admin\Slider;
 use Illuminate\Support\Facades\Cache;
 
-
 class SliderRepository implements SliderRepositoryInterface
 {
     // Slider Index
@@ -18,6 +17,7 @@ class SliderRepository implements SliderRepositoryInterface
                 return Slider::latest()->get();
             }))
             : Slider::latest()->get();
+
         return compact('sliders');
     }
 
