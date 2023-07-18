@@ -89,7 +89,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'About',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fab fa-bandcamp',
                 'is_active' => request()->routeIs('about*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -106,7 +106,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'History',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-history',
                 'is_active' => request()->routeIs('history*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -124,7 +124,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Slider',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-sliders-h',
                 'is_active' => request()->routeIs('slider*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -142,7 +142,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Project',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-spa',
                 'is_active' => request()->routeIs('project*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -159,7 +159,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Package',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-gift',
                 'is_active' => request()->routeIs('package*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -176,7 +176,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Team',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-users',
                 'is_active' => request()->routeIs('team*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -193,7 +193,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Testimonial',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-user-check',
                 'is_active' => request()->routeIs('testimonial*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -210,7 +210,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Page',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'far fa-file',
                 'is_active' => request()->routeIs('page*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -226,7 +226,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Download',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-cloud-download-alt',
                 'is_active' => request()->routeIs('download*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -244,7 +244,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Process',
-                'icon' => 'fa fa-network-wired',
+                'icon' => 'fab fa-react',
                 'is_active' => request()->routeIs('process*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -262,7 +262,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Career',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-user-md',
                 'is_active' => request()->routeIs('career*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -279,7 +279,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Popup',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fab fa-cloudsmith',
                 'is_active' => request()->routeIs('popup*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -296,7 +296,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Notice',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'far fa-bell',
                 'is_active' => request()->routeIs('notice*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -313,7 +313,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Client',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-user-tie',
                 'is_active' => request()->routeIs('client*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -330,7 +330,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Gallery',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-file-image',
                 'is_active' => request()->routeIs('gallery*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -347,7 +347,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Counter',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-clock',
                 'is_active' => request()->routeIs('counter*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -364,7 +364,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Faq',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-question',
                 'is_active' => request()->routeIs('faq*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -381,7 +381,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Feature',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-star',
                 'is_active' => request()->routeIs('feature*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -398,7 +398,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Facility',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-seedling',
                 'is_active' => request()->routeIs('facility*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -415,7 +415,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Service',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-hard-hat',
                 'is_active' => request()->routeIs('service*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -432,7 +432,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Category',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-code-branch',
                 'is_active' => request()->routeIs('category*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -449,7 +449,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Post',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-blog',
                 'is_active' => request()->routeIs('post*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -477,18 +477,13 @@ class WebsiteAdapter implements PluginInterface
             ],
             [
                 'type' => 'breaker',
-                'name' => 'Finance',
-                'description' => 'Modules',
-            ],
-            [
-                'type' => 'breaker',
                 'name' => 'E-commerce',
                 'description' => 'Modules',
             ],
             [
                 'type' => 'menu',
                 'name' => 'Payment',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-money-bill',
                 'is_active' => request()->routeIs('payment*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -506,7 +501,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Product',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fab fa-product-hunt',
                 'is_active' => request()->routeIs('product*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -524,7 +519,7 @@ class WebsiteAdapter implements PluginInterface
             [
                 'type' => 'menu',
                 'name' => 'Software',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fa fa-laptop',
                 'is_active' => request()->routeIs('software*') ? 'active' : '',
                 'conditions' => [
                     [
@@ -540,7 +535,7 @@ class WebsiteAdapter implements PluginInterface
             ], [
                 'type' => 'menu',
                 'name' => 'Attribute',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fab fa-scribd',
                 'is_active' => request()->routeIs('attribute*') ? 'active' : '',
                 'conditions' => [
                     [

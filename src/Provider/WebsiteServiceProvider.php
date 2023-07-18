@@ -42,7 +42,6 @@ use Adminetic\Website\Http\Livewire\Admin\Product\ProductTable;
 use Adminetic\Website\Http\Livewire\Admin\Project\ProjectTable;
 use Adminetic\Website\Http\Livewire\Admin\Service\ServiceTable;
 use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
-use Adminetic\Website\Http\Livewire\Admin\Slider\SliderTable;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareModules;
 use Adminetic\Website\Http\Livewire\Admin\Software\SoftwareTable;
 use Adminetic\Website\Http\Livewire\Admin\System\UploadImage;
@@ -72,7 +71,6 @@ use Adminetic\Website\Models\Admin\Product;
 use Adminetic\Website\Models\Admin\Project;
 use Adminetic\Website\Models\Admin\Service;
 use Adminetic\Website\Models\Admin\Slider;
-use Adminetic\Website\Models\Admin\Slider;
 use Adminetic\Website\Models\Admin\Software;
 use Adminetic\Website\Models\Admin\Team;
 use Adminetic\Website\Models\Admin\Testimonial;
@@ -99,7 +97,6 @@ use Adminetic\Website\Policies\ProcessPolicy;
 use Adminetic\Website\Policies\ProductPolicy;
 use Adminetic\Website\Policies\ProjectPolicy;
 use Adminetic\Website\Policies\ServicePolicy;
-use Adminetic\Website\Policies\SliderPolicy;
 use Adminetic\Website\Policies\SliderPolicy;
 use Adminetic\Website\Policies\SoftwarePolicy;
 use Adminetic\Website\Policies\TeamPolicy;
@@ -183,21 +180,21 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         // Publish Config File
         $this->publishes([
-            __DIR__.'/../../config/website.php' => config_path('website.php'),
+            __DIR__ . '/../../config/website.php' => config_path('website.php'),
         ], 'website-config');
         // Publish View Files
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/adminetic/plugin/website'),
         ], 'website-views');
         // Publish Migration Files
         $this->publishes([
-            __DIR__.'/../../database/migrations' => database_path('migrations/website'),
+            __DIR__ . '/../../database/migrations' => database_path('migrations/website'),
         ], 'website-migrations');
         $this->publishes([
-            __DIR__.'/../../payload/assets' => public_path('plugins/website'),
+            __DIR__ . '/../../payload/assets' => public_path('plugins/website'),
         ], 'website-assets');
         $this->publishes([
-            __DIR__.'/../../payload/modules' => app_path('Modules'),
+            __DIR__ . '/../../payload/modules' => app_path('Modules'),
         ], 'website-modules');
     }
 
@@ -208,10 +205,10 @@ class WebsiteServiceProvider extends ServiceProvider
      */
     protected function registerResource()
     {
-        if (! config('website.publish_migrations', true)) {
-            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations'); // Loading Migration Files
+        if (!config('website.publish_migrations', true)) {
+            $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations'); // Loading Migration Files
         }
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'website'); // Loading Views Files
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'website'); // Loading Views Files
         $this->registerRoutes();
     }
 
@@ -239,12 +236,12 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+            $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
         });
 
         if (config('website.website_api_end_points', true)) {
             Route::group($this->apiRouteConfiguration(), function () {
-                $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
+                $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
             });
         }
     }
