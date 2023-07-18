@@ -26,7 +26,6 @@ Route::resource('product', \Adminetic\Website\Http\Controllers\Admin\ProductCont
 Route::resource('process', \Adminetic\Website\Http\Controllers\Admin\ProcessController::class);
 Route::resource('software', \Adminetic\Website\Http\Controllers\Admin\SoftwareController::class);
 
-
 // CAREER
 Route::get('career-application/{career}', [\Adminetic\Website\Http\Controllers\Admin\CareerController::class, 'applications'])->name('career.applications');
 Route::get('application/{application}', [\Adminetic\Website\Http\Controllers\Admin\CareerController::class, 'application'])->name('application.show');
