@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Http\Controllers\Admin;
 
-use Adminetic\Website\Models\Admin\History;
-use Adminetic\Website\Http\Requests\HistoryRequest;
-use App\Http\Controllers\Controller;
 use Adminetic\Website\Contracts\HistoryRepositoryInterface;
+use Adminetic\Website\Http\Requests\HistoryRequest;
+use Adminetic\Website\Models\Admin\History;
+use App\Http\Controllers\Controller;
 
 class HistoryController extends Controller
 {
@@ -16,7 +16,6 @@ class HistoryController extends Controller
         $this->historyRepositoryInterface = $historyRepositoryInterface;
         $this->authorizeResource(History::class, 'history');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -47,6 +46,7 @@ class HistoryController extends Controller
     public function store(HistoryRequest $request)
     {
         $this->historyRepositoryInterface->storeHistory($request);
+
         return redirect(adminRedirectRoute('history'))->withSuccess('History Created Successfully.');
     }
 
@@ -82,6 +82,7 @@ class HistoryController extends Controller
     public function update(HistoryRequest $request, History $history)
     {
         $this->historyRepositoryInterface->updateHistory($request, $history);
+
         return redirect(adminRedirectRoute('history'))->withInfo('History Updated Successfully.');
     }
 
@@ -94,6 +95,7 @@ class HistoryController extends Controller
     public function destroy(History $history)
     {
         $this->historyRepositoryInterface->destroyHistory($history);
+
         return redirect(adminRedirectRoute('history'))->withFail('History Deleted Successfully.');
     }
 }

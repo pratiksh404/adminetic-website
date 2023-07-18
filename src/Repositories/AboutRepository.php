@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\About;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\AboutRepositoryInterface;
 use Adminetic\Website\Http\Requests\AboutRequest;
+use Adminetic\Website\Models\Admin\About;
+use Illuminate\Support\Facades\Cache;
 
 class AboutRepository implements AboutRepositoryInterface
 {
@@ -17,6 +17,7 @@ class AboutRepository implements AboutRepositoryInterface
                 return About::latest()->get();
             }))
             : About::latest()->get();
+
         return compact('abouts');
     }
 
@@ -31,7 +32,6 @@ class AboutRepository implements AboutRepositoryInterface
     {
         $about = About::create($request->validated());
         $this->uploadImage($about);
-
     }
 
     // About Show
@@ -51,7 +51,6 @@ class AboutRepository implements AboutRepositoryInterface
     {
         $about->update($request->validated());
         $this->uploadImage($about);
-
     }
 
     // About Destroy

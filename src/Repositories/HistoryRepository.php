@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Repositories;
 
-use Adminetic\Website\Models\Admin\History;
-use Illuminate\Support\Facades\Cache;
 use Adminetic\Website\Contracts\HistoryRepositoryInterface;
 use Adminetic\Website\Http\Requests\HistoryRequest;
+use Adminetic\Website\Models\Admin\History;
+use Illuminate\Support\Facades\Cache;
 
 class HistoryRepository implements HistoryRepositoryInterface
 {
@@ -17,6 +17,7 @@ class HistoryRepository implements HistoryRepositoryInterface
                 return History::latest()->get();
             }))
             : History::latest()->get();
+
         return compact('histories');
     }
 
@@ -31,7 +32,6 @@ class HistoryRepository implements HistoryRepositoryInterface
     {
         $history = History::create($request->validated());
         $this->uploadImage($history);
-
     }
 
     // History Show
@@ -51,7 +51,6 @@ class HistoryRepository implements HistoryRepositoryInterface
     {
         $history->update($request->validated());
         $this->uploadImage($history);
-
     }
 
     // History Destroy

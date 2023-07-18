@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\History;
 use Adminetic\Website\Http\Requests\HistoryRequest;
+use Adminetic\Website\Models\Admin\History;
 
 interface HistoryRepositoryInterface
 {

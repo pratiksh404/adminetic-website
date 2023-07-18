@@ -43,14 +43,14 @@ class Slider extends Model implements HasMedia
         return LogOptions::defaults();
     }
 
-   // Accessors
-   public function getImageAttribute()
-   {
-       return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
-   }
+    // Accessors
+    public function getImageAttribute()
+    {
+        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
+    }
 
-   public function scopeActive($qry)
-   {
-       return $qry->where('active', 1);
-   }
+    public function scopeActive($qry)
+    {
+        return $qry->where('active', 1);
+    }
 }

@@ -45,6 +45,6 @@ Route::get('application/{application}', [\Adminetic\Website\Http\Controllers\Adm
 Route::get('message', [\Adminetic\Website\Http\Controllers\Admin\MessageController::class, 'index'])->name('visitorMessage');
 Route::get('inquiry', [\Adminetic\Website\Http\Controllers\Admin\InquiryController::class, 'index'])->name('visitorInquiry');
 
-Route::resource('slider',\Adminetic\Website\Http\Controllers\Admin\SliderController::class);
-Route::resource('about',\Adminetic\Website\Http\Controllers\Admin\AboutController::class);
-Route::resource('history',\Adminetic\Website\Http\Controllers\Admin\HistoryController::class);
+Route::resource('slider', \Adminetic\Website\Http\Controllers\Admin\SliderController::class);
+Route::resource('about', \Adminetic\Website\Http\Controllers\Admin\AboutController::class);
+Route::resource('history', \Adminetic\Website\Http\Controllers\Admin\HistoryController::class);

@@ -2,10 +2,10 @@
 
 namespace Adminetic\Website\Models\Admin;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -42,14 +42,15 @@ class History extends Model implements HasMedia
     {
         return LogOptions::defaults();
     }
-     // Accessors
-   public function getImageAttribute()
-   {
-       return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
-   }
 
-   public function scopeActive($qry)
-   {
-       return $qry->where('active', 1);
-   }
+    // Accessors
+    public function getImageAttribute()
+    {
+        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
+    }
+
+    public function scopeActive($qry)
+    {
+        return $qry->where('active', 1);
+    }
 }

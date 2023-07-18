@@ -2,8 +2,8 @@
 
 namespace Adminetic\Website\Contracts;
 
-use Adminetic\Website\Models\Admin\About;
 use Adminetic\Website\Http\Requests\AboutRequest;
+use Adminetic\Website\Models\Admin\About;
 
 interface AboutRepositoryInterface
 {
