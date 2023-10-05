@@ -45,10 +45,9 @@ class Category extends Model implements HasMedia
         return LogOptions::defaults();
     }
 
-
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_categories';
+        $this->table = config('website.table_prefix', 'website').'_categories';
 
         parent::__construct($attributes);
     }
@@ -110,11 +109,11 @@ class Category extends Model implements HasMedia
     // Accessors
     public function getImageAttribute()
     {
-        return !is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : null;
+        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : null;
     }
 
     public function getIconImageAttribute()
     {
-        return !is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : null;
+        return ! is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : null;
     }
 }

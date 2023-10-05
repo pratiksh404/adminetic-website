@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'temporary_uploads', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'temporary_uploads', function (Blueprint $table) {
             $table->id();
             $table->string('session_id');
             $table->timestamps();

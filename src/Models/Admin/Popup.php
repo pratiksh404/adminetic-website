@@ -49,11 +49,10 @@ class Popup extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_popups';
+        $this->table = config('website.table_prefix', 'website').'_popups';
 
         parent::__construct($attributes);
     }
-
 
     // Relationships
     public function category()

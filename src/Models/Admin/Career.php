@@ -43,10 +43,9 @@ class Career extends Model
         return LogOptions::defaults();
     }
 
-
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_careers';
+        $this->table = config('website.table_prefix', 'website').'_careers';
 
         parent::__construct($attributes);
     }
@@ -65,7 +64,7 @@ class Career extends Model
     // Accessors
     public function getGroupAttribute($attribute)
     {
-        return !is_null($attribute) ? (config('website.career_group', [
+        return ! is_null($attribute) ? (config('website.career_group', [
             1 => 'REASEARCHERS/STAFF',
             2 => 'FIELD STAFF',
             3 => 'INTERN/VOLUNTEERS',

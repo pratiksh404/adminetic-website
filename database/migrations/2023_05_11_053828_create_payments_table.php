@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'payments', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->integer('type')->default(1);

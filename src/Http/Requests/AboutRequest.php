@@ -21,7 +21,7 @@ class AboutRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->title) ? Str::slug($this->title) : null,
+            'slug' => ! is_null($this->title) ? Str::slug($this->title) : null,
             'meta_name' => $this->process->meta_name ?? $this->meta_name ?? $this->title ?? null,
             'meta_description' => $this->process->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
         ]);
@@ -37,8 +37,8 @@ class AboutRequest extends FormRequest
         $id = $this->about->id ?? '';
 
         return [
-            'slug' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_abouts,slug,' . $id,
-            'title' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_abouts,title,' . $id,
+            'slug' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_abouts,slug,'.$id,
+            'title' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_abouts,title,'.$id,
             'excerpt' => 'nullable',
             'description' => 'nullable',
             'position' => 'nullable',

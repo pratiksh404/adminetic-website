@@ -49,15 +49,14 @@ class Gallery extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_galleries';
+        $this->table = config('website.table_prefix', 'website').'_galleries';
 
         parent::__construct($attributes);
     }
 
-
     // Accessors
     public function getImagesAttribute()
     {
-        return !is_null($this->getMedia('images')) ? $this->getMedia('images') : null;
+        return ! is_null($this->getMedia('images')) ? $this->getMedia('images') : null;
     }
 }

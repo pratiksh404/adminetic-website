@@ -49,11 +49,10 @@ class Page extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_pages';
+        $this->table = config('website.table_prefix', 'website').'_pages';
 
         parent::__construct($attributes);
     }
-
 
     // Relationships
     public function category()

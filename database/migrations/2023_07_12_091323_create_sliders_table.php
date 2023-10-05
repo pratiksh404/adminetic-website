@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'sliders', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'sliders', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
             $table->text('text')->nullable();

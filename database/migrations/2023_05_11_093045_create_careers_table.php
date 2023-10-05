@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'careers', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'careers', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();

@@ -49,11 +49,10 @@ class Notice extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_notices';
+        $this->table = config('website.table_prefix', 'website').'_notices';
 
         parent::__construct($attributes);
     }
-
 
     // Relationships
     public function category()

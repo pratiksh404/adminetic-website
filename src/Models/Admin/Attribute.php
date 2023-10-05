@@ -41,10 +41,9 @@ class Attribute extends Model
         return LogOptions::defaults();
     }
 
-
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_attributes';
+        $this->table = config('website.table_prefix', 'website').'_attributes';
 
         parent::__construct($attributes);
     }
