@@ -55,6 +55,14 @@ class Post extends Model implements HasMedia
 
     protected $appends = ['image', 'optimized_title'];
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_posts';
+
+        parent::__construct($attributes);
+    }
+
+
     // Relationship
     public function category()
     {
@@ -79,7 +87,7 @@ class Post extends Model implements HasMedia
     // Accessors
     public function getImageAttribute()
     {
-        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/blog.gif');
+        return !is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/blog.gif');
     }
 
     public function getOptimizedTitleAttribute()
@@ -151,7 +159,7 @@ class Post extends Model implements HasMedia
         $schema = Schema::article()
             ->name($this->meta_name ?? $this->name)
             ->description($this->meta_description ?? $this->excerpt)
-            ->if(! is_null($this->getFirstMedia('image')), function (Article $schema) {
+            ->if(!is_null($this->getFirstMedia('image')), function (Article $schema) {
                 $schema->image($this->getFirstMediaUrl('image'));
             })
             ->keywords($this->meta_keywords);

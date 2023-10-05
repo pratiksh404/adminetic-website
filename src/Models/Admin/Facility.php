@@ -53,6 +53,14 @@ class Facility extends Model implements HasMedia
         'data' => 'array',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_facilities';
+
+        parent::__construct($attributes);
+    }
+
+
     // Scopes
     public function scopePosition($qry)
     {

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attribute_product', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website') . '_' . 'attribute_product', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attribute_id');
             $table->unsignedBigInteger('product_id');

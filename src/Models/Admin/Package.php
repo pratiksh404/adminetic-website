@@ -47,6 +47,14 @@ class Package extends Model implements HasMedia
         'data' => 'array',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_packages';
+
+        parent::__construct($attributes);
+    }
+
+
     // Relationships
     public function category()
     {

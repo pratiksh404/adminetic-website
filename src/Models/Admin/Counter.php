@@ -43,6 +43,14 @@ class Counter extends Model implements HasMedia
         return LogOptions::defaults();
     }
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_counters';
+
+        parent::__construct($attributes);
+    }
+
+
     // Accessor
     public function getTypeAttribute($attribute)
     {

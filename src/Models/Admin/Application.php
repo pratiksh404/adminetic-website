@@ -11,6 +11,14 @@ class Application extends Model
 
     protected $guarded = [];
 
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_applications';
+
+        parent::__construct($attributes);
+    }
+
     // Relationship
     public function career()
     {

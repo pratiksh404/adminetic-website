@@ -21,7 +21,7 @@ class ProcessRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
             'meta_name' => $this->process->meta_name ?? $this->meta_name ?? $this->name ?? null,
             'meta_description' => $this->process->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
         ]);
@@ -37,8 +37,8 @@ class ProcessRequest extends FormRequest
         $id = $this->process->id ?? '';
 
         return [
-            'slug' => 'required|max:100|unique:categories,slug,'.$id,
-            'name' => 'required|max:100|unique:categories,name,'.$id,
+            'slug' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_categories,slug,' . $id,
+            'name' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_categories,name,' . $id,
             'excerpt' => 'nullable|max:5500',
             'description' => 'nullable|max:55000',
             'category_id' => 'nullable|exists:categories,id',

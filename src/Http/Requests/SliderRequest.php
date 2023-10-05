@@ -23,7 +23,7 @@ class SliderRequest extends FormRequest
     {
         return [
             'title' => 'nullable|max:200',
-            'text' => 'nullable|max:255',
+            'text' => 'nullable|max:600',
             'url' => 'nullable|max:255',
             'position' => 'nullable',
         ];

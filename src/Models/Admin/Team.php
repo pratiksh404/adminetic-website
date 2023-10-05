@@ -46,4 +46,11 @@ class Team extends Model implements HasMedia
     protected $casts = [
         'social_medias' => 'array',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_teams';
+
+        parent::__construct($attributes);
+    }
 }

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website') . '_' . 'sliders', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('text')->nullable();
+            $table->text('text')->nullable();
             $table->string('url')->nullable();
             $table->integer('position')->default(0);
             $table->boolean('active')->default(1);

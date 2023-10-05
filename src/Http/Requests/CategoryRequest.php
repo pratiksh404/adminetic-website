@@ -23,7 +23,7 @@ class CategoryRequest extends FormRequest
     {
         $this->merge([
             'root_parent_id' => $this->getMainCategory($this->category->parent_id ?? null),
-            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
             'meta_name' => $this->category->meta_name ?? $this->meta_name ?? $this->name ?? null,
             'meta_description' => $this->category->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
         ]);
@@ -39,8 +39,8 @@ class CategoryRequest extends FormRequest
         $id = $this->category->id ?? '';
 
         return [
-            'slug' => 'required|max:100|unique:categories,slug,'.$id,
-            'name' => 'required|max:100|unique:categories,name,'.$id,
+            'slug' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_categories,slug,' . $id,
+            'name' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_categories,name,' . $id,
             'excerpt' => 'nullable|max:5500',
             'parent_id' => 'nullable|exists:categories,id',
             'root_parent_id' => 'nullable|exists:categories,id',

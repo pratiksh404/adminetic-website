@@ -47,6 +47,14 @@ class Product extends Model implements HasMedia
         'data' => 'array',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_products';
+
+        parent::__construct($attributes);
+    }
+
+
     // Relationships
     public function category()
     {
@@ -77,6 +85,6 @@ class Product extends Model implements HasMedia
     // Accessors
     public function getImageAttribute()
     {
-        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/slider.jpg');
+        return !is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/slider.jpg');
     }
 }

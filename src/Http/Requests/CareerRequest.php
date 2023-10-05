@@ -40,7 +40,7 @@ class CareerRequest extends FormRequest
 
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:careers,slug,'.$id,
+            'slug' => 'required|max:255|unique:' . config('website.table_prefix', 'website') . '_careers,slug,' . $id,
             'designation' => 'required|max:255',
             'group' => 'nullable|numeric',
             'location' => 'nullable|max:255',

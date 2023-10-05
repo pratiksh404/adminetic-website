@@ -40,4 +40,11 @@ class Faq extends Model
     {
         return LogOptions::defaults();
     }
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_faqs';
+
+        parent::__construct($attributes);
+    }
 }

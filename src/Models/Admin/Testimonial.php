@@ -43,6 +43,14 @@ class Testimonial extends Model implements HasMedia
         return LogOptions::defaults();
     }
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_testimonials';
+
+        parent::__construct($attributes);
+    }
+
+
     // Scope
     public function scopeApproved($qry)
     {

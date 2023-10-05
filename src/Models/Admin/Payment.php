@@ -45,6 +45,14 @@ class Payment extends Model
 
     protected $fillable = ['particular', 'amount', 'type', 'paymentable_type'];
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_payments';
+
+        parent::__construct($attributes);
+    }
+
+
     public function paymentable(): MorphTo
     {
         return $this->morphTo();

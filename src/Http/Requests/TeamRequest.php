@@ -21,7 +21,7 @@ class TeamRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
         ]);
     }
 
@@ -35,8 +35,8 @@ class TeamRequest extends FormRequest
         $id = $this->team->id ?? '';
 
         return [
-            'name' => 'required|max:100|unique:teams,name,'.$id,
-            'slug' => 'required|max:100|unique:teams,slug,'.$id,
+            'name' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_teams,name,' . $id,
+            'slug' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_teams,slug,' . $id,
             'short_message' => 'nullable|max:255',
             'description' => 'nullable|max:55000',
             'social_medias' => 'nullable',

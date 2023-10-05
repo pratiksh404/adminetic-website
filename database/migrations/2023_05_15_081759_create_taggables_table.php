@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('taggables', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website') . '_' . 'taggables', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('taggable_id');

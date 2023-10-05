@@ -43,10 +43,18 @@ class History extends Model implements HasMedia
         return LogOptions::defaults();
     }
 
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('website.table_prefix', 'website') . '_histories';
+
+        parent::__construct($attributes);
+    }
+
+
     // Accessors
     public function getImageAttribute()
     {
-        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
+        return !is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
     }
 
     public function scopeActive($qry)
