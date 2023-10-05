@@ -45,7 +45,7 @@ class Client extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_clients';
+        $this->table = config('website.table_prefix', 'website').'_clients';
 
         parent::__construct($attributes);
     }

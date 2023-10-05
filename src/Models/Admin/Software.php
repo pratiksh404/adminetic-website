@@ -53,16 +53,15 @@ class Software extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_softwares';
+        $this->table = config('website.table_prefix', 'website').'_softwares';
 
         parent::__construct($attributes);
     }
 
-
     // Accessors
     public function getBannerAttribute()
     {
-        return !is_null($this->getFirstMedia('banner')) ? $this->getFirstMediaUrl('banner') : logoBanner();
+        return ! is_null($this->getFirstMedia('banner')) ? $this->getFirstMediaUrl('banner') : logoBanner();
     }
 
     // Relationships
@@ -100,7 +99,7 @@ class Software extends Model implements HasMedia
             ->author(title())
             ->description($this->meta_description ?? $this->excerpt)
             ->image($this->banner)
-            ->if(!is_null($modules), function (SoftwareApplication $schema) use ($modules) {
+            ->if(! is_null($modules), function (SoftwareApplication $schema) use ($modules) {
                 $schema->email(collect($modules)->pluck('name')->toArray());
             })
             ->url(route('website.software', ['software' => $this->slug]))

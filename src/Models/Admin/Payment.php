@@ -47,11 +47,10 @@ class Payment extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_payments';
+        $this->table = config('website.table_prefix', 'website').'_payments';
 
         parent::__construct($attributes);
     }
-
 
     public function paymentable(): MorphTo
     {

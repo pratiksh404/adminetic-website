@@ -45,7 +45,7 @@ class About extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_abouts';
+        $this->table = config('website.table_prefix', 'website').'_abouts';
 
         parent::__construct($attributes);
     }
@@ -53,12 +53,12 @@ class About extends Model implements HasMedia
     // Accessors
     public function getImageAttribute()
     {
-        return !is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
+        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
     }
 
     public function getIconImageAttribute()
     {
-        return !is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : asset('adminetic/static/placeholder.jpg');
+        return ! is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : asset('adminetic/static/placeholder.jpg');
     }
 
     public function scopeActive($qry)

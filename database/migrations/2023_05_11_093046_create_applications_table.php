@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'applications', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'applications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('career_id')->constrained()->cascadeOnDelete();
             $table->string('name');

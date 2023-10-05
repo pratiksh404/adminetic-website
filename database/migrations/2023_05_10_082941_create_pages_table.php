@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'pages', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'pages', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
             $table->string('name');

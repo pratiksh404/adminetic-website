@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'products', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'products', function (Blueprint $table) {
             $table->id();
             $table->string('sku')->unique();
             $table->string('name')->unique();

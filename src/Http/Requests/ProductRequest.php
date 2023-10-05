@@ -21,8 +21,8 @@ class ProductRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
-            'sku' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
+            'sku' => ! is_null($this->name) ? Str::slug($this->name) : null,
             'meta_name' => $this->project->meta_name ?? $this->meta_name ?? $this->name ?? null,
             'meta_description' => $this->project->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
         ]);
@@ -38,12 +38,12 @@ class ProductRequest extends FormRequest
         $id = $this->product->id ?? '';
 
         return [
-            'sku' => 'required|unique:' . config('website.table_prefix', 'website') . '_products,sku,' . $id,
-            'name' => 'required|unique:' . config('website.table_prefix', 'website') . '_products,name,' . $id,
+            'sku' => 'required|unique:'.config('website.table_prefix', 'website').'_products,sku,'.$id,
+            'name' => 'required|unique:'.config('website.table_prefix', 'website').'_products,name,'.$id,
             'generic_name' => 'nullable',
             'strength' => 'nullable',
             'dosage_form' => 'nullable',
-            'slug' => 'required|unique:' . config('website.table_prefix', 'website') . '_products,slug,' . $id,
+            'slug' => 'required|unique:'.config('website.table_prefix', 'website').'_products,slug,'.$id,
             'category_id' => 'nullable|exists:categories,id',
             'selling_price' => 'required|numeric',
             'cost_price' => 'nullable|numeric',

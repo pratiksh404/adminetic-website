@@ -21,7 +21,7 @@ class GalleryRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => !is_null($this->name) ? Str::slug($this->name) : null,
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
         ]);
     }
 
@@ -35,8 +35,8 @@ class GalleryRequest extends FormRequest
         $id = $this->gallery->id ?? '';
 
         return [
-            'name' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_galleries,name,' . $id,
-            'slug' => 'required|max:100|unique:' . config('website.table_prefix', 'website') . '_galleries,slug,' . $id,
+            'name' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_galleries,name,'.$id,
+            'slug' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_galleries,slug,'.$id,
             'videos' => 'nullable',
             'description' => 'nullable|max:5500',
         ];

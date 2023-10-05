@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(config('website.table_prefix', 'website') . '_' . 'media', function (Blueprint $table) {
+        Schema::create(config('website.table_prefix', 'website').'_'.'media', function (Blueprint $table) {
             $table->id();
 
             $table->morphs('model');

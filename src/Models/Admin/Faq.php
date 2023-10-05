@@ -43,7 +43,7 @@ class Faq extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_faqs';
+        $this->table = config('website.table_prefix', 'website').'_faqs';
 
         parent::__construct($attributes);
     }

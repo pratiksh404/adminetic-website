@@ -18,11 +18,10 @@ class Inquiry extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_inquiries';
+        $this->table = config('website.table_prefix', 'website').'_inquiries';
 
         parent::__construct($attributes);
     }
-
 
     // Relationships
     public function product()

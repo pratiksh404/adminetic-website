@@ -45,7 +45,7 @@ class Download extends Model implements HasMedia
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_downloads';
+        $this->table = config('website.table_prefix', 'website').'_downloads';
 
         parent::__construct($attributes);
     }

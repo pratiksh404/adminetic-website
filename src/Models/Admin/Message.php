@@ -13,7 +13,7 @@ class Message extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->table = config('website.table_prefix', 'website') . '_messages';
+        $this->table = config('website.table_prefix', 'website').'_messages';
 
         parent::__construct($attributes);
     }
