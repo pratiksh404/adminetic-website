@@ -3,6 +3,8 @@
 namespace Adminetic\Website\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+
 
 class PopupRequest extends FormRequest
 {
@@ -14,6 +16,15 @@ class PopupRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'slug' => ! is_null($this->name) ? Str::slug($this->name) : null,
+            'meta_name' => $this->popup->meta_name ?? $this->meta_name ?? $this->name ?? null,
+            'meta_description' => $this->popup->meta_description ?? $this->meta_description ?? $this->excerpt ?? null,
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -21,10 +32,24 @@ class PopupRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->popup->id ?? '';
         return [
-            'name' => 'required|max:255',
-            'group' => 'nullable|numeric',
+            'slug' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_categories,slug,'.$id,
+            'name' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_categories,name,'.$id,
+            'excerpt' => 'nullable|max:5500',
+            'description' => 'nullable|max:55000',
+            'category_id' => 'nullable|exists:'.config('website.table_prefix', 'website').'_categories,id',
             'active' => 'sometimes|boolean',
+            'position' => 'nullable|numeric',
+            'icon' => 'nullable|max:255',
+            'color' => 'nullable|max:255',
+            'expire' => 'nullable|max:255',
+            'data' => 'nullable',
+            'meta_name' => 'nullable|max:100',
+            'meta_description' => 'nullable|max:255',
+            'meta_keywords' => 'nullable|max:100',
+            'videos' => 'nullable',
+            'popup' => 'sometimes|numeric',
         ];
     }
 }

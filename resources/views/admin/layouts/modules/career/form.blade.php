@@ -83,10 +83,16 @@
             </div>
         </div>
         <br>
+        {{-- {{dd($career->application_description)}} --}}
         <div class="row">
             <div class="col-12">
                 <label for="application_description">Description</label>
                 <br>
+                @if(isset($career->application_description))
+                <a href="{{$career->application_description}}" download="{{$career->title}}">{{$career->title}}</a>
+                {{-- <input type="file" name="application_description" value="{{$career->application_description}}"> --}}
+                <br>
+                @endif
                 <input type="file" name="application_description" id="application_description">
             </div>
         </div>

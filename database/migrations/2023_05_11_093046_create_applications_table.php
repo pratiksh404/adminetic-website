@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create(config('website.table_prefix', 'website').'_'.'applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('career_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('career_id')->nullable();
+            $table->foreign('career_id')->references('id')->on(config('website.table_prefix', 'website').'_'.'careers')->onDelete('cascade');
+       
             $table->string('name');
             $table->string('email');
             $table->bigInteger('phone_no');
@@ -24,6 +26,8 @@ return new class extends Migration
             $table->boolean('short_listed')->default(0);
             $table->boolean('selected')->default(0);
             $table->timestamps();
+
+     
         });
     }
 

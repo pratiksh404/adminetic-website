@@ -7,8 +7,15 @@
         </x-slot>
         <x-slot name="content">
             @livewire('admin.popup.popup-table')
+            
         </x-slot>
     </x-adminetic-card>
+
+
+
+
+
+ 
 @endsection
 
 @section('custom_js')
