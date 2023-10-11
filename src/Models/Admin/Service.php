@@ -92,4 +92,19 @@ class Service extends Model implements HasMedia
 
         return $schema->toScript();
     }
+
+        // Accessors
+        public function getImageAttribute()
+        {
+        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/blog.gif');
+        }
+
+        // Accessors
+        public function getIconImageAttribute()
+        {
+            return ! is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : asset('adminetic/static/blog.gif');
+        }
+
+        
+    
 }

@@ -107,4 +107,5 @@ class Software extends Model implements HasMedia
 
         return $schema->toScript();
     }
+    
 }

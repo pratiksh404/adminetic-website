@@ -53,4 +53,11 @@ class Team extends Model implements HasMedia
 
         parent::__construct($attributes);
     }
+
+        // Accessors
+        public function getImageAttribute()
+        {
+            return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/blog.gif');
+        }
+    
 }
