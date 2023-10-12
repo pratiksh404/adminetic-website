@@ -320,7 +320,6 @@ class WebsiteServiceProvider extends ServiceProvider
         Livewire::component('admin.about.about-table', AboutTable::class);
         Livewire::component('admin.history.history-table', HistoryTable::class);
         Livewire::component('admin.popup.popup-table', PopupTable::class);
-
     }
 
     /**

@@ -5,7 +5,6 @@ namespace Adminetic\Website\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-
 class PopupRequest extends FormRequest
 {
     /**
@@ -33,6 +32,7 @@ class PopupRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->popup->id ?? '';
+
         return [
             'slug' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_categories,slug,'.$id,
             'name' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_categories,name,'.$id,

@@ -19,19 +19,17 @@ return new class extends Migration
             $table->string('company')->nullable();
             $table->unsignedBigInteger('service_id')->nullable();
             $table->foreign('service_id')->references('id')->on(config('website.table_prefix', 'website').'_'.'services')->onDelete('cascade');
-       
+
             $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on(config('website.table_prefix', 'website').'_'.'products')->onDelete('cascade');
-       
+
             $table->unsignedBigInteger('software_id')->nullable();
             $table->foreign('software_id')->references('id')->on(config('website.table_prefix', 'website').'_'.'software')->onDelete('cascade');
-       
+
             $table->boolean('consent_for_email')->default(0);
             $table->text('message');
             $table->json('data')->nullable();
             $table->timestamps();
-
-
         });
     }
 

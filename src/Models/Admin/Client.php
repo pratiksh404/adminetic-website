@@ -49,14 +49,15 @@ class Client extends Model implements HasMedia
 
         parent::__construct($attributes);
     }
+
     // Accessors
     public function getImageAttribute()
     {
-    return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
+        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
     }
 
     public function getIconImageAttribute()
     {
-    return ! is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : asset('adminetic/static/placeholder.jpg');
+        return ! is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : asset('adminetic/static/placeholder.jpg');
     }
 }

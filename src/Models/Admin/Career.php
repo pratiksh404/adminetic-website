@@ -104,7 +104,6 @@ class Career extends Model
     // Accessors
     public function getImageAttribute()
     {
-    return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
+        return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
     }
-
 }
