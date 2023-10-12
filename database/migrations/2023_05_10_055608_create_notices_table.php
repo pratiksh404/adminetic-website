@@ -19,7 +19,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on(config('website.table_prefix', 'website').'_'.'categories')->onDelete('cascade');
-       
+
             $table->boolean('active')->default(1);
             $table->boolean('popup')->default(0);
             $table->dateTime('expire')->nullable();
@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->timestamps();
-        
         });
     }
 

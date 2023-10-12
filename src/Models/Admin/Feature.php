@@ -82,7 +82,7 @@ class Feature extends Model implements HasMedia
         return $query->orderBy('position')->take($limit ?? 3);
     }
 
-        // Accessors
+    // Accessors
     public function getImageAttribute()
     {
         return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
