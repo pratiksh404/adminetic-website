@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('type')->default(1);
             $table->double('amount')->default(0);
             $table->text('particular')->nullable();
+            $table->bigInteger('position')->default(1);
 
             // Polymorphism
             $table->unsignedBigInteger('paymentable_id')->nullable();

@@ -5,7 +5,7 @@
                 <div class="mt-4">
                     <label for="name">{{ label('teams', 'name') }}</label>
                     <input type="text" name="name" id="name" class="form-control"
-                        value="{{ $team->name ?? old('name') }}" placeholder="Testimonial Name">
+                        value="{{ $team->name ?? old('name') }}" placeholder="Team Name">
                 </div>
                 <div class="mt-4">
                     <label for="short_message">{{ label('teams', 'short_message', 'Short Message') }}</label>

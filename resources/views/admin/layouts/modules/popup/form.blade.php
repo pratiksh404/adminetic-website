@@ -46,7 +46,7 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Service Image
+                Popup Image
             </div>
             <div class="card-body shadow-lg p-3">
                 @livewire('admin.system.upload-image', ['model' => $popup ?? null, 'attribute' => 'image'])
@@ -54,7 +54,7 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Service Icon Image
+                Popup Icon Image
             </div>
             <div class="card-body shadow-lg p-3">
                 @livewire('admin.system.upload-image', ['model' => $popup ?? null, 'attribute' => 'icon_image'])

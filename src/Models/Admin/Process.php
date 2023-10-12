@@ -75,4 +75,15 @@ class Process extends Model implements HasMedia
     {
         return $qry->where('featured', 1);
     }
+
+        // Accessors
+        public function getImageAttribute()
+        {
+            return ! is_null($this->getFirstMedia('image')) ? $this->getFirstMediaUrl('image') : asset('adminetic/static/placeholder.jpg');
+        }
+    
+        public function getIconImageAttribute()
+        {
+            return ! is_null($this->getFirstMedia('icon_image')) ? $this->getFirstMediaUrl('icon_image') : asset('adminetic/static/placeholder.jpg');
+        }
 }

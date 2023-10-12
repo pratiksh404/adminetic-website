@@ -44,7 +44,7 @@ class ProductRequest extends FormRequest
             'strength' => 'nullable',
             'dosage_form' => 'nullable',
             'slug' => 'required|unique:'.config('website.table_prefix', 'website').'_products,slug,'.$id,
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'nullable|exists:'.config('website.table_prefix', 'website').'_categories,id',
             'selling_price' => 'required|numeric',
             'cost_price' => 'nullable|numeric',
             'quantity' => 'sometimes|numeric',

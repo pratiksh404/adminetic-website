@@ -41,7 +41,7 @@ class ProjectRequest extends FormRequest
             'name' => 'required|max:100|unique:'.config('website.table_prefix', 'website').'_categories,name,'.$id,
             'excerpt' => 'nullable|max:5500',
             'description' => 'nullable|max:55000',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'nullable|exists:'.config('website.table_prefix', 'website').'_categories,id',
             'active' => 'sometimes|boolean',
             'featured' => 'sometimes|boolean',
             'position' => 'nullable|numeric',

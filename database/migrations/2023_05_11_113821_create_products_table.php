@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('sku')->unique();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on(config('website.table_prefix', 'website').'_'.'categories')->onDelete('cascade');
+       
             $table->bigInteger('selling_price')->default(0);
             $table->bigInteger('cost_price')->nullable();
             $table->bigInteger('quantity')->default(1);
@@ -34,6 +36,8 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->timestamps();
+
+          
         });
     }
 

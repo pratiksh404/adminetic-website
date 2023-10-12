@@ -40,7 +40,8 @@ class QuickCategory extends Component
     {
         $this->validate([
             'name' => 'required|max:100',
-            'parent_id' => 'nullable|numeric|exists:categories,id',
+            'parent_id' => 'nullable|numeric|exists:'.config('website.table_prefix', 'website').'_categories,id',
+            
         ]);
 
         $category = Category::create([
